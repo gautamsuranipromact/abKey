@@ -1,0 +1,6 @@
+framework module Pods_AbKey_AbKeyUITests {
+  umbrella header "Pods-AbKey-AbKeyUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

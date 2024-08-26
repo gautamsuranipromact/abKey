@@ -1,0 +1,6 @@
+framework module Pods_CustomKeyboardView {
+  umbrella header "Pods-CustomKeyboardView-umbrella.h"
+
+  export *
+  module * { export * }
+}
