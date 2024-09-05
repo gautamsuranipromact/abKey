@@ -9,6 +9,7 @@ import UIKit
 
 class CustomKeyboardVC: UIViewController, CustomKeyboardViewDelegate {
     
+    
     ///Outlets
     @IBOutlet weak var textField: UITextField!
     ///Variables
@@ -45,7 +46,7 @@ extension CustomKeyboardVC {
     }
     
     func colonButtonTapped() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textField.insertText(":")
         }else{
             textField.insertText(";")
@@ -53,7 +54,7 @@ extension CustomKeyboardVC {
     }
     
     func hyphenButtonTapped() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textField.insertText("_")
         }else{
             textField.insertText("-")
@@ -61,7 +62,7 @@ extension CustomKeyboardVC {
     }
     
     func leftArrowButtonClicked() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textField.insertText("<")
         }else{
             textField.insertText(",")
@@ -69,7 +70,7 @@ extension CustomKeyboardVC {
     }
     
     func rightArrowButtonClicked() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textField.insertText(">")
         }else{
             textField.insertText(".")
@@ -77,7 +78,7 @@ extension CustomKeyboardVC {
     }
     
     func questionButtonClicked() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textField.insertText("?")
         }else{
             textField.insertText("/")
@@ -88,7 +89,7 @@ extension CustomKeyboardVC {
         textField.text! += "\n"
     }
     
-    func moveArroeLeftButton(){
+    func moveArrowLeftButton(){
         if let textField = textField {
                 if let selectedRange = textField.selectedTextRange {
                     let cursorPosition = textField.offset(from: textField.beginningOfDocument, to: selectedRange.start)
@@ -104,7 +105,7 @@ extension CustomKeyboardVC {
         textField.text! += "%"
     }
     func specialGbutton() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isThirdCapsUppercase == true{
             textField.insertText("A")
         }else{
             textField.insertText("a")
@@ -128,4 +129,8 @@ extension CustomKeyboardVC {
     func smileyButton() {
         textField.text! += ":-)"
     }
+    func closeKeyboard() {
+        
+    }
+    
 }

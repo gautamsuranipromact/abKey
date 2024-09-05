@@ -24,21 +24,12 @@
 		4649A72C2B9EEDED009423CC /* AlphabetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649A7282B9EED13009423CC /* AlphabetViewController.swift */; };
 		4649A72D2B9EEDED009423CC /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649A72A2B9EED1F009423CC /* NumbersViewController.swift */; };
 		4650026D2BA8709300D5781D /* AbKeySettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650026C2BA8709300D5781D /* AbKeySettingVC.swift */; };
-		467FEBBA2BB57DEA00C42519 /* Howto.html in Resources */ = {isa = PBXBuildFile; fileRef = 467FEBB72BB57DEA00C42519 /* Howto.html */; };
-		467FEBBB2BB57DEA00C42519 /* Agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = 467FEBB82BB57DEA00C42519 /* Agreement.html */; };
-		467FEBBC2BB57DEA00C42519 /* Welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 467FEBB92BB57DEA00C42519 /* Welcome.html */; };
 		468070C02B9EC87B003E2804 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693E10C2B9AE7DD0049A85D /* SettingViewController.swift */; };
 		468070C12B9EC88A003E2804 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693E10C2B9AE7DD0049A85D /* SettingViewController.swift */; };
 		46894B4B2BB28C8500FF01BD /* AboutAbkeyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46894B4A2BB28C8500FF01BD /* AboutAbkeyVC.swift */; };
 		46894B4D2BB2900500FF01BD /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46894B4C2BB2900500FF01BD /* WelcomeVC.swift */; };
 		46894B4F2BB2901F00FF01BD /* HowToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46894B4E2BB2901F00FF01BD /* HowToVC.swift */; };
 		46894B512BB2903200FF01BD /* AggrementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46894B502BB2903200FF01BD /* AggrementVC.swift */; };
-		468E03012B4FF2B80009DE0E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468E02FE2B4FF2B80009DE0E /* CustomButton.swift */; };
-		468E03022B4FF2B80009DE0E /* CustomKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468E02FF2B4FF2B80009DE0E /* CustomKeyboardView.swift */; };
-		468E03032B4FF2B80009DE0E /* CustomKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 468E03002B4FF2B80009DE0E /* CustomKeyboardView.xib */; };
-		468E03042B4FF2C00009DE0E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468E02FE2B4FF2B80009DE0E /* CustomButton.swift */; };
-		468E03052B4FF2C00009DE0E /* CustomKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468E02FF2B4FF2B80009DE0E /* CustomKeyboardView.swift */; };
-		468E03062B4FF2C00009DE0E /* CustomKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 468E03002B4FF2B80009DE0E /* CustomKeyboardView.xib */; };
 		46DA79542B4E94B500A9C180 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DA79532B4E94B500A9C180 /* AppDelegate.swift */; };
 		46DA79562B4E94B500A9C180 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DA79552B4E94B500A9C180 /* SceneDelegate.swift */; };
 		46DA795B2B4E94B500A9C180 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DA79592B4E94B500A9C180 /* Main.storyboard */; };
@@ -55,6 +46,24 @@
 		46FD2FB82B975A3200EC5806 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD2FB72B975A3200EC5806 /* PopUpView.swift */; };
 		6564FEC9A2D52428B1B13FD3 /* Pods_AbKeyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64635E8BB481433BDCD92079 /* Pods_AbKeyTests.framework */; };
 		BB4016410C052C31EF64FC2F /* Pods_CustomKeyboardView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A6D4CCBA0B0C2F2401278F /* Pods_CustomKeyboardView.framework */; };
+		D3ACD1242C86CECB00664362 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACD1232C86CECB00664362 /* CustomButton.swift */; };
+		D3ACD1252C86CECB00664362 /* CustomKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACD1212C86CECB00664362 /* CustomKeyboardView.swift */; };
+		D3ACD1262C86CEDB00664362 /* CustomKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3ACD1222C86CECB00664362 /* CustomKeyboardView.xib */; };
+		D3ACD1272C86D14200664362 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACD1232C86CECB00664362 /* CustomButton.swift */; };
+		D3ACD1282C86D14500664362 /* CustomKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACD1212C86CECB00664362 /* CustomKeyboardView.swift */; };
+		D3ACD1292C86D14A00664362 /* CustomKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3ACD1222C86CECB00664362 /* CustomKeyboardView.xib */; };
+		D3E4FC4B2C857F5D0030A6F5 /* Howto.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC4A2C857F5D0030A6F5 /* Howto.html */; };
+		D3E4FC4C2C857F5D0030A6F5 /* Howto.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC4A2C857F5D0030A6F5 /* Howto.html */; };
+		D3E4FC4D2C857F5D0030A6F5 /* Howto.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC4A2C857F5D0030A6F5 /* Howto.html */; };
+		D3E4FC4E2C857F5D0030A6F5 /* Howto.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC4A2C857F5D0030A6F5 /* Howto.html */; };
+		D3E4FC502C857F650030A6F5 /* Agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC4F2C857F650030A6F5 /* Agreement.html */; };
+		D3E4FC512C857F650030A6F5 /* Agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC4F2C857F650030A6F5 /* Agreement.html */; };
+		D3E4FC522C857F650030A6F5 /* Agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC4F2C857F650030A6F5 /* Agreement.html */; };
+		D3E4FC532C857F650030A6F5 /* Agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC4F2C857F650030A6F5 /* Agreement.html */; };
+		D3E4FC552C857F740030A6F5 /* Welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC542C857F740030A6F5 /* Welcome.html */; };
+		D3E4FC562C857F740030A6F5 /* Welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC542C857F740030A6F5 /* Welcome.html */; };
+		D3E4FC572C857F740030A6F5 /* Welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC542C857F740030A6F5 /* Welcome.html */; };
+		D3E4FC582C857F740030A6F5 /* Welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC542C857F740030A6F5 /* Welcome.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,16 +121,10 @@
 		4649A7282B9EED13009423CC /* AlphabetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetViewController.swift; sourceTree = "<group>"; };
 		4649A72A2B9EED1F009423CC /* NumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersViewController.swift; sourceTree = "<group>"; };
 		4650026C2BA8709300D5781D /* AbKeySettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbKeySettingVC.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		467FEBB72BB57DEA00C42519 /* Howto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Howto.html; path = ../../../../../Downloads/Howto.html; sourceTree = "<group>"; };
-		467FEBB82BB57DEA00C42519 /* Agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Agreement.html; path = ../../../../../Downloads/Agreement.html; sourceTree = "<group>"; };
-		467FEBB92BB57DEA00C42519 /* Welcome.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Welcome.html; path = ../../../../../Downloads/Welcome.html; sourceTree = "<group>"; };
 		46894B4A2BB28C8500FF01BD /* AboutAbkeyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAbkeyVC.swift; sourceTree = "<group>"; };
 		46894B4C2BB2900500FF01BD /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		46894B4E2BB2901F00FF01BD /* HowToVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToVC.swift; sourceTree = "<group>"; };
 		46894B502BB2903200FF01BD /* AggrementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggrementVC.swift; sourceTree = "<group>"; };
-		468E02FE2B4FF2B80009DE0E /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		468E02FF2B4FF2B80009DE0E /* CustomKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKeyboardView.swift; sourceTree = "<group>"; };
-		468E03002B4FF2B80009DE0E /* CustomKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomKeyboardView.xib; sourceTree = "<group>"; };
 		4693E10C2B9AE7DD0049A85D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		46DA79502B4E94B500A9C180 /* AbKey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AbKey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DA79532B4E94B500A9C180 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +148,12 @@
 		725E10ABE1A01B956847539C /* Pods-AbKey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbKey.debug.xcconfig"; path = "Target Support Files/Pods-AbKey/Pods-AbKey.debug.xcconfig"; sourceTree = "<group>"; };
 		75FC946F77B45EC8265EB6FD /* Pods_AbKey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AbKey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A6D4CCBA0B0C2F2401278F /* Pods_CustomKeyboardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomKeyboardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3ACD1212C86CECB00664362 /* CustomKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardView.swift; sourceTree = "<group>"; };
+		D3ACD1222C86CECB00664362 /* CustomKeyboardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomKeyboardView.xib; sourceTree = "<group>"; };
+		D3ACD1232C86CECB00664362 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		D3E4FC4A2C857F5D0030A6F5 /* Howto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Howto.html; sourceTree = "<group>"; };
+		D3E4FC4F2C857F650030A6F5 /* Agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Agreement.html; sourceTree = "<group>"; };
+		D3E4FC542C857F740030A6F5 /* Welcome.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Welcome.html; sourceTree = "<group>"; };
 		E290247DDB1F550A3014626F /* Pods-CustomKeyboardView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomKeyboardView.release.xcconfig"; path = "Target Support Files/Pods-CustomKeyboardView/Pods-CustomKeyboardView.release.xcconfig"; sourceTree = "<group>"; };
 		E86ADC792FE7CE81D4771B6F /* Pods-AbKeyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbKeyTests.release.xcconfig"; path = "Target Support Files/Pods-AbKeyTests/Pods-AbKeyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,22 +247,11 @@
 		467FEBB62BB57DAB00C42519 /* HTML File */ = {
 			isa = PBXGroup;
 			children = (
-				467FEBB82BB57DEA00C42519 /* Agreement.html */,
-				467FEBB72BB57DEA00C42519 /* Howto.html */,
-				467FEBB92BB57DEA00C42519 /* Welcome.html */,
+				D3E4FC4A2C857F5D0030A6F5 /* Howto.html */,
+				D3E4FC4F2C857F650030A6F5 /* Agreement.html */,
+				D3E4FC542C857F740030A6F5 /* Welcome.html */,
 			);
 			path = "HTML File";
-			sourceTree = "<group>";
-		};
-		468E02FD2B4FF2B80009DE0E /* CustomKeyboardView */ = {
-			isa = PBXGroup;
-			children = (
-				468E02FE2B4FF2B80009DE0E /* CustomButton.swift */,
-				468E02FF2B4FF2B80009DE0E /* CustomKeyboardView.swift */,
-				468E03002B4FF2B80009DE0E /* CustomKeyboardView.xib */,
-			);
-			name = CustomKeyboardView;
-			path = "../../../../Downloads/ios-custom-keyboard-main/CustomKeyboard/CustomKeyboardView";
 			sourceTree = "<group>";
 		};
 		46DA79472B4E94B500A9C180 = {
@@ -286,7 +284,6 @@
 				467FEBB62BB57DAB00C42519 /* HTML File */,
 				4625302F2BA1BBED0084A09B /* AbKey.entitlements */,
 				462DD3E52BA17444008A83ED /* DatabaseHelper */,
-				468E02FD2B4FF2B80009DE0E /* CustomKeyboardView */,
 				462530302BA1BDB70084A09B /* ViewControllers */,
 				462530312BA1BDEF0084A09B /* Cell */,
 				46DA79532B4E94B500A9C180 /* AppDelegate.swift */,
@@ -323,6 +320,7 @@
 			children = (
 				462DD3E92BA1B24E008A83ED /* CustomKeyboardView.entitlements */,
 				46DA79922B4E959500A9C180 /* KeyboardViewController.swift */,
+				D3ACD1202C86CECB00664362 /* CustomKeyboardView */,
 				46DA79942B4E959500A9C180 /* Info.plist */,
 			);
 			path = CustomKeyboardView;
@@ -337,6 +335,16 @@
 				94A6D4CCBA0B0C2F2401278F /* Pods_CustomKeyboardView.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D3ACD1202C86CECB00664362 /* CustomKeyboardView */ = {
+			isa = PBXGroup;
+			children = (
+				D3ACD1232C86CECB00664362 /* CustomButton.swift */,
+				D3ACD1212C86CECB00664362 /* CustomKeyboardView.swift */,
+				D3ACD1222C86CECB00664362 /* CustomKeyboardView.xib */,
+			);
+			path = CustomKeyboardView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,13 +479,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3E4FC502C857F650030A6F5 /* Agreement.html in Resources */,
+				D3E4FC4B2C857F5D0030A6F5 /* Howto.html in Resources */,
 				46DA79602B4E94B600A9C180 /* LaunchScreen.storyboard in Resources */,
-				467FEBBB2BB57DEA00C42519 /* Agreement.html in Resources */,
-				467FEBBA2BB57DEA00C42519 /* Howto.html in Resources */,
 				46DA795D2B4E94B600A9C180 /* Assets.xcassets in Resources */,
-				468E03032B4FF2B80009DE0E /* CustomKeyboardView.xib in Resources */,
+				D3ACD1292C86D14A00664362 /* CustomKeyboardView.xib in Resources */,
 				46DA795B2B4E94B500A9C180 /* Main.storyboard in Resources */,
-				467FEBBC2BB57DEA00C42519 /* Welcome.html in Resources */,
+				D3E4FC552C857F740030A6F5 /* Welcome.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +493,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3E4FC4C2C857F5D0030A6F5 /* Howto.html in Resources */,
+				D3E4FC512C857F650030A6F5 /* Agreement.html in Resources */,
+				D3E4FC562C857F740030A6F5 /* Welcome.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +503,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3E4FC4D2C857F5D0030A6F5 /* Howto.html in Resources */,
+				D3E4FC522C857F650030A6F5 /* Agreement.html in Resources */,
+				D3E4FC572C857F740030A6F5 /* Welcome.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +513,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				468E03062B4FF2C00009DE0E /* CustomKeyboardView.xib in Resources */,
+				D3E4FC4E2C857F5D0030A6F5 /* Howto.html in Resources */,
+				D3E4FC532C857F650030A6F5 /* Agreement.html in Resources */,
+				D3E4FC582C857F740030A6F5 /* Welcome.html in Resources */,
+				D3ACD1262C86CEDB00664362 /* CustomKeyboardView.xib in Resources */,
 				46DA799F2B4E96C000A9C180 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,11 +637,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				46433FD42B9EF90F0012941E /* AccentsViewController.swift in Sources */,
+				D3ACD1272C86D14200664362 /* CustomButton.swift in Sources */,
 				4649A72B2B9EED1F009423CC /* NumbersViewController.swift in Sources */,
 				46894B4F2BB2901F00FF01BD /* HowToVC.swift in Sources */,
 				4650026D2BA8709300D5781D /* AbKeySettingVC.swift in Sources */,
 				46894B4B2BB28C8500FF01BD /* AboutAbkeyVC.swift in Sources */,
-				468E03012B4FF2B80009DE0E /* CustomButton.swift in Sources */,
 				46DA79542B4E94B500A9C180 /* AppDelegate.swift in Sources */,
 				46DA798B2B4E954A00A9C180 /* CustomKeyboardVC.swift in Sources */,
 				46E52A3B2BA4255800240FF7 /* HomePageVC.swift in Sources */,
@@ -633,8 +650,8 @@
 				462DD3E72BA17478008A83ED /* SQLiteDBHelper.swift in Sources */,
 				46FD2FB82B975A3200EC5806 /* PopUpView.swift in Sources */,
 				46DA79562B4E94B500A9C180 /* SceneDelegate.swift in Sources */,
+				D3ACD1282C86D14500664362 /* CustomKeyboardView.swift in Sources */,
 				468070C12B9EC88A003E2804 /* SettingViewController.swift in Sources */,
-				468E03022B4FF2B80009DE0E /* CustomKeyboardView.swift in Sources */,
 				46894B4D2BB2900500FF01BD /* WelcomeVC.swift in Sources */,
 				4649A7292B9EED13009423CC /* AlphabetViewController.swift in Sources */,
 				46433FDE2B9F0E150012941E /* NumberVCCell.swift in Sources */,
@@ -663,14 +680,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				468E03042B4FF2C00009DE0E /* CustomButton.swift in Sources */,
 				46433FDC2B9F0A590012941E /* AlphabetVCCell.swift in Sources */,
 				46DA79932B4E959500A9C180 /* KeyboardViewController.swift in Sources */,
-				468E03052B4FF2C00009DE0E /* CustomKeyboardView.swift in Sources */,
 				4649A72D2B9EEDED009423CC /* NumbersViewController.swift in Sources */,
 				4649A72C2B9EEDED009423CC /* AlphabetViewController.swift in Sources */,
+				D3ACD1252C86CECB00664362 /* CustomKeyboardView.swift in Sources */,
 				468070C02B9EC87B003E2804 /* SettingViewController.swift in Sources */,
 				46433FD52B9EFAC50012941E /* AccentsViewController.swift in Sources */,
+				D3ACD1242C86CECB00664362 /* CustomButton.swift in Sources */,
 				462DD3E82BA17480008A83ED /* SQLiteDBHelper.swift in Sources */,
 				46433FE22B9F13850012941E /* AccentsVCCell.swift in Sources */,
 				46433FDF2B9F0E190012941E /* NumberVCCell.swift in Sources */,

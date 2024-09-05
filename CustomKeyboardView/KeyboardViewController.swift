@@ -9,7 +9,12 @@ import UIKit
 
 class KeyboardViewController: UIInputViewController,CustomKeyboardViewDelegate{
     
+    
+    
 //    @IBOutlet var nextKeyboardButton: UIButton!
+    
+    
+    
     var customKeyboardView: CustomKeyboardView!
     var lexicon: UILexicon?
     
@@ -98,7 +103,7 @@ extension KeyboardViewController {
 
 extension KeyboardViewController{
     func colonButtonTapped() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textDocumentProxy.insertText(":")
         }else{
             textDocumentProxy.insertText(";")
@@ -106,7 +111,7 @@ extension KeyboardViewController{
     }
     
     func hyphenButtonTapped() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textDocumentProxy.insertText("_")
         }else{
             textDocumentProxy.insertText("-")
@@ -114,7 +119,7 @@ extension KeyboardViewController{
     }
     
     func leftArrowButtonClicked() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textDocumentProxy.insertText("<")
         }else{
             textDocumentProxy.insertText(",")
@@ -122,7 +127,7 @@ extension KeyboardViewController{
     }
     
     func rightArrowButtonClicked() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textDocumentProxy.insertText(">")
         }else{
             textDocumentProxy.insertText(".")
@@ -130,7 +135,7 @@ extension KeyboardViewController{
     }
     
     func questionButtonClicked() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isFirstCapsUppercase == true{
             textDocumentProxy.insertText("?")
         }else{
             textDocumentProxy.insertText("/")
@@ -141,7 +146,7 @@ extension KeyboardViewController{
         textDocumentProxy.insertText("\n")
     }
     
-    func moveArroeLeftButton() {
+    func moveArrowLeftButton() {
         textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)    }
     
     func specialFbutton() {
@@ -149,7 +154,7 @@ extension KeyboardViewController{
     }
     
     func specialGbutton() {
-        if customKeyboardView.isUpperCase == true{
+        if customKeyboardView.isThirdCapsUppercase == true{
             textDocumentProxy.insertText("A")
         }else{
             textDocumentProxy.insertText("a")
@@ -179,5 +184,10 @@ extension KeyboardViewController{
     func smileyButton() {
         textDocumentProxy.insertText(":-)")
     }
+    
+    func closeKeyboard() {
+        self.dismissKeyboard()
+    }
+    
 }
 

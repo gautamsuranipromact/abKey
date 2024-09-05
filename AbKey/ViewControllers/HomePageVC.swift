@@ -37,12 +37,12 @@ class HomePageVC: UIViewController {
         self.applyRoundedCorners(to: lblAppTitle)
         self.applyRoundedCorners(to: viewAbKeySetting)
         
-        for button in btnCollections {
-            button.applyGradient(colors: [
-                UIColor(red: 154/255, green: 161/255, blue: 204/255, alpha: 1.00).cgColor,
-                UIColor(red: 85/255, green: 93/255, blue: 147/255, alpha: 1.00).cgColor
-            ])
-        }
+//        for button in btnCollections {
+//            button.applyGradient(colors: [
+//                UIColor(red: 154/255, green: 161/255, blue: 204/255, alpha: 1.00).cgColor,
+//                UIColor(red: 85/255, green: 93/255, blue: 147/255, alpha: 1.00).cgColor
+//            ])
+//        }
         
         self.applyGradientBackground(colors: [UIColor(red: 94/255, green: 105/255, blue: 132/255, alpha: 1.00).cgColor,UIColor(red: 11/255, green: 28/255, blue: 68/255, alpha: 1.00).cgColor])
 
