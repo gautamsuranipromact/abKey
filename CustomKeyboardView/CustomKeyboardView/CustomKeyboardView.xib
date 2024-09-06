@@ -2116,6 +2116,369 @@
                         <constraint firstItem="8Bj-Xn-1Pp" firstAttribute="top" secondItem="VaO-IH-4t9" secondAttribute="top" id="qa0-k5-alb"/>
                     </constraints>
                 </view>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="gQv-m5-C9h" userLabel="PopupVIew_@">
+                    <rect key="frame" x="5" y="5" width="290" height="145"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Gf0-LO-ujR">
+                            <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="145"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xE8-mu-mTd" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="46.333333333333336"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="http://" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="xQK-j3-CnM"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="gxY-A5-oQt"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdv-Ce-qsU" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="49.333333333333329" width="55.666666666666664" height="46.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".co" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="OKR-li-92e"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="qad-7h-fP4"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uP2-RM-Z90" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="98.666666666666671" width="55.666666666666664" height="46.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".info" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="oZD-b0-9y7"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="rcO-1N-To2"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="E7d-qg-Dss">
+                            <rect key="frame" x="58.666666666666671" y="0.0" width="55.666666666666671" height="145"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXT-lQ-6kr" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="46.333333333333336"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="https://" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="kR2-Hy-yzE"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="cA2-Ey-DXz"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APk-9K-Ufr" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="49.333333333333329" width="55.666666666666664" height="46.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".net" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="Kpl-KY-Xlb"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="KUI-uL-c0j"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3OL-Z5-Zhp" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="98.666666666666671" width="55.666666666666664" height="46.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".edu" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="ii2-RB-Sia"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="x03-1U-aI4"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="yCI-e7-Gef">
+                            <rect key="frame" x="117.33333333333333" y="0.0" width="55.333333333333329" height="145"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtB-we-TlH" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="55.333333333333336" height="46.333333333333336"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="www." backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="eAI-xL-vmj"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Phf-JV-Vo6"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7q-ud-Oek" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="49.333333333333329" width="55.333333333333336" height="46.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".org" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="C0B-eR-4vB"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="S2n-dv-6cQ"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuc-XW-Eln" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="98.666666666666671" width="55.333333333333336" height="46.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".gov" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="03y-ok-Zic"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="ceA-1p-KaJ"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="FhP-Ed-7hd">
+                            <rect key="frame" x="175.66666666666666" y="0.0" width="55.666666666666657" height="145"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXN-MZ-Tk1" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="46.333333333333336"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".com" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="y1d-S5-BV3"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="l2z-Td-eiC"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWn-8c-J2g" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="49.333333333333329" width="55.666666666666664" height="46.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".biz" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="6o5-bU-c6Q"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="jFX-kP-rS1"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rJ-Cs-WBw" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="98.666666666666671" width="55.666666666666664" height="46.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=".mil" backgroundImage="key_background_2">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="pS1-am-Kuh"/>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="AWs-zl-Z3o"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="SyO-IG-Hdn">
+                            <rect key="frame" x="234.33333333333334" y="0.0" width="55.666666666666657" height="145"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEo-D5-YYG" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="26.666666666666668"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="9JB-SW-Cq1"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaV-TN-WVO" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="29.666666666666664" width="55.666666666666664" height="26.666666666666664"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="wWk-sf-4ko"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POX-O1-Q00" userLabel="close" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="59.333333333333336" width="55.666666666666664" height="26.333333333333336"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="X">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnAtTheRatePopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="mMb-Xu-fFG"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEB-Fj-Z0y" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="88.666666666666671" width="55.666666666666664" height="26.666666666666671"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gc3-XV-mIa"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOG-LR-AQ8" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="118.33333333333333" width="55.666666666666664" height="26.666666666666671"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="UFc-QW-SML"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGrayColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="145" id="IlC-XA-8ac"/>
+                        <constraint firstAttribute="width" constant="290" id="eGe-Er-Kwe"/>
+                    </constraints>
+                </stackView>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eex-hT-iQn" userLabel="PopupView_Colon">
+                    <rect key="frame" x="432" y="10" width="60" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2h8-Xx-3fq" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="27.666666666666668" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title=":" backgroundImage="key_background_2">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="btnColonPopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="ekv-Ie-z61"/>
+                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="vsi-EB-P3R"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cql-de-KPF" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
+                            <rect key="frame" x="32.666666666666686" y="0.0" width="27.333333333333329" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="X">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="btnColonPopupClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="VGf-4V-1jZ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGrayColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="ePT-tp-5yM"/>
+                        <constraint firstAttribute="height" constant="40" id="qAa-u4-e0Q"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemGrayColor"/>
@@ -2124,12 +2487,20 @@
                 <constraint firstItem="VaO-IH-4t9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Shj-Ps-Pee"/>
                 <constraint firstAttribute="bottom" secondItem="VaO-IH-4t9" secondAttribute="bottom" constant="5" id="UTF-7s-yqc"/>
                 <constraint firstItem="VaO-IH-4t9" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Vq5-Kc-ZBE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eex-hT-iQn" secondAttribute="trailing" constant="10" id="XzZ-Nm-P4W"/>
+                <constraint firstItem="gQv-m5-C9h" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="ZGH-uF-bpG"/>
                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="210" id="k2E-ty-svk"/>
                 <constraint firstItem="VaO-IH-4t9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="vVC-59-qum"/>
+                <constraint firstItem="gQv-m5-C9h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="ypj-LL-NvS"/>
                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="210" id="zSn-A4-xGN"/>
+                <constraint firstItem="eex-hT-iQn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="zdR-HZ-agP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="AtTheRateBtn" destination="TSY-Em-QqL" id="CAE-wi-7gE"/>
+                <outlet property="AtTheRatePopupView" destination="gQv-m5-C9h" id="Nl1-0v-ljV"/>
+                <outlet property="ColonBtn" destination="MNf-Kb-YxT" id="AC3-NO-yFa"/>
+                <outlet property="ColonPopupView" destination="eex-hT-iQn" id="caT-a8-0nu"/>
                 <outlet property="FirstKeyboardCapsBtn" destination="PKn-S2-hDs" id="11b-Er-YEL"/>
                 <outlet property="FirstKeyboardLayout" destination="8Bj-Xn-1Pp" id="VEs-vB-8ml"/>
                 <outlet property="SecondKeyboardLayout" destination="qHH-u1-hNf" id="unv-Th-tAA"/>
@@ -2210,6 +2581,9 @@
         <image name="special_q" width="19" height="33"/>
         <image name="tplus_btn_normal" width="44" height="63.333332061767578"/>
         <image name="tr_btn_normal" width="43.333332061767578" height="63.333332061767578"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

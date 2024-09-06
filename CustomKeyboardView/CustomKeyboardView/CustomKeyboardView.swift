@@ -32,9 +32,15 @@ class CustomKeyboardView: UIView {
     ///Outlets
     @IBOutlet weak var btnKeyboardSwitch: UIButton!
     
+    // keyboard layout views
     @IBOutlet weak var FirstKeyboardLayout: UIStackView!
     @IBOutlet weak var SecondKeyboardLayout: UIStackView!
     @IBOutlet weak var ThirdKeyboardLayout: UIStackView!
+    
+    // outlet long press key popups
+    @IBOutlet weak var AtTheRatePopupView: UIStackView!
+    
+    @IBOutlet weak var ColonPopupView: UIStackView!
     
     
     // First keyboard keys collection
@@ -43,10 +49,15 @@ class CustomKeyboardView: UIView {
     // Third keyboard keys collection
     @IBOutlet var KeysCollectionThirdKeyboard: [CustomButton]!
     
-    
+    // keyboard keys outlets for special gestures
     @IBOutlet weak var FirstKeyboardCapsBtn: CustomButton!
     
     @IBOutlet weak var ThirdKeyboardCapsBtn: CustomButton!
+    
+    @IBOutlet weak var AtTheRateBtn: CustomButton!
+    
+    @IBOutlet weak var ColonBtn: CustomButton!
+    
     
     ///Variables
 //    var isUpperCase: Bool = false
@@ -104,6 +115,13 @@ class CustomKeyboardView: UIView {
             
         ThirdKeyboardCapsBtn.addGestureRecognizer(thirdCapsSingleTapRecognizer)
         ThirdKeyboardCapsBtn.addGestureRecognizer(thirdCapsDoubleTapRecognizer)
+        
+        // Attaching Long press keys gesture to the buttons.
+        let atTheRateLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleAtTheRateLongPress))
+        AtTheRateBtn.addGestureRecognizer(atTheRateLongPressGesture)
+        
+        let colonLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleColonLongPress))
+        ColonBtn.addGestureRecognizer(colonLongPressGesture)
 
     }
     
@@ -151,6 +169,14 @@ class CustomKeyboardView: UIView {
                 button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
             }
         }
+    }
+    
+    @objc func handleAtTheRateLongPress() {
+        AtTheRatePopupView.isHidden = false
+    }
+    
+    @objc func handleColonLongPress() {
+        ColonPopupView.isHidden = false
     }
 }
 
@@ -254,6 +280,14 @@ extension CustomKeyboardView {
     
     @IBAction func btnSmileyTap(_ sender: UIButton) {
         self.delegate?.smileyButton()
+    }
+    
+    @IBAction func btnAtTheRatePopupClose(_ sender: UIButton) {
+        AtTheRatePopupView.isHidden = true
+    }
+    
+    @IBAction func btnColonPopupClose(_ sender: UIButton) {
+        ColonPopupView.isHidden = true
     }
 }
 
