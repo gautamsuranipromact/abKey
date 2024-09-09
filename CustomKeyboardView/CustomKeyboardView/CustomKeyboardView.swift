@@ -37,10 +37,27 @@ class CustomKeyboardView: UIView {
     @IBOutlet weak var SecondKeyboardLayout: UIStackView!
     @IBOutlet weak var ThirdKeyboardLayout: UIStackView!
     
+    
+    
     // outlet long press key popups
+    @IBOutlet weak var OverlayView: UIView!
+    
     @IBOutlet weak var AtTheRatePopupView: UIStackView!
     
     @IBOutlet weak var ColonPopupView: UIStackView!
+    
+    @IBOutlet weak var UnderscorePopupView: UIStackView!
+    
+    @IBOutlet weak var LeftArrowPopupView: UIStackView!
+    
+    @IBOutlet weak var RightArrowPopupView: UIStackView!
+    
+    @IBOutlet weak var QuestionMarkPopupView: UIStackView!
+    
+    @IBOutlet weak var SpecialFPopupView: UIStackView!
+    
+    @IBOutlet weak var SpecialGPopupView: UIStackView!
+    
     
     
     // First keyboard keys collection
@@ -58,6 +75,17 @@ class CustomKeyboardView: UIView {
     
     @IBOutlet weak var ColonBtn: CustomButton!
     
+    @IBOutlet weak var UnderscoreBtn: CustomButton!
+    
+    @IBOutlet weak var LeftArrowBtn: CustomButton!
+    
+    @IBOutlet weak var RightArrowBtn: CustomButton!
+    
+    @IBOutlet weak var QuestionMarkBtn: CustomButton!
+    
+    @IBOutlet weak var SpecialFBtn: CustomButton!
+    
+    @IBOutlet weak var SpecialGBtn: CustomButton!
     
     ///Variables
 //    var isUpperCase: Bool = false
@@ -122,6 +150,24 @@ class CustomKeyboardView: UIView {
         
         let colonLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleColonLongPress))
         ColonBtn.addGestureRecognizer(colonLongPressGesture)
+        
+        let underscoreLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleUnderscoreLongPress))
+        UnderscoreBtn.addGestureRecognizer(underscoreLongPressGesture)
+        
+        let leftArrowLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLeftArrowLongPress))
+        LeftArrowBtn.addGestureRecognizer(leftArrowLongPressGesture)
+        
+        let rightArrowLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleRightArrowLongPress))
+        RightArrowBtn.addGestureRecognizer(rightArrowLongPressGesture)
+        
+        let questionMarkLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleQuestionMarkLongPress))
+        QuestionMarkBtn.addGestureRecognizer(questionMarkLongPressGesture)
+        
+        let specialFLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSpecialFLongPress))
+        SpecialFBtn.addGestureRecognizer(specialFLongPressGesture)
+        
+        let specialGLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSpecialGLongPress))
+        SpecialGBtn.addGestureRecognizer(specialGLongPressGesture)
 
     }
     
@@ -172,11 +218,91 @@ class CustomKeyboardView: UIView {
     }
     
     @objc func handleAtTheRateLongPress() {
+        AtTheRatePopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        AtTheRatePopupView.isLayoutMarginsRelativeArrangement = true
+        AtTheRatePopupView.layer.borderColor = UIColor.lightGray.cgColor
+        AtTheRatePopupView.layer.borderWidth = 2.0
+        AtTheRatePopupView.layer.cornerRadius = 5
+        
+        OverlayView.isHidden = false
         AtTheRatePopupView.isHidden = false
     }
     
     @objc func handleColonLongPress() {
+        ColonPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        ColonPopupView.isLayoutMarginsRelativeArrangement = true
+        ColonPopupView.layer.borderColor = UIColor.lightGray.cgColor
+        ColonPopupView.layer.borderWidth = 2.0
+        ColonPopupView.layer.cornerRadius = 5
+        
+        OverlayView.isHidden = false
         ColonPopupView.isHidden = false
+    }
+    
+    @objc func handleUnderscoreLongPress() {
+        UnderscorePopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        UnderscorePopupView.isLayoutMarginsRelativeArrangement = true
+        UnderscorePopupView.layer.borderColor = UIColor.lightGray.cgColor
+        UnderscorePopupView.layer.borderWidth = 2.0
+        UnderscorePopupView.layer.cornerRadius = 5
+        
+        OverlayView.isHidden = false
+        UnderscorePopupView.isHidden = false
+    }
+    
+    @objc func handleLeftArrowLongPress() {
+        LeftArrowPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        LeftArrowPopupView.isLayoutMarginsRelativeArrangement = true
+        LeftArrowPopupView.layer.borderColor = UIColor.lightGray.cgColor
+        LeftArrowPopupView.layer.borderWidth = 2.0
+        LeftArrowPopupView.layer.cornerRadius = 5
+        
+        OverlayView.isHidden = false
+        LeftArrowPopupView.isHidden = false
+    }
+    
+    @objc func handleRightArrowLongPress() {
+        RightArrowPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        RightArrowPopupView.isLayoutMarginsRelativeArrangement = true
+        RightArrowPopupView.layer.borderColor = UIColor.lightGray.cgColor
+        RightArrowPopupView.layer.borderWidth = 2.0
+        RightArrowPopupView.layer.cornerRadius = 5
+        
+        OverlayView.isHidden = false
+        RightArrowPopupView.isHidden = false
+    }
+    
+    @objc func handleQuestionMarkLongPress() {
+        QuestionMarkPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        QuestionMarkPopupView.isLayoutMarginsRelativeArrangement = true
+        QuestionMarkPopupView.layer.borderColor = UIColor.lightGray.cgColor
+        QuestionMarkPopupView.layer.borderWidth = 2.0
+        QuestionMarkPopupView.layer.cornerRadius = 5
+        
+        OverlayView.isHidden = false
+        QuestionMarkPopupView.isHidden = false
+    }
+    
+    @objc func handleSpecialFLongPress() {
+        SpecialFPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        SpecialFPopupView.isLayoutMarginsRelativeArrangement = true
+        SpecialFPopupView.layer.borderColor = UIColor.lightGray.cgColor
+        SpecialFPopupView.layer.borderWidth = 2.0
+        SpecialFPopupView.layer.cornerRadius = 5
+        
+        OverlayView.isHidden = false
+        SpecialFPopupView.isHidden = false
+    }
+    
+    @objc func handleSpecialGLongPress() {
+        SpecialGPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        SpecialGPopupView.isLayoutMarginsRelativeArrangement = true
+        SpecialGPopupView.layer.borderColor = UIColor.lightGray.cgColor
+        SpecialGPopupView.layer.borderWidth = 2.0
+        SpecialGPopupView.layer.cornerRadius = 5
+        
+        OverlayView.isHidden = false
+        SpecialGPopupView.isHidden = false
     }
 }
 
@@ -283,11 +409,44 @@ extension CustomKeyboardView {
     }
     
     @IBAction func btnAtTheRatePopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
         AtTheRatePopupView.isHidden = true
     }
     
     @IBAction func btnColonPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
         ColonPopupView.isHidden = true
     }
+    
+    @IBAction func btnUnderscorePopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        UnderscorePopupView.isHidden = true
+    }
+    
+    @IBAction func btnLeftArrowPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LeftArrowPopupView.isHidden = true
+    }
+    
+    @IBAction func btnRightArrowPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        RightArrowPopupView.isHidden = true
+    }
+    
+    @IBAction func btnQuestionMarkPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        QuestionMarkPopupView.isHidden = true
+    }
+    
+    @IBAction func btnSpecialFPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        SpecialFPopupView.isHidden = true
+    }
+    
+    @IBAction func btnSpecialGPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        SpecialGPopupView.isHidden = true
+    }
+    
 }
 
