@@ -189,5 +189,15 @@ extension KeyboardViewController{
         self.dismissKeyboard()
     }
     
+    func configurePopupView(_ popupView: UIStackView) {
+        popupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        popupView.isLayoutMarginsRelativeArrangement = true
+        popupView.layer.borderColor = UIColor.lightGray.cgColor
+        popupView.layer.borderWidth = 2.0
+        popupView.layer.cornerRadius = 5
+        popupView.isHidden = false
+        customKeyboardView.OverlayView.isHidden = false
+    }
+    
 }
 

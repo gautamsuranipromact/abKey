@@ -26,6 +26,7 @@ protocol CustomKeyboardViewDelegate: AnyObject {
   func specialQbutton()
   func specialBbutton()
   func smileyButton()
+  func configurePopupView(_ popupView: UIStackView)
 }
 
 class CustomKeyboardView: UIView {
@@ -58,6 +59,46 @@ class CustomKeyboardView: UIView {
     
     @IBOutlet weak var SpecialGPopupView: UIStackView!
     
+    @IBOutlet weak var SmileyButtonPopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_L_PopupView: UIStackView!
+    
+    @IBOutlet weak var SpecialMPopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_N_PopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_E_PopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_I_PopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_O_PopupView: UIStackView!
+    
+    @IBOutlet weak var LatinCentPopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_R_PopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_S_PopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_T_PopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_A_PopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_C_PopupView: UIStackView!
+    
+    @IBOutlet weak var Latin_U_PopupView: UIStackView!
+    
+    @IBOutlet weak var LatinPipePopupView: UIStackView!
+    
+    @IBOutlet weak var LatinBackslashPopupView: UIStackView!
+    
+    @IBOutlet weak var LatinOpeningCurlyBracketsPopupView: UIStackView!
+    
+    @IBOutlet weak var LatinClosingCurlyBracketsPopupView: UIStackView!
+    
+    @IBOutlet weak var LatinDotPopupView: UIStackView!
+    
+    @IBOutlet weak var LatinOpeningSquareBracketPopupView: UIStackView!
+    
     
     
     // First keyboard keys collection
@@ -86,6 +127,48 @@ class CustomKeyboardView: UIView {
     @IBOutlet weak var SpecialFBtn: CustomButton!
     
     @IBOutlet weak var SpecialGBtn: CustomButton!
+    
+    @IBOutlet weak var SmileyBtn: CustomButton!
+    
+    @IBOutlet weak var Latin_L_Btn: CustomButton!
+    
+    @IBOutlet weak var SpecialMBtn: CustomButton!
+    
+    @IBOutlet weak var Latin_N_Btn: CustomButton!
+    
+    @IBOutlet weak var Latin_E_Btn: CustomButton!
+    
+    @IBOutlet weak var Latin_I_Btn: CustomButton!
+    
+    @IBOutlet weak var Latin_O_Btn: CustomButton!
+    
+    @IBOutlet weak var LatinCentBtn: CustomButton!
+    
+    @IBOutlet weak var Latin_R_Btn: CustomButton!
+    
+    @IBOutlet weak var Latin_S_Btn: CustomButton!
+    
+    @IBOutlet weak var Latin_T_Btn: CustomButton!
+    
+    @IBOutlet weak var Latin_A_Btn: CustomButton!
+    
+    @IBOutlet weak var Latin_C_Btn: CustomButton!
+    
+    @IBOutlet weak var Latin_U_Btn: CustomButton!
+    
+    @IBOutlet weak var LatinPipeBtn: CustomButton!
+    
+    @IBOutlet weak var LatinBackslashBtn: CustomButton!
+    
+    @IBOutlet weak var LatinOpeningCurlyBracketBtn: CustomButton!
+    
+    @IBOutlet weak var LatinClosingCurlyBracketBtn: CustomButton!
+    
+    @IBOutlet weak var LatinDotBtn: CustomButton!
+    
+    @IBOutlet weak var LatinOpeningSquareBracketBtn: CustomButton!
+    
+    
     
     ///Variables
 //    var isUpperCase: Bool = false
@@ -168,7 +251,67 @@ class CustomKeyboardView: UIView {
         
         let specialGLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSpecialGLongPress))
         SpecialGBtn.addGestureRecognizer(specialGLongPressGesture)
-
+        
+        let smileyLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSmileyLongPress))
+        SmileyBtn.addGestureRecognizer(smileyLongPressGesture)
+        
+        let latin_L_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_L_LongPress))
+        Latin_L_Btn.addGestureRecognizer(latin_L_LongPressGesture)
+        
+        let specialMLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSpecialMLongPress))
+        SpecialMBtn.addGestureRecognizer(specialMLongPressGesture)
+        
+        let latin_N_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_N_LongPress))
+        Latin_N_Btn.addGestureRecognizer(latin_N_LongPressGesture)
+        
+        let latin_E_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_E_LongPress))
+        Latin_E_Btn.addGestureRecognizer(latin_E_LongPressGesture)
+        
+        let latin_I_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_I_LongPress))
+        Latin_I_Btn.addGestureRecognizer(latin_I_LongPressGesture)
+        
+        let latin_O_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_O_LongPress))
+        Latin_O_Btn.addGestureRecognizer(latin_O_LongPressGesture)
+        
+        let latinCentLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleCentLongPress))
+        LatinCentBtn.addGestureRecognizer(latinCentLongPressGesture)
+        
+        let latin_R_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_R_LongPress))
+        Latin_R_Btn.addGestureRecognizer(latin_R_LongPressGesture)
+        
+        let latin_S_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_S_LongPress))
+        Latin_S_Btn.addGestureRecognizer(latin_S_LongPressGesture)
+        
+        let latin_T_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_T_LongPress))
+        Latin_T_Btn.addGestureRecognizer(latin_T_LongPressGesture)
+        
+        let latin_A_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_A_LongPress))
+        Latin_A_Btn.addGestureRecognizer(latin_A_LongPressGesture)
+        
+        let latin_C_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_C_LongPress))
+        Latin_C_Btn.addGestureRecognizer(latin_C_LongPressGesture)
+        
+        let latin_U_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_U_LongPress))
+        Latin_U_Btn.addGestureRecognizer(latin_U_LongPressGesture)
+        
+        let latinPipeLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinPipeLongPress))
+        LatinPipeBtn.addGestureRecognizer(latinPipeLongPressGesture)
+        
+        let latinBackslashLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinBackslashLongPress))
+        LatinBackslashBtn.addGestureRecognizer(latinBackslashLongPressGesture)
+        
+        let latinOpeningCurlyBracketLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinOpeningCurlyBracketLongPress))
+        LatinOpeningCurlyBracketBtn.addGestureRecognizer(latinOpeningCurlyBracketLongPressGesture)
+        
+        let latinClosingCurlyBracketLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinClosingCurlyBracketLongPress))
+        LatinClosingCurlyBracketBtn.addGestureRecognizer(latinClosingCurlyBracketLongPressGesture)
+        
+        let latinDotLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinDotLongPress))
+        LatinDotBtn.addGestureRecognizer(latinDotLongPressGesture)
+        
+        let latinOpeningSquareBracketLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinOpeningSquareBracketLongPress))
+        LatinOpeningSquareBracketBtn.addGestureRecognizer(latinOpeningSquareBracketLongPressGesture)
+        
     }
     
     @objc func handleFirstCapsSingleTap() {
@@ -218,92 +361,117 @@ class CustomKeyboardView: UIView {
     }
     
     @objc func handleAtTheRateLongPress() {
-        AtTheRatePopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        AtTheRatePopupView.isLayoutMarginsRelativeArrangement = true
-        AtTheRatePopupView.layer.borderColor = UIColor.lightGray.cgColor
-        AtTheRatePopupView.layer.borderWidth = 2.0
-        AtTheRatePopupView.layer.cornerRadius = 5
-        
-        OverlayView.isHidden = false
-        AtTheRatePopupView.isHidden = false
+        delegate?.configurePopupView(AtTheRatePopupView)
     }
     
     @objc func handleColonLongPress() {
-        ColonPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        ColonPopupView.isLayoutMarginsRelativeArrangement = true
-        ColonPopupView.layer.borderColor = UIColor.lightGray.cgColor
-        ColonPopupView.layer.borderWidth = 2.0
-        ColonPopupView.layer.cornerRadius = 5
-        
-        OverlayView.isHidden = false
-        ColonPopupView.isHidden = false
+        delegate?.configurePopupView(ColonPopupView)
     }
     
     @objc func handleUnderscoreLongPress() {
-        UnderscorePopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        UnderscorePopupView.isLayoutMarginsRelativeArrangement = true
-        UnderscorePopupView.layer.borderColor = UIColor.lightGray.cgColor
-        UnderscorePopupView.layer.borderWidth = 2.0
-        UnderscorePopupView.layer.cornerRadius = 5
-        
-        OverlayView.isHidden = false
-        UnderscorePopupView.isHidden = false
+        delegate?.configurePopupView(UnderscorePopupView)
     }
     
     @objc func handleLeftArrowLongPress() {
-        LeftArrowPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        LeftArrowPopupView.isLayoutMarginsRelativeArrangement = true
-        LeftArrowPopupView.layer.borderColor = UIColor.lightGray.cgColor
-        LeftArrowPopupView.layer.borderWidth = 2.0
-        LeftArrowPopupView.layer.cornerRadius = 5
-        
-        OverlayView.isHidden = false
-        LeftArrowPopupView.isHidden = false
+        delegate?.configurePopupView(LeftArrowPopupView)
     }
     
     @objc func handleRightArrowLongPress() {
-        RightArrowPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        RightArrowPopupView.isLayoutMarginsRelativeArrangement = true
-        RightArrowPopupView.layer.borderColor = UIColor.lightGray.cgColor
-        RightArrowPopupView.layer.borderWidth = 2.0
-        RightArrowPopupView.layer.cornerRadius = 5
-        
-        OverlayView.isHidden = false
-        RightArrowPopupView.isHidden = false
+        delegate?.configurePopupView(RightArrowPopupView)
     }
     
     @objc func handleQuestionMarkLongPress() {
-        QuestionMarkPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        QuestionMarkPopupView.isLayoutMarginsRelativeArrangement = true
-        QuestionMarkPopupView.layer.borderColor = UIColor.lightGray.cgColor
-        QuestionMarkPopupView.layer.borderWidth = 2.0
-        QuestionMarkPopupView.layer.cornerRadius = 5
-        
-        OverlayView.isHidden = false
-        QuestionMarkPopupView.isHidden = false
+        delegate?.configurePopupView(QuestionMarkPopupView)
     }
     
     @objc func handleSpecialFLongPress() {
-        SpecialFPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        SpecialFPopupView.isLayoutMarginsRelativeArrangement = true
-        SpecialFPopupView.layer.borderColor = UIColor.lightGray.cgColor
-        SpecialFPopupView.layer.borderWidth = 2.0
-        SpecialFPopupView.layer.cornerRadius = 5
-        
-        OverlayView.isHidden = false
-        SpecialFPopupView.isHidden = false
+        delegate?.configurePopupView(SpecialFPopupView)
     }
     
     @objc func handleSpecialGLongPress() {
-        SpecialGPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        SpecialGPopupView.isLayoutMarginsRelativeArrangement = true
-        SpecialGPopupView.layer.borderColor = UIColor.lightGray.cgColor
-        SpecialGPopupView.layer.borderWidth = 2.0
-        SpecialGPopupView.layer.cornerRadius = 5
-        
-        OverlayView.isHidden = false
-        SpecialGPopupView.isHidden = false
+        delegate?.configurePopupView(SpecialGPopupView)
     }
+    
+    @objc func handleSmileyLongPress() {
+        delegate?.configurePopupView(SmileyButtonPopupView)
+    }
+    
+    @objc func handleLatin_L_LongPress() {
+        delegate?.configurePopupView(Latin_L_PopupView)
+    }
+    
+    @objc func handleSpecialMLongPress() {
+        delegate?.configurePopupView(SpecialMPopupView)
+    }
+    
+    @objc func handleLatin_N_LongPress() {
+        delegate?.configurePopupView(Latin_N_PopupView)
+    }
+    
+    @objc func handleLatin_E_LongPress() {
+        delegate?.configurePopupView(Latin_E_PopupView)
+    }
+    
+    @objc func handleLatin_I_LongPress() {
+        delegate?.configurePopupView(Latin_I_PopupView)
+    }
+    
+    @objc func handleLatin_O_LongPress() {
+        delegate?.configurePopupView(Latin_O_PopupView)
+    }
+    
+    @objc func handleCentLongPress() {
+        delegate?.configurePopupView(LatinCentPopupView)
+    }
+    
+    @objc func handleLatin_R_LongPress() {
+        delegate?.configurePopupView(Latin_R_PopupView)
+    }
+    
+    @objc func handleLatin_S_LongPress() {
+        delegate?.configurePopupView(Latin_S_PopupView)
+    }
+    
+    @objc func handleLatin_T_LongPress() {
+        delegate?.configurePopupView(Latin_T_PopupView)
+    }
+    
+    @objc func handleLatin_A_LongPress() {
+        delegate?.configurePopupView(Latin_A_PopupView)
+    }
+    
+    @objc func handleLatin_C_LongPress() {
+        delegate?.configurePopupView(Latin_C_PopupView)
+    }
+    
+    @objc func handleLatin_U_LongPress() {
+        delegate?.configurePopupView(Latin_U_PopupView)
+    }
+    
+    @objc func handleLatinPipeLongPress() {
+        delegate?.configurePopupView(LatinPipePopupView)
+    }
+    
+    @objc func handleLatinBackslashLongPress() {
+        delegate?.configurePopupView(LatinBackslashPopupView)
+    }
+    
+    @objc func handleLatinOpeningCurlyBracketLongPress() {
+        delegate?.configurePopupView(LatinOpeningCurlyBracketsPopupView)
+    }
+    
+    @objc func handleLatinClosingCurlyBracketLongPress() {
+        delegate?.configurePopupView(LatinClosingCurlyBracketsPopupView)
+    }
+    
+    @objc func handleLatinDotLongPress() {
+        delegate?.configurePopupView(LatinDotPopupView)
+    }
+    
+    @objc func handleLatinOpeningSquareBracketLongPress() {
+        delegate?.configurePopupView(LatinOpeningSquareBracketPopupView)
+    }
+    
 }
 
 //MARK: - Button Actions
@@ -448,5 +616,104 @@ extension CustomKeyboardView {
         SpecialGPopupView.isHidden = true
     }
     
+    @IBAction func btnSmileyPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        SmileyButtonPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_L_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_L_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnSpecialMPopupClose(_ sender: UIButton){
+        OverlayView.isHidden = true
+        SpecialMPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_N_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_N_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_E_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_E_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_I_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_I_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_O_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_O_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinCentPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinCentPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_R_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_R_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_S_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_S_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_T_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_T_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_A_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_A_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_C_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_C_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_U_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_U_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinPipePopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinPipePopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinBackslashPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinBackslashPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinOpeningCurlyBrackets(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinOpeningCurlyBracketsPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinClosingCurlyBrackets(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinClosingCurlyBracketsPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinDotPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinDotPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinOpeningSquareBracketsClosePopup(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinOpeningSquareBracketPopupView.isHidden = true
+    }
 }
 
