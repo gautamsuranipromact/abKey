@@ -74,11 +74,20 @@ extension KeyboardViewController {
         if newCharacter == " " {
             replaceWord()
         }
+        else if customKeyboardView.TPlusPopupView.alpha == 1{
+            customKeyboardView.TPlusViewTextField.insertText(newCharacter)
+            return
+        }
         textDocumentProxy.insertText(newCharacter)
     }
     
     func removeCharacter() {
-        textDocumentProxy.deleteBackward()
+        if(customKeyboardView.TPlusPopupView.alpha == 1) {
+            customKeyboardView.TPlusViewTextField.deleteBackward()
+        }
+        else{
+            textDocumentProxy.deleteBackward()
+        }
     }
     
 }
@@ -197,6 +206,31 @@ extension KeyboardViewController{
         popupView.layer.cornerRadius = 5
         popupView.isHidden = false
         customKeyboardView.OverlayView.isHidden = false
+    }
+    
+    func openMainApp() {
+        // Create a URL with the custom scheme 'abkeyapp'
+        guard let url = URL(string: "abkeyapp://") else { return }
+
+        // Attempt to open the URL using the extension context
+        extensionContext?.open(url, completionHandler: { success in
+            if !success {
+                // If the URL couldn't be opened, check the responder chain
+                var responder = self as UIResponder?
+                while responder != nil {
+                    let selectorOpenURL = NSSelectorFromString("openURL:")
+                    if responder?.responds(to: selectorOpenURL) == true {
+                        _ = responder?.perform(selectorOpenURL, with: url)
+                        return
+                    }
+                    responder = responder?.next
+                }
+                print("Failed to open URL: \(url)")
+            } else {
+                print("Successfully opened URL: \(url)")
+            }
+        })
+
     }
     
 }
