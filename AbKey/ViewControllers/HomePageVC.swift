@@ -34,20 +34,56 @@ class HomePageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaults.standard.set(premium, forKey: "premiumKey")
+        
         self.applyRoundedCorners(to: lblAppTitle)
         self.applyRoundedCorners(to: viewAbKeySetting)
         
-//        for button in btnCollections {
-//            button.applyGradient(colors: [
-//                UIColor(red: 154/255, green: 161/255, blue: 204/255, alpha: 1.00).cgColor,
-//                UIColor(red: 85/255, green: 93/255, blue: 147/255, alpha: 1.00).cgColor
-//            ])
-//        }
-        
+        let gradientColors = [
+            UIColor(red: 154/255, green: 161/255, blue: 204/255, alpha: 1.00),
+            UIColor(red: 85/255, green: 93/255, blue: 147/255, alpha: 1.00)
+        ]
+
+        // Ensure buttons are properly laid out before applying gradient
+        DispatchQueue.main.async {
+            self.setGradientBackground(for: self.btnCollections, colors: gradientColors)
+        }
+
         self.applyGradientBackground(colors: [UIColor(red: 94/255, green: 105/255, blue: 132/255, alpha: 1.00).cgColor,UIColor(red: 11/255, green: 28/255, blue: 68/255, alpha: 1.00).cgColor])
 
         let attributedString = attributedTextWithIcons()
         lblAbKeySetting.attributedText = attributedString
+    }
+    
+    func setGradientBackground(for buttons: [UIButton], colors: [UIColor]) {
+        for button in buttons {
+            // Ensure the button's size is valid
+            let buttonSize = button.bounds.size
+            if buttonSize.width > 0 && buttonSize.height > 0 {
+                if let gradientImage = createGradientImage(size: buttonSize, colors: colors) {
+                    button.setBackgroundImage(gradientImage, for: .normal)
+                }
+            }
+        }
+    }
+    
+    func createGradientImage(size: CGSize, colors: [UIColor], locations: [NSNumber]? = nil) -> UIImage? {
+        guard size.width > 0 && size.height > 0 else { // Ensuring size is valid
+            return nil
+        }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(origin: .zero, size: size)
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = locations
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        
+        gradientLayer.render(in: context)
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
     
     func attributedTextWithIcons() -> NSAttributedString {
@@ -108,7 +144,6 @@ class HomePageVC: UIViewController {
     }
 
     @IBAction func btnSettingAction(_ sender: Any) {
-//        print("setting button clicked")
         if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
                    if UIApplication.shared.canOpenURL(settingsURL) {
                        UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
@@ -149,12 +184,10 @@ class HomePageVC: UIViewController {
         }
     
     @IBAction func btnDefaultSetAction(_ sender: Any) {
-//        print("default setting clicked")
         self.promptToChangeKeyboard()
     }
     
     @IBAction func btnStartAbKey(_ sender: Any) {
-//        print("abkey buttom clicked")
         presentActivityController()
     }
     
@@ -168,6 +201,7 @@ class HomePageVC: UIViewController {
     
     @IBAction func btnPremiumAction(_ sender: Any) {
         premium = 1
+        UserDefaults.standard.set(premium, forKey: "premiumKey")
         print("premium action buttom clicked")
     }
     

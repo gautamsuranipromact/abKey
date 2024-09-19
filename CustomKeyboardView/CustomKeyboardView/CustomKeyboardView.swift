@@ -27,12 +27,12 @@ protocol CustomKeyboardViewDelegate: AnyObject {
   func specialBbutton()
   func smileyButton()
   func configurePopupView(_ popupView: UIStackView)
-  func openMainApp()
+  func openMainApp(_ hostValue: String)
 }
 
 class CustomKeyboardView: UIView {
     
-    let databaseHelper = SQLiteDBHelper.shared
+    let databaseHelper = SQLiteDBHelper.shared // Database singleton instance
     
     ///Outlets
     @IBOutlet weak var btnKeyboardSwitch: UIButton!
@@ -53,135 +53,79 @@ class CustomKeyboardView: UIView {
     @IBOutlet weak var OverlayView: UIView!
     
     @IBOutlet weak var AtTheRatePopupView: UIStackView!
-    
     @IBOutlet weak var ColonPopupView: UIStackView!
-    
     @IBOutlet weak var UnderscorePopupView: UIStackView!
-    
     @IBOutlet weak var LeftArrowPopupView: UIStackView!
-    
     @IBOutlet weak var RightArrowPopupView: UIStackView!
-    
     @IBOutlet weak var QuestionMarkPopupView: UIStackView!
     
     @IBOutlet weak var SpecialFPopupView: UIStackView!
-    
     @IBOutlet weak var SpecialGPopupView: UIStackView!
-    
     @IBOutlet weak var SmileyButtonPopupView: UIStackView!
-    
     @IBOutlet weak var Latin_L_PopupView: UIStackView!
-    
     @IBOutlet weak var SpecialMPopupView: UIStackView!
     
     @IBOutlet weak var Latin_N_PopupView: UIStackView!
-    
     @IBOutlet weak var Latin_E_PopupView: UIStackView!
-    
     @IBOutlet weak var Latin_I_PopupView: UIStackView!
-    
     @IBOutlet weak var Latin_O_PopupView: UIStackView!
-    
     @IBOutlet weak var LatinCentPopupView: UIStackView!
     
     @IBOutlet weak var Latin_R_PopupView: UIStackView!
-    
     @IBOutlet weak var Latin_S_PopupView: UIStackView!
-    
     @IBOutlet weak var Latin_T_PopupView: UIStackView!
-    
     @IBOutlet weak var Latin_A_PopupView: UIStackView!
-    
     @IBOutlet weak var Latin_C_PopupView: UIStackView!
-    
     @IBOutlet weak var Latin_U_PopupView: UIStackView!
     
     @IBOutlet weak var LatinPipePopupView: UIStackView!
-    
     @IBOutlet weak var LatinBackslashPopupView: UIStackView!
-    
     @IBOutlet weak var LatinOpeningCurlyBracketsPopupView: UIStackView!
-    
     @IBOutlet weak var LatinClosingCurlyBracketsPopupView: UIStackView!
-    
     @IBOutlet weak var LatinDotPopupView: UIStackView!
-    
     @IBOutlet weak var LatinOpeningSquareBracketPopupView: UIStackView!
     
-    
-    
-    // First keyboard keys collection
+    // First and Third keyboard keys collection
     @IBOutlet var KeysCollectionFirstKeyboard: [CustomButton]!
-    
-    // Third keyboard keys collection
     @IBOutlet var KeysCollectionThirdKeyboard: [CustomButton]!
     
     // keyboard keys outlets for special gestures
     @IBOutlet weak var FirstKeyboardCapsBtn: CustomButton!
-    
     @IBOutlet weak var ThirdKeyboardCapsBtn: CustomButton!
-    
     @IBOutlet weak var AtTheRateBtn: CustomButton!
-    
     @IBOutlet weak var ColonBtn: CustomButton!
-    
     @IBOutlet weak var UnderscoreBtn: CustomButton!
-    
     @IBOutlet weak var LeftArrowBtn: CustomButton!
-    
     @IBOutlet weak var RightArrowBtn: CustomButton!
-    
     @IBOutlet weak var QuestionMarkBtn: CustomButton!
     
     @IBOutlet weak var SpecialFBtn: CustomButton!
-    
     @IBOutlet weak var SpecialGBtn: CustomButton!
-    
     @IBOutlet weak var SmileyBtn: CustomButton!
-    
     @IBOutlet weak var Latin_L_Btn: CustomButton!
-    
     @IBOutlet weak var SpecialMBtn: CustomButton!
-    
     @IBOutlet weak var Latin_N_Btn: CustomButton!
     
     @IBOutlet weak var Latin_E_Btn: CustomButton!
-    
     @IBOutlet weak var Latin_I_Btn: CustomButton!
-    
     @IBOutlet weak var Latin_O_Btn: CustomButton!
-    
     @IBOutlet weak var LatinCentBtn: CustomButton!
-    
     @IBOutlet weak var Latin_R_Btn: CustomButton!
-    
     @IBOutlet weak var Latin_S_Btn: CustomButton!
-    
     @IBOutlet weak var Latin_T_Btn: CustomButton!
-    
+
     @IBOutlet weak var Latin_A_Btn: CustomButton!
-    
     @IBOutlet weak var Latin_C_Btn: CustomButton!
-    
     @IBOutlet weak var Latin_U_Btn: CustomButton!
-    
     @IBOutlet weak var LatinPipeBtn: CustomButton!
-    
     @IBOutlet weak var LatinBackslashBtn: CustomButton!
     
     @IBOutlet weak var LatinOpeningCurlyBracketBtn: CustomButton!
-    
     @IBOutlet weak var LatinClosingCurlyBracketBtn: CustomButton!
-    
     @IBOutlet weak var LatinDotBtn: CustomButton!
-    
     @IBOutlet weak var LatinOpeningSquareBracketBtn: CustomButton!
     
-    
-    
-    ///Variables
-//    var isUpperCase: Bool = false
-    
+    // variables
     var tRTapped: Bool = false
     var tPlusTapped: Bool = false
     var storeBtnTap: String = ""
@@ -189,7 +133,6 @@ class CustomKeyboardView: UIView {
     
     var isFirstCapsUppercase: Bool = false
     var isFirstCapsLocked: Bool = false
-    
     var isThirdCapsUppercase: Bool = false
     var isThirdCapsLocked: Bool = false
     
@@ -331,8 +274,28 @@ class CustomKeyboardView: UIView {
         
         let latinOpeningSquareBracketLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinOpeningSquareBracketLongPress))
         LatinOpeningSquareBracketBtn.addGestureRecognizer(latinOpeningSquareBracketLongPressGesture)
-        
     }
+}
+
+// objective c functions
+extension CustomKeyboardView {
+    
+    func shouldCapitalizeNextCharacter() -> Bool {
+        guard let contextBeforeInput = self.inputViewController?.textDocumentProxy.documentContextBeforeInput else {
+                return true // Capitalize at the start of the document
+            }
+
+            // Trim whitespaces and check for sentence-ending punctuation marks
+            let trimmedContext = contextBeforeInput.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if let lastCharacter = trimmedContext.last {
+                // Capitalize if the last character was a period, question mark, or exclamation mark
+                return [".", "!", "?"].contains(lastCharacter)
+            }
+
+            // If there's no content before input, capitalize (i.e., beginning of the document)
+            return contextBeforeInput.isEmpty
+        }
     
     @objc func handleFirstCapsSingleTap() {
         if(!isFirstCapsLocked){
@@ -491,12 +454,10 @@ class CustomKeyboardView: UIView {
     @objc func handleLatinOpeningSquareBracketLongPress() {
         delegate?.configurePopupView(LatinOpeningSquareBracketPopupView)
     }
-    
 }
 
 //MARK: - Button Actions
 extension CustomKeyboardView {
-    
     
     @IBAction func btnLetterTap(_ sender: UIButton) {
         if(tPlusTapped) {
@@ -546,42 +507,62 @@ extension CustomKeyboardView {
     }
     
     @IBAction func btnClearTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         delegate?.removeCharacter()
     }
     
     @IBAction func btnSpaceTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         delegate?.insertCharacter(" ")
     }
     
     @IBAction func btnCloseKeyboard(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.closeKeyboard()
     }
     
     @IBAction func btnMoveCursorLeft(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.moveArrowLeftButton()
     }
     
     @IBAction func btnEnterTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.enterButtonClicked()
     }
     
     @IBAction func btnColonTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.colonButtonTapped()
     }
     
     @IBAction func btnHyphenTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.hyphenButtonTapped()
     }
     
     @IBAction func btnLeftArrowTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.leftArrowButtonClicked()
     }
     
     @IBAction func btnRightArrowTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.rightArrowButtonClicked()
     }
     
     @IBAction func btnQuestionMarkTap(_ sender: UIButton){
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.questionButtonClicked()
     }
     
@@ -614,6 +595,8 @@ extension CustomKeyboardView {
     }
     
     @IBAction func btnSmileyTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         self.delegate?.smileyButton()
     }
     
@@ -795,7 +778,15 @@ extension CustomKeyboardView {
         tRTapped = true
     }
     
-    @IBAction func btnSettingsFirstKeyboardTap() {
-        delegate?.openMainApp()
+    @IBAction func btnSettingsTap() {
+        if(!FirstKeyboardLayout.isHidden) {
+            delegate?.openMainApp("firstKeyboard")
+        }
+        else if(!SecondKeyboardLayout.isHidden) {
+            delegate?.openMainApp("secondKeyboard")
+        }
+        else{
+            delegate?.openMainApp("thirdKeyboard")
+        }
     }
 }

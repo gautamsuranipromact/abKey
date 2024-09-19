@@ -182,7 +182,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcZ-GI-Ewc" userLabel="special_k" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="316.33333333333331" y="0.0" width="40" height="46.666666666666664"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="special_k" backgroundImage="key_background_2">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -656,6 +656,9 @@
                                                                     <real key="value" value="4"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="btnSettingsTap" destination="iN0-l3-epB" eventType="touchUpInside" id="Lb9-7t-eLA"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -959,7 +962,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="cR9-gW-rDM"/>
+                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="ggs-fU-OxS"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZW-Wc-CGA" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1347,6 +1350,9 @@
                                                                     <real key="value" value="4"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="btnSettingsTap" destination="iN0-l3-epB" eventType="touchUpInside" id="Evi-rr-hS9"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -2053,7 +2059,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnSettingsFirstKeyboardTap" destination="iN0-l3-epB" eventType="touchUpInside" id="m4k-Ru-Ehe"/>
+                                                                <action selector="btnSettingsTap" destination="iN0-l3-epB" eventType="touchUpInside" id="LMA-Om-q0I"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -2108,7 +2114,6 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="BQy-1h-QOR"/>
                                                                 <action selector="btnRightArrowTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="zXM-DN-Oxr"/>
                                                             </connections>
                                                         </button>
@@ -2124,7 +2129,6 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="fdz-Iu-O1x"/>
                                                                 <action selector="btnQuestionMarkTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="jlc-RY-mHh"/>
                                                             </connections>
                                                         </button>

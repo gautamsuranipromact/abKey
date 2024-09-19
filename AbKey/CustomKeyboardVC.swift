@@ -143,9 +143,34 @@ extension CustomKeyboardVC {
         customKeyboardView.OverlayView.isHidden = false
     }
     
-    func openMainApp() {
-        // Create a URL with the custom scheme 'abkeyapp'
-        guard let url = URL(string: "abkeyapp://") else { return }
+//    func openMainApp() {
+//        // Create a URL with the custom scheme 'abkeyapp'
+//        guard let url = URL(string: "abkeyapp://") else { return }
+//
+//        // Attempt to open the URL using the extension context
+//        extensionContext?.open(url, completionHandler: { success in
+//            if !success {
+//                // If the URL couldn't be opened, check the responder chain
+//                var responder = self as UIResponder?
+//                while responder != nil {
+//                    let selectorOpenURL = NSSelectorFromString("openURL:")
+//                    if responder?.responds(to: selectorOpenURL) == true {
+//                        _ = responder?.perform(selectorOpenURL, with: url)
+//                        return
+//                    }
+//                    responder = responder?.next
+//                }
+//                print("Failed to open URL: \(url)")
+//            } else {
+//                print("Successfully opened URL: \(url)")
+//            }
+//        })
+//
+//    }
+    
+    func openMainApp(_ hostValue: String) {
+        // Create a URL with the custom scheme 'abkeyapp' and the host 'firstKeyboard'
+        guard let url = URL(string: "abkeyapp://\(hostValue)") else { return }
 
         // Attempt to open the URL using the extension context
         extensionContext?.open(url, completionHandler: { success in
@@ -165,7 +190,5 @@ extension CustomKeyboardVC {
                 print("Successfully opened URL: \(url)")
             }
         })
-
     }
-    
 }

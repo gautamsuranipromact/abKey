@@ -79,7 +79,7 @@ extension KeyboardViewController {
             return
         }
         textDocumentProxy.insertText(newCharacter)
-    }
+   }
     
     func removeCharacter() {
         if(customKeyboardView.TPlusPopupView.alpha == 1) {
@@ -208,14 +208,10 @@ extension KeyboardViewController{
         customKeyboardView.OverlayView.isHidden = false
     }
     
-    func openMainApp() {
-        // Create a URL with the custom scheme 'abkeyapp'
-        guard let url = URL(string: "abkeyapp://") else { return }
-
-        // Attempt to open the URL using the extension context
+    func openMainApp(_ hostValue: String) {
+        guard let url = URL(string: "abkeyapp://\(hostValue)") else { return }
         extensionContext?.open(url, completionHandler: { success in
             if !success {
-                // If the URL couldn't be opened, check the responder chain
                 var responder = self as UIResponder?
                 while responder != nil {
                     let selectorOpenURL = NSSelectorFromString("openURL:")
@@ -225,13 +221,8 @@ extension KeyboardViewController{
                     }
                     responder = responder?.next
                 }
-                print("Failed to open URL: \(url)")
-            } else {
-                print("Successfully opened URL: \(url)")
             }
         })
-
     }
-    
 }
 

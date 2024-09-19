@@ -10,7 +10,43 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            
+            if let navigationController = window?.rootViewController as? UINavigationController { // popping out other screens already in the stack
+                navigationController.popToRootViewController(animated: false)
+            }
+            
+            let premium = UserDefaults.standard.integer(forKey: "premiumKey")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            if let host = url.host, (host == "firstKeyboard" || host == "thirdKeyboard") {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
+                    vc.premiumValueFromRTPlusManager = premium // Pass the premium value here
+                    
+                    // Ensure the root view controller is a navigation controller
+                    if let navigationController = window?.rootViewController as? UINavigationController {
+                        navigationController.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    print("Failed to instantiate SettingViewController.")
+                }
+            } else {
+                if let vc = storyboard.instantiateViewController(withIdentifier: "AbKeySettingVC") as? AbKeySettingVC {
+                    vc.premiumValueFromHomePageVC = premium
+                    
+                    if let navigationController = window?.rootViewController as? UINavigationController {
+                        navigationController.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    print("Failed to instantiate AbKeySettingVC.")
+                }
+            }
+        } else {
+            print("No URL found in openURLContexts.")
+        }
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
