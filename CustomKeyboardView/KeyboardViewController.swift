@@ -271,5 +271,22 @@ extension KeyboardViewController{
             }
         })
     }
+    
+    func shouldCapitalizeNextCharacter() -> Bool {
+        guard let contextBeforeInput = textDocumentProxy.documentContextBeforeInput else {
+            return true // Capitalize at the start of the document
+        }
+        
+        // Trim whitespaces and check for sentence-ending punctuation marks
+        let trimmedContext = contextBeforeInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if let lastCharacter = trimmedContext.last {
+            // Capitalize if the last character was a period, question mark, or exclamation mark
+            return [".", "!", "?"].contains(lastCharacter)
+        }
+        
+        // If there's no content before input, capitalize (i.e., beginning of the document)
+        return contextBeforeInput.isEmpty
+    }
 }
 

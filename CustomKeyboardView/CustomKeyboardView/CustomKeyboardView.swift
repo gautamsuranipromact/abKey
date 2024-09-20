@@ -28,6 +28,7 @@ protocol CustomKeyboardViewDelegate: AnyObject {
   func smileyButton()
   func configurePopupView(_ popupView: UIStackView)
   func openMainApp(_ hostValue: String)
+  func shouldCapitalizeNextCharacter() -> Bool
 }
 
 class CustomKeyboardView: UIView {
@@ -142,9 +143,9 @@ class CustomKeyboardView: UIView {
     var moveCursorLeftRepeatTimer: Timer?
 
     
-    var isFirstCapsUppercase: Bool = false
+    var isFirstCapsUppercase: Bool = true
     var isFirstCapsLocked: Bool = false
-    var isThirdCapsUppercase: Bool = false
+    var isThirdCapsUppercase: Bool = true
     var isThirdCapsLocked: Bool = false
     var isStoringSpecialCharacter: Bool = false
     
@@ -177,6 +178,18 @@ class CustomKeyboardView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        for button in KeysCollectionFirstKeyboard {
+            if let title = button.titleLabel?.text {
+                button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+            }
+        }
+        
+        for button in KeysCollectionThirdKeyboard {
+            if let title = button.titleLabel?.text {
+                button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+            }
+        }
         
         for button in TrBtnCollection {
             let isTrEnabled = sharedDefaults?.bool(forKey: "isTrEnabled")
@@ -336,23 +349,6 @@ extension CustomKeyboardView {
     @objc func repeatedMoveCursorLeftAction() {
         delegate?.moveArrowLeftButton()
     }
-    
-    func shouldCapitalizeNextCharacter() -> Bool {
-        guard let contextBeforeInput = self.inputViewController?.textDocumentProxy.documentContextBeforeInput else {
-                return true // Capitalize at the start of the document
-            }
-
-            // Trim whitespaces and check for sentence-ending punctuation marks
-            let trimmedContext = contextBeforeInput.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            if let lastCharacter = trimmedContext.last {
-                // Capitalize if the last character was a period, question mark, or exclamation mark
-                return [".", "!", "?"].contains(lastCharacter)
-            }
-
-            // If there's no content before input, capitalize (i.e., beginning of the document)
-            return contextBeforeInput.isEmpty
-        }
     
     @objc func handleFirstCapsSingleTap() {
         if(!isFirstCapsLocked){
@@ -584,13 +580,44 @@ extension CustomKeyboardView {
         tRTapped = false
         tPlusTapped = false
         delegate?.removeCharacter()
+        if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true {
+            isFirstCapsUppercase = true
+            isThirdCapsUppercase = true
+            
+            for button in KeysCollectionFirstKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+            
+            for button in KeysCollectionThirdKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+        }
     }
     
     @IBAction func btnSpaceTap(_ sender: UIButton) {
         tRTapped = false
         tPlusTapped = false
         delegate?.insertCharacter(" ")
-        changeKeysCase()
+        if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true {
+            isFirstCapsUppercase = true
+            isThirdCapsUppercase = true
+            
+            for button in KeysCollectionFirstKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+            
+            for button in KeysCollectionThirdKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+        }
     }
     
     @IBAction func btnCloseKeyboard(_ sender: UIButton) {
