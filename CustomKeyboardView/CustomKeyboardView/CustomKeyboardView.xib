@@ -144,7 +144,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="giE-QA-fef"/>
                                                         <action selector="btnSmileyTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="gnv-1r-e6s"/>
                                                     </connections>
                                                 </button>
@@ -193,7 +192,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Byu-51-719"/>
                                                         <action selector="btnSpecialKTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="yBg-e4-RnU"/>
                                                     </connections>
                                                 </button>
@@ -226,7 +224,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jae-Mm-S8f"/>
                                                         <action selector="btnSpecialMTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Hpf-px-nJZ"/>
                                                     </connections>
                                                 </button>
@@ -357,7 +354,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="O6m-nv-Jqz"/>
                                                         <action selector="btnSpecialPTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Edd-EQ-zUQ"/>
                                                     </connections>
                                                 </button>
@@ -374,7 +370,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="9fu-qi-CWZ"/>
                                                         <action selector="btnSpecialQTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qjb-Os-UBm"/>
                                                     </connections>
                                                 </button>
@@ -540,7 +535,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Udg-9P-Far"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="oCs-1q-XEF"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1F-xW-fek" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -556,7 +551,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="z8d-Or-4ai"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="FKv-AC-gJk"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugS-oG-AFm" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -572,7 +567,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="ri0-Pd-dr5"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="YJR-Ll-EkE"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y55-dI-niZ" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -588,7 +583,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="tLS-ca-lwe"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="QUO-TU-DzD"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awH-7C-bHb" userLabel="backspace" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -698,7 +693,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="BJk-aS-ad9"/>
+                                                                <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="wK4-RN-Ve8"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faH-oM-wyb" userLabel="[" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -714,7 +709,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="I7A-nW-GGM"/>
+                                                                <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="VY6-fk-dPv"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xv-z6-Je4" userLabel="]" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -730,7 +725,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="bXw-Ij-eN0"/>
+                                                                <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="jPG-Cl-DTh"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -962,7 +957,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="ggs-fU-OxS"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="FGU-5y-1fC"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZW-Wc-CGA" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -978,7 +973,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="YGI-rK-Gxn"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="bff-a1-FGf"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXC-lO-7Z2" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -994,7 +989,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ylo-RE-hYw"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="OSP-Lb-XMH"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cw8-zG-NnC" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1010,7 +1005,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Yqo-xR-wQ9"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="0pB-N2-C4K"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhB-JN-yk3" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1026,7 +1021,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="d0y-9S-Oog"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="1F1-2V-js8"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEi-sG-24Q" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1042,7 +1037,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="oVZ-bb-PcY"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="24e-Fz-ntL"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUe-9P-uX8" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1058,7 +1053,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="FFI-IF-amq"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="9mR-Ld-0lt"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aA-QQ-C9O" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1074,7 +1069,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Lbw-Tz-0X4"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="2wi-ey-Ff4"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBP-Hr-dp6" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1090,7 +1085,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="OCr-uJ-myX"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="KOM-gT-7D1"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfN-M8-SuY" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1106,7 +1101,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="e5L-N7-i70"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="Zx4-ZB-te0"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Re-Ww-AXw" userLabel="null_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1139,7 +1134,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="cXz-qZ-eLx"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="ECA-en-j09"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dt0-iT-fQg" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1155,7 +1150,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="KyF-0G-wM4"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="teo-sT-cvU"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukt-9z-B0b" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1171,7 +1166,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="biQ-nA-Tec"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="Lsa-eH-onQ"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btG-1N-9ha" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1187,7 +1182,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="mTM-FH-tVv"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="1vH-GF-CEY"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POn-pZ-5wJ" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1203,7 +1198,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="FQn-uE-SSi"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="7aB-Pt-KX5"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZq-j8-lb8" userLabel="move_cursor_left" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1234,7 +1229,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="fP3-JO-qv2"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="02v-ZP-BgT"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvd-AE-aZK" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1250,7 +1245,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="iXC-Hy-xVI"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="co1-E8-F79"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdq-mN-Zz6" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1266,7 +1261,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="g0y-fS-pqK"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="vrS-uW-9nx"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yde-Or-bOf" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1282,7 +1277,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="nlp-wn-wYo"/>
+                                                        <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="KHq-2U-Rot"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3w1-nY-LqW" userLabel="backspace" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1391,7 +1386,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="SF8-Vo-Q4g"/>
+                                                                <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ilk-NK-38f"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0c-KW-gBU" userLabel="dot_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1406,7 +1401,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ema-SZ-xjf"/>
+                                                                <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="aeC-oS-vcf"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWA-vS-Lhl" userLabel="forwardslash_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1421,7 +1416,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Fs3-2n-kGr"/>
+                                                                <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="bOp-jZ-jjS"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -2029,7 +2024,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="i9W-cs-Al1"/>
+                                                                <action selector="btnLetterTapAndNullifyRTPlus:" destination="iN0-l3-epB" eventType="touchUpInside" id="NKI-QR-Que"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBe-Se-Q4g" userLabel="hyphen" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -6034,6 +6029,18 @@
                 <outletCollection property="KeysCollectionFirstKeyboard" destination="cvw-wr-57U" collectionClass="NSMutableArray" id="F2h-VD-6xj"/>
                 <outletCollection property="KeysCollectionFirstKeyboard" destination="JYk-9A-Hfz" collectionClass="NSMutableArray" id="De8-zk-Q7c"/>
                 <outletCollection property="KeysCollectionFirstKeyboard" destination="hc9-Oz-nW6" collectionClass="NSMutableArray" id="Tv0-t6-2Jp"/>
+                <outletCollection property="BackspaceBtnCollection" destination="FhR-mC-qhL" collectionClass="NSMutableArray" id="vw7-EE-C7i"/>
+                <outletCollection property="MoveCursorLeftBtnCollection" destination="tZq-j8-lb8" collectionClass="NSMutableArray" id="rVs-Eu-7L6"/>
+                <outletCollection property="BackspaceBtnCollection" destination="3w1-nY-LqW" collectionClass="NSMutableArray" id="TyO-ua-cOR"/>
+                <outletCollection property="BackspaceBtnCollection" destination="awH-7C-bHb" collectionClass="NSMutableArray" id="K3X-hj-EDQ"/>
+                <outletCollection property="MoveCursorLeftBtnCollection" destination="exB-zV-fYo" collectionClass="NSMutableArray" id="DDW-9S-R06"/>
+                <outletCollection property="TrBtnCollection" destination="02z-cC-tdD" collectionClass="NSMutableArray" id="sDU-Wt-7p0"/>
+                <outletCollection property="TPlusBtnCollection" destination="CAX-vL-0jg" collectionClass="NSMutableArray" id="HjX-xm-3qM"/>
+                <outletCollection property="TrBtnCollection" destination="ksC-mS-F1u" collectionClass="NSMutableArray" id="KDt-UD-lcN"/>
+                <outletCollection property="TPlusBtnCollection" destination="oQr-C9-kDR" collectionClass="NSMutableArray" id="g0y-3J-Yf5"/>
+                <outletCollection property="SettingsBtnCollection" destination="Nz3-Yg-k7I" collectionClass="NSMutableArray" id="FJO-ng-nfL"/>
+                <outletCollection property="SettingsBtnCollection" destination="gtA-TI-cie" collectionClass="NSMutableArray" id="ETa-rZ-3aJ"/>
+                <outletCollection property="SettingsBtnCollection" destination="Jo2-UC-TU6" collectionClass="NSMutableArray" id="Cgh-6Z-rCV"/>
             </connections>
             <point key="canvasLocation" x="1.5267175572519083" y="-167.6056338028169"/>
         </view>

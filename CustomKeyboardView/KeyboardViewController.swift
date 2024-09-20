@@ -156,42 +156,89 @@ extension KeyboardViewController{
     }
     
     func moveArrowLeftButton() {
-        textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)    }
+        textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+    }
     
     func specialFbutton() {
-        textDocumentProxy.insertText("%")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+            customKeyboardView.TPlusViewTextField.insertText("%")
+        }
+        else{
+            textDocumentProxy.insertText("%")
+        }
     }
     
     func specialGbutton() {
-        if customKeyboardView.isThirdCapsUppercase == true{
-            textDocumentProxy.insertText("A")
-        }else{
-            textDocumentProxy.insertText("a")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+            if(customKeyboardView.isThirdCapsUppercase){
+                customKeyboardView.TPlusViewTextField.insertText("A")
+            }
+            else{
+                customKeyboardView.TPlusViewTextField.insertText("a")
+            }
+        }
+        else{
+            if(customKeyboardView.isThirdCapsUppercase) {
+                textDocumentProxy.insertText("A")
+            }
+            else{
+                textDocumentProxy.insertText("a")
+            }
         }
     }
     
     func specialKbutton() {
-        textDocumentProxy.insertText("|")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+            customKeyboardView.TPlusViewTextField.insertText("|")
+        }
+        else{
+            textDocumentProxy.insertText("|")
+        }
     }
     
     func specialMbutton() {
-        textDocumentProxy.insertText("☎️")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+            customKeyboardView.TPlusViewTextField.insertText("☎️")
+        }
+        else{
+            textDocumentProxy.insertText("☎️")
+        }
     }
     
     func specialPbutton() {
-        textDocumentProxy.insertText("★")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+            customKeyboardView.TPlusViewTextField.insertText("★")
+        }
+        else{
+            textDocumentProxy.insertText("★")
+        }
     }
     
     func specialQbutton() {
-        textDocumentProxy.insertText("☆")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+            customKeyboardView.TPlusViewTextField.insertText("☆")
+        }
+        else{
+            textDocumentProxy.insertText("☆")
+        }
     }
     
     func specialBbutton() {
-        textDocumentProxy.insertText("ß")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+            customKeyboardView.TPlusViewTextField.insertText("ß")
+        }
+        else{
+            textDocumentProxy.insertText("ß")
+        }
     }
     
     func smileyButton() {
-        textDocumentProxy.insertText(":-)")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+            customKeyboardView.TPlusViewTextField.insertText(":-)")
+        }
+        else{
+            textDocumentProxy.insertText(":-)")
+        }
     }
     
     func closeKeyboard() {

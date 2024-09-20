@@ -33,6 +33,7 @@ protocol CustomKeyboardViewDelegate: AnyObject {
 class CustomKeyboardView: UIView {
     
     let databaseHelper = SQLiteDBHelper.shared // Database singleton instance
+    let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
     
     ///Outlets
     @IBOutlet weak var btnKeyboardSwitch: UIButton!
@@ -85,9 +86,16 @@ class CustomKeyboardView: UIView {
     @IBOutlet weak var LatinDotPopupView: UIStackView!
     @IBOutlet weak var LatinOpeningSquareBracketPopupView: UIStackView!
     
-    // First and Third keyboard keys collection
+    
+    // collections
     @IBOutlet var KeysCollectionFirstKeyboard: [CustomButton]!
     @IBOutlet var KeysCollectionThirdKeyboard: [CustomButton]!
+    @IBOutlet var BackspaceBtnCollection: [CustomButton]!
+    @IBOutlet var MoveCursorLeftBtnCollection: [CustomButton]!
+    @IBOutlet var TrBtnCollection: [CustomButton]!
+    @IBOutlet var TPlusBtnCollection: [CustomButton]!
+    @IBOutlet var SettingsBtnCollection: [CustomButton]!
+    
     
     // keyboard keys outlets for special gestures
     @IBOutlet weak var FirstKeyboardCapsBtn: CustomButton!
@@ -125,16 +133,20 @@ class CustomKeyboardView: UIView {
     @IBOutlet weak var LatinDotBtn: CustomButton!
     @IBOutlet weak var LatinOpeningSquareBracketBtn: CustomButton!
     
+    
     // variables
     var tRTapped: Bool = false
     var tPlusTapped: Bool = false
     var storeBtnTap: String = ""
+    var backspaceRepeatTimer: Timer?
+    var moveCursorLeftRepeatTimer: Timer?
 
     
     var isFirstCapsUppercase: Bool = false
     var isFirstCapsLocked: Bool = false
     var isThirdCapsUppercase: Bool = false
     var isThirdCapsLocked: Bool = false
+    var isStoringSpecialCharacter: Bool = false
     
     weak var delegate: CustomKeyboardViewDelegate?
     
@@ -166,27 +178,46 @@ class CustomKeyboardView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        for button in TrBtnCollection {
+            let isTrEnabled = sharedDefaults?.bool(forKey: "isTrEnabled")
+            button.isEnabled = isTrEnabled!
+        }
+        
+        for button in TPlusBtnCollection {
+            let isTPlusEnabled = sharedDefaults?.bool(forKey: "isTPlusEnabled")
+            button.isEnabled = isTPlusEnabled!
+        }
+        
+        for button in SettingsBtnCollection {
+            let isRTPlusManager = sharedDefaults?.bool(forKey: "isRTPlusManager")
+            button.isEnabled = isRTPlusManager!
+        }
+        
+        for button in BackspaceBtnCollection {
+            button.addTarget(self, action: #selector(backspaceBtnTapped), for: .touchDown)
+            button.addTarget(self, action: #selector(backspaceBtnReleased), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        }
+        
+        for button in MoveCursorLeftBtnCollection {
+            button.addTarget(self, action: #selector(moveCursorLeftBtnTapped), for: .touchDown)
+            button.addTarget(self, action: #selector(moveCursorLeftBtnReleased), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        }
+        
+        
         // Attaching single and double tap gestures to the first and third keyboard caps lock button
         let firstCapsSingleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleFirstCapsSingleTap))
         firstCapsSingleTapRecognizer.numberOfTapsRequired = 1
-            
         let firstCapsDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleFirstCapsDoubleTap))
         firstCapsDoubleTapRecognizer.numberOfTapsRequired = 2
-            
         firstCapsSingleTapRecognizer.require(toFail: firstCapsDoubleTapRecognizer)
-            
         FirstKeyboardCapsBtn.addGestureRecognizer(firstCapsSingleTapRecognizer)
         FirstKeyboardCapsBtn.addGestureRecognizer(firstCapsDoubleTapRecognizer)
         
-        
         let thirdCapsSingleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleThirdCapsSingleTap))
         thirdCapsSingleTapRecognizer.numberOfTapsRequired = 1
-            
         let thirdCapsDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleThirdCapsDoubleTap))
         thirdCapsDoubleTapRecognizer.numberOfTapsRequired = 2
-            
         thirdCapsSingleTapRecognizer.require(toFail: thirdCapsDoubleTapRecognizer)
-            
         ThirdKeyboardCapsBtn.addGestureRecognizer(thirdCapsSingleTapRecognizer)
         ThirdKeyboardCapsBtn.addGestureRecognizer(thirdCapsDoubleTapRecognizer)
         
@@ -277,8 +308,34 @@ class CustomKeyboardView: UIView {
     }
 }
 
-// objective c functions
+// utility functions
 extension CustomKeyboardView {
+    
+    @objc func backspaceBtnTapped(_ sender: UIButton) {
+        backspaceRepeatTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(repeatedBackspaceAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func backspaceBtnReleased(_ sender: UIButton) {
+            backspaceRepeatTimer?.invalidate()
+            backspaceRepeatTimer = nil
+    }
+        
+    @objc func repeatedBackspaceAction() {
+            delegate?.removeCharacter()
+    }
+    
+    @objc func moveCursorLeftBtnTapped(_ sender: UIButton) {
+        moveCursorLeftRepeatTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(repeatedMoveCursorLeftAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func moveCursorLeftBtnReleased(_ sender: UIButton) {
+        moveCursorLeftRepeatTimer?.invalidate()
+        moveCursorLeftRepeatTimer = nil
+    }
+    
+    @objc func repeatedMoveCursorLeftAction() {
+        delegate?.moveArrowLeftButton()
+    }
     
     func shouldCapitalizeNextCharacter() -> Bool {
         guard let contextBeforeInput = self.inputViewController?.textDocumentProxy.documentContextBeforeInput else {
@@ -454,6 +511,47 @@ extension CustomKeyboardView {
     @objc func handleLatinOpeningSquareBracketLongPress() {
         delegate?.configurePopupView(LatinOpeningSquareBracketPopupView)
     }
+    
+    func characterInsertion(_ sender: UIButton) {
+        if let txt = sender.titleLabel?.text {
+            delegate?.insertCharacter(txt)
+            
+            changeKeysCase()
+        }
+    }
+    
+    func changeKeysCase() {
+        if(!isFirstCapsLocked && isFirstCapsUppercase){
+            isFirstCapsUppercase.toggle()
+            
+            for button in KeysCollectionFirstKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+        }
+        
+        if(!isThirdCapsLocked && isThirdCapsUppercase) {
+            isThirdCapsUppercase.toggle()
+            
+            for button in KeysCollectionThirdKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+        }
+    }
+    
+    func retrieveStoredData(_ key: String) {
+        if let storedValue = databaseHelper.value(forKey: key) {
+            print("Retrieved value: \(storedValue)")
+            delegate?.insertCharacter(storedValue)
+        } else {
+            print("No value found for the given key.")
+        }
+        tRTapped = false
+    }
+    
 }
 
 //MARK: - Button Actions
@@ -466,44 +564,20 @@ extension CustomKeyboardView {
             print(sender.titleLabel?.text ?? "No title on the button")
             tPlusTapped = false
             storeBtnTap = sender.titleLabel?.text ?? " "
-            return
         }
+        else if(tRTapped) {
+            retrieveStoredData(sender.titleLabel?.text ?? " ")
+        }
+        else{
+            characterInsertion(sender)
+        }
+    }
+    
+    @IBAction func btnLetterTapAndNullifyRTPlus(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
         
-        if(tRTapped) {
-            storeBtnTap = sender.titleLabel?.text ?? " "
-            if let storedValue = databaseHelper.value(forKey: storeBtnTap) {
-                print("Retrieved value: \(storedValue)")
-                delegate?.insertCharacter(storedValue)
-            } else {
-                print("No value found for the given key.")
-            }
-            tRTapped = false
-            return
-        }
-        
-        if let txt = sender.titleLabel?.text {
-            delegate?.insertCharacter(txt)
-            
-            if(!isFirstCapsLocked && isFirstCapsUppercase){
-                isFirstCapsUppercase.toggle()
-                
-                for button in KeysCollectionFirstKeyboard {
-                    if let title = button.titleLabel?.text {
-                        button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                    }
-                }
-            }
-            
-            if(!isThirdCapsLocked && isThirdCapsUppercase) {
-                isThirdCapsUppercase.toggle()
-                
-                for button in KeysCollectionThirdKeyboard {
-                    if let title = button.titleLabel?.text {
-                        button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                    }
-                }
-            }
-        }
+        characterInsertion(sender)
     }
     
     @IBAction func btnClearTap(_ sender: UIButton) {
@@ -516,6 +590,7 @@ extension CustomKeyboardView {
         tRTapped = false
         tPlusTapped = false
         delegate?.insertCharacter(" ")
+        changeKeysCase()
     }
     
     @IBAction func btnCloseKeyboard(_ sender: UIButton) {
@@ -540,64 +615,145 @@ extension CustomKeyboardView {
         tRTapped = false
         tPlusTapped = false
         self.delegate?.colonButtonTapped()
+        changeKeysCase()
     }
     
     @IBAction func btnHyphenTap(_ sender: UIButton) {
         tRTapped = false
         tPlusTapped = false
         self.delegate?.hyphenButtonTapped()
+        changeKeysCase()
     }
     
     @IBAction func btnLeftArrowTap(_ sender: UIButton) {
         tRTapped = false
         tPlusTapped = false
         self.delegate?.leftArrowButtonClicked()
+        changeKeysCase()
     }
     
     @IBAction func btnRightArrowTap(_ sender: UIButton) {
         tRTapped = false
         tPlusTapped = false
         self.delegate?.rightArrowButtonClicked()
+        changeKeysCase()
     }
     
     @IBAction func btnQuestionMarkTap(_ sender: UIButton){
         tRTapped = false
         tPlusTapped = false
         self.delegate?.questionButtonClicked()
+        changeKeysCase()
     }
     
     @IBAction func btnSpecialFTap(_ sender: UIButton){
-        self.delegate?.specialFbutton()
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            TPlusPopupView.alpha = 1
+            storeBtnTap = "sf"
+            tPlusTapped = false
+        }
+        else if(tRTapped){
+            retrieveStoredData("sf")
+        }
+        else{
+            self.delegate?.specialFbutton()
+            changeKeysCase()
+        }
     }
     
     @IBAction func btnSpecialGTap(_ sender: UIButton) {
-        self.delegate?.specialGbutton()
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            TPlusPopupView.alpha = 1
+            storeBtnTap = "sg"
+            tPlusTapped = false
+        }
+        else if(tRTapped){
+            retrieveStoredData("sg")
+        }
+        else{
+            self.delegate?.specialGbutton()
+            changeKeysCase()
+        }
     }
     
     @IBAction func btnSpecialKTap(_ sender: UIButton) {
-        self.delegate?.specialKbutton()
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            TPlusPopupView.alpha = 1
+            storeBtnTap = "sk"
+            tPlusTapped = false
+        }
+        else if(tRTapped) {
+            retrieveStoredData("sk")
+        }
+        else{
+            self.delegate?.specialKbutton()
+            changeKeysCase()
+        }
     }
     
     @IBAction func btnSpecialMTap(_ sender: UIButton) {
-        self.delegate?.specialMbutton()
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            TPlusPopupView.alpha = 1
+            storeBtnTap = "sm"
+            tPlusTapped = false
+        }
+        else if(tRTapped) {
+            retrieveStoredData("sm")
+        }
+        else{
+            self.delegate?.specialMbutton()
+            changeKeysCase()
+        }
     }
     
     @IBAction func btnSpecialPTap(_ sender: UIButton) {
-        self.delegate?.specialPbutton()
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            TPlusPopupView.alpha = 1
+            storeBtnTap = "sp"
+            tPlusTapped = false
+        }
+        else if(tRTapped) {
+            retrieveStoredData("sp")
+        }
+        else{
+            self.delegate?.specialPbutton()
+            changeKeysCase()
+        }
     }
     
     @IBAction func btnSpecialQTap(_ sender: UIButton) {
-        self.delegate?.specialQbutton()
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            TPlusPopupView.alpha = 1
+            storeBtnTap = "sq"
+            tPlusTapped = false
+        }
+        else if(tRTapped) {
+            retrieveStoredData("sq")
+        }
+        else{
+            self.delegate?.specialQbutton()
+            changeKeysCase()
+        }
     }
     
     @IBAction func btnSpecialBTap(_ sender: UIButton) {
+        tPlusTapped = false
+        tRTapped = false
         self.delegate?.specialBbutton()
+        changeKeysCase()
     }
     
     @IBAction func btnSmileyTap(_ sender: UIButton) {
         tRTapped = false
         tPlusTapped = false
         self.delegate?.smileyButton()
+        changeKeysCase()
     }
     
     @IBAction func btnAtTheRatePopupClose(_ sender: UIButton) {
@@ -748,11 +904,10 @@ extension CustomKeyboardView {
     @IBAction func tPlusViewSaveBtn() {
         if let value = TPlusViewTextField.text {
             print("value from extension \(value)")
-            print(storeBtnTap , "hello world")
             if let char = storeBtnTap.first {
-                if char.isLetter && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
+                if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
                     databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "alphabetic")
-                } else if char.isNumber {
+                } else if char.isNumber && (storeBtnTap.count == 1) {
                     databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "numeric")
                 } else {
                     databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "accent")
