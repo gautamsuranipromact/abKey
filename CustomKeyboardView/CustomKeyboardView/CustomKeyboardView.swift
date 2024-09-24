@@ -43,7 +43,7 @@ class CustomKeyboardView: UIView {
     @IBOutlet weak var FirstKeyboardLayout: UIStackView!
     @IBOutlet weak var SecondKeyboardLayout: UIStackView!
     @IBOutlet weak var ThirdKeyboardLayout: UIStackView!
-    
+    @IBOutlet weak var PremiumEntriesPopupView: UIView!
     
     // tplus view outlets
     @IBOutlet weak var TPlusPopupView: UIStackView!
@@ -542,18 +542,124 @@ extension CustomKeyboardView {
     }
     
     func retrieveStoredData(_ key: String) {
-        if let storedValue = databaseHelper.value(forKey: key) {
-            print("Retrieved value: \(storedValue)")
-            delegate?.insertCharacter(storedValue)
-        } else {
-            print("No value found for the given key.")
-        }
-        
-        let storedValue = databaseHelper.values(forKey: key)
-        print("retrieved value : \(storedValue)")
+        let storedValues = databaseHelper.values(forKey: key)
+        print("retrieved values : \(storedValues)")
         tRTapped = false
+        
+        if(storedValues.count == 1){
+            delegate?.insertCharacter(storedValues[0])
+        }
+        else if (storedValues.count > 1){
+            // Remove any existing subviews in the PremiumEntriesPopupView (if necessary)
+            PremiumEntriesPopupView.subviews.forEach { $0.removeFromSuperview() }
+            
+            // Create a title container to hold the label and cross button
+            let titleContainer = UIStackView()
+            titleContainer.axis = .horizontal
+            titleContainer.distribution = .equalSpacing
+            titleContainer.translatesAutoresizingMaskIntoConstraints = false
+            PremiumEntriesPopupView.addSubview(titleContainer)
+            
+            // Create a title label
+            let titleLabel = UILabel()
+            titleLabel.text = "Select any one"
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
+            titleLabel.textColor = .white
+            
+            // Create a cross button
+            let crossButton = UIButton(type: .system)
+            crossButton.setTitle("✖️", for: .normal)
+            crossButton.setTitleColor(.white, for: .normal)
+            crossButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+            crossButton.addTarget(self, action: #selector(crossButtonTapped), for: .touchUpInside)
+            
+            titleContainer.addArrangedSubview(titleLabel)
+            titleContainer.addArrangedSubview(crossButton)
+            
+            // Constraints for titleContainer
+            NSLayoutConstraint.activate([
+                titleContainer.topAnchor.constraint(equalTo: PremiumEntriesPopupView.topAnchor, constant: 2),
+                titleContainer.leadingAnchor.constraint(equalTo: PremiumEntriesPopupView.leadingAnchor, constant: 8),
+                titleContainer.trailingAnchor.constraint(equalTo: PremiumEntriesPopupView.trailingAnchor, constant: -8),
+            ])
+            
+            // Create a vertical UIScrollView
+            let scrollView = UIScrollView()
+            scrollView.translatesAutoresizingMaskIntoConstraints = false
+            scrollView.showsVerticalScrollIndicator = true
+            scrollView.alwaysBounceVertical = true
+            PremiumEntriesPopupView.addSubview(scrollView)
+            
+            // Constraints for scrollView
+            NSLayoutConstraint.activate([
+                scrollView.topAnchor.constraint(equalTo: titleContainer.bottomAnchor, constant: 8),
+                scrollView.leadingAnchor.constraint(equalTo: PremiumEntriesPopupView.leadingAnchor),
+                scrollView.trailingAnchor.constraint(equalTo: PremiumEntriesPopupView.trailingAnchor),
+                scrollView.bottomAnchor.constraint(equalTo: PremiumEntriesPopupView.bottomAnchor)
+            ])
+            
+            // Create buttons for each stored value and add them to the scroll view
+            let buttonWidth: CGFloat = PremiumEntriesPopupView.frame.width - 20 // Adjust width as needed
+            let buttonHeight: CGFloat = 35
+            let buttonSpacing: CGFloat = 5
+            
+            var yPosition: CGFloat = 0 // Start position
+            
+            for (index, value) in storedValues.enumerated() {
+                let button = UIButton(type: .system)
+                button.setTitle(value, for: .normal)
+                button.setTitleColor(.white, for: .normal)
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+                button.frame = CGRect(x: 10, y: yPosition, width: buttonWidth, height: buttonHeight)
+                button.tag = index
+                button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+                button.contentHorizontalAlignment = .left // Left align the title
+                
+                // Add a bottom border to the button
+                if(index < storedValues.count - 1){
+                    let borderHeight: CGFloat = 1.0
+                    let borderView = UIView()
+                    borderView.translatesAutoresizingMaskIntoConstraints = false
+                    borderView.backgroundColor = .white
+                    button.addSubview(borderView)
+                    
+                    // Set border constraints
+                    NSLayoutConstraint.activate([
+                        borderView.bottomAnchor.constraint(equalTo: button.bottomAnchor),
+                        borderView.leadingAnchor.constraint(equalTo: button.leadingAnchor),
+                        borderView.trailingAnchor.constraint(equalTo: button.trailingAnchor),
+                        borderView.heightAnchor.constraint(equalToConstant: borderHeight)
+                    ])
+                }
+                
+                scrollView.addSubview(button)
+                
+                // Update yPosition for the next button
+                yPosition += buttonHeight + buttonSpacing
+            }
+            
+            // Update the scrollView's content size based on the number of buttons
+            let totalContentHeight = yPosition + 8 // Add padding to the total height
+            scrollView.contentSize = CGSize(width: buttonWidth, height: totalContentHeight)
+            
+            // Show the popup view
+            PremiumEntriesPopupView.isHidden = false
+        }
+        else{
+            print("No values for this key")
+        }
     }
-    
+
+    // Button action handler for cross button
+    @objc func crossButtonTapped() {
+        PremiumEntriesPopupView.isHidden = true
+    }
+
+    // Button action handler for other buttons
+    @objc func buttonTapped(_ sender: UIButton) {
+        btnLetterTap(sender)
+        PremiumEntriesPopupView.isHidden = true
+    }
 }
 
 //MARK: - Button Actions
@@ -932,7 +1038,6 @@ extension CustomKeyboardView {
     @IBAction func btnTPlusTap() {
         tPlusTapped = true
         tRTapped = false
-        TPlusPopupView.isHidden = false
     }
     
     @IBAction func tPlusViewSaveBtn() {
