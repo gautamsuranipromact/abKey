@@ -74,7 +74,7 @@ extension KeyboardViewController {
         if newCharacter == " " {
             replaceWord()
         }
-        else if customKeyboardView.TPlusPopupView.alpha == 1{
+        else if customKeyboardView.TPlusPopupView.isHidden == false {
             customKeyboardView.TPlusViewTextField.insertText(newCharacter)
             return
         }
@@ -82,7 +82,7 @@ extension KeyboardViewController {
    }
     
     func removeCharacter() {
-        if(customKeyboardView.TPlusPopupView.alpha == 1) {
+        if(customKeyboardView.TPlusPopupView.isHidden == false) {
             customKeyboardView.TPlusViewTextField.deleteBackward()
         }
         else{

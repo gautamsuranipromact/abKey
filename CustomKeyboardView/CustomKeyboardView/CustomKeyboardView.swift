@@ -44,6 +44,7 @@ class CustomKeyboardView: UIView {
     @IBOutlet weak var SecondKeyboardLayout: UIStackView!
     @IBOutlet weak var ThirdKeyboardLayout: UIStackView!
     
+    
     // tplus view outlets
     @IBOutlet weak var TPlusPopupView: UIStackView!
     @IBOutlet weak var TPlusViewTextField: UITextField!
@@ -178,6 +179,8 @@ class CustomKeyboardView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        TPlusPopupView.isHidden = true
         
         for button in KeysCollectionFirstKeyboard {
             if let title = button.titleLabel?.text {
@@ -545,6 +548,9 @@ extension CustomKeyboardView {
         } else {
             print("No value found for the given key.")
         }
+        
+        let storedValue = databaseHelper.values(forKey: key)
+        print("retrieved value : \(storedValue)")
         tRTapped = false
     }
     
@@ -556,7 +562,7 @@ extension CustomKeyboardView {
     @IBAction func btnLetterTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.alpha = 1
+            TPlusPopupView.isHidden = false
             print(sender.titleLabel?.text ?? "No title on the button")
             tPlusTapped = false
             storeBtnTap = sender.titleLabel?.text ?? " "
@@ -676,7 +682,7 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialFTap(_ sender: UIButton){
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.alpha = 1
+            TPlusPopupView.isHidden = false
             storeBtnTap = "sf"
             tPlusTapped = false
         }
@@ -692,7 +698,7 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialGTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.alpha = 1
+            TPlusPopupView.isHidden = false
             storeBtnTap = "sg"
             tPlusTapped = false
         }
@@ -708,7 +714,7 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialKTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.alpha = 1
+            TPlusPopupView.isHidden = false
             storeBtnTap = "sk"
             tPlusTapped = false
         }
@@ -724,7 +730,7 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialMTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.alpha = 1
+            TPlusPopupView.isHidden = false
             storeBtnTap = "sm"
             tPlusTapped = false
         }
@@ -740,7 +746,7 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialPTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.alpha = 1
+            TPlusPopupView.isHidden = false
             storeBtnTap = "sp"
             tPlusTapped = false
         }
@@ -756,7 +762,7 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialQTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.alpha = 1
+            TPlusPopupView.isHidden = false
             storeBtnTap = "sq"
             tPlusTapped = false
         }
@@ -926,24 +932,38 @@ extension CustomKeyboardView {
     @IBAction func btnTPlusTap() {
         tPlusTapped = true
         tRTapped = false
+        TPlusPopupView.isHidden = false
     }
     
     @IBAction func tPlusViewSaveBtn() {
         if let value = TPlusViewTextField.text {
             print("value from extension \(value)")
-            if let char = storeBtnTap.first {
-                if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
-                    databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "alphabetic")
-                } else if char.isNumber && (storeBtnTap.count == 1) {
-                    databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "numeric")
-                } else {
-                    databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "accent")
+            if let isPremiumCustomer = sharedDefaults?.integer(forKey: "premiumKey"), (isPremiumCustomer != 0) {
+                print(isPremiumCustomer)
+                if let char = storeBtnTap.first {
+                    if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "alphabetic")
+                    } else if char.isNumber && (storeBtnTap.count == 1) {
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "numeric")
+                    } else {
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "accent")
+                    }
                 }
-            } else {
-                print("storeBtnTap is nil")
+            }
+            else{
+                if let char = storeBtnTap.first {
+                    if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "alphabetic")
+                    } else if char.isNumber && (storeBtnTap.count == 1) {
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "numeric")
+                    } else {
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "accent")
+                    }
+                }
+                print("not a premium customer")
             }
             TPlusViewTextField.text = ""
-            TPlusPopupView.alpha = 0
+            TPlusPopupView.isHidden = true
             tPlusTapped = false
         }
     }
@@ -951,7 +971,7 @@ extension CustomKeyboardView {
     @IBAction func closeTPlusPopupView() {
         TPlusViewTextField.text = ""
         TPlusViewTextField.resignFirstResponder()
-        TPlusPopupView.alpha = 0
+        TPlusPopupView.isHidden = true
         tPlusTapped = false
     }
     

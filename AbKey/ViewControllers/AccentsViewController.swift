@@ -57,7 +57,15 @@ class AccentsViewController: UIViewController {
         }
 
         // Reload the table view to reflect changes
-        accentTableView.reloadData()
+//        accentTableView.reloadData()
+        
+        if let tableView = accentTableView {
+            tableView.reloadData()
+        } else {
+            print("numberTableView is nil")
+        }
+
+        
 
         // Clear the selected IDs
         selectedCellIds.removeAll()

@@ -200,9 +200,16 @@ class HomePageVC: UIViewController {
     }
     
     @IBAction func btnPremiumAction(_ sender: Any) {
-        premium = 1
-        UserDefaults.standard.set(premium, forKey: "premiumKey")
-        print("premium action buttom clicked")
+//        premium = 1
+//        UserDefaults.standard.set(premium, forKey: "premiumKey")
+//        let premiumVal = UserDefaults.standard.integer(forKey: "premiumKey")
+//        print(premiumVal)
+//        print("premium action buttom clicked")
+          premium = 1
+          let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
+          sharedDefaults?.set(premium, forKey: "premiumKey")
+           
+          let premiumVal = sharedDefaults?.integer(forKey: "premiumKey") ?? 0
     }
     
     @IBAction func btnCloseAction(_ sender: Any) {

@@ -60,7 +60,14 @@ class NumbersViewController: UIViewController {
         }
 
         // Reload the table view to reflect changes
-        numberTableView.reloadData()
+//        numberTableView.reloadData()
+        
+        if let tableView = numberTableView {
+            tableView.reloadData()
+        } else {
+            print("numberTableView is nil")
+        }
+
 
         // Clear the selected IDs
         selectedCellIds.removeAll()

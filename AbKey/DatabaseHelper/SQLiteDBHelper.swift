@@ -53,6 +53,27 @@ class SQLiteDBHelper {
         sqlite3_finalize(createTableStatement)
     }
     
+    func insert(key: String, value: String, keyboardType: String) {
+        let insertStatementString = "INSERT INTO CustomKeys (Key, Value, KeyboardType) VALUES (?, ?, ?);"
+        var insertStatement: OpaquePointer?
+
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            sqlite3_bind_text(insertStatement, 1, (key as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 2, (value as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 3, (keyboardType as NSString).utf8String, -1, nil)
+
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+                print("Successfully inserted row.")
+            } else {
+                print("Could not insert row.")
+            }
+            sqlite3_finalize(insertStatement)
+        } else {
+            print("INSERT statement could not be prepared.")
+        }
+    }
+
+    
     func insertOrUpdate(key: String, value: String, keyboardType: String) {
         // First, check if the key exists
         let queryStatementString = "SELECT * FROM CustomKeys WHERE Key = ?;"
@@ -125,6 +146,33 @@ class SQLiteDBHelper {
         return nil
     }
     
+    func values(forKey key: String) -> [String] {
+        let queryStatementString = "SELECT Value FROM CustomKeys WHERE Key = ?;"
+        var queryStatement: OpaquePointer?
+        var values: [String] = []
+
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            sqlite3_bind_text(queryStatement, 1, (key as NSString).utf8String, -1, nil)
+
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                if let value = sqlite3_column_text(queryStatement, 0) {
+                    let valueString = String(cString: value)
+                    values.append(valueString)
+                }
+            }
+            sqlite3_finalize(queryStatement)
+        } else {
+            print("SELECT statement could not be prepared.")
+        }
+
+        if values.isEmpty {
+            print("No values found for key: \(key).")
+        }
+
+        return values
+    }
+
+    
     func read(forKeyboardType keyboardType: String? = nil) -> [(id: Int, key: String, value: String, keyboardType: String)] {
         var queryStatementString = "SELECT * FROM CustomKeys"
         if let keyboardType = keyboardType {
@@ -169,6 +217,29 @@ class SQLiteDBHelper {
         }
         sqlite3_finalize(updateStatement)
     }
+    
+    func updateValueUsingID(forID id: Int, newValue: String) {
+        let updateStatementString = "UPDATE CustomKeys SET Value = ? WHERE ID = ?;"
+        var updateStatement: OpaquePointer?
+        
+        if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            sqlite3_bind_text(updateStatement, 1, (newValue as NSString).utf8String, -1, nil)
+            sqlite3_bind_int(updateStatement, 2, Int32(id))
+            
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+                print("Successfully updated value for ID \(id).")
+                // Notify if needed
+            } else {
+                print("Could not update value for ID \(id).")
+                // Handle error condition
+            }
+        } else {
+            print("UPDATE statement could not be prepared.")
+            // Handle error condition
+        }
+        sqlite3_finalize(updateStatement)
+    }
+
 
     
     func update( key: String, value: String) {

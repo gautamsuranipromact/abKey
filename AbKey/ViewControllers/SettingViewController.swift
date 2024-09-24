@@ -82,34 +82,65 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     }
     
     @IBAction func btnEditAction(_ sender: Any) {
+//        if let alphabetVC = subControllers.first(where: { $0 is AlphabetViewController }) as? AlphabetViewController,
+//                 let selectedIndexPaths = alphabetVC.alphabetTableView.indexPathsForSelectedRows,
+//                 selectedIndexPaths.count == 1 {
+//                  
+//                  // Get the selected key and value for AlphabetViewController
+//                  editSelectedCell(alphabetVC: alphabetVC, selectedIndexPaths: selectedIndexPaths)
+//              }
+//              // Check if NumbersViewController has exactly one selected cell
+//              else if let numbersVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController,
+//                      let selectedIndexPaths = numbersVC.numberTableView.indexPathsForSelectedRows,
+//                      selectedIndexPaths.count == 1 {
+//                  
+//                  // Get the selected key and value for NumbersViewController
+//                  editSelectedCell(numbersVC: numbersVC, selectedIndexPaths: selectedIndexPaths)
+//              }
+//              // Check if AccentViewController has exactly one selected cell
+//              else if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController,
+//                      let selectedIndexPaths = accentVC.accentTableView.indexPathsForSelectedRows,
+//                      selectedIndexPaths.count == 1 {
+//                  
+//                  // Get the selected key and value for AccentViewController
+//                  editSelectedCell(accentVC: accentVC, selectedIndexPaths: selectedIndexPaths)
+//              } else {
+//                  // Show an alert if no cell is selected or multiple cells are selected in Alphabet, Number, and Accent view controllers
+//                  let alert = UIAlertController(title: "Error", message: "Please select a single cell to edit from either Alphabets, Numbers, or Accents.", preferredStyle: .alert)
+//                  alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                  present(alert, animated: true, completion: nil)
+//              }
+        
         if let alphabetVC = subControllers.first(where: { $0 is AlphabetViewController }) as? AlphabetViewController,
-                 let selectedIndexPaths = alphabetVC.alphabetTableView.indexPathsForSelectedRows,
-                 selectedIndexPaths.count == 1 {
-                  
-                  // Get the selected key and value for AlphabetViewController
-                  editSelectedCell(alphabetVC: alphabetVC, selectedIndexPaths: selectedIndexPaths)
-              }
-              // Check if NumbersViewController has exactly one selected cell
-              else if let numbersVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController,
-                      let selectedIndexPaths = numbersVC.numberTableView.indexPathsForSelectedRows,
+               let alphabetTableView = alphabetVC.alphabetTableView,
+               let selectedIndexPaths = alphabetTableView.indexPathsForSelectedRows,
+               selectedIndexPaths.count == 1 {
+                
+                // Get the selected key and value for AlphabetViewController
+                editSelectedCell(alphabetVC: alphabetVC, selectedIndexPaths: selectedIndexPaths)
+                
+            } else if let numbersVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController,
+                      let numberTableView = numbersVC.numberTableView,
+                      let selectedIndexPaths = numberTableView.indexPathsForSelectedRows,
                       selectedIndexPaths.count == 1 {
-                  
-                  // Get the selected key and value for NumbersViewController
-                  editSelectedCell(numbersVC: numbersVC, selectedIndexPaths: selectedIndexPaths)
-              }
-              // Check if AccentViewController has exactly one selected cell
-              else if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController,
-                      let selectedIndexPaths = accentVC.accentTableView.indexPathsForSelectedRows,
+                
+                // Get the selected key and value for NumbersViewController
+                editSelectedCell(numbersVC: numbersVC, selectedIndexPaths: selectedIndexPaths)
+                
+            } else if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController,
+                      let accentTableView = accentVC.accentTableView,
+                      let selectedIndexPaths = accentTableView.indexPathsForSelectedRows,
                       selectedIndexPaths.count == 1 {
-                  
-                  // Get the selected key and value for AccentViewController
-                  editSelectedCell(accentVC: accentVC, selectedIndexPaths: selectedIndexPaths)
-              } else {
-                  // Show an alert if no cell is selected or multiple cells are selected in Alphabet, Number, and Accent view controllers
-                  let alert = UIAlertController(title: "Error", message: "Please select a single cell to edit from either Alphabets, Numbers, or Accents.", preferredStyle: .alert)
-                  alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                  present(alert, animated: true, completion: nil)
-              }
+                
+                // Get the selected key and value for AccentViewController
+                editSelectedCell(accentVC: accentVC, selectedIndexPaths: selectedIndexPaths)
+                
+            } else {
+                // Show an alert if no cell is selected or multiple cells are selected in Alphabet, Number, and Accent view controllers
+                let alert = UIAlertController(title: "Error", message: "Please select a single cell to edit from either Alphabets, Numbers, or Accents.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+            }
     }
     
     func editSelectedCell(alphabetVC: AlphabetViewController? = nil, numbersVC: NumbersViewController? = nil, accentVC: AccentsViewController? = nil, selectedIndexPaths: [IndexPath]) {
@@ -186,10 +217,9 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         if let alphabetVC = subControllers.first(where: { $0 is AlphabetViewController }) as? AlphabetViewController {
             if let selectedIndexPaths = alphabetVC.alphabetTableView.indexPathsForSelectedRows, selectedIndexPaths.count == 1 {
                 let selectedIndexPath = selectedIndexPaths[0]
-                let selectedKey = alphabetVC.customKeys[selectedIndexPath.row].key
+                let selectedID = alphabetVC.customKeys[selectedIndexPath.row].id
                 
-                // Update the value in the database
-                SQLiteDBHelper.shared.updateValue(forKey: selectedKey, newValue: newValue!)
+                SQLiteDBHelper.shared.updateValueUsingID(forID: selectedID, newValue: newValue!)
                 
                 // Reload data to reflect the changes instantly
                 alphabetVC.fetchDataAndReloadTable()
@@ -203,10 +233,10 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         if let numberVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController {
             if let selectedIndexPaths = numberVC.numberTableView.indexPathsForSelectedRows, selectedIndexPaths.count == 1 {
                 let selectedIndexPath = selectedIndexPaths[0]
-                let selectedKey = numberVC.customKeys[selectedIndexPath.row].key
+                let selectedID = numberVC.customKeys[selectedIndexPath.row].id
                 
                 // Update the value in the database
-                SQLiteDBHelper.shared.updateValue(forKey: selectedKey, newValue: newValue!)
+                SQLiteDBHelper.shared.updateValueUsingID(forID: selectedID, newValue: newValue!)
                 
                 // Reload data to reflect the changes instantly
                 numberVC.fetchDataAndReloadTable()
@@ -221,10 +251,10 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController {
             if let selectedIndexPaths = accentVC.accentTableView.indexPathsForSelectedRows, selectedIndexPaths.count == 1 {
                 let selectedIndexPath = selectedIndexPaths[0]
-                let selectedKey = accentVC.customKeys[selectedIndexPath.row].key
+                let selectedID = accentVC.customKeys[selectedIndexPath.row].id
                 
                 // Update the value in the database
-                SQLiteDBHelper.shared.updateValue(forKey: selectedKey, newValue: newValue!)
+                SQLiteDBHelper.shared.updateValueUsingID(forID: selectedID, newValue: newValue!)
                 
                 // Reload data to reflect the changes instantly
                 accentVC.fetchDataAndReloadTable()

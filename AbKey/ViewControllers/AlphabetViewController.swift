@@ -70,7 +70,12 @@ class AlphabetViewController: UIViewController {
         }
 
         // Reload the table view to reflect changes
-        alphabetTableView.reloadData()
+//        alphabetTableView.reloadData()
+        if let tableView = alphabetTableView {
+            tableView.reloadData()
+        } else {
+            print("numberTableView is nil")
+        }
 
         // Clear the selected IDs
         selectedCellIds.removeAll()
