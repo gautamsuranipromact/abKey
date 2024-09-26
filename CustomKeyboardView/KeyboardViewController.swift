@@ -159,6 +159,10 @@ extension KeyboardViewController{
         textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
     }
     
+    func moveArrowRightButton() {
+        textDocumentProxy.adjustTextPosition(byCharacterOffset: +1)
+    }
+    
     func specialFbutton() {
         if(customKeyboardView.TPlusViewTextField.isFirstResponder){
             customKeyboardView.TPlusViewTextField.insertText("%")
@@ -234,10 +238,10 @@ extension KeyboardViewController{
     
     func smileyButton() {
         if(customKeyboardView.TPlusViewTextField.isFirstResponder){
-            customKeyboardView.TPlusViewTextField.insertText(":-)")
+            customKeyboardView.TPlusViewTextField.insertText("🙂")
         }
         else{
-            textDocumentProxy.insertText(":-)")
+            textDocumentProxy.insertText("🙂")
         }
     }
     

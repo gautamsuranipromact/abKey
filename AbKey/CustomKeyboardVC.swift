@@ -101,6 +101,20 @@ extension CustomKeyboardVC {
             }
     }
     
+    func moveArrowRightButton() {
+        if let textField = textField {
+            if let selectedRange = textField.selectedTextRange {
+                let cursorPosition = textField.offset(from: textField.beginningOfDocument, to: selectedRange.start)
+                if cursorPosition < (textField.text?.count ?? 0) {
+                    if let newPosition = textField.position(from: selectedRange.start, offset: 1) {
+                        textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
+                    }
+                }
+            }
+        }
+    }
+
+    
     func specialFbutton() {
         textField.text! += "%"
     }

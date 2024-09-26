@@ -12,6 +12,7 @@ protocol CustomKeyboardViewDelegate: AnyObject {
   func removeCharacter()
   func closeKeyboard()
   func moveArrowLeftButton()
+  func moveArrowRightButton()
   func enterButtonClicked()
   func colonButtonTapped()
   func hyphenButtonTapped()
@@ -98,7 +99,6 @@ class CustomKeyboardView: UIView {
     @IBOutlet var TPlusBtnCollection: [CustomButton]!
     @IBOutlet var SettingsBtnCollection: [CustomButton]!
     
-    
     // keyboard keys outlets for special gestures
     @IBOutlet weak var FirstKeyboardCapsBtn: CustomButton!
     @IBOutlet weak var ThirdKeyboardCapsBtn: CustomButton!
@@ -109,6 +109,7 @@ class CustomKeyboardView: UIView {
     @IBOutlet weak var RightArrowBtn: CustomButton!
     @IBOutlet weak var QuestionMarkBtn: CustomButton!
     
+    @IBOutlet weak var MoveCursorRightBtn: CustomButton!
     @IBOutlet weak var SpecialFBtn: CustomButton!
     @IBOutlet weak var SpecialGBtn: CustomButton!
     @IBOutlet weak var SmileyBtn: CustomButton!
@@ -142,6 +143,7 @@ class CustomKeyboardView: UIView {
     var storeBtnTap: String = ""
     var backspaceRepeatTimer: Timer?
     var moveCursorLeftRepeatTimer: Timer?
+    var moveCursorRightRepeatTimer: Timer?
 
     
     var isFirstCapsUppercase: Bool = true
@@ -236,6 +238,9 @@ class CustomKeyboardView: UIView {
         thirdCapsSingleTapRecognizer.require(toFail: thirdCapsDoubleTapRecognizer)
         ThirdKeyboardCapsBtn.addGestureRecognizer(thirdCapsSingleTapRecognizer)
         ThirdKeyboardCapsBtn.addGestureRecognizer(thirdCapsDoubleTapRecognizer)
+        
+        MoveCursorRightBtn.addTarget(self, action: #selector(moveCursorRightBtnTapped), for: .touchDown)
+        MoveCursorRightBtn.addTarget(self, action: #selector(moveCursorRightBtnReleased), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         
         // Attaching Long press keys gesture to the buttons.
         let atTheRateLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleAtTheRateLongPress))
@@ -352,6 +357,20 @@ extension CustomKeyboardView {
     @objc func repeatedMoveCursorLeftAction() {
         delegate?.moveArrowLeftButton()
     }
+    
+    @objc func moveCursorRightBtnTapped(_ sender: UIButton) {
+        moveCursorRightRepeatTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(repeatedMoveCursorRightAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func moveCursorRightBtnReleased(_ sender: UIButton) {
+        moveCursorRightRepeatTimer?.invalidate()
+        moveCursorRightRepeatTimer = nil
+    }
+    
+    @objc func repeatedMoveCursorRightAction() {
+        delegate?.moveArrowRightButton()
+    }
+
     
     @objc func handleFirstCapsSingleTap() {
         if(!isFirstCapsLocked){
@@ -550,6 +569,9 @@ extension CustomKeyboardView {
             delegate?.insertCharacter(storedValues[0])
         }
         else if (storedValues.count > 1){
+            if(!TPlusPopupView.isHidden){
+                TPlusPopupView.alpha = 0
+            }
             // Remove any existing subviews in the PremiumEntriesPopupView (if necessary)
             PremiumEntriesPopupView.subviews.forEach { $0.removeFromSuperview() }
             
@@ -642,7 +664,6 @@ extension CustomKeyboardView {
             let totalContentHeight = yPosition + 8 // Add padding to the total height
             scrollView.contentSize = CGSize(width: buttonWidth, height: totalContentHeight)
             
-            // Show the popup view
             PremiumEntriesPopupView.isHidden = false
         }
         else{
@@ -653,12 +674,18 @@ extension CustomKeyboardView {
     // Button action handler for cross button
     @objc func crossButtonTapped() {
         PremiumEntriesPopupView.isHidden = true
+        if(!TPlusPopupView.isHidden && TPlusPopupView.alpha == 0){
+            TPlusPopupView.alpha = 1
+        }
     }
 
     // Button action handler for other buttons
     @objc func buttonTapped(_ sender: UIButton) {
         btnLetterTap(sender)
         PremiumEntriesPopupView.isHidden = true
+        if(!TPlusPopupView.isHidden && TPlusPopupView.alpha == 0){
+            TPlusPopupView.alpha = 1
+        }
     }
 }
 
@@ -674,7 +701,7 @@ extension CustomKeyboardView {
             storeBtnTap = sender.titleLabel?.text ?? " "
         }
         else if(tRTapped) {
-            retrieveStoredData(sender.titleLabel?.text ?? " ")
+            retrieveStoredData(sender.titleLabel?.text?.lowercased() ?? " ")
         }
         else{
             characterInsertion(sender)
@@ -742,6 +769,12 @@ extension CustomKeyboardView {
         tRTapped = false
         tPlusTapped = false
         self.delegate?.moveArrowLeftButton()
+    }
+    
+    @IBAction func btnMoveCursorRight(_ sender: UIButton){
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.moveArrowRightButton()
     }
     
     @IBAction func btnEnterTap(_ sender: UIButton) {
@@ -1041,6 +1074,7 @@ extension CustomKeyboardView {
     }
     
     @IBAction func tPlusViewSaveBtn() {
+        storeBtnTap = storeBtnTap.lowercased()
         if let value = TPlusViewTextField.text {
             print("value from extension \(value)")
             if let isPremiumCustomer = sharedDefaults?.integer(forKey: "premiumKey"), (isPremiumCustomer != 0) {

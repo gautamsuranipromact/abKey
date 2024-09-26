@@ -14,8 +14,6 @@ class HomePageVC: UIViewController {
     
     @IBOutlet weak var lblAppTitle: UILabel!
     
-//    @IBOutlet weak var imgBackround: UIImageView!
-    
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var lblAbKeySetting: UILabel!
     
@@ -34,8 +32,6 @@ class HomePageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserDefaults.standard.set(premium, forKey: "premiumKey")
-        
         self.applyRoundedCorners(to: lblAppTitle)
         self.applyRoundedCorners(to: viewAbKeySetting)
         
@@ -53,80 +49,6 @@ class HomePageVC: UIViewController {
 
         let attributedString = attributedTextWithIcons()
         lblAbKeySetting.attributedText = attributedString
-    }
-    
-    func setGradientBackground(for buttons: [UIButton], colors: [UIColor]) {
-        for button in buttons {
-            // Ensure the button's size is valid
-            let buttonSize = button.bounds.size
-            if buttonSize.width > 0 && buttonSize.height > 0 {
-                if let gradientImage = createGradientImage(size: buttonSize, colors: colors) {
-                    button.setBackgroundImage(gradientImage, for: .normal)
-                }
-            }
-        }
-    }
-    
-    func createGradientImage(size: CGSize, colors: [UIColor], locations: [NSNumber]? = nil) -> UIImage? {
-        guard size.width > 0 && size.height > 0 else { // Ensuring size is valid
-            return nil
-        }
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRect(origin: .zero, size: size)
-        gradientLayer.colors = colors.map { $0.cgColor }
-        gradientLayer.locations = locations
-        
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        defer { UIGraphicsEndImageContext() }
-        
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        
-        gradientLayer.render(in: context)
-        return UIGraphicsGetImageFromCurrentImageContext()
-    }
-    
-    func attributedTextWithIcons() -> NSAttributedString {
-        let keyboardIconImage = UIImage(named: "Keyboard")
-        let textWithKeyboardIcon = "To open abKey Pro Settings from abKey Pro input method, Press & Hold keyboard icon "
-        
-        let keyboardAttachment = NSTextAttachment()
-        keyboardAttachment.image = keyboardIconImage
-        keyboardAttachment.bounds = CGRect(x: 0, y: -4, width: 20, height: 20) // Adjust bounds as needed
-        
-        let keyboardAttachmentString = NSAttributedString(attachment: keyboardAttachment)
-        let keyboardAttributedText = NSMutableAttributedString(string: textWithKeyboardIcon)
-        keyboardAttributedText.append(keyboardAttachmentString)
-        
-        // Combine text with setting icon
-        let settingIconImage = UIImage(named: "numeric_settings")
-        let textWithSettingIcon = "OR press setting icon "
-        
-        let settingAttachment = NSTextAttachment()
-        settingAttachment.image = settingIconImage
-        settingAttachment.bounds = CGRect(x: 0, y: -4, width: 20, height: 20) // Adjust bounds as needed
-        
-        let settingAttachmentString = NSAttributedString(attachment: settingAttachment)
-        let settingAttributedText = NSMutableAttributedString(string: textWithSettingIcon)
-        settingAttributedText.append(settingAttachmentString)
-        
-        keyboardAttributedText.append(settingAttributedText)
-        
-        return keyboardAttributedText
-    }
-
-    func applyGradientBackground(colors: [CGColor]) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = colors
-        gradientLayer.frame = viewBackground.bounds // Set initial frame
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
-
-        // Add gradient layer to the view's layer
-        viewBackground.layer.insertSublayer(gradientLayer, at: 0)
-
-        // Observe changes to bounds and update the gradient layer frame accordingly
-        observeBoundsChanges()
     }
 
     private var boundsObservation: NSKeyValueObservation?
@@ -200,16 +122,10 @@ class HomePageVC: UIViewController {
     }
     
     @IBAction func btnPremiumAction(_ sender: Any) {
-//        premium = 1
-//        UserDefaults.standard.set(premium, forKey: "premiumKey")
-//        let premiumVal = UserDefaults.standard.integer(forKey: "premiumKey")
-//        print(premiumVal)
-//        print("premium action buttom clicked")
-          premium = 1
-          let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
-          sharedDefaults?.set(premium, forKey: "premiumKey")
-           
-          let premiumVal = sharedDefaults?.integer(forKey: "premiumKey") ?? 0
+        premium = 1
+        let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
+        sharedDefaults?.set(premium, forKey: "premiumKey")
+        print(premium)
     }
     
     @IBAction func btnCloseAction(_ sender: Any) {
@@ -218,11 +134,86 @@ class HomePageVC: UIViewController {
     }
 }
 
-extension HomePageVC{
+extension HomePageVC {
     func applyRoundedCorners(to view: UIView) {
         view.layer.cornerRadius = 15
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         view.layer.masksToBounds = true
+    }
+    
+    func setGradientBackground(for buttons: [UIButton], colors: [UIColor]) {
+        for button in buttons {
+            // Ensure the button's size is valid
+            let buttonSize = button.bounds.size
+            if buttonSize.width > 0 && buttonSize.height > 0 {
+                if let gradientImage = createGradientImage(size: buttonSize, colors: colors) {
+                    button.setBackgroundImage(gradientImage, for: .normal)
+                }
+            }
+        }
+    }
+    
+    // converting gradient to image
+    func createGradientImage(size: CGSize, colors: [UIColor], locations: [NSNumber]? = nil) -> UIImage? {
+        guard size.width > 0 && size.height > 0 else { // Ensuring size is valid
+            return nil
+        }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(origin: .zero, size: size)
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = locations
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        
+        gradientLayer.render(in: context)
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    
+    func attributedTextWithIcons() -> NSAttributedString {
+        let keyboardIconImage = UIImage(named: "Keyboard")
+        let textWithKeyboardIcon = "To open abKey Pro Settings from abKey Pro input method, Press & Hold keyboard icon "
+        
+        let keyboardAttachment = NSTextAttachment()
+        keyboardAttachment.image = keyboardIconImage
+        keyboardAttachment.bounds = CGRect(x: 0, y: -4, width: 20, height: 20) // Adjust bounds as needed
+        
+        let keyboardAttachmentString = NSAttributedString(attachment: keyboardAttachment)
+        let keyboardAttributedText = NSMutableAttributedString(string: textWithKeyboardIcon)
+        keyboardAttributedText.append(keyboardAttachmentString)
+        
+        // Combine text with setting icon
+        let settingIconImage = UIImage(named: "numeric_settings")
+        let textWithSettingIcon = "OR press setting icon "
+        
+        let settingAttachment = NSTextAttachment()
+        settingAttachment.image = settingIconImage
+        settingAttachment.bounds = CGRect(x: 0, y: -4, width: 20, height: 20) // Adjust bounds as needed
+        
+        let settingAttachmentString = NSAttributedString(attachment: settingAttachment)
+        let settingAttributedText = NSMutableAttributedString(string: textWithSettingIcon)
+        settingAttributedText.append(settingAttachmentString)
+        
+        keyboardAttributedText.append(settingAttributedText)
+        
+        return keyboardAttributedText
+    }
+    
+    func applyGradientBackground(colors: [CGColor]) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = colors
+        gradientLayer.frame = viewBackground.bounds // Set initial frame
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        
+        // Add gradient layer to the view's layer
+        viewBackground.layer.insertSublayer(gradientLayer, at: 0)
+
+        // Observe changes to bounds and update the gradient layer frame accordingly
+        observeBoundsChanges()
     }
 }
 
