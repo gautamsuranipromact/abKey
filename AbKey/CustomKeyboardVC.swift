@@ -158,10 +158,7 @@ extension CustomKeyboardVC {
     }
     
     func openMainApp(_ hostValue: String) {
-        // Create a URL with the custom scheme 'abkeyapp' and the host 'firstKeyboard'
         guard let url = URL(string: "abkeyapp://\(hostValue)") else { return }
-
-        // Attempt to open the URL using the extension context
         extensionContext?.open(url, completionHandler: { success in
             if !success {
                 // If the URL couldn't be opened, check the responder chain
@@ -174,9 +171,6 @@ extension CustomKeyboardVC {
                     }
                     responder = responder?.next
                 }
-                print("Failed to open URL: \(url)")
-            } else {
-                print("Successfully opened URL: \(url)")
             }
         })
     }
@@ -185,16 +179,11 @@ extension CustomKeyboardVC {
         guard let contextBeforeInput = self.inputViewController?.textDocumentProxy.documentContextBeforeInput else {
                 return true // Capitalize at the start of the document
             }
-
-            // Trim whitespaces and check for sentence-ending punctuation marks
             let trimmedContext = contextBeforeInput.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if let lastCharacter = trimmedContext.last {
-                // Capitalize if the last character was a period, question mark, or exclamation mark
                 return [".", "!", "?"].contains(lastCharacter)
             }
-
-            // If there's no content before input, capitalize (i.e., beginning of the document)
             return contextBeforeInput.isEmpty
         }
 }

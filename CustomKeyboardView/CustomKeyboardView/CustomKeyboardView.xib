@@ -737,7 +737,6 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnLetterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="jcI-KO-Esr"/>
                                                         <action selector="btnSpecialBTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="DIY-GL-iJz"/>
                                                     </connections>
                                                 </button>

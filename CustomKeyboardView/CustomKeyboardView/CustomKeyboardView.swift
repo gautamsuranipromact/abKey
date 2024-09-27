@@ -566,31 +566,25 @@ extension CustomKeyboardView {
     }
     
     func configurePremiumPurchaseView() {
-        // 1. Configure Popup Background (Navy Blue)
         PurchasePremiumNotifierPopup.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         PurchasePremiumNotifierPopup.layer.cornerRadius = 12
         PurchasePremiumNotifierPopup.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         PurchasePremiumNotifierPopup.isLayoutMarginsRelativeArrangement = true
         
-        // 2. Configure Upgrade to Premium Button (Soothing Green)
-        UpgradeToPremium.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1.0) // Hex: #4CAF50
-        UpgradeToPremium.setTitleColor(.white, for: .normal) // White Text
+        UpgradeToPremium.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1.0)
+        UpgradeToPremium.setTitleColor(.white, for: .normal)
         UpgradeToPremium.layer.cornerRadius = 10
         UpgradeToPremium.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         
-        // Adding a subtle shadow for a premium look
         UpgradeToPremium.layer.shadowColor = UIColor.black.cgColor
         UpgradeToPremium.layer.shadowOpacity = 0.2
         UpgradeToPremium.layer.shadowOffset = CGSize(width: 0, height: 3)
         UpgradeToPremium.layer.shadowRadius = 4
         
-        // 3. Configure Close Button (Soft Gray)
-        ClosePremiumPurchasePopup.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1.0) // Hex: #B0BEC5
-        ClosePremiumPurchasePopup.setTitleColor(UIColor(red: 55/255, green: 71/255, blue: 79/255, alpha: 1.0), for: .normal) // Dark Gray Text #37474F
+        ClosePremiumPurchasePopup.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1.0)
+        ClosePremiumPurchasePopup.setTitleColor(UIColor(red: 55/255, green: 71/255, blue: 79/255, alpha: 1.0), for: .normal)
         ClosePremiumPurchasePopup.layer.cornerRadius = 10
         ClosePremiumPurchasePopup.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        
-        // 4. Adding a similar shadow to match Upgrade button style
         ClosePremiumPurchasePopup.layer.shadowColor = UIColor.black.cgColor
         ClosePremiumPurchasePopup.layer.shadowOpacity = 0.2
         ClosePremiumPurchasePopup.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -611,7 +605,6 @@ extension CustomKeyboardView {
         
             TPlusPopupViewTitle.text = "TPlus Input Key : \(storeBtnTap)"
 
-            // Style TextField
             TPlusViewTextField.backgroundColor = UIColor.white
             TPlusViewTextField.textColor = UIColor.black
             TPlusViewTextField.layer.borderColor = UIColor.lightGray.cgColor
@@ -619,7 +612,6 @@ extension CustomKeyboardView {
             TPlusViewTextField.layer.cornerRadius = 8
             TPlusViewTextField.layer.masksToBounds = true
 
-            // Style Warning Label
             TPlusViewWarningLabel.textColor = UIColor(red: 0.1, green: 0.4, blue: 0.8, alpha: 1.0)
             TPlusViewWarningLabel.font = UIFont.boldSystemFont(ofSize: 16)
 
@@ -632,7 +624,6 @@ extension CustomKeyboardView {
             TPlusViewSaveBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
             TPlusViewSaveBtn.layer.shadowRadius = 3
 
-            // Style Close Button
             TPlusViewCloseBtn.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1)
             TPlusViewCloseBtn.setTitleColor(.black, for: .normal)
             TPlusViewCloseBtn.layer.cornerRadius = 8
@@ -643,119 +634,110 @@ extension CustomKeyboardView {
             TPlusViewCloseBtn.layer.shadowRadius = 3
 
     }
-    
+
     func retrieveStoredData(_ key: String) {
         let storedValues = databaseHelper.values(forKey: key)
-        print("retrieved values : \(storedValues)")
+        print("retrieved values: \(storedValues)")
         tRTapped = false
-        
-        if(storedValues.count == 1){
+
+        if (storedValues.count == 1) {
             delegate?.insertCharacter(storedValues[0])
-        }
-        else if (storedValues.count > 1){
-            if(!TPlusPopupView.isHidden){
+        } else if (storedValues.count > 1) {
+            if (!TPlusPopupView.isHidden) {
                 TPlusPopupView.alpha = 0
             }
-            // Remove any existing subviews in the PremiumEntriesPopupView (if necessary)
+
             PremiumEntriesPopupView.subviews.forEach { $0.removeFromSuperview() }
-            
-            // Create a title container to hold the label and cross button
+            PremiumEntriesPopupView.backgroundColor = UIColor(white: 0.98, alpha: 1.0) // Soft white background
+            PremiumEntriesPopupView.layer.cornerRadius = 20 // Rounded corners for the popup
+            PremiumEntriesPopupView.layer.shadowColor = UIColor.black.cgColor
+            PremiumEntriesPopupView.layer.shadowOpacity = 0.2
+            PremiumEntriesPopupView.layer.shadowOffset = CGSize(width: 0, height: 2)
+            PremiumEntriesPopupView.layer.shadowRadius = 5
+            PremiumEntriesPopupView.layer.masksToBounds = false
+
             let titleContainer = UIStackView()
             titleContainer.axis = .horizontal
             titleContainer.distribution = .equalSpacing
             titleContainer.translatesAutoresizingMaskIntoConstraints = false
             PremiumEntriesPopupView.addSubview(titleContainer)
-            
-            // Create a title label
+
             let titleLabel = UILabel()
             titleLabel.text = "Select any one"
             titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
-            titleLabel.textColor = .white
-            
-            // Create a cross button
+            titleLabel.textColor = UIColor.darkGray // Eye-pleasing text color
+
             let crossButton = UIButton(type: .system)
             crossButton.setTitle("✖️", for: .normal)
-            crossButton.setTitleColor(.white, for: .normal)
+            crossButton.setTitleColor(.darkGray, for: .normal)
             crossButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
             crossButton.addTarget(self, action: #selector(crossButtonTapped), for: .touchUpInside)
-            
+
             titleContainer.addArrangedSubview(titleLabel)
             titleContainer.addArrangedSubview(crossButton)
-            
-            // Constraints for titleContainer
+
             NSLayoutConstraint.activate([
-                titleContainer.topAnchor.constraint(equalTo: PremiumEntriesPopupView.topAnchor, constant: 2),
-                titleContainer.leadingAnchor.constraint(equalTo: PremiumEntriesPopupView.leadingAnchor, constant: 8),
-                titleContainer.trailingAnchor.constraint(equalTo: PremiumEntriesPopupView.trailingAnchor, constant: -8),
+                titleContainer.topAnchor.constraint(equalTo: PremiumEntriesPopupView.topAnchor, constant: 10),
+                titleContainer.leadingAnchor.constraint(equalTo: PremiumEntriesPopupView.leadingAnchor, constant: 16),
+                titleContainer.trailingAnchor.constraint(equalTo: PremiumEntriesPopupView.trailingAnchor, constant: -16),
             ])
-            
-            // Create a vertical UIScrollView
+
             let scrollView = UIScrollView()
             scrollView.translatesAutoresizingMaskIntoConstraints = false
             scrollView.showsVerticalScrollIndicator = true
             scrollView.alwaysBounceVertical = true
             PremiumEntriesPopupView.addSubview(scrollView)
-            
-            // Constraints for scrollView
+
             NSLayoutConstraint.activate([
                 scrollView.topAnchor.constraint(equalTo: titleContainer.bottomAnchor, constant: 8),
                 scrollView.leadingAnchor.constraint(equalTo: PremiumEntriesPopupView.leadingAnchor),
                 scrollView.trailingAnchor.constraint(equalTo: PremiumEntriesPopupView.trailingAnchor),
                 scrollView.bottomAnchor.constraint(equalTo: PremiumEntriesPopupView.bottomAnchor)
             ])
-            
-            // Create buttons for each stored value and add them to the scroll view
-            let buttonWidth: CGFloat = PremiumEntriesPopupView.frame.width - 20 // Adjust width as needed
-            let buttonHeight: CGFloat = 35
-            let buttonSpacing: CGFloat = 5
-            
-            var yPosition: CGFloat = 0 // Start position
-            
+
+            let buttonWidth: CGFloat = PremiumEntriesPopupView.frame.width - 20
+            let buttonHeight: CGFloat = 40
+            let buttonSpacing: CGFloat = 8
+            var yPosition: CGFloat = 0
+
             for (index, value) in storedValues.enumerated() {
                 let button = UIButton(type: .system)
                 button.setTitle(value, for: .normal)
-                button.setTitleColor(.white, for: .normal)
-                button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+                button.setTitleColor(UIColor.white, for: .normal) // Button text color
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+                button.backgroundColor = UIColor(red: 85/255, green: 143/255, blue: 185/255, alpha: 1.0) // Soothing blue button background
+                button.layer.cornerRadius = 10
+                button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16) // Padding inside the button
                 button.frame = CGRect(x: 10, y: yPosition, width: buttonWidth, height: buttonHeight)
                 button.tag = index
                 button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-                button.contentHorizontalAlignment = .left // Left align the title
-                
-                // Add a bottom border to the button
-                if(index < storedValues.count - 1){
-                    let borderHeight: CGFloat = 1.0
+                button.contentHorizontalAlignment = .left
+
+                if index < storedValues.count - 1 {
                     let borderView = UIView()
                     borderView.translatesAutoresizingMaskIntoConstraints = false
-                    borderView.backgroundColor = .white
+                    borderView.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
                     button.addSubview(borderView)
-                    
-                    // Set border constraints
+
                     NSLayoutConstraint.activate([
                         borderView.bottomAnchor.constraint(equalTo: button.bottomAnchor),
                         borderView.leadingAnchor.constraint(equalTo: button.leadingAnchor),
                         borderView.trailingAnchor.constraint(equalTo: button.trailingAnchor),
-                        borderView.heightAnchor.constraint(equalToConstant: borderHeight)
+                        borderView.heightAnchor.constraint(equalToConstant: 1.0)
                     ])
                 }
-                
+
                 scrollView.addSubview(button)
-                
-                // Update yPosition for the next button
                 yPosition += buttonHeight + buttonSpacing
             }
-            
-            // Update the scrollView's content size based on the number of buttons
-            let totalContentHeight = yPosition + 8 // Add padding to the total height
-            scrollView.contentSize = CGSize(width: buttonWidth, height: totalContentHeight)
-            
+
+            scrollView.contentSize = CGSize(width: buttonWidth, height: yPosition + 10)
             PremiumEntriesPopupView.isHidden = false
-        }
-        else{
+        } else {
             print("No values for this key")
         }
     }
 
-    // Button action handler for cross button
     @objc func crossButtonTapped() {
         PremiumEntriesPopupView.isHidden = true
         if(!TPlusPopupView.isHidden && TPlusPopupView.alpha == 0){
@@ -763,7 +745,6 @@ extension CustomKeyboardView {
         }
     }
 
-    // Button action handler for other buttons
     @objc func buttonTapped(_ sender: UIButton) {
         btnLetterTap(sender)
         PremiumEntriesPopupView.isHidden = true
@@ -920,8 +901,9 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialFTap(_ sender: UIButton){
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.isHidden = false
             storeBtnTap = "sf"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
             tPlusTapped = false
         }
         else if(tRTapped){
@@ -936,8 +918,9 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialGTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.isHidden = false
             storeBtnTap = "sg"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
             tPlusTapped = false
         }
         else if(tRTapped){
@@ -952,8 +935,9 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialKTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.isHidden = false
             storeBtnTap = "sk"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
             tPlusTapped = false
         }
         else if(tRTapped) {
@@ -968,8 +952,9 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialMTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.isHidden = false
             storeBtnTap = "sm"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
             tPlusTapped = false
         }
         else if(tRTapped) {
@@ -984,8 +969,9 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialPTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.isHidden = false
             storeBtnTap = "sp"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
             tPlusTapped = false
         }
         else if(tRTapped) {
@@ -1000,8 +986,9 @@ extension CustomKeyboardView {
     @IBAction func btnSpecialQTap(_ sender: UIButton) {
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.isHidden = false
             storeBtnTap = "sq"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
             tPlusTapped = false
         }
         else if(tRTapped) {
@@ -1014,10 +1001,21 @@ extension CustomKeyboardView {
     }
     
     @IBAction func btnSpecialBTap(_ sender: UIButton) {
-        tPlusTapped = false
-        tRTapped = false
-        self.delegate?.specialBbutton()
-        changeKeysCase()
+        if(tPlusTapped) {
+            print("tapped")
+            TPlusViewTextField.becomeFirstResponder()
+            storeBtnTap = "ß"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
+            tPlusTapped = false
+        }
+        else if(tRTapped) {
+            retrieveStoredData("ß")
+        }
+        else{
+            self.delegate?.specialBbutton()
+            changeKeysCase()
+        }
     }
     
     @IBAction func btnSmileyTap(_ sender: UIButton) {
@@ -1198,6 +1196,7 @@ extension CustomKeyboardView {
                     }
                 }
             }
+            TPlusViewWarningLabel.isHidden = true
             TPlusViewTextField.text = ""
             TPlusPopupView.isHidden = true
             tPlusTapped = false
@@ -1209,6 +1208,7 @@ extension CustomKeyboardView {
         TPlusViewTextField.resignFirstResponder()
         TPlusPopupView.isHidden = true
         tPlusTapped = false
+        TPlusViewWarningLabel.isHidden = true
     }
     
     @IBAction func btnTRTap() {

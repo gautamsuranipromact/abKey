@@ -125,7 +125,6 @@ class HomePageVC: UIViewController {
         premium = 1
         let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
         sharedDefaults?.set(premium, forKey: "premiumKey")
-        print(premium)
     }
     
     @IBAction func btnCloseAction(_ sender: Any) {

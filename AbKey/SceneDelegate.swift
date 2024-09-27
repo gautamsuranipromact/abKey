@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 navigationController.popToRootViewController(animated: false)
             }
             
-            let premium = UserDefaults.standard.integer(forKey: "premiumKey")
+            let premium = UserDefaults(suiteName: "group.abKey.promact")?.integer(forKey: "premiumKey") ?? 0
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             if host == "firstKeyboard" || host == "thirdKeyboard" {
@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                 }
             } else if (host == "secondKeyboard") {
+                print(premium)
                 if let vc = storyboard.instantiateViewController(withIdentifier: "AbKeySettingVC") as? AbKeySettingVC {
                     vc.premiumValueFromHomePageVC = premium
                     
