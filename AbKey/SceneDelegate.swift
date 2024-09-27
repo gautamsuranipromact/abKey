@@ -13,38 +13,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
+            let host = url.host ?? ""
             
-            if let navigationController = window?.rootViewController as? UINavigationController { // popping out other screens already in the stack
+            // Pop to root view controller if necessary
+            if let navigationController = window?.rootViewController as? UINavigationController {
                 navigationController.popToRootViewController(animated: false)
             }
             
             let premium = UserDefaults.standard.integer(forKey: "premiumKey")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            if let host = url.host, (host == "firstKeyboard" || host == "thirdKeyboard") {
+            if host == "firstKeyboard" || host == "thirdKeyboard" {
                 if let vc = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
-                    vc.premiumValueFromRTPlusManager = premium // Pass the premium value here
+                    vc.premiumValueFromRTPlusManager = premium
                     
-                    // Ensure the root view controller is a navigation controller
                     if let navigationController = window?.rootViewController as? UINavigationController {
                         navigationController.pushViewController(vc, animated: true)
                     }
-                } else {
-                    print("Failed to instantiate SettingViewController.")
                 }
-            } else {
+            } else if (host == "secondKeyboard") {
                 if let vc = storyboard.instantiateViewController(withIdentifier: "AbKeySettingVC") as? AbKeySettingVC {
                     vc.premiumValueFromHomePageVC = premium
                     
                     if let navigationController = window?.rootViewController as? UINavigationController {
                         navigationController.pushViewController(vc, animated: true)
                     }
-                } else {
-                    print("Failed to instantiate AbKeySettingVC.")
                 }
             }
-        } else {
-            print("No URL found in openURLContexts.")
         }
     }
 

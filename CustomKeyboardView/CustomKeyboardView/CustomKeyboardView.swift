@@ -48,10 +48,16 @@ class CustomKeyboardView: UIView {
     
     // tplus view outlets
     @IBOutlet weak var TPlusPopupView: UIStackView!
+    @IBOutlet weak var TPlusPopupViewTitle: UILabel!
     @IBOutlet weak var TPlusViewTextField: UITextField!
+    @IBOutlet weak var TPlusViewWarningLabel: UILabel!
     @IBOutlet weak var TPlusViewSaveBtn: UIButton!
     @IBOutlet weak var TPlusViewCloseBtn: UIButton!
     
+    // purchase premium notifier outlets
+    @IBOutlet weak var PurchasePremiumNotifierPopup: UIStackView!
+    @IBOutlet weak var ClosePremiumPurchasePopup: CustomButton!
+    @IBOutlet weak var UpgradeToPremium: CustomButton!
     
     // outlet long press key popups
     @IBOutlet weak var OverlayView: UIView!
@@ -138,6 +144,7 @@ class CustomKeyboardView: UIView {
     
     
     // variables
+    var permissibleEntriesForLiteUsers = 6
     var tRTapped: Bool = false
     var tPlusTapped: Bool = false
     var storeBtnTap: String = ""
@@ -181,8 +188,6 @@ class CustomKeyboardView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        TPlusPopupView.isHidden = true
         
         for button in KeysCollectionFirstKeyboard {
             if let title = button.titleLabel?.text {
@@ -560,6 +565,85 @@ extension CustomKeyboardView {
         }
     }
     
+    func configurePremiumPurchaseView() {
+        // 1. Configure Popup Background (Navy Blue)
+        PurchasePremiumNotifierPopup.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        PurchasePremiumNotifierPopup.layer.cornerRadius = 12
+        PurchasePremiumNotifierPopup.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        PurchasePremiumNotifierPopup.isLayoutMarginsRelativeArrangement = true
+        
+        // 2. Configure Upgrade to Premium Button (Soothing Green)
+        UpgradeToPremium.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1.0) // Hex: #4CAF50
+        UpgradeToPremium.setTitleColor(.white, for: .normal) // White Text
+        UpgradeToPremium.layer.cornerRadius = 10
+        UpgradeToPremium.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        
+        // Adding a subtle shadow for a premium look
+        UpgradeToPremium.layer.shadowColor = UIColor.black.cgColor
+        UpgradeToPremium.layer.shadowOpacity = 0.2
+        UpgradeToPremium.layer.shadowOffset = CGSize(width: 0, height: 3)
+        UpgradeToPremium.layer.shadowRadius = 4
+        
+        // 3. Configure Close Button (Soft Gray)
+        ClosePremiumPurchasePopup.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1.0) // Hex: #B0BEC5
+        ClosePremiumPurchasePopup.setTitleColor(UIColor(red: 55/255, green: 71/255, blue: 79/255, alpha: 1.0), for: .normal) // Dark Gray Text #37474F
+        ClosePremiumPurchasePopup.layer.cornerRadius = 10
+        ClosePremiumPurchasePopup.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        
+        // 4. Adding a similar shadow to match Upgrade button style
+        ClosePremiumPurchasePopup.layer.shadowColor = UIColor.black.cgColor
+        ClosePremiumPurchasePopup.layer.shadowOpacity = 0.2
+        ClosePremiumPurchasePopup.layer.shadowOffset = CGSize(width: 0, height: 3)
+        ClosePremiumPurchasePopup.layer.shadowRadius = 4
+    }
+
+    
+    func styleTPlusPopupView() {
+            TPlusPopupView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+            TPlusPopupView.layer.cornerRadius = 12
+            TPlusPopupView.layer.shadowColor = UIColor.black.cgColor
+            TPlusPopupView.layer.shadowOpacity = 0.2
+            TPlusPopupView.layer.shadowOffset = CGSize(width: 0, height: 2)
+            TPlusPopupView.layer.shadowRadius = 4
+            TPlusPopupView.layer.masksToBounds = false
+            TPlusPopupView.isLayoutMarginsRelativeArrangement = true
+            TPlusPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
+        
+            TPlusPopupViewTitle.text = "TPlus Input Key : \(storeBtnTap)"
+
+            // Style TextField
+            TPlusViewTextField.backgroundColor = UIColor.white
+            TPlusViewTextField.textColor = UIColor.black
+            TPlusViewTextField.layer.borderColor = UIColor.lightGray.cgColor
+            TPlusViewTextField.layer.borderWidth = 1.0
+            TPlusViewTextField.layer.cornerRadius = 8
+            TPlusViewTextField.layer.masksToBounds = true
+
+            // Style Warning Label
+            TPlusViewWarningLabel.textColor = UIColor(red: 0.1, green: 0.4, blue: 0.8, alpha: 1.0)
+            TPlusViewWarningLabel.font = UIFont.boldSystemFont(ofSize: 16)
+
+            TPlusViewSaveBtn.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
+            TPlusViewSaveBtn.setTitleColor(.white, for: .normal)
+            TPlusViewSaveBtn.layer.cornerRadius = 8
+            TPlusViewSaveBtn.layer.masksToBounds = true
+            TPlusViewSaveBtn.layer.shadowColor = UIColor.black.cgColor
+            TPlusViewSaveBtn.layer.shadowOpacity = 0.2
+            TPlusViewSaveBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
+            TPlusViewSaveBtn.layer.shadowRadius = 3
+
+            // Style Close Button
+            TPlusViewCloseBtn.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1)
+            TPlusViewCloseBtn.setTitleColor(.black, for: .normal)
+            TPlusViewCloseBtn.layer.cornerRadius = 8
+            TPlusViewCloseBtn.layer.masksToBounds = true
+            TPlusViewCloseBtn.layer.shadowColor = UIColor.black.cgColor
+            TPlusViewCloseBtn.layer.shadowOpacity = 0.2
+            TPlusViewCloseBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
+            TPlusViewCloseBtn.layer.shadowRadius = 3
+
+    }
+    
     func retrieveStoredData(_ key: String) {
         let storedValues = databaseHelper.values(forKey: key)
         print("retrieved values : \(storedValues)")
@@ -694,11 +778,26 @@ extension CustomKeyboardView {
     
     @IBAction func btnLetterTap(_ sender: UIButton) {
         if(tPlusTapped) {
+            tPlusTapped = false
+            storeBtnTap = (sender.titleLabel?.text ?? " ").lowercased()
+            if let premium = sharedDefaults?.integer(forKey: "premiumKey"), (premium == 0) {
+                let values = databaseHelper.values(forKey: storeBtnTap)
+                if(values.count > 0){
+                    TPlusViewWarningLabel.isHidden = false
+                }
+                else {
+                    let allStoredValues = databaseHelper.readAllValues()
+                    if(allStoredValues.count >= permissibleEntriesForLiteUsers) {
+                        TPlusPopupView.isHidden = true
+                        configurePremiumPurchaseView()
+                        PurchasePremiumNotifierPopup.isHidden = false
+                        return
+                    }
+                }
+            }
+            styleTPlusPopupView()
             TPlusViewTextField.becomeFirstResponder()
             TPlusPopupView.isHidden = false
-            print(sender.titleLabel?.text ?? "No title on the button")
-            tPlusTapped = false
-            storeBtnTap = sender.titleLabel?.text ?? " "
         }
         else if(tRTapped) {
             retrieveStoredData(sender.titleLabel?.text?.lowercased() ?? " ")
@@ -1074,7 +1173,6 @@ extension CustomKeyboardView {
     }
     
     @IBAction func tPlusViewSaveBtn() {
-        storeBtnTap = storeBtnTap.lowercased()
         if let value = TPlusViewTextField.text {
             print("value from extension \(value)")
             if let isPremiumCustomer = sharedDefaults?.integer(forKey: "premiumKey"), (isPremiumCustomer != 0) {
@@ -1099,7 +1197,6 @@ extension CustomKeyboardView {
                         databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "accent")
                     }
                 }
-                print("not a premium customer")
             }
             TPlusViewTextField.text = ""
             TPlusPopupView.isHidden = true
@@ -1117,6 +1214,14 @@ extension CustomKeyboardView {
     @IBAction func btnTRTap() {
         tPlusTapped = false
         tRTapped = true
+    }
+    
+    @IBAction func closePurchasePremiumNotifier() {
+        PurchasePremiumNotifierPopup.isHidden = true
+    }
+    
+    @IBAction func upgradeToPremium() {
+        delegate?.openMainApp("")
     }
     
     @IBAction func btnSettingsTap() {

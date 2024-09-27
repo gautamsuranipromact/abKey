@@ -27,7 +27,7 @@ class HomePageVC: UIViewController {
     @IBOutlet weak var btnPremium: UIButton!
     @IBOutlet weak var btnClose: UIButton!
     
-    var premium = 0
+    var premium = UserDefaults(suiteName: "group.abKey.promact")?.integer(forKey: "premiumKey") ?? 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

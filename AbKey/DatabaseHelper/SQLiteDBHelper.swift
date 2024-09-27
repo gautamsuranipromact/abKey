@@ -195,6 +195,31 @@ class SQLiteDBHelper {
         sqlite3_finalize(queryStatement)
         return result
     }
+    
+    func readAllValues() -> [(id: Int, key: String, value: String, keyboardType: String)] {
+        let queryStatementString = "SELECT * FROM CustomKeys"
+        var queryStatement: OpaquePointer?
+        var result: [(Int, String, String, String)] = []
+
+        // Prepare the SQL statement
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            // Execute the query and iterate over the result set
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                let id = Int(sqlite3_column_int(queryStatement, 0))
+                let key = String(cString: sqlite3_column_text(queryStatement, 1))
+                let value = String(cString: sqlite3_column_text(queryStatement, 2))
+                let keyboardType = String(cString: sqlite3_column_text(queryStatement, 3))
+                result.append((id, key, value, keyboardType))
+            }
+        } else {
+            print("SELECT statement could not be prepared")
+        }
+
+        // Finalize and close the query statement
+        sqlite3_finalize(queryStatement)
+
+        return result
+    }
 
     func updateValue(forKey key: String, newValue: String) {
         let updateStatementString = "UPDATE CustomKeys SET Value = ? WHERE Key = ?;"
