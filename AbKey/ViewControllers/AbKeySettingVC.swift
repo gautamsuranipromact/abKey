@@ -234,11 +234,48 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
             }
             try FileManager.default.copyItem(at: selectedFileURL, to: destinationURL)
             print("Database restored successfully.")
+            
+            // Show alert to notify the user to close and reopen the app
+            showRestartAlert()
+            
         } catch {
             print("Error restoring database: \(error.localizedDescription)")
         }
     }
-    
+
+    func showRestartAlert() {
+        let alert = UIAlertController(title: "Restart Required", message: "To apply the restored changes, please close the app and reopen it.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            print("User acknowledged restart requirement")
+        }
+        
+        // Add a "Learn How" button for users unfamiliar with force quitting apps
+        let learnHowAction = UIAlertAction(title: "Learn How", style: .default) { _ in
+            self.showInstructionsForRestart()
+        }
+        
+        alert.addAction(okAction)
+        alert.addAction(learnHowAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+
+    // A separate alert to guide the user on how to restart the app
+    func showInstructionsForRestart() {
+        let alert = UIAlertController(
+            title: "How to Restart",
+            message: "To restart the app, swipe up from the bottom of your screen (or double-click the home button on older devices), then swipe the app away to close it. Reopen it from the home screen.",
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "Got It", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         print("Document picker was cancelled.")
     }

@@ -229,7 +229,7 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         }
         
         if let numberVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController {
-            if let selectedIndexPaths = numberVC.numberTableView.indexPathsForSelectedRows, selectedIndexPaths.count == 1 {
+            if let selectedIndexPaths = numberVC.numberTableView?.indexPathsForSelectedRows, selectedIndexPaths.count == 1 {
                 let selectedIndexPath = selectedIndexPaths[0]
                 let selectedID = numberVC.customKeys[selectedIndexPath.row].id
                 
@@ -247,7 +247,7 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         }
         
         if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController {
-            if let selectedIndexPaths = accentVC.accentTableView.indexPathsForSelectedRows, selectedIndexPaths.count == 1 {
+            if let selectedIndexPaths = accentVC.accentTableView?.indexPathsForSelectedRows, selectedIndexPaths.count == 1 {
                 let selectedIndexPath = selectedIndexPaths[0]
                 let selectedID = accentVC.customKeys[selectedIndexPath.row].id
                 
@@ -272,41 +272,6 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     }
     
     @IBAction func btnDeleteAction(_ sender: Any) {
-//            let alert = UIAlertController(title: "Confirm Delete", message: "Do you want to delete selected items?", preferredStyle: .alert)
-//           
-//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-//                print("Delete operation cancelled")
-//            }))
-//
-//            // Add a "Delete" action to perform the deletion
-//        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] action in
-//                // Perform the deletion here
-//                print("Item deleted")
-//                guard let alphabetVC = subControllers.first(where: { $0 is AlphabetViewController }) as? AlphabetViewController else {
-//                           return
-//                       }
-//                       alphabetVC.deleteSelectedCells()
-//            
-//            guard let numberVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController else {
-//                       return
-//                   }
-//            numberVC.deleteSelectedCells()
-//            
-//            guard let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController else {
-//                       return
-//                   }
-//            accentVC.deleteSelectedCells()
-//            }))
-//
-//            // Present the alert to the user
-//            if let presenter = sender as? UIViewController {
-//                presenter.present(alert, animated: true)
-//            } else if let button = sender as? UIView, let viewController = button.closestViewController() {
-//                viewController.present(alert, animated: true)
-//            } else {
-//                print("Could not find a view controller to present the alert")
-//            }
-        
         let alert = UIAlertController(title: "Confirm Delete", message: "Do you want to delete selected items?", preferredStyle: .alert)
 
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
@@ -349,8 +314,6 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
                 presenter.present(alert, animated: true)
             } else if let button = sender as? UIView, let viewController = button.closestViewController() {
                 viewController.present(alert, animated: true)
-            } else {
-                print("Could not find a view controller to present the alert")
             }
     }
     
