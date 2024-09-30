@@ -1161,6 +1161,9 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain"/>
+                                                        <connections>
+                                                            <action selector="btnAutoCapitalizationManager:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="Frr-1D-1p0"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-capitalization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgY-Dq-XTy">
                                                         <rect key="frame" x="10" y="15.333333333333369" width="136.66666666666666" height="19.333333333333329"/>
@@ -1590,6 +1593,7 @@
                     </view>
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
+                        <outlet property="imgViewAutoCapitalizationManager" destination="hB0-5P-S4x" id="jEo-9s-xaB"/>
                         <outlet property="imgViewCheck" destination="i4c-Ha-jF2" id="Tnu-hx-Liw"/>
                         <outlet property="imgViewRTPlusManager" destination="Nq1-WC-BgE" id="RBH-uS-pSt"/>
                         <outlet property="imgViewTplus" destination="zWD-uu-k06" id="qRJ-qa-oxV"/>

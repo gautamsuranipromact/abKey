@@ -32,7 +32,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                 }
             } else if (host == "secondKeyboard") {
-                print(premium)
                 if let vc = storyboard.instantiateViewController(withIdentifier: "AbKeySettingVC") as? AbKeySettingVC {
                     vc.premiumValueFromHomePageVC = premium
                     

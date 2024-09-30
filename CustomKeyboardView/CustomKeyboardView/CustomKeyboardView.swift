@@ -104,6 +104,7 @@ class CustomKeyboardView: UIView {
     @IBOutlet var TrBtnCollection: [CustomButton]!
     @IBOutlet var TPlusBtnCollection: [CustomButton]!
     @IBOutlet var SettingsBtnCollection: [CustomButton]!
+    @IBOutlet var DismissKeyboardCollection: [CustomButton]!
     
     // keyboard keys outlets for special gestures
     @IBOutlet weak var FirstKeyboardCapsBtn: CustomButton!
@@ -153,11 +154,12 @@ class CustomKeyboardView: UIView {
     var moveCursorRightRepeatTimer: Timer?
 
     
-    var isFirstCapsUppercase: Bool = true
+    var isFirstCapsUppercase: Bool = false
     var isFirstCapsLocked: Bool = false
-    var isThirdCapsUppercase: Bool = true
+    var isThirdCapsUppercase: Bool = false
     var isThirdCapsLocked: Bool = false
     var isStoringSpecialCharacter: Bool = false
+    var isAutoCapEnabled : Bool = false
     
     weak var delegate: CustomKeyboardViewDelegate?
     
@@ -189,17 +191,7 @@ class CustomKeyboardView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        for button in KeysCollectionFirstKeyboard {
-            if let title = button.titleLabel?.text {
-                button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-            }
-        }
-        
-        for button in KeysCollectionThirdKeyboard {
-            if let title = button.titleLabel?.text {
-                button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-            }
-        }
+        isAutoCapEnabled = sharedDefaults?.bool(forKey: "isAutoCapEnabled") ?? false
         
         for button in TrBtnCollection {
             let isTrEnabled = sharedDefaults?.bool(forKey: "isTrEnabled")
@@ -224,6 +216,11 @@ class CustomKeyboardView: UIView {
         for button in MoveCursorLeftBtnCollection {
             button.addTarget(self, action: #selector(moveCursorLeftBtnTapped), for: .touchDown)
             button.addTarget(self, action: #selector(moveCursorLeftBtnReleased), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        }
+        
+        for button in DismissKeyboardCollection {
+            let dismissKeyboardLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleDismissKeyboardLongPress))
+            button.addGestureRecognizer(dismissKeyboardLongPressGesture)
         }
         
         
@@ -334,8 +331,539 @@ class CustomKeyboardView: UIView {
     }
 }
 
+extension CustomKeyboardView {
+    // to ensure all the necessary views have been laid out
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize && isAutoCapEnabled {
+            isFirstCapsUppercase = true
+            isThirdCapsUppercase = true
+            for button in KeysCollectionFirstKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+                    
+            for button in KeysCollectionThirdKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+        }
+    }
+}
+
+//MARK: - Button Actions
+extension CustomKeyboardView {
+    
+    @IBAction func btnLetterTap(_ sender: UIButton) {
+        if(tPlusTapped) {
+            tPlusTapped = false
+            storeBtnTap = (sender.titleLabel?.text ?? " ").lowercased()
+            if let premium = sharedDefaults?.integer(forKey: "premiumKey"), (premium == 0) {
+                let values = databaseHelper.values(forKey: storeBtnTap)
+                if(values.count > 0){
+                    TPlusViewWarningLabel.isHidden = false
+                }
+                else {
+                    let allStoredValues = databaseHelper.readAllValues()
+                    if(allStoredValues.count >= permissibleEntriesForLiteUsers) {
+                        TPlusPopupView.isHidden = true
+                        configurePremiumPurchaseView()
+                        PurchasePremiumNotifierPopup.isHidden = false
+                        return
+                    }
+                }
+            }
+            styleTPlusPopupView()
+            TPlusViewTextField.becomeFirstResponder()
+            TPlusPopupView.isHidden = false
+        }
+        else if(tRTapped) {
+            retrieveStoredData(sender.titleLabel?.text?.lowercased() ?? " ")
+        }
+        else{
+            characterInsertion(sender)
+        }
+    }
+    
+    @IBAction func btnLetterTapAndNullifyRTPlus(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        
+        characterInsertion(sender)
+    }
+    
+    @IBAction func btnClearTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        delegate?.removeCharacter()
+        if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true && isAutoCapEnabled {
+            isFirstCapsUppercase = true
+            isThirdCapsUppercase = true
+            
+            for button in KeysCollectionFirstKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+            
+            for button in KeysCollectionThirdKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+        }
+    }
+    
+    @IBAction func btnSpaceTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        delegate?.insertCharacter(" ")
+        if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true && isAutoCapEnabled {
+            isFirstCapsUppercase = true
+            isThirdCapsUppercase = true
+            
+            for button in KeysCollectionFirstKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+            
+            for button in KeysCollectionThirdKeyboard {
+                if let title = button.titleLabel?.text {
+                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+                }
+            }
+        }
+    }
+    
+    @IBAction func btnCloseKeyboard(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.closeKeyboard()
+    }
+    
+    @IBAction func btnMoveCursorLeft(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.moveArrowLeftButton()
+    }
+    
+    @IBAction func btnMoveCursorRight(_ sender: UIButton){
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.moveArrowRightButton()
+    }
+    
+    @IBAction func btnEnterTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.enterButtonClicked()
+    }
+    
+    @IBAction func btnColonTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.colonButtonTapped()
+        changeKeysCase()
+    }
+    
+    @IBAction func btnHyphenTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.hyphenButtonTapped()
+        changeKeysCase()
+    }
+    
+    @IBAction func btnLeftArrowTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.leftArrowButtonClicked()
+        changeKeysCase()
+    }
+    
+    @IBAction func btnRightArrowTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.rightArrowButtonClicked()
+        changeKeysCase()
+    }
+    
+    @IBAction func btnQuestionMarkTap(_ sender: UIButton){
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.questionButtonClicked()
+        changeKeysCase()
+    }
+    
+    @IBAction func btnSpecialFTap(_ sender: UIButton){
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            storeBtnTap = "sf"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
+            tPlusTapped = false
+            checkPremiumUser()
+        }
+        else if(tRTapped){
+            retrieveStoredData("sf")
+        }
+        else{
+            self.delegate?.specialFbutton()
+            changeKeysCase()
+        }
+    }
+    
+    @IBAction func btnSpecialGTap(_ sender: UIButton) {
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            storeBtnTap = "sg"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
+            tPlusTapped = false
+            checkPremiumUser()
+        }
+        else if(tRTapped){
+            retrieveStoredData("sg")
+        }
+        else{
+            self.delegate?.specialGbutton()
+            changeKeysCase()
+        }
+    }
+    
+    @IBAction func btnSpecialKTap(_ sender: UIButton) {
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            storeBtnTap = "sk"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
+            tPlusTapped = false
+            checkPremiumUser()
+        }
+        else if(tRTapped) {
+            retrieveStoredData("sk")
+        }
+        else{
+            self.delegate?.specialKbutton()
+            changeKeysCase()
+        }
+    }
+    
+    @IBAction func btnSpecialMTap(_ sender: UIButton) {
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            storeBtnTap = "sm"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
+            tPlusTapped = false
+            checkPremiumUser()
+        }
+        else if(tRTapped) {
+            retrieveStoredData("sm")
+        }
+        else{
+            self.delegate?.specialMbutton()
+            changeKeysCase()
+        }
+    }
+    
+    @IBAction func btnSpecialPTap(_ sender: UIButton) {
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            storeBtnTap = "sp"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
+            tPlusTapped = false
+            checkPremiumUser()
+        }
+        else if(tRTapped) {
+            retrieveStoredData("sp")
+        }
+        else{
+            self.delegate?.specialPbutton()
+            changeKeysCase()
+        }
+    }
+    
+    @IBAction func btnSpecialQTap(_ sender: UIButton) {
+        if(tPlusTapped) {
+            TPlusViewTextField.becomeFirstResponder()
+            storeBtnTap = "sq"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
+            tPlusTapped = false
+            checkPremiumUser()
+        }
+        else if(tRTapped) {
+            retrieveStoredData("sq")
+        }
+        else{
+            self.delegate?.specialQbutton()
+            changeKeysCase()
+        }
+    }
+    
+    @IBAction func btnSpecialBTap(_ sender: UIButton) {
+        if(tPlusTapped) {
+            print("tapped")
+            TPlusViewTextField.becomeFirstResponder()
+            storeBtnTap = "ß"
+            styleTPlusPopupView()
+            TPlusPopupView.isHidden = false
+            tPlusTapped = false
+            checkPremiumUser()
+        }
+        else if(tRTapped) {
+            retrieveStoredData("ß")
+        }
+        else{
+            self.delegate?.specialBbutton()
+            changeKeysCase()
+        }
+    }
+    
+    @IBAction func btnSmileyTap(_ sender: UIButton) {
+        tRTapped = false
+        tPlusTapped = false
+        self.delegate?.smileyButton()
+        changeKeysCase()
+    }
+    
+    @IBAction func btnAtTheRatePopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        AtTheRatePopupView.isHidden = true
+    }
+    
+    @IBAction func btnColonPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        ColonPopupView.isHidden = true
+    }
+    
+    @IBAction func btnUnderscorePopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        UnderscorePopupView.isHidden = true
+    }
+    
+    @IBAction func btnLeftArrowPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LeftArrowPopupView.isHidden = true
+    }
+    
+    @IBAction func btnRightArrowPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        RightArrowPopupView.isHidden = true
+    }
+    
+    @IBAction func btnQuestionMarkPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        QuestionMarkPopupView.isHidden = true
+    }
+    
+    @IBAction func btnSpecialFPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        SpecialFPopupView.isHidden = true
+    }
+    
+    @IBAction func btnSpecialGPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        SpecialGPopupView.isHidden = true
+    }
+    
+    @IBAction func btnSmileyPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        SmileyButtonPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_L_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_L_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnSpecialMPopupClose(_ sender: UIButton){
+        OverlayView.isHidden = true
+        SpecialMPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_N_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_N_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_E_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_E_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_I_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_I_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_O_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_O_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinCentPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinCentPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_R_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_R_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_S_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_S_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_T_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_T_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_A_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_A_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_C_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_C_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatin_U_PopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        Latin_U_PopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinPipePopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinPipePopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinBackslashPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinBackslashPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinOpeningCurlyBrackets(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinOpeningCurlyBracketsPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinClosingCurlyBrackets(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinClosingCurlyBracketsPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinDotPopupClose(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinDotPopupView.isHidden = true
+    }
+    
+    @IBAction func btnLatinOpeningSquareBracketsClosePopup(_ sender: UIButton) {
+        OverlayView.isHidden = true
+        LatinOpeningSquareBracketPopupView.isHidden = true
+    }
+    
+    @IBAction func btnTPlusTap() {
+        tPlusTapped = true
+        tRTapped = false
+    }
+    
+    @IBAction func tPlusViewSaveBtn() {
+        if let value = TPlusViewTextField.text {
+            print("value from extension \(value)")
+            if let isPremiumCustomer = sharedDefaults?.integer(forKey: "premiumKey"), (isPremiumCustomer != 0) {
+                print(isPremiumCustomer)
+                if let char = storeBtnTap.first {
+                    if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "alphabetic")
+                    } else if char.isNumber && (storeBtnTap.count == 1) {
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "numeric")
+                    } else {
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "accent")
+                    }
+                }
+            }
+            else{
+                if let char = storeBtnTap.first {
+                    if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "alphabetic")
+                    } else if char.isNumber && (storeBtnTap.count == 1) {
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "numeric")
+                    } else {
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "accent")
+                    }
+                }
+            }
+            TPlusViewWarningLabel.isHidden = true
+            TPlusViewTextField.text = ""
+            TPlusPopupView.isHidden = true
+            tPlusTapped = false
+        }
+    }
+    
+    @IBAction func closeTPlusPopupView() {
+        TPlusViewTextField.text = ""
+        TPlusViewTextField.resignFirstResponder()
+        TPlusPopupView.isHidden = true
+        tPlusTapped = false
+        TPlusViewWarningLabel.isHidden = true
+    }
+    
+    @IBAction func btnTRTap() {
+        tPlusTapped = false
+        tRTapped = true
+    }
+    
+    @IBAction func closePurchasePremiumNotifier() {
+        PurchasePremiumNotifierPopup.isHidden = true
+    }
+    
+    @IBAction func upgradeToPremium() {
+        delegate?.openMainApp("")
+    }
+    
+    @IBAction func btnSettingsTap() {
+        if(!FirstKeyboardLayout.isHidden) {
+            delegate?.openMainApp("firstKeyboard")
+        }
+        else if(!SecondKeyboardLayout.isHidden) {
+            delegate?.openMainApp("secondKeyboard")
+        }
+        else{
+            delegate?.openMainApp("thirdKeyboard")
+        }
+    }
+}
+
 // utility functions
 extension CustomKeyboardView {
+    
+    func checkPremiumUser() {
+        if let premium = sharedDefaults?.integer(forKey: "premiumKey"), (premium == 0) {
+            let values = databaseHelper.values(forKey: storeBtnTap)
+            if(values.count > 0){
+                TPlusViewWarningLabel.isHidden = false
+            }
+            else {
+                let allStoredValues = databaseHelper.readAllValues()
+                if(allStoredValues.count >= permissibleEntriesForLiteUsers) {
+                    TPlusPopupView.isHidden = true
+                    configurePremiumPurchaseView()
+                    PurchasePremiumNotifierPopup.isHidden = false
+                    return
+                }
+            }
+        }
+    }
     
     @objc func backspaceBtnTapped(_ sender: UIButton) {
         backspaceRepeatTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(repeatedBackspaceAction), userInfo: nil, repeats: true)
@@ -376,7 +904,6 @@ extension CustomKeyboardView {
         delegate?.moveArrowRightButton()
     }
 
-    
     @objc func handleFirstCapsSingleTap() {
         if(!isFirstCapsLocked){
             isFirstCapsUppercase.toggle()
@@ -421,6 +948,10 @@ extension CustomKeyboardView {
                 button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
             }
         }
+    }
+    
+    @objc func handleDismissKeyboardLongPress() {
+        delegate?.openMainApp("secondKeyboard")
     }
     
     @objc func handleAtTheRateLongPress() {
@@ -754,485 +1285,3 @@ extension CustomKeyboardView {
     }
 }
 
-//MARK: - Button Actions
-extension CustomKeyboardView {
-    
-    @IBAction func btnLetterTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            tPlusTapped = false
-            storeBtnTap = (sender.titleLabel?.text ?? " ").lowercased()
-            if let premium = sharedDefaults?.integer(forKey: "premiumKey"), (premium == 0) {
-                let values = databaseHelper.values(forKey: storeBtnTap)
-                if(values.count > 0){
-                    TPlusViewWarningLabel.isHidden = false
-                }
-                else {
-                    let allStoredValues = databaseHelper.readAllValues()
-                    if(allStoredValues.count >= permissibleEntriesForLiteUsers) {
-                        TPlusPopupView.isHidden = true
-                        configurePremiumPurchaseView()
-                        PurchasePremiumNotifierPopup.isHidden = false
-                        return
-                    }
-                }
-            }
-            styleTPlusPopupView()
-            TPlusViewTextField.becomeFirstResponder()
-            TPlusPopupView.isHidden = false
-        }
-        else if(tRTapped) {
-            retrieveStoredData(sender.titleLabel?.text?.lowercased() ?? " ")
-        }
-        else{
-            characterInsertion(sender)
-        }
-    }
-    
-    @IBAction func btnLetterTapAndNullifyRTPlus(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        
-        characterInsertion(sender)
-    }
-    
-    @IBAction func btnClearTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        delegate?.removeCharacter()
-        if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true {
-            isFirstCapsUppercase = true
-            isThirdCapsUppercase = true
-            
-            for button in KeysCollectionFirstKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
-            
-            for button in KeysCollectionThirdKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
-        }
-    }
-    
-    @IBAction func btnSpaceTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        delegate?.insertCharacter(" ")
-        if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true {
-            isFirstCapsUppercase = true
-            isThirdCapsUppercase = true
-            
-            for button in KeysCollectionFirstKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
-            
-            for button in KeysCollectionThirdKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
-        }
-    }
-    
-    @IBAction func btnCloseKeyboard(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.closeKeyboard()
-    }
-    
-    @IBAction func btnMoveCursorLeft(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.moveArrowLeftButton()
-    }
-    
-    @IBAction func btnMoveCursorRight(_ sender: UIButton){
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.moveArrowRightButton()
-    }
-    
-    @IBAction func btnEnterTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.enterButtonClicked()
-    }
-    
-    @IBAction func btnColonTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.colonButtonTapped()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnHyphenTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.hyphenButtonTapped()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnLeftArrowTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.leftArrowButtonClicked()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnRightArrowTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.rightArrowButtonClicked()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnQuestionMarkTap(_ sender: UIButton){
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.questionButtonClicked()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnSpecialFTap(_ sender: UIButton){
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sf"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-        }
-        else if(tRTapped){
-            retrieveStoredData("sf")
-        }
-        else{
-            self.delegate?.specialFbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialGTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sg"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-        }
-        else if(tRTapped){
-            retrieveStoredData("sg")
-        }
-        else{
-            self.delegate?.specialGbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialKTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sk"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-        }
-        else if(tRTapped) {
-            retrieveStoredData("sk")
-        }
-        else{
-            self.delegate?.specialKbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialMTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sm"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-        }
-        else if(tRTapped) {
-            retrieveStoredData("sm")
-        }
-        else{
-            self.delegate?.specialMbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialPTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sp"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-        }
-        else if(tRTapped) {
-            retrieveStoredData("sp")
-        }
-        else{
-            self.delegate?.specialPbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialQTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sq"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-        }
-        else if(tRTapped) {
-            retrieveStoredData("sq")
-        }
-        else{
-            self.delegate?.specialQbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialBTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            print("tapped")
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "ß"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-        }
-        else if(tRTapped) {
-            retrieveStoredData("ß")
-        }
-        else{
-            self.delegate?.specialBbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSmileyTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.smileyButton()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnAtTheRatePopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        AtTheRatePopupView.isHidden = true
-    }
-    
-    @IBAction func btnColonPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        ColonPopupView.isHidden = true
-    }
-    
-    @IBAction func btnUnderscorePopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        UnderscorePopupView.isHidden = true
-    }
-    
-    @IBAction func btnLeftArrowPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LeftArrowPopupView.isHidden = true
-    }
-    
-    @IBAction func btnRightArrowPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        RightArrowPopupView.isHidden = true
-    }
-    
-    @IBAction func btnQuestionMarkPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        QuestionMarkPopupView.isHidden = true
-    }
-    
-    @IBAction func btnSpecialFPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        SpecialFPopupView.isHidden = true
-    }
-    
-    @IBAction func btnSpecialGPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        SpecialGPopupView.isHidden = true
-    }
-    
-    @IBAction func btnSmileyPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        SmileyButtonPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_L_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_L_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnSpecialMPopupClose(_ sender: UIButton){
-        OverlayView.isHidden = true
-        SpecialMPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_N_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_N_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_E_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_E_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_I_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_I_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_O_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_O_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinCentPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinCentPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_R_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_R_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_S_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_S_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_T_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_T_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_A_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_A_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_C_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_C_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_U_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_U_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinPipePopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinPipePopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinBackslashPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinBackslashPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinOpeningCurlyBrackets(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinOpeningCurlyBracketsPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinClosingCurlyBrackets(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinClosingCurlyBracketsPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinDotPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinDotPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinOpeningSquareBracketsClosePopup(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinOpeningSquareBracketPopupView.isHidden = true
-    }
-    
-    @IBAction func btnTPlusTap() {
-        tPlusTapped = true
-        tRTapped = false
-    }
-    
-    @IBAction func tPlusViewSaveBtn() {
-        if let value = TPlusViewTextField.text {
-            print("value from extension \(value)")
-            if let isPremiumCustomer = sharedDefaults?.integer(forKey: "premiumKey"), (isPremiumCustomer != 0) {
-                print(isPremiumCustomer)
-                if let char = storeBtnTap.first {
-                    if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
-                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "alphabetic")
-                    } else if char.isNumber && (storeBtnTap.count == 1) {
-                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "numeric")
-                    } else {
-                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "accent")
-                    }
-                }
-            }
-            else{
-                if let char = storeBtnTap.first {
-                    if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
-                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "alphabetic")
-                    } else if char.isNumber && (storeBtnTap.count == 1) {
-                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "numeric")
-                    } else {
-                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "accent")
-                    }
-                }
-            }
-            TPlusViewWarningLabel.isHidden = true
-            TPlusViewTextField.text = ""
-            TPlusPopupView.isHidden = true
-            tPlusTapped = false
-        }
-    }
-    
-    @IBAction func closeTPlusPopupView() {
-        TPlusViewTextField.text = ""
-        TPlusViewTextField.resignFirstResponder()
-        TPlusPopupView.isHidden = true
-        tPlusTapped = false
-        TPlusViewWarningLabel.isHidden = true
-    }
-    
-    @IBAction func btnTRTap() {
-        tPlusTapped = false
-        tRTapped = true
-    }
-    
-    @IBAction func closePurchasePremiumNotifier() {
-        PurchasePremiumNotifierPopup.isHidden = true
-    }
-    
-    @IBAction func upgradeToPremium() {
-        delegate?.openMainApp("")
-    }
-    
-    @IBAction func btnSettingsTap() {
-        if(!FirstKeyboardLayout.isHidden) {
-            delegate?.openMainApp("firstKeyboard")
-        }
-        else if(!SecondKeyboardLayout.isHidden) {
-            delegate?.openMainApp("secondKeyboard")
-        }
-        else{
-            delegate?.openMainApp("thirdKeyboard")
-        }
-    }
-}

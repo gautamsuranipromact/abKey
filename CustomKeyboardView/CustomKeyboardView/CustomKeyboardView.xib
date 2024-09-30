@@ -7835,6 +7835,9 @@
                 <outletCollection property="SettingsBtnCollection" destination="Nz3-Yg-k7I" collectionClass="NSMutableArray" id="FJO-ng-nfL"/>
                 <outletCollection property="SettingsBtnCollection" destination="gtA-TI-cie" collectionClass="NSMutableArray" id="ETa-rZ-3aJ"/>
                 <outletCollection property="SettingsBtnCollection" destination="Jo2-UC-TU6" collectionClass="NSMutableArray" id="Cgh-6Z-rCV"/>
+                <outletCollection property="DismissKeyboardCollection" destination="Lya-yx-v2C" collectionClass="NSMutableArray" id="J9l-fF-tCI"/>
+                <outletCollection property="DismissKeyboardCollection" destination="fYv-bb-2Av" collectionClass="NSMutableArray" id="aQe-c7-Fym"/>
+                <outletCollection property="DismissKeyboardCollection" destination="MLH-ef-Skh" collectionClass="NSMutableArray" id="hBd-ku-GQx"/>
             </connections>
             <point key="canvasLocation" x="1.5267175572519083" y="-167.6056338028169"/>
         </view>

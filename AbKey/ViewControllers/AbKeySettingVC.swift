@@ -25,12 +25,15 @@ class AbKeySettingVC: UIViewController {
     @IBOutlet weak var lblHeadingTitle: UILabel!
     @IBOutlet weak var lblAbkeyTitle: UILabel!
     
+    @IBOutlet weak var imgViewAutoCapitalizationManager: UIImageView!
+    
     var viewSpace = 0
     var quickFixes = 0
     
     var premiumValueFromHomePageVC: Int = 0
 
     let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
+    var enableAutoCapitalization = UserDefaults(suiteName: "group.abKey.promact")?.bool(forKey: "isAutoCapEnabled") ?? false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +47,6 @@ class AbKeySettingVC: UIViewController {
             lblHeadingTitle.text = "abKey Pro(Lite)"
             lblAbkeyTitle.text = "abKey Pro(Lite)"
         }
-        
-        print(premiumValueFromHomePageVC)
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +59,9 @@ class AbKeySettingVC: UIViewController {
         
         let isRTPlusManager = sharedDefaults?.bool(forKey: "isRTPlusManager") ?? false
         updateRTPlusManagerUI(isRTPlusManager: isRTPlusManager)
+        
+        let isAutoCapEnabled = sharedDefaults?.bool(forKey: "isAutoCapEnabled") ?? false
+        updateAutoCapFunctionalityUI(isAutoCapEnabled: isAutoCapEnabled)
     }
 
     func updateTrFunctionalityUI(isTrEnabled: Bool) {
@@ -88,6 +91,15 @@ class AbKeySettingVC: UIViewController {
         } else {
             imgViewRTPlusManager.image = UIImage(systemName: "square")
             lblRTPlusManager.text = "Check to enable rT+ Manager from keyboard"
+        }
+    }
+    
+    func updateAutoCapFunctionalityUI(isAutoCapEnabled: Bool) {
+        if(isAutoCapEnabled){
+            imgViewAutoCapitalizationManager.image = UIImage(named: "check_square")
+        }
+        else{
+            imgViewAutoCapitalizationManager.image = UIImage(systemName: "square")
         }
     }
     
@@ -138,6 +150,13 @@ class AbKeySettingVC: UIViewController {
         let isRTPlusManager = !(sharedDefaults?.bool(forKey: "isRTPlusManager") ?? false)
         sharedDefaults?.set(isRTPlusManager, forKey: "isRTPlusManager")
         updateRTPlusManagerUI(isRTPlusManager: isRTPlusManager)
+    }
+    
+    
+    @IBAction func btnAutoCapitalizationManager(_ sender: Any) {
+        let isAutoCapitalizationEnabled = !(sharedDefaults?.bool(forKey: "isAutoCapEnabled") ?? false)
+        sharedDefaults?.setValue(isAutoCapitalizationEnabled, forKey: "isAutoCapEnabled")
+        updateAutoCapFunctionalityUI(isAutoCapEnabled: isAutoCapitalizationEnabled)
     }
     
     @IBAction func btnRTShowReplaceDelete(_ sender: Any){
