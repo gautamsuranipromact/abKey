@@ -74,36 +74,36 @@ class HomePageVC: UIViewController {
     }
     
     func promptToChangeKeyboard() {
-           let alertController = UIAlertController(title: "Change Keyboard",
-                                                   message: "Would you like to change your keyboard to a specific one?",
-                                                   preferredStyle: .alert)
-           
-           alertController.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
-               if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                   UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-               }
-           }))
-           
-           alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-           
-           present(alertController, animated: true, completion: nil)
-       }
+        let alertController = UIAlertController(title: "Change Keyboard",
+                                                message: "Would you like to change your keyboard to a specific one?",
+                                                preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+            }
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
     func presentActivityController() {
-            let textToShare = "abKey Typing Test" // Replace this with your actual text
-
-            let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
-            activityViewController.excludedActivityTypes = [] // You can exclude specific activities if needed
-
-            // For iPad support
-            if let popoverController = activityViewController.popoverPresentationController {
-                popoverController.sourceView = view
-                popoverController.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
-                popoverController.permittedArrowDirections = []
-            }
-
-            present(activityViewController, animated: true, completion: nil)
+        let textToShare = "abKey Typing Test" // Replace this with your actual text
+        
+        let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [] // You can exclude specific activities if needed
+        
+        // For iPad support
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceView = view
+            popoverController.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
         }
+        
+        present(activityViewController, animated: true, completion: nil)
+    }
     
     @IBAction func btnDefaultSetAction(_ sender: Any) {
         self.promptToChangeKeyboard()
@@ -178,7 +178,7 @@ extension HomePageVC {
         
         let keyboardAttachment = NSTextAttachment()
         keyboardAttachment.image = keyboardIconImage
-        keyboardAttachment.bounds = CGRect(x: 0, y: -4, width: 20, height: 20) // Adjust bounds as needed
+        keyboardAttachment.bounds = CGRect(x: 0, y: -4, width: 20, height: 20)
         
         let keyboardAttachmentString = NSAttributedString(attachment: keyboardAttachment)
         let keyboardAttributedText = NSMutableAttributedString(string: textWithKeyboardIcon)

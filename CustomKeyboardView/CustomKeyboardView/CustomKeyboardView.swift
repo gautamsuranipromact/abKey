@@ -34,8 +34,8 @@ protocol CustomKeyboardViewDelegate: AnyObject {
 
 class CustomKeyboardView: UIView {
     
-    let databaseHelper = SQLiteDBHelper.shared // Database singleton instance
-    let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
+    let databaseHelper = SQLiteDBHelper.shared // Database singleton instance shared
+    let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact") // App group suitename
     
     ///Outlets
     @IBOutlet weak var btnKeyboardSwitch: UIButton!
@@ -162,31 +162,6 @@ class CustomKeyboardView: UIView {
     var isAutoCapEnabled : Bool = false
     
     weak var delegate: CustomKeyboardViewDelegate?
-    
-    
-    @IBAction func displayFirstKeyboard(_ sender: UIButton) {
-        if(ThirdKeyboardLayout.isHidden == false){
-            tRTapped = false
-            tPlusTapped = false
-        }
-        FirstKeyboardLayout.isHidden = false
-        SecondKeyboardLayout.isHidden = true
-        ThirdKeyboardLayout.isHidden = true
-    }
-    
-    @IBAction func displaySecondKeyboard(_ sender: UIButton) {
-        FirstKeyboardLayout.isHidden = true
-        SecondKeyboardLayout.isHidden = false
-        ThirdKeyboardLayout.isHidden = true
-    }
-    
-    @IBAction func displayThirdKeyboard(_ sender:UIButton) {
-        FirstKeyboardLayout.isHidden = true
-        SecondKeyboardLayout.isHidden = true
-        ThirdKeyboardLayout.isHidden = false
-        tRTapped = false
-        tPlusTapped = false
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -332,30 +307,44 @@ class CustomKeyboardView: UIView {
 }
 
 extension CustomKeyboardView {
-    // to ensure all the necessary views have been laid out
+    // Ensuring all views have been laid out and then applying AutoCapitalization on the keyboard
     override func layoutSubviews() {
         super.layoutSubviews()
         
         if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize && isAutoCapEnabled {
             isFirstCapsUppercase = true
             isThirdCapsUppercase = true
-            for button in KeysCollectionFirstKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
-                    
-            for button in KeysCollectionThirdKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
+            changeKeysCaseFirstKeyboard()
+            changeKeysCaseThirdKeyboard()
         }
     }
 }
 
 //MARK: - Button Actions
 extension CustomKeyboardView {
+    @IBAction func displayFirstKeyboard(_ sender: UIButton) {
+        if(ThirdKeyboardLayout.isHidden == false){
+            tRTapped = false
+            tPlusTapped = false
+        }
+        FirstKeyboardLayout.isHidden = false
+        SecondKeyboardLayout.isHidden = true
+        ThirdKeyboardLayout.isHidden = true
+    }
+    
+    @IBAction func displaySecondKeyboard(_ sender: UIButton) {
+        FirstKeyboardLayout.isHidden = true
+        SecondKeyboardLayout.isHidden = false
+        ThirdKeyboardLayout.isHidden = true
+    }
+    
+    @IBAction func displayThirdKeyboard(_ sender:UIButton) {
+        FirstKeyboardLayout.isHidden = true
+        SecondKeyboardLayout.isHidden = true
+        ThirdKeyboardLayout.isHidden = false
+        tRTapped = false
+        tPlusTapped = false
+    }
     
     @IBAction func btnLetterTap(_ sender: UIButton) {
         if(tPlusTapped) {
@@ -399,22 +388,23 @@ extension CustomKeyboardView {
         tRTapped = false
         tPlusTapped = false
         delegate?.removeCharacter()
+            
+        // Determine capitalization state based on the delegate
         if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true && isAutoCapEnabled {
             isFirstCapsUppercase = true
             isThirdCapsUppercase = true
-            
-            for button in KeysCollectionFirstKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
+        } else {
+            if(!isFirstCapsLocked){
+                isFirstCapsUppercase = false
             }
-            
-            for button in KeysCollectionThirdKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
+            if(!isThirdCapsLocked){
+                isThirdCapsUppercase = false
             }
         }
+
+        // Update the button titles for both keyboard collections
+        changeKeysCaseFirstKeyboard()
+        changeKeysCaseThirdKeyboard()
     }
     
     @IBAction func btnSpaceTap(_ sender: UIButton) {
@@ -425,17 +415,8 @@ extension CustomKeyboardView {
             isFirstCapsUppercase = true
             isThirdCapsUppercase = true
             
-            for button in KeysCollectionFirstKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
-            
-            for button in KeysCollectionThirdKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
+            changeKeysCaseFirstKeyboard()
+            changeKeysCaseThirdKeyboard()
         }
     }
     
@@ -632,144 +613,70 @@ extension CustomKeyboardView {
         changeKeysCase()
     }
     
-    @IBAction func btnAtTheRatePopupClose(_ sender: UIButton) {
+    // Closing the long press popups based on the specific buttons tag value
+    @IBAction func closeLongPressPopups(_ sender: UIButton) {
         OverlayView.isHidden = true
-        AtTheRatePopupView.isHidden = true
-    }
-    
-    @IBAction func btnColonPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        ColonPopupView.isHidden = true
-    }
-    
-    @IBAction func btnUnderscorePopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        UnderscorePopupView.isHidden = true
-    }
-    
-    @IBAction func btnLeftArrowPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LeftArrowPopupView.isHidden = true
-    }
-    
-    @IBAction func btnRightArrowPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        RightArrowPopupView.isHidden = true
-    }
-    
-    @IBAction func btnQuestionMarkPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        QuestionMarkPopupView.isHidden = true
-    }
-    
-    @IBAction func btnSpecialFPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        SpecialFPopupView.isHidden = true
-    }
-    
-    @IBAction func btnSpecialGPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        SpecialGPopupView.isHidden = true
-    }
-    
-    @IBAction func btnSmileyPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        SmileyButtonPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_L_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_L_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnSpecialMPopupClose(_ sender: UIButton){
-        OverlayView.isHidden = true
-        SpecialMPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_N_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_N_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_E_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_E_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_I_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_I_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_O_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_O_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinCentPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinCentPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_R_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_R_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_S_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_S_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_T_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_T_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_A_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_A_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_C_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_C_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatin_U_PopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        Latin_U_PopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinPipePopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinPipePopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinBackslashPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinBackslashPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinOpeningCurlyBrackets(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinOpeningCurlyBracketsPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinClosingCurlyBrackets(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinClosingCurlyBracketsPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinDotPopupClose(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinDotPopupView.isHidden = true
-    }
-    
-    @IBAction func btnLatinOpeningSquareBracketsClosePopup(_ sender: UIButton) {
-        OverlayView.isHidden = true
-        LatinOpeningSquareBracketPopupView.isHidden = true
+        
+        switch sender.tag {
+        case 1 :
+            AtTheRatePopupView.isHidden = true
+        case 2 :
+            ColonPopupView.isHidden = true
+        case 3 :
+            UnderscorePopupView.isHidden = true
+        case 4 :
+            LeftArrowPopupView.isHidden = true
+        case 5 :
+            RightArrowPopupView.isHidden = true
+        case 6 :
+            QuestionMarkPopupView.isHidden = true
+        case 7 :
+            SpecialFPopupView.isHidden = true
+        case 8 :
+            SpecialGPopupView.isHidden = true
+        case 9 :
+            SmileyButtonPopupView.isHidden = true
+        case 10 :
+            Latin_L_PopupView.isHidden = true
+        case 11 :
+            SpecialMPopupView.isHidden = true
+        case 12 :
+            Latin_N_PopupView.isHidden = true
+        case 13 :
+            Latin_E_PopupView.isHidden = true
+        case 14 :
+            Latin_I_PopupView.isHidden = true
+        case 15 :
+            Latin_O_PopupView.isHidden = true
+        case 16 :
+            LatinCentPopupView.isHidden = true
+        case 17 :
+            Latin_R_PopupView.isHidden = true
+        case 18 :
+            Latin_S_PopupView.isHidden = true
+        case 19 :
+            Latin_T_PopupView.isHidden = true
+        case 20 :
+            Latin_A_PopupView.isHidden = true
+        case 21 :
+            Latin_C_PopupView.isHidden = true
+        case 22:
+            Latin_U_PopupView.isHidden = true
+        case 23 :
+            LatinPipePopupView.isHidden = true
+        case 24 :
+            LatinBackslashPopupView.isHidden = true
+        case 25 :
+            LatinOpeningCurlyBracketsPopupView.isHidden = true
+        case 26 :
+            LatinClosingCurlyBracketsPopupView.isHidden = true
+        case 27 :
+            LatinDotPopupView.isHidden = true
+        case 28 :
+            LatinOpeningSquareBracketPopupView.isHidden = true
+        default:
+            print("Invalid tag value")
+        }
     }
     
     @IBAction func btnTPlusTap() {
@@ -846,25 +753,6 @@ extension CustomKeyboardView {
 
 // utility functions
 extension CustomKeyboardView {
-    
-    func checkPremiumUser() {
-        if let premium = sharedDefaults?.integer(forKey: "premiumKey"), (premium == 0) {
-            let values = databaseHelper.values(forKey: storeBtnTap)
-            if(values.count > 0){
-                TPlusViewWarningLabel.isHidden = false
-            }
-            else {
-                let allStoredValues = databaseHelper.readAllValues()
-                if(allStoredValues.count >= permissibleEntriesForLiteUsers) {
-                    TPlusPopupView.isHidden = true
-                    configurePremiumPurchaseView()
-                    PurchasePremiumNotifierPopup.isHidden = false
-                    return
-                }
-            }
-        }
-    }
-    
     @objc func backspaceBtnTapped(_ sender: UIButton) {
         backspaceRepeatTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(repeatedBackspaceAction), userInfo: nil, repeats: true)
     }
@@ -908,11 +796,7 @@ extension CustomKeyboardView {
         if(!isFirstCapsLocked){
             isFirstCapsUppercase.toggle()
             
-            for button in KeysCollectionFirstKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
+            changeKeysCaseFirstKeyboard()
         }
     }
     
@@ -920,22 +804,14 @@ extension CustomKeyboardView {
         isFirstCapsLocked.toggle()
         isFirstCapsUppercase = isFirstCapsLocked
         
-        for button in KeysCollectionFirstKeyboard {
-            if let title = button.titleLabel?.text {
-                button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-            }
-        }
+        changeKeysCaseFirstKeyboard()
     }
     
     @objc func handleThirdCapsSingleTap() {
         if(!isThirdCapsLocked){
             isThirdCapsUppercase.toggle()
             
-            for button in KeysCollectionThirdKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
+            changeKeysCaseThirdKeyboard()
         }
     }
     
@@ -943,11 +819,7 @@ extension CustomKeyboardView {
         isThirdCapsLocked.toggle()
         isThirdCapsUppercase = isThirdCapsLocked
         
-        for button in KeysCollectionThirdKeyboard {
-            if let title = button.titleLabel?.text {
-                button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-            }
-        }
+        changeKeysCaseThirdKeyboard()
     }
     
     @objc func handleDismissKeyboardLongPress() {
@@ -1066,6 +938,39 @@ extension CustomKeyboardView {
         delegate?.configurePopupView(LatinOpeningSquareBracketPopupView)
     }
     
+    @objc func crossButtonTapped() {
+        PremiumEntriesPopupView.isHidden = true
+        if(!TPlusPopupView.isHidden && TPlusPopupView.alpha == 0){
+            TPlusPopupView.alpha = 1
+        }
+    }
+
+    @objc func buttonTapped(_ sender: UIButton) {
+        btnLetterTap(sender)
+        PremiumEntriesPopupView.isHidden = true
+        if(!TPlusPopupView.isHidden && TPlusPopupView.alpha == 0){
+            TPlusPopupView.alpha = 1
+        }
+    }
+    
+    func checkPremiumUser() {
+        if let premium = sharedDefaults?.integer(forKey: "premiumKey"), (premium == 0) {
+            let values = databaseHelper.values(forKey: storeBtnTap)
+            if(values.count > 0){
+                TPlusViewWarningLabel.isHidden = false
+            }
+            else {
+                let allStoredValues = databaseHelper.readAllValues()
+                if(allStoredValues.count >= permissibleEntriesForLiteUsers) {
+                    TPlusPopupView.isHidden = true
+                    configurePremiumPurchaseView()
+                    PurchasePremiumNotifierPopup.isHidden = false
+                    return
+                }
+            }
+        }
+    }
+    
     func characterInsertion(_ sender: UIButton) {
         if let txt = sender.titleLabel?.text {
             delegate?.insertCharacter(txt)
@@ -1074,25 +979,31 @@ extension CustomKeyboardView {
         }
     }
     
+    func changeKeysCaseFirstKeyboard() {
+        for button in KeysCollectionFirstKeyboard {
+            if let title = button.titleLabel?.text {
+                button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+            }
+        }
+    }
+    
+    func changeKeysCaseThirdKeyboard() {
+        for button in KeysCollectionThirdKeyboard {
+            if let title = button.titleLabel?.text {
+                button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
+            }
+        }
+    }
+    
     func changeKeysCase() {
         if(!isFirstCapsLocked && isFirstCapsUppercase){
             isFirstCapsUppercase.toggle()
-            
-            for button in KeysCollectionFirstKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isFirstCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
+            changeKeysCaseFirstKeyboard()
         }
         
         if(!isThirdCapsLocked && isThirdCapsUppercase) {
             isThirdCapsUppercase.toggle()
-            
-            for button in KeysCollectionThirdKeyboard {
-                if let title = button.titleLabel?.text {
-                    button.setTitle(isThirdCapsUppercase ? title.uppercased() : title.lowercased(), for: .normal)
-                }
-            }
+            changeKeysCaseThirdKeyboard()
         }
     }
     
@@ -1124,51 +1035,49 @@ extension CustomKeyboardView {
 
     
     func styleTPlusPopupView() {
-            TPlusPopupView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-            TPlusPopupView.layer.cornerRadius = 12
-            TPlusPopupView.layer.shadowColor = UIColor.black.cgColor
-            TPlusPopupView.layer.shadowOpacity = 0.2
-            TPlusPopupView.layer.shadowOffset = CGSize(width: 0, height: 2)
-            TPlusPopupView.layer.shadowRadius = 4
-            TPlusPopupView.layer.masksToBounds = false
-            TPlusPopupView.isLayoutMarginsRelativeArrangement = true
-            TPlusPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
+        TPlusPopupView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        TPlusPopupView.layer.cornerRadius = 12
+        TPlusPopupView.layer.shadowColor = UIColor.black.cgColor
+        TPlusPopupView.layer.shadowOpacity = 0.2
+        TPlusPopupView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        TPlusPopupView.layer.shadowRadius = 4
+        TPlusPopupView.layer.masksToBounds = false
+        TPlusPopupView.isLayoutMarginsRelativeArrangement = true
+        TPlusPopupView.layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
         
-            TPlusPopupViewTitle.text = "TPlus Input Key : \(storeBtnTap)"
-
-            TPlusViewTextField.backgroundColor = UIColor.white
-            TPlusViewTextField.textColor = UIColor.black
-            TPlusViewTextField.layer.borderColor = UIColor.lightGray.cgColor
-            TPlusViewTextField.layer.borderWidth = 1.0
-            TPlusViewTextField.layer.cornerRadius = 8
-            TPlusViewTextField.layer.masksToBounds = true
-
-            TPlusViewWarningLabel.textColor = UIColor(red: 0.1, green: 0.4, blue: 0.8, alpha: 1.0)
-            TPlusViewWarningLabel.font = UIFont.boldSystemFont(ofSize: 16)
-
-            TPlusViewSaveBtn.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
-            TPlusViewSaveBtn.setTitleColor(.white, for: .normal)
-            TPlusViewSaveBtn.layer.cornerRadius = 8
-            TPlusViewSaveBtn.layer.masksToBounds = true
-            TPlusViewSaveBtn.layer.shadowColor = UIColor.black.cgColor
-            TPlusViewSaveBtn.layer.shadowOpacity = 0.2
-            TPlusViewSaveBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
-            TPlusViewSaveBtn.layer.shadowRadius = 3
-
-            TPlusViewCloseBtn.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1)
-            TPlusViewCloseBtn.setTitleColor(.black, for: .normal)
-            TPlusViewCloseBtn.layer.cornerRadius = 8
-            TPlusViewCloseBtn.layer.masksToBounds = true
-            TPlusViewCloseBtn.layer.shadowColor = UIColor.black.cgColor
-            TPlusViewCloseBtn.layer.shadowOpacity = 0.2
-            TPlusViewCloseBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
-            TPlusViewCloseBtn.layer.shadowRadius = 3
-
+        TPlusPopupViewTitle.text = "TPlus Input Key : \(storeBtnTap)"
+        
+        TPlusViewTextField.backgroundColor = UIColor.white
+        TPlusViewTextField.textColor = UIColor.black
+        TPlusViewTextField.layer.borderColor = UIColor.lightGray.cgColor
+        TPlusViewTextField.layer.borderWidth = 1.0
+        TPlusViewTextField.layer.cornerRadius = 8
+        TPlusViewTextField.layer.masksToBounds = true
+        
+        TPlusViewWarningLabel.textColor = UIColor(red: 0.1, green: 0.4, blue: 0.8, alpha: 1.0)
+        TPlusViewWarningLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        TPlusViewSaveBtn.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
+        TPlusViewSaveBtn.setTitleColor(.white, for: .normal)
+        TPlusViewSaveBtn.layer.cornerRadius = 8
+        TPlusViewSaveBtn.layer.masksToBounds = true
+        TPlusViewSaveBtn.layer.shadowColor = UIColor.black.cgColor
+        TPlusViewSaveBtn.layer.shadowOpacity = 0.2
+        TPlusViewSaveBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
+        TPlusViewSaveBtn.layer.shadowRadius = 3
+        
+        TPlusViewCloseBtn.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1)
+        TPlusViewCloseBtn.setTitleColor(.black, for: .normal)
+        TPlusViewCloseBtn.layer.cornerRadius = 8
+        TPlusViewCloseBtn.layer.masksToBounds = true
+        TPlusViewCloseBtn.layer.shadowColor = UIColor.black.cgColor
+        TPlusViewCloseBtn.layer.shadowOpacity = 0.2
+        TPlusViewCloseBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
+        TPlusViewCloseBtn.layer.shadowRadius = 3
     }
 
     func retrieveStoredData(_ key: String) {
         let storedValues = databaseHelper.values(forKey: key)
-        print("retrieved values: \(storedValues)")
         tRTapped = false
 
         if (storedValues.count == 1) {
@@ -1179,8 +1088,8 @@ extension CustomKeyboardView {
             }
 
             PremiumEntriesPopupView.subviews.forEach { $0.removeFromSuperview() }
-            PremiumEntriesPopupView.backgroundColor = UIColor(white: 0.98, alpha: 1.0) // Soft white background
-            PremiumEntriesPopupView.layer.cornerRadius = 20 // Rounded corners for the popup
+            PremiumEntriesPopupView.backgroundColor = UIColor(white: 0.98, alpha: 1.0)
+            PremiumEntriesPopupView.layer.cornerRadius = 20
             PremiumEntriesPopupView.layer.shadowColor = UIColor.black.cgColor
             PremiumEntriesPopupView.layer.shadowOpacity = 0.2
             PremiumEntriesPopupView.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -1196,7 +1105,7 @@ extension CustomKeyboardView {
             let titleLabel = UILabel()
             titleLabel.text = "Select any one"
             titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
-            titleLabel.textColor = UIColor.darkGray // Eye-pleasing text color
+            titleLabel.textColor = UIColor.darkGray
 
             let crossButton = UIButton(type: .system)
             crossButton.setTitle("✖️", for: .normal)
@@ -1234,13 +1143,12 @@ extension CustomKeyboardView {
             for (index, value) in storedValues.enumerated() {
                 let button = UIButton(type: .system)
                 button.setTitle(value, for: .normal)
-                button.setTitleColor(UIColor.white, for: .normal) // Button text color
+                button.setTitleColor(UIColor.white, for: .normal)
                 button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-                button.backgroundColor = UIColor(red: 85/255, green: 143/255, blue: 185/255, alpha: 1.0) // Soothing blue button background
+                button.backgroundColor = UIColor(red: 85/255, green: 143/255, blue: 185/255, alpha: 1.0)
                 button.layer.cornerRadius = 10
-                button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16) // Padding inside the button
+                button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
                 button.frame = CGRect(x: 10, y: yPosition, width: buttonWidth, height: buttonHeight)
-                button.tag = index
                 button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
                 button.contentHorizontalAlignment = .left
 
@@ -1264,23 +1172,6 @@ extension CustomKeyboardView {
 
             scrollView.contentSize = CGSize(width: buttonWidth, height: yPosition + 10)
             PremiumEntriesPopupView.isHidden = false
-        } else {
-            print("No values for this key")
-        }
-    }
-
-    @objc func crossButtonTapped() {
-        PremiumEntriesPopupView.isHidden = true
-        if(!TPlusPopupView.isHidden && TPlusPopupView.alpha == 0){
-            TPlusPopupView.alpha = 1
-        }
-    }
-
-    @objc func buttonTapped(_ sender: UIButton) {
-        btnLetterTap(sender)
-        PremiumEntriesPopupView.isHidden = true
-        if(!TPlusPopupView.isHidden && TPlusPopupView.alpha == 0){
-            TPlusPopupView.alpha = 1
         }
     }
 }

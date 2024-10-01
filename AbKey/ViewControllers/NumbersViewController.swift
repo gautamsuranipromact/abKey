@@ -6,9 +6,7 @@
 //
 
 import UIKit
-//protocol NumbersViewControllerDelegate: AnyObject {
-//    func didSelectCell(selectedCount: Int)
-//}
+
 protocol NumbersViewControllerDelegate: AnyObject {
     func didSelectCell(selectedCount: Int)
     func hideEditDeleteStackView()
@@ -45,8 +43,6 @@ class NumbersViewController: UIViewController {
     func fetchDataAndReloadTable() {
         // Fetch the data from the database with keyboardType "alphabetic"
         customKeys = SQLiteDBHelper.shared.read(forKeyboardType: "numeric")
-        
-        // Reload the tableView with the new data
         numberTableView.reloadData()
     }
     func deleteSelectedCells() {
@@ -58,16 +54,12 @@ class NumbersViewController: UIViewController {
                 customKeys.remove(at: index)
             }
         }
-
-        // Reload the table view to reflect changes
-//        numberTableView.reloadData()
         
         if let tableView = numberTableView {
             tableView.reloadData()
         } else {
             print("numberTableView is nil")
         }
-
 
         // Clear the selected IDs
         selectedCellIds.removeAll()
@@ -77,34 +69,34 @@ class NumbersViewController: UIViewController {
     }
 }
 
-    // MARK: - UITableViewDataSource
-    extension NumbersViewController: UITableViewDataSource,UITableViewDelegate {
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return customKeys.count
-        }
-
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "numberCell", for: indexPath) as? NumberVCCell else {
-                return UITableViewCell()
-            }
-            
-            // Configure the cell with data from the customKeys array
-            let keyValuePair = customKeys[indexPath.row]
-            cell.lblKey.text = keyValuePair.key
-            cell.lblValue.text = keyValuePair.value
-            
-            return cell
+// MARK: - UITableViewDataSource
+extension NumbersViewController: UITableViewDataSource,UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return customKeys.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "numberCell", for: indexPath) as? NumberVCCell else {
+            return UITableViewCell()
         }
         
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                let cellId = customKeys[indexPath.row].id
-                selectedCellIds.insert(cellId)
-                delegate?.didSelectCell(selectedCount: selectedCellIds.count)
-            }
-            
-            func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-                let cellId = customKeys[indexPath.row].id
-                selectedCellIds.remove(cellId)
-                delegate?.didSelectCell(selectedCount: selectedCellIds.count)
-            }
+        // Configure the cell with data from the customKeys array
+        let keyValuePair = customKeys[indexPath.row]
+        cell.lblKey.text = keyValuePair.key
+        cell.lblValue.text = keyValuePair.value
+        
+        return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellId = customKeys[indexPath.row].id
+        selectedCellIds.insert(cellId)
+        delegate?.didSelectCell(selectedCount: selectedCellIds.count)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cellId = customKeys[indexPath.row].id
+        selectedCellIds.remove(cellId)
+        delegate?.didSelectCell(selectedCount: selectedCellIds.count)
+    }
+}
