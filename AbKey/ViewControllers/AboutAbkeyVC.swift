@@ -26,7 +26,6 @@ class AboutAbkeyVC: UIViewController,LZViewPagerDelegate,LZViewPagerDataSource{
         }else{
             lblHeadingTitle.text = "abKey Pro(Lite)"
         }
-        // Do any additional setup after loading the view.
     }
     
     func viewPagerProperties(){
@@ -44,7 +43,7 @@ class AboutAbkeyVC: UIViewController,LZViewPagerDelegate,LZViewPagerDataSource{
         nil).instantiateViewController(withIdentifier: "AggrementVC") as! AggrementVC
         
         welcomeVC.title = "WELCOME"
-        howToVC.title = "HOWTO"
+        howToVC.title = "HOW TO"
         aggrementVC.title = "AGGREMENT"
         
         subControllers = [welcomeVC, howToVC, aggrementVC]

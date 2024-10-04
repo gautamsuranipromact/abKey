@@ -13,8 +13,6 @@ protocol AlphabetViewControllerDelegate: AnyObject {
     func hideEditDeleteStackView()
 }
 
-
-
 class AlphabetViewController: UIViewController {
 
     @IBOutlet weak var alphabetTableView: UITableView!
@@ -41,7 +39,6 @@ class AlphabetViewController: UIViewController {
             }
             // Notify the parent view controller to hide the stack view
             delegate?.hideEditDeleteStackView()
-    
         }
 
     func fetchDataAndReloadTable() {

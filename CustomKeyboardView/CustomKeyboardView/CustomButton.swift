@@ -28,9 +28,6 @@ class ButtonPopupAnimation: UIView {
         clonedButton.setImage(button.image(for: .normal), for: .normal)
         clonedButton.backgroundColor = button.backgroundColor
         clonedButton.titleLabel?.font = button.titleLabel?.font
-//        clonedButton.contentEdgeInsets = button.contentEdgeInsets
-//        clonedButton.imageEdgeInsets = button.imageEdgeInsets
-//        clonedButton.titleEdgeInsets = button.titleEdgeInsets
         clonedButton.layer.cornerRadius = button.layer.cornerRadius
         clonedButton.layer.borderWidth = button.layer.borderWidth
         clonedButton.layer.borderColor = button.layer.borderColor
@@ -50,9 +47,6 @@ class ButtonPopupAnimation: UIView {
         ])
     }
 }
-
-
-
 
 
 class CustomButton: UIButton {
@@ -114,7 +108,7 @@ class CustomButton: UIButton {
         NSLayoutConstraint.activate([
             popup.widthAnchor.constraint(equalTo: self.widthAnchor),
             popup.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -5),
-            popup.bottomAnchor.constraint(equalTo: self.topAnchor, constant: 10), // -8
+            popup.bottomAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             popup.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 5)
         ])
 
@@ -132,7 +126,5 @@ class CustomButton: UIButton {
             }
         })
     }
-    
-
 }
 

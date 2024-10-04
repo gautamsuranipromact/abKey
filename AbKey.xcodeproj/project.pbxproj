@@ -43,7 +43,6 @@
 		46DA79972B4E959500A9C180 /* CustomKeyboardView.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 46DA79902B4E959500A9C180 /* CustomKeyboardView.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		46DA799F2B4E96C000A9C180 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DA795C2B4E94B600A9C180 /* Assets.xcassets */; };
 		46E52A3B2BA4255800240FF7 /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E52A3A2BA4255800240FF7 /* HomePageVC.swift */; };
-		46FD2FB82B975A3200EC5806 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD2FB72B975A3200EC5806 /* PopUpView.swift */; };
 		6564FEC9A2D52428B1B13FD3 /* Pods_AbKeyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64635E8BB481433BDCD92079 /* Pods_AbKeyTests.framework */; };
 		BB4016410C052C31EF64FC2F /* Pods_CustomKeyboardView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A6D4CCBA0B0C2F2401278F /* Pods_CustomKeyboardView.framework */; };
 		D3ACD1242C86CECB00664362 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACD1232C86CECB00664362 /* CustomButton.swift */; };
@@ -143,7 +142,6 @@
 		46DA79922B4E959500A9C180 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		46DA79942B4E959500A9C180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46E52A3A2BA4255800240FF7 /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
-		46FD2FB72B975A3200EC5806 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		64635E8BB481433BDCD92079 /* Pods_AbKeyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AbKeyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		725E10ABE1A01B956847539C /* Pods-AbKey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbKey.debug.xcconfig"; path = "Target Support Files/Pods-AbKey/Pods-AbKey.debug.xcconfig"; sourceTree = "<group>"; };
 		75FC946F77B45EC8265EB6FD /* Pods_AbKey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AbKey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,7 +291,6 @@
 				46DA795C2B4E94B600A9C180 /* Assets.xcassets */,
 				46DA795E2B4E94B600A9C180 /* LaunchScreen.storyboard */,
 				46DA79612B4E94B600A9C180 /* Info.plist */,
-				46FD2FB72B975A3200EC5806 /* PopUpView.swift */,
 			);
 			path = AbKey;
 			sourceTree = "<group>";
@@ -648,7 +645,6 @@
 				46433FDB2B9F08CB0012941E /* AlphabetVCCell.swift in Sources */,
 				46433FE12B9F12D00012941E /* AccentsVCCell.swift in Sources */,
 				462DD3E72BA17478008A83ED /* SQLiteDBHelper.swift in Sources */,
-				46FD2FB82B975A3200EC5806 /* PopUpView.swift in Sources */,
 				46DA79562B4E94B500A9C180 /* SceneDelegate.swift in Sources */,
 				D3ACD1282C86D14500664362 /* CustomKeyboardView.swift in Sources */,
 				468070C12B9EC88A003E2804 /* SettingViewController.swift in Sources */,
@@ -784,7 +780,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -838,7 +834,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

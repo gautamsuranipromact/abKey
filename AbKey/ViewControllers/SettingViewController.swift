@@ -10,7 +10,6 @@ import LZViewPager
 
 class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDataSource,AlphabetViewControllerDelegate,NumbersViewControllerDelegate,AccentsViewControllerDelegate{
     
-    
     @IBOutlet weak var viewPager: LZViewPager!
     
     @IBOutlet weak var abKeyStackView: UIStackView!
@@ -88,7 +87,6 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         return subControllers[index]
     }
 
-    
     func button(at index: Int) -> UIButton {
         let button = UIButton()
         button.setTitleColor(UIColor.white, for: .normal)
@@ -201,12 +199,10 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         // Add popup view to the center of the screen
         popupView.center = view.center
         view.addSubview(popupView)
-
     }
     
     @objc func saveButtonTapped(_ sender: UIButton){
         guard let popupTextView = sender.superview?.subviews.first(where: { $0 is UITextView }) as? UITextView else {
-            // Handle error condition here
             return
         }
         
@@ -267,16 +263,13 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     }
     
     @objc func cancelButtonTapped(_ sender: UIButton) {
-        // Handle cancel button action
         sender.superview?.removeFromSuperview()
     }
     
     @IBAction func btnDeleteAction(_ sender: Any) {
         let alert = UIAlertController(title: "Confirm Delete", message: "Do you want to delete selected items?", preferredStyle: .alert)
 
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-                print("Delete operation cancelled")
-            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
             // Add a "Delete" action to perform the deletion
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] action in
@@ -322,9 +315,9 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     }
     
     func didSelectCell(selectedCount: Int) {
-            lblSelectedRowCount.text = "\(selectedCount)"
-            editDeleteStackView.isHidden = selectedCount == 0
-        }
+        lblSelectedRowCount.text = "\(selectedCount)"
+        editDeleteStackView.isHidden = selectedCount == 0
+    }
     
     func hideEditDeleteStackView() {
         editDeleteStackView.isHidden = true

@@ -338,7 +338,7 @@ extension CustomKeyboardView {
         ThirdKeyboardLayout.isHidden = true
     }
     
-    @IBAction func displayThirdKeyboard(_ sender:UIButton) {
+    @IBAction func displayThirdKeyboard(_ sender: UIButton) {
         FirstKeyboardLayout.isHidden = true
         SecondKeyboardLayout.isHidden = true
         ThirdKeyboardLayout.isHidden = false
@@ -1007,6 +1007,7 @@ extension CustomKeyboardView {
         }
     }
     
+    // Setting up the Premium Purchase View before displaying
     func configurePremiumPurchaseView() {
         PurchasePremiumNotifierPopup.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         PurchasePremiumNotifierPopup.layer.cornerRadius = 12
@@ -1032,8 +1033,8 @@ extension CustomKeyboardView {
         ClosePremiumPurchasePopup.layer.shadowOffset = CGSize(width: 0, height: 3)
         ClosePremiumPurchasePopup.layer.shadowRadius = 4
     }
-
     
+    // Setting up the TPlus Popup View before displaying
     func styleTPlusPopupView() {
         TPlusPopupView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         TPlusPopupView.layer.cornerRadius = 12
@@ -1075,7 +1076,8 @@ extension CustomKeyboardView {
         TPlusViewCloseBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
         TPlusViewCloseBtn.layer.shadowRadius = 3
     }
-
+    
+    // Retrieving the stored data for an entry and presenting it as a popup view
     func retrieveStoredData(_ key: String) {
         let storedValues = databaseHelper.values(forKey: key)
         tRTapped = false

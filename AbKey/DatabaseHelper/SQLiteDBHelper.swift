@@ -37,7 +37,6 @@ class SQLiteDBHelper {
     
     // Create the table if it doesn't already exist
     private func createTable() {
-//        let createTableString = "CREATE TABLE IF NOT EXISTS CustomKeys(Id INTEGER PRIMARY KEY AUTOINCREMENT, Key TEXT, Value TEXT);"
         let createTableString = "CREATE TABLE IF NOT EXISTS CustomKeys(Id INTEGER PRIMARY KEY AUTOINCREMENT, Key TEXT, Value TEXT, KeyboardType TEXT);"
         var createTableStatement: OpaquePointer?
 
@@ -72,7 +71,6 @@ class SQLiteDBHelper {
             print("INSERT statement could not be prepared.")
         }
     }
-
     
     func insertOrUpdate(key: String, value: String, keyboardType: String) {
         // First, check if the key exists
@@ -102,7 +100,7 @@ class SQLiteDBHelper {
                     sqlite3_finalize(updateStatement)
                 }
             } else {
-                // Key does not exist, insert new
+                // Key does not exist, so insert new one
                 sqlite3_finalize(queryStatement) // Finalize the query statement first
 
                 let insertStatementString = "INSERT INTO CustomKeys (Key, Value, KeyboardType) VALUES (?, ?, ?);"
@@ -125,6 +123,7 @@ class SQLiteDBHelper {
             print("SELECT statement could not be prepared.")
         }
     }
+    
     func value(forKey key: String) -> String? {
         let queryStatementString = "SELECT Value FROM CustomKeys WHERE Key = ?;"
         var queryStatement: OpaquePointer?
@@ -172,7 +171,6 @@ class SQLiteDBHelper {
         return values
     }
 
-    
     func read(forKeyboardType keyboardType: String? = nil) -> [(id: Int, key: String, value: String, keyboardType: String)] {
         var queryStatementString = "SELECT * FROM CustomKeys"
         if let keyboardType = keyboardType {
@@ -200,7 +198,7 @@ class SQLiteDBHelper {
         let queryStatementString = "SELECT * FROM CustomKeys"
         var queryStatement: OpaquePointer?
         var result: [(Int, String, String, String)] = []
-
+        
         // Prepare the SQL statement
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
             // Execute the query and iterate over the result set
@@ -214,10 +212,10 @@ class SQLiteDBHelper {
         } else {
             print("SELECT statement could not be prepared")
         }
-
+        
         // Finalize and close the query statement
         sqlite3_finalize(queryStatement)
-
+        
         return result
     }
 
@@ -231,14 +229,11 @@ class SQLiteDBHelper {
             
             if sqlite3_step(updateStatement) == SQLITE_DONE {
                 print("Successfully updated value.")
-                // Notify if needed
             } else {
                 print("Could not update value.")
-                // Handle error condition
             }
         } else {
             print("UPDATE statement could not be prepared.")
-            // Handle error condition
         }
         sqlite3_finalize(updateStatement)
     }
@@ -265,29 +260,6 @@ class SQLiteDBHelper {
         sqlite3_finalize(updateStatement)
     }
 
-
-    
-    func update( key: String, value: String) {
-        let updateStatementString = "UPDATE CustomKeys SET Key = ?, Value = ? WHERE Id = ?;"
-        var updateStatement: OpaquePointer?
-        
-        if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
-            sqlite3_bind_text(updateStatement, 1, (key as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(updateStatement, 2, (value as NSString).utf8String, -1, nil)
-//            sqlite3_bind_int(updateStatement, 3, Int32(id))
-            
-            if sqlite3_step(updateStatement) == SQLITE_DONE {
-                print("Successfully updated row.")
-                NotificationCenter.default.post(name: NSNotification.Name("com.abKey.dataUpdated"), object: nil)
-            } else {
-                print("Could not update row.")
-            }
-        } else {
-            print("UPDATE statement could not be prepared.")
-        }
-        sqlite3_finalize(updateStatement)
-    }
-
     func delete(id: Int) {
         let deleteStatementString = "DELETE FROM CustomKeys WHERE Id = ?;"
         var deleteStatement: OpaquePointer?
@@ -306,7 +278,6 @@ class SQLiteDBHelper {
         }
         sqlite3_finalize(deleteStatement)
     }
-
 
     // Close the database connection
     deinit {

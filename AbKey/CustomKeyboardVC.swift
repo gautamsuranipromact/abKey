@@ -9,7 +9,6 @@ import UIKit
 
 class CustomKeyboardVC: UIViewController, CustomKeyboardViewDelegate {
     
-    
     ///Outlets
     @IBOutlet weak var textField: UITextField!
     ///Variables
@@ -27,8 +26,6 @@ class CustomKeyboardVC: UIViewController, CustomKeyboardViewDelegate {
         keyboardContainerView.addSubview(customKeyboardView)
         textField.inputView = keyboardContainerView
     }
-    
-    
 }
 
 //MARK: - Delegate Methods

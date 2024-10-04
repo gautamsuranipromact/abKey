@@ -9,12 +9,6 @@ import UIKit
 
 class KeyboardViewController: UIInputViewController,CustomKeyboardViewDelegate{
     
-    
-    
-//    @IBOutlet var nextKeyboardButton: UIButton!
-    
-    
-    
     var customKeyboardView: CustomKeyboardView!
     var lexicon: UILexicon?
     
@@ -45,8 +39,6 @@ class KeyboardViewController: UIInputViewController,CustomKeyboardViewDelegate{
         requestSupplementaryLexicon { lexicon in
           self.lexicon = lexicon
         }
-        print(self.view.frame.size.width)
-        print(self.view.frame.size.height)
     }
     
     override func viewWillLayoutSubviews() {
@@ -59,13 +51,6 @@ class KeyboardViewController: UIInputViewController,CustomKeyboardViewDelegate{
     
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            textColor = UIColor.white
-        } else {
-            textColor = UIColor.black
-        }
     }
 }
 
@@ -89,7 +74,6 @@ extension KeyboardViewController {
             textDocumentProxy.deleteBackward()
         }
     }
-    
 }
 
 //MARK: - For text replace UILexicon

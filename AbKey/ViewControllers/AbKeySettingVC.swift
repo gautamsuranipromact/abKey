@@ -130,23 +130,18 @@ class AbKeySettingVC: UIViewController {
     }
     
     @IBAction func btnTrEnable(_ sender: Any) {
-        print("button clicked")
-
         let isTrEnabled = !(sharedDefaults?.bool(forKey: "isTrEnabled") ?? false)
         sharedDefaults?.set(isTrEnabled, forKey: "isTrEnabled")
         updateTrFunctionalityUI(isTrEnabled: isTrEnabled)
     }
     
     @IBAction func btnTPlusEnable(_ sender: Any){
-        print("tplus clicked")
-        
         let isTPlusEnabled = !(sharedDefaults?.bool(forKey: "isTPlusEnabled") ?? false)
         sharedDefaults?.set(isTPlusEnabled, forKey: "isTPlusEnabled")
         updateTPlusFunctionalityUI(isTPlusEnabled: isTPlusEnabled)
     }
     
     @IBAction func btnRTPlusManager(_ sender: Any){
-        
         let isRTPlusManager = !(sharedDefaults?.bool(forKey: "isRTPlusManager") ?? false)
         sharedDefaults?.set(isRTPlusManager, forKey: "isRTPlusManager")
         updateRTPlusManagerUI(isRTPlusManager: isRTPlusManager)
@@ -233,7 +228,6 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
                 try FileManager.default.removeItem(at: destinationURL)
             }
             try FileManager.default.copyItem(at: selectedFileURL, to: destinationURL)
-            print("Database restored successfully.")
             
             // Show alert to notify the user to close and reopen the app
             showRestartAlert()
@@ -246,9 +240,7 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
     func showRestartAlert() {
         let alert = UIAlertController(title: "Restart Required", message: "To apply the restored changes, please close the app and reopen it.", preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            print("User acknowledged restart requirement")
-        }
+        let okAction = UIAlertAction(title: "OK", style: .default)
         
         // Add a "Learn How" button for users unfamiliar with force quitting apps
         let learnHowAction = UIAlertAction(title: "Learn How", style: .default) { _ in
