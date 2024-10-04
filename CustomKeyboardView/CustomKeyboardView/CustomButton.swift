@@ -28,7 +28,7 @@ class ButtonPopupAnimation: UIView {
         clonedButton.setImage(button.image(for: .normal), for: .normal)
         clonedButton.backgroundColor = button.backgroundColor
         clonedButton.titleLabel?.font = button.titleLabel?.font
-        clonedButton.layer.cornerRadius = button.layer.cornerRadius
+        clonedButton.layer.cornerRadius = 10
         clonedButton.layer.borderWidth = button.layer.borderWidth
         clonedButton.layer.borderColor = button.layer.borderColor
         clonedButton.layer.masksToBounds = true
@@ -107,7 +107,7 @@ class CustomButton: UIButton {
         // Set constraints to match the button's size and position the popup above the button
         NSLayoutConstraint.activate([
             popup.widthAnchor.constraint(equalTo: self.widthAnchor),
-            popup.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -5),
+            popup.heightAnchor.constraint(equalTo: self.heightAnchor),
             popup.bottomAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             popup.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 5)
         ])
