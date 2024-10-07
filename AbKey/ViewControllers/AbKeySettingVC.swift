@@ -32,8 +32,8 @@ class AbKeySettingVC: UIViewController {
     
     var premiumValueFromHomePageVC: Int = 0
 
-    let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
-    var enableAutoCapitalization = UserDefaults(suiteName: "group.abKey.promact")?.bool(forKey: "isAutoCapEnabled") ?? false
+    let sharedDefaults = UserDefaults(suiteName: "group.abkeypro")
+    var enableAutoCapitalization = UserDefaults(suiteName: "group.abkeypro")?.bool(forKey: "isAutoCapEnabled") ?? false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,7 +164,7 @@ class AbKeySettingVC: UIViewController {
     @IBAction func btnBackupAction(_ sender: Any) {
         // Ensure this runs on the main thread
             DispatchQueue.main.async {
-                guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abKey.promact") else {
+                guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abkeypro") else {
                     print("App Group container is not available.")
                     return
                 }
@@ -215,7 +215,7 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
             return
         }
         
-        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abKey.promact") else {
+        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abkeypro") else {
             print("App Group container is not available.")
             return
         }

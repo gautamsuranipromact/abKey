@@ -24,7 +24,7 @@ class SQLiteDBHelper {
         }
     
     private func openDatabase() {
-        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abKey.promact") else {
+        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abkeypro") else {
             print("App Group container is not available.")
             return
         }

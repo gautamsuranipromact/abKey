@@ -27,7 +27,7 @@ class HomePageVC: UIViewController {
     @IBOutlet weak var btnPremium: UIButton!
     @IBOutlet weak var btnClose: UIButton!
     
-    var premium = UserDefaults(suiteName: "group.abKey.promact")?.integer(forKey: "premiumKey") ?? 0
+    var premium = UserDefaults(suiteName: "group.abkeypro")?.integer(forKey: "premiumKey") ?? 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,7 +123,7 @@ class HomePageVC: UIViewController {
     
     @IBAction func btnPremiumAction(_ sender: Any) {
         premium = 1
-        let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact")
+        let sharedDefaults = UserDefaults(suiteName: "group.abkeypro")
         sharedDefaults?.set(premium, forKey: "premiumKey")
     }
     

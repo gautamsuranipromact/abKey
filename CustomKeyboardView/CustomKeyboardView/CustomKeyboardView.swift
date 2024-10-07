@@ -35,7 +35,7 @@ protocol CustomKeyboardViewDelegate: AnyObject {
 class CustomKeyboardView: UIView {
     
     let databaseHelper = SQLiteDBHelper.shared // Database singleton instance shared
-    let sharedDefaults = UserDefaults(suiteName: "group.abKey.promact") // App group suitename
+    let sharedDefaults = UserDefaults(suiteName: "group.abkeypro") // App group suitename
     
     ///Outlets
     @IBOutlet weak var btnKeyboardSwitch: UIButton!
@@ -316,6 +316,29 @@ extension CustomKeyboardView {
             isThirdCapsUppercase = true
             changeKeysCaseFirstKeyboard()
             changeKeysCaseThirdKeyboard()
+        }
+            
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // Disable autoresizing mask translation
+            AtTheRatePopupView.translatesAutoresizingMaskIntoConstraints = false
+            
+            // Remove any existing width and height constraints
+            AtTheRatePopupView.constraints.forEach { constraint in
+                if constraint.firstAttribute == .width || constraint.firstAttribute == .height {
+                    AtTheRatePopupView.removeConstraint(constraint)
+                }
+            }
+            
+            // Add new width and height constraints
+            let widthConstraint = AtTheRatePopupView.widthAnchor.constraint(equalToConstant: 450)
+            let heightConstraint = AtTheRatePopupView.heightAnchor.constraint(equalToConstant: 190)
+            
+            widthConstraint.isActive = true
+            heightConstraint.isActive = true
+            
+            // Ensure layout is updated
+            AtTheRatePopupView.setNeedsLayout()
+            AtTheRatePopupView.layoutIfNeeded()
         }
     }
 }
