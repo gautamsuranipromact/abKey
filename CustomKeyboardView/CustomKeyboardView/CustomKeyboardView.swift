@@ -145,7 +145,7 @@ class CustomKeyboardView: UIView {
     
     
     // variables
-    var permissibleEntriesForLiteUsers = 6
+    var permissibleEntriesForLiteUsers = 6 // These number of entries will be free to store.
     var tRTapped: Bool = false
     var tPlusTapped: Bool = false
     var storeBtnTap: String = ""
