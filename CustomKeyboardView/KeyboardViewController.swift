@@ -96,47 +96,97 @@ extension KeyboardViewController {
 
 extension KeyboardViewController{
     func colonButtonTapped() {
-        if customKeyboardView.isFirstCapsUppercase == true{
-            textDocumentProxy.insertText(":")
-        }else{
-            textDocumentProxy.insertText(";")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+            if customKeyboardView.isFirstCapsUppercase == true{
+                customKeyboardView.TPlusViewTextField.insertText(":")
+            }else{
+                customKeyboardView.TPlusViewTextField.insertText(";")
+            }
+        }
+        else{
+            if customKeyboardView.isFirstCapsUppercase == true{
+                textDocumentProxy.insertText(":")
+            }else{
+                textDocumentProxy.insertText(";")
+            }
         }
     }
     
     func hyphenButtonTapped() {
-        if customKeyboardView.isFirstCapsUppercase == true{
-            textDocumentProxy.insertText("_")
-        }else{
-            textDocumentProxy.insertText("-")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+            if customKeyboardView.isFirstCapsUppercase == true{
+                customKeyboardView.TPlusViewTextField.insertText("_")
+            }else{
+                customKeyboardView.TPlusViewTextField.insertText("-")
+            }
+        }
+        else{
+            if customKeyboardView.isFirstCapsUppercase == true{
+                textDocumentProxy.insertText("_")
+            }else{
+                textDocumentProxy.insertText("-")
+            }
         }
     }
     
     func leftArrowButtonClicked() {
-        if customKeyboardView.isFirstCapsUppercase == true{
-            textDocumentProxy.insertText("<")
-        }else{
-            textDocumentProxy.insertText(",")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+            if customKeyboardView.isFirstCapsUppercase == true{
+                customKeyboardView.TPlusViewTextField.insertText("<")
+            }else{
+                customKeyboardView.TPlusViewTextField.insertText(",")
+            }
+        }
+        else{
+            if customKeyboardView.isFirstCapsUppercase == true{
+                textDocumentProxy.insertText("<")
+            }else{
+                textDocumentProxy.insertText(",")
+            }
         }
     }
     
     func rightArrowButtonClicked() {
-        if customKeyboardView.isFirstCapsUppercase == true{
-            textDocumentProxy.insertText(">")
-        }else{
-            textDocumentProxy.insertText(".")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+            if customKeyboardView.isFirstCapsUppercase == true{
+                customKeyboardView.TPlusViewTextField.insertText(">")
+            }else{
+                customKeyboardView.TPlusViewTextField.insertText(".")
+            }
+        }
+        else{
+            if customKeyboardView.isFirstCapsUppercase == true{
+                textDocumentProxy.insertText(">")
+            }else{
+                textDocumentProxy.insertText(".")
+            }
         }
     }
     
     func questionButtonClicked() {
-        if customKeyboardView.isFirstCapsUppercase == true{
-            textDocumentProxy.insertText("?")
-        }else{
-            textDocumentProxy.insertText("/")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+            if customKeyboardView.isFirstCapsUppercase == true{
+                customKeyboardView.TPlusViewTextField.insertText("?")
+            }else{
+                customKeyboardView.TPlusViewTextField.insertText("/")
+            }
+        }
+        else{
+            if customKeyboardView.isFirstCapsUppercase == true{
+                textDocumentProxy.insertText("?")
+            }else{
+                textDocumentProxy.insertText("/")
+            }
         }
     }
     
     func enterButtonClicked() {
-        textDocumentProxy.insertText("\n")
+        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+            customKeyboardView.TPlusViewTextField.insertText("\n")
+        }
+        else{
+            textDocumentProxy.insertText("\n")
+        }
     }
     
     func moveArrowLeftButton() {

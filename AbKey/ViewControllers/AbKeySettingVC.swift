@@ -193,7 +193,6 @@ class AbKeySettingVC: UIViewController {
     }
     
     @IBAction func btnRestoreAction(_ sender: Any) {
-        // Present a document picker to select the backup file
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.data])
         documentPicker.delegate = self
         documentPicker.modalPresentationStyle = .formSheet
