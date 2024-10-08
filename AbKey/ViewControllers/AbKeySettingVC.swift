@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UniformTypeIdentifiers
 
 class AbKeySettingVC: UIViewController {
 
@@ -193,10 +194,10 @@ class AbKeySettingVC: UIViewController {
     
     @IBAction func btnRestoreAction(_ sender: Any) {
         // Present a document picker to select the backup file
-            let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.data"], in: .import)
-            documentPicker.delegate = self
-            documentPicker.modalPresentationStyle = .formSheet
-            self.present(documentPicker, animated: true, completion: nil)
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.data])
+        documentPicker.delegate = self
+        documentPicker.modalPresentationStyle = .formSheet
+        self.present(documentPicker, animated: true, completion: nil)
     }
     
     @IBAction func aboutABKeyAction(_ sender: Any) {

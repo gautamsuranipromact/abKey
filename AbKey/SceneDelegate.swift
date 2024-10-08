@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 navigationController.popToRootViewController(animated: false)
             }
             
-            let premium = UserDefaults(suiteName: "group.abKey.promact")?.integer(forKey: "premiumKey") ?? 0
+            let premium = UserDefaults(suiteName: "group.abkeypro")?.integer(forKey: "premiumKey") ?? 0
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             if host == "firstKeyboard" || host == "thirdKeyboard" {
