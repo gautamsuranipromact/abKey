@@ -295,19 +295,27 @@ extension KeyboardViewController{
     
     func openMainApp(_ hostValue: String) {
         guard let url = URL(string: "abkeyapp://\(hostValue)") else { return }
-        extensionContext?.open(url, completionHandler: { success in
-            if !success {
-                var responder = self as UIResponder?
-                while responder != nil {
-                    let selectorOpenURL = NSSelectorFromString("openURL:")
-                    if responder?.responds(to: selectorOpenURL) == true {
-                        _ = responder?.perform(selectorOpenURL, with: url)
-                        return
+        
+        openURL(url)
+    }
+    
+    @discardableResult
+    @objc func openURL(_ url: URL) -> Bool {
+        var responder: UIResponder? = self
+        while responder != nil {
+            if let application = responder as? UIApplication {
+                application.open(url, options: [:]) { success in
+                    if success {
+                        print("App opened successfully")
+                    } else {
+                        print("Failed to open app")
                     }
-                    responder = responder?.next
                 }
+                return true
             }
-        })
+            responder = responder?.next
+        }
+        return false
     }
     
     func shouldCapitalizeNextCharacter() -> Bool {
