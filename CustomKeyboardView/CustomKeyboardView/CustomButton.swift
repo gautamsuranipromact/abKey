@@ -83,7 +83,7 @@ class CustomButton: UIButton {
         super.awakeFromNib()
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            self.titleLabel?.font = self.titleLabel?.font.withSize(26)
+            self.titleLabel?.font = self.titleLabel?.font.withSize(28)
             self.layer.borderWidth = 2
         }
         self.addTarget(self, action: #selector(btnPressed), for: .touchUpInside)
