@@ -90,7 +90,7 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     func button(at index: Int) -> UIButton {
         let button = UIButton()
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: Constants.IpadScreen ? 24 : 16)
         button.backgroundColor = .black
         
         return button
@@ -98,6 +98,10 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     
     func colorForIndicator(at index: Int) -> UIColor {
         return .tintColor
+    }
+    
+    func heightForIndicator() -> CGFloat {
+        return Constants.IpadScreen ? 4.0 : 2.0
     }
     
     @IBAction func btnEditAction(_ sender: Any) {

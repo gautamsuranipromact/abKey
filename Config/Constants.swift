@@ -5,7 +5,11 @@
 //  Created by Promact on 15/10/24.
 //
 
+import UIKit
+
 struct Constants {
+    static let IpadScreen = UIDevice.current.userInterfaceIdiom == .pad // Check whether the device is Ipad
+    
     static let AccentKeyboardTypeIdentifier = "accent"
     static let AlphabetKeyboardTypeIdentifier = "alphabetic"
     static let NumericKeyboardTypeIdentifier = "numeric"

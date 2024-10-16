@@ -88,6 +88,11 @@ extension AlphabetViewController: UITableViewDataSource,UITableViewDelegate {
         cell.lblKey.text = keyValuePair.key
         cell.lblValue.text = keyValuePair.value
         
+        if(Constants.IpadScreen) {
+            cell.lblKey.font = UIFont.systemFont(ofSize: 24)
+            cell.lblValue.font = UIFont.systemFont(ofSize: 24)
+        }
+        
         return cell
     }
     

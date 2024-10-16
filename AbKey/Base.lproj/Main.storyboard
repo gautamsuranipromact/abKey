@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lJJ-sr-Xii">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lJJ-sr-Xii">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -438,7 +438,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTH-1q-hNd">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abKey Pro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuS-A9-rvE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abKey Pro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuS-A9-rvE" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="353" height="50"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -448,7 +448,7 @@
                                         <color key="textColor" red="0.66666666666666663" green="0.67843137254901964" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUICK START GUIDE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPT-Mg-Kbv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUICK START GUIDE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPT-Mg-Kbv" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                         <rect key="frame" x="20" y="75" width="353" height="50"/>
                                         <color key="backgroundColor" systemColor="systemCyanColor"/>
                                         <constraints>
@@ -458,7 +458,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="After Installation," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jx-TC-KPI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="After Installation," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jx-TC-KPI" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                         <rect key="frame" x="20" y="133" width="353" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -474,7 +474,7 @@
                                                     <action selector="btnSettingAction:" destination="AiV-M5-Ozx" eventType="touchUpInside" id="c6h-Fq-Zzq"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Go to Settings/General/Keyboard/Add new keyboard &amp; select abKey Pro" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1w-33-oRN">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Go to Settings/General/Keyboard/Add new keyboard &amp; select abKey Pro" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1w-33-oRN" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="70"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -504,7 +504,7 @@
                                                     <action selector="btnDefaultSetAction:" destination="AiV-M5-Ozx" eventType="touchUpInside" id="cBQ-ID-3Dw"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHf-Q5-u5d">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHf-Q5-u5d" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                 <rect key="frame" x="5" y="0.0" width="343" height="70"/>
                                                 <string key="text">2. Choose abKey Pro as default input method. Go to settings/general/keyboard/keyboards//add new keyboard/abKey/allow full access.</string>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -535,7 +535,7 @@
                                                     <action selector="btnStartAbKey:" destination="AiV-M5-Ozx" eventType="touchUpInside" id="3md-3S-wCr"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Start using abKey Pro" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEB-zV-N8P">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Start using abKey Pro" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEB-zV-N8P" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -555,7 +555,7 @@
                                             <constraint firstItem="aj2-GS-5Zj" firstAttribute="top" secondItem="Fma-Qp-n3e" secondAttribute="top" id="ubj-vk-edc"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4i-9g-CeL">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4i-9g-CeL" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                         <rect key="frame" x="20" y="369" width="353" height="50"/>
                                         <color key="backgroundColor" systemColor="systemCyanColor"/>
                                         <constraints>
@@ -575,7 +575,7 @@
                                                     <action selector="btnAbkeySettings:" destination="AiV-M5-Ozx" eventType="touchUpInside" id="5uQ-gh-Poo"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to abKey Pro Settings to set your preferences!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gv9-UI-cci">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to abKey Pro Settings to set your preferences!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gv9-UI-cci" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -606,7 +606,7 @@
                                                     <action selector="btnAbkeySettings:" destination="AiV-M5-Ozx" eventType="touchUpInside" id="VUi-lU-tF1"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ho4-BT-4wq">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ho4-BT-4wq" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="5" width="328" height="65"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -636,7 +636,7 @@
                                                     <action selector="btnPremiumAction:" destination="AiV-M5-Ozx" eventType="touchUpInside" id="Kjq-Ye-UoL"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade To Premium!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqh-0N-sfy">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade To Premium!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqh-0N-sfy" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -666,7 +666,7 @@
                                                     <action selector="btnCloseAction:" destination="AiV-M5-Ozx" eventType="touchUpInside" id="tvs-av-K7a"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItO-ql-t3d">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItO-ql-t3d" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -818,19 +818,19 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhx-Yn-Qcc">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abKey Pro(Lite)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-OM-g9V">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abKey Pro(Lite)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-OM-g9V" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="8" width="105.66666666666667" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="0.61960784313725492" green="0.64313725490196072" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ver 2.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ5-F9-glZ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ver 2.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ5-F9-glZ" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="28.000000000000004" width="43" height="15.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.81568627450980391" green="0.82745098039215681" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="World's 1st Programmable Keyboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1S-RB-IdD">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="World's 1st Programmable Keyboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1S-RB-IdD" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="45.666666666666657" width="220" height="15.666666666666664"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.81568627450980391" green="0.82745098039215681" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
@@ -860,13 +860,13 @@
                                                             <action selector="aboutABKeyAction:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="bAt-Ak-Agh"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About abKey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICR-ed-YuU">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About abKey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICR-ed-YuU" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="8" width="87.666666666666671" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, How to, Agreement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOR-pB-qj5">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, How to, Agreement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOR-pB-qj5" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="28" width="191.66666666666666" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.031372549019607843" green="0.035294117647058823" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
@@ -884,13 +884,12 @@
                                                     <constraint firstAttribute="bottom" secondItem="wOR-pB-qj5" secondAttribute="bottom" constant="15" id="USS-rg-RY5"/>
                                                     <constraint firstItem="ICR-ed-YuU" firstAttribute="top" secondItem="T0P-mU-UHb" secondAttribute="top" constant="8" id="Xbd-B7-wAS"/>
                                                     <constraint firstItem="BJg-Sg-aSo" firstAttribute="top" secondItem="T0P-mU-UHb" secondAttribute="top" id="Ygy-Pd-edU"/>
-                                                    <constraint firstAttribute="height" constant="60" id="hQ9-hU-RHU"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzV-2l-H5U">
                                                 <rect key="frame" x="0.0" y="140" width="393" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Retriving Function" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1PG-ea-hX9">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Retriving Function" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1PG-ea-hX9" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="6.6666666666666856" width="148" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.14901960784313725" green="0.45882352941176469" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
@@ -915,13 +914,13 @@
                                                             <action selector="btnTrEnable:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="46q-yO-YLK"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGY-mx-rAM">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGY-mx-rAM" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="7.9999999999999982" width="14.666666666666664" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check to enable Tr function" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1L-uX-CTl">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check to enable Tr function" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1L-uX-CTl" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="29.333333333333318" width="167.33333333333334" height="15.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.031372549019607843" green="0.035294117647058823" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
@@ -945,7 +944,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="cJH-fZ-S3d" secondAttribute="trailing" id="Umf-Ti-ge3"/>
                                                     <constraint firstItem="p1L-uX-CTl" firstAttribute="leading" secondItem="iGY-mx-rAM" secondAttribute="leading" id="Vfy-ra-Aug"/>
                                                     <constraint firstItem="cJH-fZ-S3d" firstAttribute="leading" secondItem="UFo-hF-LLd" secondAttribute="leading" id="bwe-La-6Ps"/>
-                                                    <constraint firstAttribute="height" constant="60" id="cVc-xu-K5N"/>
                                                     <constraint firstItem="i4c-Ha-jF2" firstAttribute="centerY" secondItem="UFo-hF-LLd" secondAttribute="centerY" id="iNB-kY-9hI"/>
                                                     <constraint firstItem="iGY-mx-rAM" firstAttribute="top" secondItem="UFo-hF-LLd" secondAttribute="top" constant="8" id="jbp-32-HDj"/>
                                                     <constraint firstItem="cJH-fZ-S3d" firstAttribute="top" secondItem="UFo-hF-LLd" secondAttribute="top" id="vur-Ih-wSY"/>
@@ -970,13 +968,13 @@
                                                             <action selector="btnTPlusEnable:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="McC-Yc-qSG"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yA-UZ-9aC">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yA-UZ-9aC" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10.000000000000002" y="7.9999999999999982" width="18.666666666666671" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check to enable T+ function" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTQ-2Y-amJ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check to enable T+ function" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTQ-2Y-amJ" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="29.333333333333318" width="170.66666666666666" height="15.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.031372549020000001" green="0.035294117649999998" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -992,7 +990,6 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="0xj-qG-PgN"/>
                                                     <constraint firstItem="fw9-37-Rng" firstAttribute="leading" secondItem="30G-zT-xlx" secondAttribute="leading" id="14K-k4-GMf"/>
                                                     <constraint firstItem="YTQ-2Y-amJ" firstAttribute="top" secondItem="2yA-UZ-9aC" secondAttribute="bottom" constant="2" id="FVh-N2-Kom"/>
                                                     <constraint firstAttribute="bottom" secondItem="fw9-37-Rng" secondAttribute="bottom" id="FjK-l1-diI"/>
@@ -1025,13 +1022,13 @@
                                                             <action selector="btnRTPlusManager:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="yjI-it-gcf"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rT+ Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PA-Cy-Vbm">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rT+ Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PA-Cy-Vbm" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="7.9999999999999982" width="91.333333333333329" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check to enable rT+ Manager from keyboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5o-vj-RcI">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check to enable rT+ Manager from keyboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5o-vj-RcI" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="29.333333333333318" width="269.33333333333331" height="15.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.031372549020000001" green="0.035294117649999998" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1047,7 +1044,6 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="6XD-Oc-FYe"/>
                                                     <constraint firstAttribute="bottom" secondItem="S5o-vj-RcI" secondAttribute="bottom" constant="15.000000000000014" id="CNG-FK-WqM"/>
                                                     <constraint firstItem="iId-8Q-Adn" firstAttribute="leading" secondItem="dJu-X8-JgO" secondAttribute="leading" id="Ga1-Bj-1bW"/>
                                                     <constraint firstAttribute="trailing" secondItem="Nq1-WC-BgE" secondAttribute="trailing" constant="15" id="HgS-dp-Yfi"/>
@@ -1080,13 +1076,13 @@
                                                             <action selector="btnRTShowReplaceDelete:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="uS9-rK-kqh"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rT+ Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ub9-Vo-Zur">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rT+ Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ub9-Vo-Zur" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="7.9999999999999982" width="91.333333333333329" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show, Replace, Delete records." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="am5-54-EQW">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show, Replace, Delete records." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="am5-54-EQW" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="29.333333333333318" width="188" height="15.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.031372549020000001" green="0.035294117649999998" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1101,7 +1097,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="mL0-Oi-BPX" secondAttribute="trailing" id="BLM-kT-67O"/>
                                                     <constraint firstItem="mL0-Oi-BPX" firstAttribute="leading" secondItem="NQ7-ku-Dxt" secondAttribute="leading" id="HH3-l8-UzR"/>
                                                     <constraint firstItem="ub9-Vo-Zur" firstAttribute="top" secondItem="NQ7-ku-Dxt" secondAttribute="top" constant="8" id="N1F-0D-xUy"/>
-                                                    <constraint firstAttribute="height" constant="60" id="PQK-p5-Pv3"/>
                                                     <constraint firstItem="ub9-Vo-Zur" firstAttribute="leading" secondItem="NQ7-ku-Dxt" secondAttribute="leading" constant="10" id="R6D-sz-EHU"/>
                                                     <constraint firstItem="mL0-Oi-BPX" firstAttribute="top" secondItem="NQ7-ku-Dxt" secondAttribute="top" id="jkl-zK-vfH"/>
                                                     <constraint firstAttribute="bottom" secondItem="am5-54-EQW" secondAttribute="bottom" constant="15.000000000000014" id="vu3-9f-cM4"/>
@@ -1110,7 +1105,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTj-D4-Kf5">
                                                 <rect key="frame" x="0.0" y="416" width="393" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAPITAL &amp; SPELLING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sm0-Ne-HeF">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAPITAL &amp; SPELLING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sm0-Ne-HeF" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="6.6666666666666288" width="139" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.14901960784313725" green="0.45882352941176469" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
@@ -1125,24 +1120,24 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWx-OD-6XH">
-                                                <rect key="frame" x="0.0" y="446" width="393" height="50"/>
+                                                <rect key="frame" x="0.0" y="446" width="393" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dQ-Pr-5TY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                         <connections>
                                                             <action selector="btnAutoCapitalizationManager:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="Frr-1D-1p0"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-capitalization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgY-Dq-XTy">
-                                                        <rect key="frame" x="10" y="15.333333333333369" width="136.66666666666666" height="19.333333333333329"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-capitalization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgY-Dq-XTy" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="20.333333333333371" width="136.66666666666666" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hB0-5P-S4x">
-                                                        <rect key="frame" x="358" y="16.666666666666664" width="20" height="17.000000000000007"/>
+                                                        <rect key="frame" x="358" y="21.666666666666664" width="20" height="17.000000000000007"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="SFe-ad-OQg"/>
                                                             <constraint firstAttribute="height" constant="20" id="aQ7-hv-tUZ"/>
@@ -1151,10 +1146,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="0fB-vR-rM7"/>
                                                     <constraint firstAttribute="bottom" secondItem="3dQ-Pr-5TY" secondAttribute="bottom" id="DHg-dl-KfT"/>
                                                     <constraint firstItem="fgY-Dq-XTy" firstAttribute="centerY" secondItem="FWx-OD-6XH" secondAttribute="centerY" id="IXA-hG-MJ8"/>
                                                     <constraint firstAttribute="trailing" secondItem="3dQ-Pr-5TY" secondAttribute="trailing" id="Pmi-pr-9A1"/>
-                                                    <constraint firstAttribute="height" constant="50" id="WO5-8J-26t"/>
                                                     <constraint firstItem="3dQ-Pr-5TY" firstAttribute="top" secondItem="FWx-OD-6XH" secondAttribute="top" id="eXz-9w-Vwm"/>
                                                     <constraint firstItem="fgY-Dq-XTy" firstAttribute="leading" secondItem="FWx-OD-6XH" secondAttribute="leading" constant="10" id="iYg-Df-CgV"/>
                                                     <constraint firstItem="hB0-5P-S4x" firstAttribute="centerY" secondItem="FWx-OD-6XH" secondAttribute="centerY" id="qJk-PE-PzE"/>
@@ -1163,28 +1158,28 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8vP-S2-WII">
-                                                <rect key="frame" x="0.0" y="496" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="506" width="393" height="1"/>
                                                 <color key="backgroundColor" red="0.81568627449999997" green="0.82745098039999998" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="rfx-B7-Vki"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83r-h6-aST">
-                                                <rect key="frame" x="0.0" y="497" width="393" height="50"/>
+                                                <rect key="frame" x="0.0" y="507" width="393" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bko-x2-h3r">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show suggestions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKu-ar-O1q">
-                                                        <rect key="frame" x="10" y="15.333333333333369" width="132.33333333333334" height="19.333333333333329"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show suggestions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKu-ar-O1q" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="20.333333333333371" width="132.33333333333334" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4l7-N2-3Kj">
-                                                        <rect key="frame" x="358" y="16.666666666666664" width="20" height="17.000000000000007"/>
+                                                        <rect key="frame" x="358" y="21.666666666666664" width="20" height="17.000000000000007"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="XdS-nu-652"/>
                                                             <constraint firstAttribute="width" constant="20" id="mN8-kg-NAy"/>
@@ -1196,23 +1191,23 @@
                                                     <constraint firstItem="Bko-x2-h3r" firstAttribute="top" secondItem="83r-h6-aST" secondAttribute="top" id="0e4-XA-hn6"/>
                                                     <constraint firstItem="xKu-ar-O1q" firstAttribute="centerY" secondItem="83r-h6-aST" secondAttribute="centerY" id="BQf-ZI-2I3"/>
                                                     <constraint firstItem="xKu-ar-O1q" firstAttribute="leading" secondItem="83r-h6-aST" secondAttribute="leading" constant="10" id="KKZ-Cd-B6f"/>
+                                                    <constraint firstAttribute="height" constant="60" id="T6J-Hb-8Tu"/>
                                                     <constraint firstAttribute="trailing" secondItem="4l7-N2-3Kj" secondAttribute="trailing" constant="15" id="VLs-Kb-EZD"/>
                                                     <constraint firstAttribute="bottom" secondItem="Bko-x2-h3r" secondAttribute="bottom" id="iM2-NU-LXP"/>
                                                     <constraint firstItem="Bko-x2-h3r" firstAttribute="leading" secondItem="83r-h6-aST" secondAttribute="leading" id="oAW-cm-GP6"/>
                                                     <constraint firstAttribute="trailing" secondItem="Bko-x2-h3r" secondAttribute="trailing" id="omm-EE-wHN"/>
                                                     <constraint firstItem="4l7-N2-3Kj" firstAttribute="centerY" secondItem="83r-h6-aST" secondAttribute="centerY" id="vBk-kf-Xz2"/>
-                                                    <constraint firstAttribute="height" constant="50" id="yY0-eU-IMN"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WNt-WZ-gam">
-                                                <rect key="frame" x="0.0" y="547" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="567" width="393" height="1"/>
                                                 <color key="backgroundColor" red="0.81568627449999997" green="0.82745098039999998" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="0to-WD-xNS"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6FL-eI-SSe">
-                                                <rect key="frame" x="0.0" y="548" width="393" height="60"/>
+                                                <rect key="frame" x="0.0" y="568" width="393" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZcZ-jZ-G9d">
                                                         <rect key="frame" x="0.0" y="0.0" width="333" height="60"/>
@@ -1220,7 +1215,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AkW-m5-iIL">
                                                                 <rect key="frame" x="0.0" y="0.0" width="333" height="30"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto select suggestion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdQ-Kh-cNN">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto select suggestion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdQ-Kh-cNN" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                                         <rect key="frame" x="10" y="5.3333333333333712" width="166" height="19.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1237,7 +1232,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMI-mN-m7k">
                                                                 <rect key="frame" x="0.0" y="30" width="333" height="30"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Space Will Select highlighted suggestion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMI-cc-kt5">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Space Will Select highlighted suggestion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMI-cc-kt5" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                                         <rect key="frame" x="10" y="0.0" width="263" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" red="0.031372549019607843" green="0.035294117647058823" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
@@ -1286,14 +1281,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9D-vx-X3J">
-                                                <rect key="frame" x="0.0" y="608" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="628" width="393" height="1"/>
                                                 <color key="backgroundColor" red="0.81568627450980391" green="0.82745098039215681" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="3zR-oe-m87"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iOl-Cl-zTP">
-                                                <rect key="frame" x="0.0" y="609" width="393" height="60"/>
+                                                <rect key="frame" x="0.0" y="629" width="393" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Apf-g8-Dca">
                                                         <rect key="frame" x="0.0" y="0.0" width="333" height="60"/>
@@ -1301,7 +1296,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLr-09-pcz">
                                                                 <rect key="frame" x="0.0" y="0.0" width="333" height="30"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick fixes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XO-qp-2n7">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick fixes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XO-qp-2n7" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                                         <rect key="frame" x="10" y="5.3333333333333712" width="79.666666666666671" height="19.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1318,7 +1313,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YhM-zW-dhW">
                                                                 <rect key="frame" x="0.0" y="30" width="333" height="30"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Corrects commonly typed mistakes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6M-js-aZd">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Corrects commonly typed mistakes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6M-js-aZd" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                                         <rect key="frame" x="10" y="0.0" width="228.33333333333334" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" red="0.031372549020000001" green="0.035294117649999998" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1366,9 +1361,9 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAE-do-uaC">
-                                                <rect key="frame" x="0.0" y="672" width="393" height="30"/>
+                                                <rect key="frame" x="0.0" y="692" width="393" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup &amp; Restore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpm-4U-9TJ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup &amp; Restore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpm-4U-9TJ" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="9.9999999999999929" y="6.6666666666666288" width="115.33333333333331" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.14901960780000001" green="0.45882352939999999" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -1383,7 +1378,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DG-Ga-nlY">
-                                                <rect key="frame" x="0.0" y="702" width="393" height="60"/>
+                                                <rect key="frame" x="0.0" y="722" width="393" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0F7-oo-VUN">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
@@ -1393,13 +1388,13 @@
                                                             <action selector="btnBackupAction:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="t05-Pf-62f"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4z-BK-K8N">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4z-BK-K8N" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10.000000000000004" y="7.9999999999999982" width="54.333333333333343" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup your data and save it to safe place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFX-0h-1wz">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup your data and save it to safe place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFX-0h-1wz" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="9.9999999999999858" y="29.333333333333375" width="255.66666666666663" height="15.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.031372549020000001" green="0.035294117649999998" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1417,36 +1412,35 @@
                                                     <constraint firstAttribute="trailing" secondItem="0F7-oo-VUN" secondAttribute="trailing" id="mZ7-hl-LjU"/>
                                                     <constraint firstItem="P4z-BK-K8N" firstAttribute="top" secondItem="4DG-Ga-nlY" secondAttribute="top" constant="8" id="uJz-dZ-8f1"/>
                                                     <constraint firstItem="oFX-0h-1wz" firstAttribute="top" secondItem="P4z-BK-K8N" secondAttribute="bottom" constant="2" id="uUv-Ix-9pe"/>
-                                                    <constraint firstAttribute="height" constant="60" id="ysJ-pQ-Tkl"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W8a-c9-wrw">
-                                                <rect key="frame" x="0.0" y="761" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="781" width="393" height="1"/>
                                                 <color key="backgroundColor" red="0.81568627450980391" green="0.82745098039215681" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="YNX-Ve-4GM"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iME-dr-cTJ">
-                                                <rect key="frame" x="0.0" y="762" width="393" height="60"/>
+                                                <rect key="frame" x="0.0" y="782" width="393" height="61.333333333333371"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVw-Pz-MNm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="61.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                         <connections>
                                                             <action selector="btnRestoreAction:" destination="PNy-FN-Tm0" eventType="touchUpInside" id="bGb-Cj-lEu"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23E-au-tGF">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23E-au-tGF" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="9.9999999999999964" y="7.9999999999999982" width="55.666666666666657" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select backup file to restore your data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvz-bK-Jx6">
-                                                        <rect key="frame" x="10" y="29.333333333333375" width="231" height="15.666666666666668"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select backup file to restore your data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvz-bK-Jx6" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
+                                                        <rect key="frame" x="10.000000000000014" y="29.333333333333371" width="246.33333333333337" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.031372549020000001" green="0.035294117649999998" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1454,7 +1448,6 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="eVw-Pz-MNm" firstAttribute="top" secondItem="iME-dr-cTJ" secondAttribute="top" id="6Zw-gd-DPJ"/>
-                                                    <constraint firstAttribute="height" constant="60" id="6e8-4Y-dHJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="eVw-Pz-MNm" secondAttribute="trailing" id="Amx-l1-ORZ"/>
                                                     <constraint firstItem="23E-au-tGF" firstAttribute="leading" secondItem="iME-dr-cTJ" secondAttribute="leading" constant="10" id="DmO-0b-4Cj"/>
                                                     <constraint firstAttribute="bottom" secondItem="Pvz-bK-Jx6" secondAttribute="bottom" constant="15.000000000000014" id="aWT-9L-T57"/>

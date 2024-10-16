@@ -65,6 +65,19 @@
 		D3E4FC562C857F740030A6F5 /* Welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC542C857F740030A6F5 /* Welcome.html */; };
 		D3E4FC572C857F740030A6F5 /* Welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC542C857F740030A6F5 /* Welcome.html */; };
 		D3E4FC582C857F740030A6F5 /* Welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = D3E4FC542C857F740030A6F5 /* Welcome.html */; };
+		D3EAEC532CBFC1A400772F05 /* AdaptiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EAEC522CBFC1A400772F05 /* AdaptiveLabel.swift */; };
+		D3EAEC552CBFDA4400772F05 /* HowtoIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC542CBFDA4400772F05 /* HowtoIpad.html */; };
+		D3EAEC562CBFDA4400772F05 /* HowtoIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC542CBFDA4400772F05 /* HowtoIpad.html */; };
+		D3EAEC572CBFDA4400772F05 /* HowtoIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC542CBFDA4400772F05 /* HowtoIpad.html */; };
+		D3EAEC582CBFDA4400772F05 /* HowtoIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC542CBFDA4400772F05 /* HowtoIpad.html */; };
+		D3EAEC5F2CBFDAA400772F05 /* AgreementIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC5E2CBFDAA400772F05 /* AgreementIpad.html */; };
+		D3EAEC602CBFDAA400772F05 /* AgreementIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC5E2CBFDAA400772F05 /* AgreementIpad.html */; };
+		D3EAEC612CBFDAA400772F05 /* AgreementIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC5E2CBFDAA400772F05 /* AgreementIpad.html */; };
+		D3EAEC622CBFDAA400772F05 /* AgreementIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC5E2CBFDAA400772F05 /* AgreementIpad.html */; };
+		D3EAEC642CBFDAC500772F05 /* WelcomeIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC632CBFDAC500772F05 /* WelcomeIpad.html */; };
+		D3EAEC652CBFDAC500772F05 /* WelcomeIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC632CBFDAC500772F05 /* WelcomeIpad.html */; };
+		D3EAEC662CBFDAC500772F05 /* WelcomeIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC632CBFDAC500772F05 /* WelcomeIpad.html */; };
+		D3EAEC672CBFDAC500772F05 /* WelcomeIpad.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EAEC632CBFDAC500772F05 /* WelcomeIpad.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +168,10 @@
 		D3E4FC4A2C857F5D0030A6F5 /* Howto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Howto.html; sourceTree = "<group>"; };
 		D3E4FC4F2C857F650030A6F5 /* Agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Agreement.html; sourceTree = "<group>"; };
 		D3E4FC542C857F740030A6F5 /* Welcome.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Welcome.html; sourceTree = "<group>"; };
+		D3EAEC522CBFC1A400772F05 /* AdaptiveLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveLabel.swift; sourceTree = "<group>"; };
+		D3EAEC542CBFDA4400772F05 /* HowtoIpad.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = HowtoIpad.html; sourceTree = "<group>"; };
+		D3EAEC5E2CBFDAA400772F05 /* AgreementIpad.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = AgreementIpad.html; sourceTree = "<group>"; };
+		D3EAEC632CBFDAC500772F05 /* WelcomeIpad.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = WelcomeIpad.html; sourceTree = "<group>"; };
 		E290247DDB1F550A3014626F /* Pods-CustomKeyboardView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomKeyboardView.release.xcconfig"; path = "Target Support Files/Pods-CustomKeyboardView/Pods-CustomKeyboardView.release.xcconfig"; sourceTree = "<group>"; };
 		E86ADC792FE7CE81D4771B6F /* Pods-AbKeyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbKeyTests.release.xcconfig"; path = "Target Support Files/Pods-AbKeyTests/Pods-AbKeyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,6 +265,9 @@
 		467FEBB62BB57DAB00C42519 /* HTML File */ = {
 			isa = PBXGroup;
 			children = (
+				D3EAEC632CBFDAC500772F05 /* WelcomeIpad.html */,
+				D3EAEC5E2CBFDAA400772F05 /* AgreementIpad.html */,
+				D3EAEC542CBFDA4400772F05 /* HowtoIpad.html */,
 				D3E4FC4A2C857F5D0030A6F5 /* Howto.html */,
 				D3E4FC4F2C857F650030A6F5 /* Agreement.html */,
 				D3E4FC542C857F740030A6F5 /* Welcome.html */,
@@ -291,6 +311,7 @@
 				46DA79532B4E94B500A9C180 /* AppDelegate.swift */,
 				46DA79552B4E94B500A9C180 /* SceneDelegate.swift */,
 				46DA798A2B4E954A00A9C180 /* CustomKeyboardVC.swift */,
+				D3EAEC522CBFC1A400772F05 /* AdaptiveLabel.swift */,
 				46DA79592B4E94B500A9C180 /* Main.storyboard */,
 				46DA795C2B4E94B600A9C180 /* Assets.xcassets */,
 				46DA795E2B4E94B600A9C180 /* LaunchScreen.storyboard */,
@@ -488,12 +509,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3EAEC662CBFDAC500772F05 /* WelcomeIpad.html in Resources */,
 				D3E4FC502C857F650030A6F5 /* Agreement.html in Resources */,
 				D3E4FC4B2C857F5D0030A6F5 /* Howto.html in Resources */,
 				46DA79602B4E94B600A9C180 /* LaunchScreen.storyboard in Resources */,
 				46DA795D2B4E94B600A9C180 /* Assets.xcassets in Resources */,
 				D3ACD1292C86D14A00664362 /* CustomKeyboardView.xib in Resources */,
+				D3EAEC622CBFDAA400772F05 /* AgreementIpad.html in Resources */,
 				46DA795B2B4E94B500A9C180 /* Main.storyboard in Resources */,
+				D3EAEC562CBFDA4400772F05 /* HowtoIpad.html in Resources */,
 				D3E4FC552C857F740030A6F5 /* Welcome.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,8 +526,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3EAEC612CBFDAA400772F05 /* AgreementIpad.html in Resources */,
 				D3E4FC4C2C857F5D0030A6F5 /* Howto.html in Resources */,
+				D3EAEC672CBFDAC500772F05 /* WelcomeIpad.html in Resources */,
 				D3E4FC512C857F650030A6F5 /* Agreement.html in Resources */,
+				D3EAEC582CBFDA4400772F05 /* HowtoIpad.html in Resources */,
 				D3E4FC562C857F740030A6F5 /* Welcome.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,8 +539,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3EAEC5F2CBFDAA400772F05 /* AgreementIpad.html in Resources */,
 				D3E4FC4D2C857F5D0030A6F5 /* Howto.html in Resources */,
+				D3EAEC652CBFDAC500772F05 /* WelcomeIpad.html in Resources */,
 				D3E4FC522C857F650030A6F5 /* Agreement.html in Resources */,
+				D3EAEC552CBFDA4400772F05 /* HowtoIpad.html in Resources */,
 				D3E4FC572C857F740030A6F5 /* Welcome.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,9 +554,12 @@
 			files = (
 				D3E4FC4E2C857F5D0030A6F5 /* Howto.html in Resources */,
 				D3E4FC532C857F650030A6F5 /* Agreement.html in Resources */,
+				D3EAEC572CBFDA4400772F05 /* HowtoIpad.html in Resources */,
 				D3E4FC582C857F740030A6F5 /* Welcome.html in Resources */,
 				D3ACD1262C86CEDB00664362 /* CustomKeyboardView.xib in Resources */,
 				46DA799F2B4E96C000A9C180 /* Assets.xcassets in Resources */,
+				D3EAEC642CBFDAC500772F05 /* WelcomeIpad.html in Resources */,
+				D3EAEC602CBFDAA400772F05 /* AgreementIpad.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +685,7 @@
 				4650026D2BA8709300D5781D /* AbKeySettingVC.swift in Sources */,
 				46894B4B2BB28C8500FF01BD /* AboutAbkeyVC.swift in Sources */,
 				46DA79542B4E94B500A9C180 /* AppDelegate.swift in Sources */,
+				D3EAEC532CBFC1A400772F05 /* AdaptiveLabel.swift in Sources */,
 				46DA798B2B4E954A00A9C180 /* CustomKeyboardVC.swift in Sources */,
 				46E52A3B2BA4255800240FF7 /* HomePageVC.swift in Sources */,
 				46433FDB2B9F08CB0012941E /* AlphabetVCCell.swift in Sources */,

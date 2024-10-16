@@ -61,7 +61,7 @@ class AboutAbkeyVC: UIViewController,LZViewPagerDelegate,LZViewPagerDataSource{
     func button(at index: Int) -> UIButton {
         let button = UIButton()
         button.setTitleColor(UIColor.white   , for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: Constants.IpadScreen ? 24 : 16)
         button.backgroundColor = .black
         
         return button
@@ -71,6 +71,9 @@ class AboutAbkeyVC: UIViewController,LZViewPagerDelegate,LZViewPagerDataSource{
         return .tintColor
     }
     
+    func heightForIndicator() -> CGFloat {
+        return Constants.IpadScreen ? 4.0 : 2.0
+    }
     
     @IBAction func btnBackAction(_ sender: Any) {
         navigationController?.popViewController(animated: true)

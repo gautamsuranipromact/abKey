@@ -36,8 +36,18 @@ class AggrementVC: UIViewController {
         ])
     }
 
+//    func loadLocalHTMLFile() {
+//        if let htmlPath = Bundle.main.path(forResource: "Agreement", ofType: "html"),
+//           let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
+//            let modifiedHtmlContent = htmlContent.replacingOccurrences(of: "<head>", with: Constants.HtmlMetaData)
+//            webView.loadHTMLString(modifiedHtmlContent, baseURL: Bundle.main.bundleURL)
+//        }
+//    }
+    
     func loadLocalHTMLFile() {
-        if let htmlPath = Bundle.main.path(forResource: "Agreement", ofType: "html"),
+        let fileName = UIDevice.current.userInterfaceIdiom == .pad ? "AgreementIpad" : "Agreement"
+        
+        if let htmlPath = Bundle.main.path(forResource: fileName, ofType: "html"),
            let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
             let modifiedHtmlContent = htmlContent.replacingOccurrences(of: "<head>", with: Constants.HtmlMetaData)
             webView.loadHTMLString(modifiedHtmlContent, baseURL: Bundle.main.bundleURL)

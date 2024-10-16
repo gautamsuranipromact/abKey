@@ -35,8 +35,27 @@ class WelcomeVC: UIViewController {
         ])
     }
 
+//    func loadLocalHTMLFile() {
+//        if(UIDevice.current.userInterfaceIdiom == .pad) {
+//            if let htmlPath = Bundle.main.path(forResource: "WelcomeIpad", ofType: "html"),
+//               let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
+//                let modifiedHtmlContent = htmlContent.replacingOccurrences(of: "<head>", with: Constants.HtmlMetaData)
+//                webView.loadHTMLString(modifiedHtmlContent, baseURL: Bundle.main.bundleURL)
+//            }
+//        }
+//        else{
+//            if let htmlPath = Bundle.main.path(forResource: "Welcome", ofType: "html"),
+//               let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
+//                let modifiedHtmlContent = htmlContent.replacingOccurrences(of: "<head>", with: Constants.HtmlMetaData)
+//                webView.loadHTMLString(modifiedHtmlContent, baseURL: Bundle.main.bundleURL)
+//            }
+//        }
+//    }
+    
     func loadLocalHTMLFile() {
-        if let htmlPath = Bundle.main.path(forResource: "Welcome", ofType: "html"),
+        let fileName = UIDevice.current.userInterfaceIdiom == .pad ? "WelcomeIpad" : "Welcome"
+        
+        if let htmlPath = Bundle.main.path(forResource: fileName, ofType: "html"),
            let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
             let modifiedHtmlContent = htmlContent.replacingOccurrences(of: "<head>", with: Constants.HtmlMetaData)
             webView.loadHTMLString(modifiedHtmlContent, baseURL: Bundle.main.bundleURL)
