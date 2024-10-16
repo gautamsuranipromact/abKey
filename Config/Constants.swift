@@ -9,6 +9,9 @@ struct Constants {
     static let AccentKeyboardTypeIdentifier = "accent"
     static let AlphabetKeyboardTypeIdentifier = "alphabetic"
     static let NumericKeyboardTypeIdentifier = "numeric"
+    static let AccentsCellIdentifier = "accentsCell"
+    static let AlphabetsCellIdentifier = "alphabetCell"
+    static let NumbersCellIdentifier = "numberCell"
     
     static let PremiumUserHeading = "abKey Pro(Premium)"
     static let LiteUserHeading = "abKey Pro(Lite)"
@@ -59,8 +62,10 @@ struct Constants {
     
     static let CheckSquareImg = "check_square"
     static let SquareImg = "square"
+    static let KeyboardImg = "Keyboard"
+    static let NumericSettingsImg = "numeric_settings"
     
-    static let DBBackupFileName = "CustomKeyboard.sqlite"
+    static let DBFileName = "CustomKeyboard.sqlite"
     
     static let HtmlMetaData = "<head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
     

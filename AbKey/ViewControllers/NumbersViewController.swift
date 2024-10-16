@@ -42,7 +42,7 @@ class NumbersViewController: UIViewController {
     
     func fetchDataAndReloadTable() {
         // Fetch the data from the database with keyboardType "alphabetic"
-        customKeys = SQLiteDBHelper.shared.read(forKeyboardType: "numeric")
+        customKeys = SQLiteDBHelper.shared.read(forKeyboardType: Constants.NumericKeyboardTypeIdentifier)
         numberTableView.reloadData()
     }
     func deleteSelectedCells() {
@@ -76,7 +76,7 @@ extension NumbersViewController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "numberCell", for: indexPath) as? NumberVCCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.NumbersCellIdentifier, for: indexPath) as? NumberVCCell else {
             return UITableViewCell()
         }
         

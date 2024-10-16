@@ -20,7 +20,7 @@ class KeyboardViewController: UIInputViewController,CustomKeyboardViewDelegate{
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.red
         // Add CustomKeyboardView to the input view
-        let nib = UINib(nibName: "CustomKeyboardView", bundle: nil)
+        let nib = UINib(nibName: Constants.CustomKeyboardNibIdentifier, bundle: nil)
         let objects = nib.instantiate(withOwner: nil, options: nil)
         customKeyboardView = objects.first as? CustomKeyboardView
         customKeyboardView.delegate = self
@@ -294,7 +294,7 @@ extension KeyboardViewController{
     }
     
     func openMainApp(_ hostValue: String) {
-        guard let url = URL(string: "abkeyapp://\(hostValue)") else { return }
+        guard let url = URL(string: "\(Constants.AppUrlSchemeIdentifier)\(hostValue)") else { return }
         
         openURL(url)
     }

@@ -230,6 +230,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joA-n3-MNS" userLabel="special_f" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="45" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="sf"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="special_f" backgroundImage="key_background_2">
@@ -247,11 +248,12 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnSpecialFTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="8NS-ar-xr5"/>
+                                                        <action selector="specialBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="VRS-FW-Ifm"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99W-53-AR2" userLabel="sspecial_g" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="90" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="sg"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="special_g" backgroundImage="key_background_2">
@@ -269,7 +271,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnSpecialGTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="vYg-EX-G63"/>
+                                                        <action selector="specialBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="zp5-rc-YNv"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzS-1b-t4F" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -362,6 +364,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcZ-GI-Ewc" userLabel="special_k" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="315" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="sk"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="special_k" backgroundImage="key_background_2">
@@ -379,7 +382,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnSpecialKTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="yBg-e4-RnU"/>
+                                                        <action selector="specialBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="V8m-aX-66P"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huz-dj-4ft" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -406,6 +409,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Y5-vv-ROI" userLabel="special_m" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="405" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="sm"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="special_m" backgroundImage="key_background_2">
@@ -423,7 +427,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnSpecialMTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Hpf-px-nJZ"/>
+                                                        <action selector="specialBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="fV7-fW-BTh"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iho-ff-Bmh" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -584,6 +588,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSD-1F-S0W" userLabel="special_p" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="270" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="sp"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="special_p" backgroundImage="key_background_2">
@@ -601,11 +606,12 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnSpecialPTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Edd-EQ-zUQ"/>
+                                                        <action selector="specialBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="sDZ-dG-2Zw"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUx-ge-f8S" userLabel="special_q" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="315" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="sq"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="special_q" backgroundImage="key_background_2">
@@ -623,7 +629,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnSpecialQTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qjb-Os-UBm"/>
+                                                        <action selector="specialBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="T0Z-w2-kzj"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swd-Zx-r7K" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -721,6 +727,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53M-it-Xgf" userLabel="special_b" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="45" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="ß"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="special_b" backgroundImage="key_background_2">
@@ -738,7 +745,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnSpecialBTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="DIY-GL-iJz"/>
+                                                        <action selector="specialBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Pb6-LN-Laa"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQd-Cy-0Ly" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">

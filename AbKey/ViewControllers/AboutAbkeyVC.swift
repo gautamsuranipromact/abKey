@@ -22,9 +22,9 @@ class AboutAbkeyVC: UIViewController,LZViewPagerDelegate,LZViewPagerDataSource{
         super.viewDidLoad()
         self.viewPagerProperties()
         if premiumValueFromAboutAbkeyVC >= 1{
-            lblHeadingTitle.text = "abKey Pro(Premium)"
+            lblHeadingTitle.text = Constants.PremiumUserHeading
         }else{
-            lblHeadingTitle.text = "abKey Pro(Lite)"
+            lblHeadingTitle.text = Constants.LiteUserHeading
         }
     }
     
@@ -33,18 +33,18 @@ class AboutAbkeyVC: UIViewController,LZViewPagerDelegate,LZViewPagerDataSource{
         viewPager.dataSource = self
         viewPager.hostController = self
         
-        let welcomeVC = UIStoryboard(name: "Main", bundle:
-        nil).instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
+        let welcomeVC = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle:
+                                        nil).instantiateViewController(withIdentifier: Constants.WelcomeVCIdentifier) as! WelcomeVC
         
-        let howToVC = UIStoryboard(name: "Main", bundle:
-        nil).instantiateViewController(withIdentifier: "HowToVC") as! HowToVC
+        let howToVC = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle:
+                                    nil).instantiateViewController(withIdentifier: Constants.HowToVCIdentifier) as! HowToVC
         
-        let aggrementVC = UIStoryboard(name: "Main", bundle:
-        nil).instantiateViewController(withIdentifier: "AggrementVC") as! AggrementVC
+        let aggrementVC = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle:
+                                        nil).instantiateViewController(withIdentifier: Constants.AgreementVCIdentifier) as! AggrementVC
         
-        welcomeVC.title = "WELCOME"
-        howToVC.title = "HOW TO"
-        aggrementVC.title = "AGGREMENT"
+        welcomeVC.title = Constants.WelcomeVCTitle
+        howToVC.title = Constants.HowToVCTitle
+        aggrementVC.title = Constants.AgreementVCTitle
         
         subControllers = [welcomeVC, howToVC, aggrementVC]
         viewPager.reload()

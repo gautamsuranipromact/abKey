@@ -20,19 +20,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 navigationController.popToRootViewController(animated: false)
             }
             
-            let premium = UserDefaults(suiteName: "group.abkeypro")?.integer(forKey: "premiumKey") ?? 0
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let premium = UserDefaults(suiteName: Constants.AppGroupSuiteName)?.integer(forKey: Constants.PremiumUserKey) ?? 0
+            let storyboard = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle: nil)
             
-            if host == "firstKeyboard" || host == "thirdKeyboard" {
-                if let vc = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
+            if host == Constants.FirstKeyboardHost || host == Constants.ThirdKeyboardHost {
+                if let vc = storyboard.instantiateViewController(withIdentifier: Constants.SettingVCIdentifier) as? SettingViewController {
                     vc.premiumValueFromRTPlusManager = premium
                     
                     if let navigationController = window?.rootViewController as? UINavigationController {
                         navigationController.pushViewController(vc, animated: true)
                     }
                 }
-            } else if (host == "secondKeyboard") {
-                if let vc = storyboard.instantiateViewController(withIdentifier: "AbKeySettingVC") as? AbKeySettingVC {
+            } else if (host == Constants.SecondKeyboardHost) {
+                if let vc = storyboard.instantiateViewController(withIdentifier: Constants.AbKeySettingVCIdentifier) as? AbKeySettingVC {
                     vc.premiumValueFromHomePageVC = premium
                     
                     if let navigationController = window?.rootViewController as? UINavigationController {

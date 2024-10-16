@@ -28,9 +28,9 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         viewPagerProperties()
         
         if premiumValueFromRTPlusManager >= 1{
-            lblAbKey.text = "abKey Pro(Premium)"
+            lblAbKey.text = Constants.PremiumUserHeading
         }else{
-            lblAbKey.text = "abKey Pro(Lite)"
+            lblAbKey.text = Constants.LiteUserHeading
         }
     }
     
@@ -39,21 +39,21 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         viewPager.dataSource = self
         viewPager.hostController = self
         
-        let alphabetVC = UIStoryboard(name: "Main", bundle:
-        nil).instantiateViewController(withIdentifier: "AlphabetViewController") as! AlphabetViewController
+        let alphabetVC = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle:
+                                        nil).instantiateViewController(withIdentifier: Constants.AlphabetVCIdentifier) as! AlphabetViewController
         alphabetVC.delegate = self
         
-        let numberVC = UIStoryboard(name: "Main", bundle:
-        nil).instantiateViewController(withIdentifier: "NumbersViewController") as! NumbersViewController
+        let numberVC = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle:
+                                        nil).instantiateViewController(withIdentifier: Constants.NumberVCIdentifier) as! NumbersViewController
         numberVC.delegate = self
         
-        let accentsVC = UIStoryboard(name: "Main", bundle:
-        nil).instantiateViewController(withIdentifier: "AccentsViewController") as! AccentsViewController
+        let accentsVC = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle:
+                                        nil).instantiateViewController(withIdentifier: Constants.AccentVCIdentifier) as! AccentsViewController
         accentsVC.delegate = self
         
-        alphabetVC.title = "Alphabets"
-        numberVC.title = "Numbers"
-        accentsVC.title = "Accents"
+        alphabetVC.title = Constants.AlphabetVCTitle
+        numberVC.title = Constants.NumberVCTitle
+        accentsVC.title = Constants.AccentVCTitle
         
         subControllers = [alphabetVC, numberVC, accentsVC]
         viewPager.reload()
@@ -127,7 +127,7 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
                 
             } else {
                 // Show an alert if no cell is selected or multiple cells are selected in Alphabet, Number, and Accent view controllers
-                let alert = UIAlertController(title: "Error", message: "Please select a single cell to edit from either Alphabets, Numbers, or Accents.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error", message: Constants.MultipleRowEditErrorMsg, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
             }
@@ -267,7 +267,7 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     }
     
     @IBAction func btnDeleteAction(_ sender: Any) {
-        let alert = UIAlertController(title: "Confirm Delete", message: "Do you want to delete selected items?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Confirm Delete", message: Constants.ConfirmDeleteMsg, preferredStyle: .alert)
 
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 

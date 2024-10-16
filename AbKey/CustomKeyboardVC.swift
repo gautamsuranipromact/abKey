@@ -17,7 +17,7 @@ class CustomKeyboardVC: UIViewController, CustomKeyboardViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add CustomKeyboardView to the input view of text field
-        let nib = UINib(nibName: "CustomKeyboardView", bundle: nil)
+        let nib = UINib(nibName: Constants.CustomKeyboardNibIdentifier, bundle: nil)
         let objects = nib.instantiate(withOwner: nil, options: nil)
         customKeyboardView = objects.first as? CustomKeyboardView
         customKeyboardView.delegate = self
@@ -155,7 +155,7 @@ extension CustomKeyboardVC {
     }
     
     func openMainApp(_ hostValue: String) {
-        guard let url = URL(string: "abkeyapp://\(hostValue)") else { return }
+        guard let url = URL(string: "\(Constants.AppUrlSchemeIdentifier)\(hostValue)") else { return }
         extensionContext?.open(url, completionHandler: { success in
             if !success {
                 // If the URL couldn't be opened, check the responder chain

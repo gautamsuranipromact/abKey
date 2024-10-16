@@ -35,7 +35,7 @@ protocol CustomKeyboardViewDelegate: AnyObject {
 class CustomKeyboardView: UIView {
     
     let databaseHelper = SQLiteDBHelper.shared // Database singleton instance shared
-    let sharedDefaults = UserDefaults(suiteName: "group.abkeypro") // App group suitename
+    let sharedDefaults = UserDefaults(suiteName: Constants.AppGroupSuiteName) // App group suitename
     
     ///Outlets
     @IBOutlet weak var btnKeyboardSwitch: UIButton!
@@ -205,20 +205,20 @@ class CustomKeyboardView: UIView {
             }
         }
         
-        isAutoCapEnabled = sharedDefaults?.bool(forKey: "isAutoCapEnabled") ?? false
+        isAutoCapEnabled = sharedDefaults?.bool(forKey: Constants.AutoCapitalizationKey) ?? false
         
         for button in TrBtnCollection {
-            let isTrEnabled = sharedDefaults?.bool(forKey: "isTrEnabled")
+            let isTrEnabled = sharedDefaults?.bool(forKey: Constants.TrEnabledKey)
             button.isEnabled = isTrEnabled!
         }
         
         for button in TPlusBtnCollection {
-            let isTPlusEnabled = sharedDefaults?.bool(forKey: "isTPlusEnabled")
+            let isTPlusEnabled = sharedDefaults?.bool(forKey: Constants.TPlusEnabledKey)
             button.isEnabled = isTPlusEnabled!
         }
         
         for button in SettingsBtnCollection {
-            let isRTPlusManager = sharedDefaults?.bool(forKey: "isRTPlusManager")
+            let isRTPlusManager = sharedDefaults?.bool(forKey: Constants.RTPlusEnabledKey)
             button.isEnabled = isRTPlusManager!
         }
         
@@ -369,7 +369,7 @@ extension CustomKeyboardView {
             }
             
             // Add new width and height constraints
-            let widthConstraint = AtTheRatePopupView.widthAnchor.constraint(equalToConstant: 450)
+            let widthConstraint = AtTheRatePopupView.widthAnchor.constraint(equalToConstant: 500)
             let heightConstraint = AtTheRatePopupView.heightAnchor.constraint(equalToConstant: 190)
             
             widthConstraint.isActive = true
@@ -412,7 +412,7 @@ extension CustomKeyboardView {
         if(tPlusTapped) {
             tPlusTapped = false
             storeBtnTap = (sender.titleLabel?.text ?? " ").lowercased()
-            if let premium = sharedDefaults?.integer(forKey: "premiumKey"), (premium == 0) {
+            if let premium = sharedDefaults?.integer(forKey: Constants.PremiumUserKey), (premium == 0) {
                 let values = databaseHelper.values(forKey: storeBtnTap)
                 if(values.count > 0){
                     TPlusViewWarningLabel.isHidden = false
@@ -541,129 +541,39 @@ extension CustomKeyboardView {
         changeKeysCase()
     }
     
-    @IBAction func btnSpecialFTap(_ sender: UIButton){
+    @IBAction func specialBtnTap(_ sender: UIButton){
+        let identifier = sender.accessibilityIdentifier!
         if(tPlusTapped) {
             TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sf"
+            storeBtnTap = identifier
             styleTPlusPopupView()
             TPlusPopupView.isHidden = false
             tPlusTapped = false
             checkPremiumUser()
         }
         else if(tRTapped){
-            retrieveStoredData("sf")
+            retrieveStoredData(identifier)
         }
         else{
-            self.delegate?.specialFbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialGTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sg"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-            checkPremiumUser()
-        }
-        else if(tRTapped){
-            retrieveStoredData("sg")
-        }
-        else{
-            self.delegate?.specialGbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialKTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sk"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-            checkPremiumUser()
-        }
-        else if(tRTapped) {
-            retrieveStoredData("sk")
-        }
-        else{
-            self.delegate?.specialKbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialMTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sm"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-            checkPremiumUser()
-        }
-        else if(tRTapped) {
-            retrieveStoredData("sm")
-        }
-        else{
-            self.delegate?.specialMbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialPTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sp"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-            checkPremiumUser()
-        }
-        else if(tRTapped) {
-            retrieveStoredData("sp")
-        }
-        else{
-            self.delegate?.specialPbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialQTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "sq"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-            checkPremiumUser()
-        }
-        else if(tRTapped) {
-            retrieveStoredData("sq")
-        }
-        else{
-            self.delegate?.specialQbutton()
-            changeKeysCase()
-        }
-    }
-    
-    @IBAction func btnSpecialBTap(_ sender: UIButton) {
-        if(tPlusTapped) {
-            print("tapped")
-            TPlusViewTextField.becomeFirstResponder()
-            storeBtnTap = "ß"
-            styleTPlusPopupView()
-            TPlusPopupView.isHidden = false
-            tPlusTapped = false
-            checkPremiumUser()
-        }
-        else if(tRTapped) {
-            retrieveStoredData("ß")
-        }
-        else{
-            self.delegate?.specialBbutton()
+            switch identifier {
+            case "sf":
+                delegate?.specialFbutton()
+            case "sg":
+                delegate?.specialGbutton()
+            case "sk":
+                delegate?.specialKbutton()
+            case "sm":
+                delegate?.specialMbutton()
+            case "sp":
+                delegate?.specialPbutton()
+            case "sq":
+                delegate?.specialQbutton()
+            case "ß":
+                delegate?.specialBbutton()
+            default:
+                print(identifier)
+            }
+            
             changeKeysCase()
         }
     }
@@ -748,27 +658,26 @@ extension CustomKeyboardView {
     
     @IBAction func tPlusViewSaveBtn() {
         if let value = TPlusViewTextField.text {
-            print("value from extension \(value)")
-            if let isPremiumCustomer = sharedDefaults?.integer(forKey: "premiumKey"), (isPremiumCustomer != 0) {
+            if let isPremiumCustomer = sharedDefaults?.integer(forKey: Constants.PremiumUserKey), (isPremiumCustomer != 0) {
                 print(isPremiumCustomer)
                 if let char = storeBtnTap.first {
                     if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
-                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "alphabetic")
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: Constants.AlphabetKeyboardTypeIdentifier)
                     } else if char.isNumber && (storeBtnTap.count == 1) {
-                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "numeric")
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: Constants.NumericKeyboardTypeIdentifier)
                     } else {
-                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: "accent")
+                        databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: Constants.AccentKeyboardTypeIdentifier)
                     }
                 }
             }
             else{
                 if let char = storeBtnTap.first {
                     if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
-                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "alphabetic")
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: Constants.AlphabetKeyboardTypeIdentifier)
                     } else if char.isNumber && (storeBtnTap.count == 1) {
-                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "numeric")
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: Constants.NumericKeyboardTypeIdentifier)
                     } else {
-                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: "accent")
+                        databaseHelper.insertOrUpdate(key: storeBtnTap, value: value, keyboardType: Constants.AccentKeyboardTypeIdentifier)
                     }
                 }
             }
@@ -802,13 +711,13 @@ extension CustomKeyboardView {
     
     @IBAction func btnSettingsTap() {
         if(!FirstKeyboardLayout.isHidden) {
-            delegate?.openMainApp("firstKeyboard")
+            delegate?.openMainApp(Constants.FirstKeyboardHost)
         }
         else if(!SecondKeyboardLayout.isHidden) {
-            delegate?.openMainApp("secondKeyboard")
+            delegate?.openMainApp(Constants.SecondKeyboardHost)
         }
         else{
-            delegate?.openMainApp("thirdKeyboard")
+            delegate?.openMainApp(Constants.ThirdKeyboardHost)
         }
     }
 }
@@ -885,7 +794,7 @@ extension CustomKeyboardView {
     }
     
     @objc func handleDismissKeyboardLongPress() {
-        delegate?.openMainApp("secondKeyboard")
+        delegate?.openMainApp(Constants.SecondKeyboardHost)
     }
     
     @objc func handleAtTheRateLongPress() {
@@ -1016,7 +925,7 @@ extension CustomKeyboardView {
     }
     
     func checkPremiumUser() {
-        if let premium = sharedDefaults?.integer(forKey: "premiumKey"), (premium == 0) {
+        if let premium = sharedDefaults?.integer(forKey: Constants.PremiumUserKey), (premium == 0) {
             let values = databaseHelper.values(forKey: storeBtnTap)
             if(values.count > 0){
                 TPlusViewWarningLabel.isHidden = false
@@ -1124,6 +1033,10 @@ extension CustomKeyboardView {
         // Warning label styling
         TPlusViewWarningLabel.textColor = UIColor(red: 0.1, green: 0.4, blue: 0.8, alpha: 1.0)
         TPlusViewWarningLabel.font = UIFont.boldSystemFont(ofSize: isIpad ? 22 : 16)  // Larger font for iPad
+        
+        if(isIpad && TPlusViewWarningLabel.isHidden) {
+            TPlusPopupView.spacing = 16
+        }
         
         // Save button styling
         TPlusViewSaveBtn.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)

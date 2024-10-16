@@ -33,7 +33,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        premium = UserDefaults(suiteName: "group.abkeypro")?.integer(forKey: "premiumKey") ?? 0
+        premium = UserDefaults(suiteName: Constants.AppGroupSuiteName)?.integer(forKey: Constants.PremiumUserKey) ?? 0
         
         self.applyRoundedCorners(to: lblAppTitle)
         self.applyRoundedCorners(to: viewAbKeySetting)
@@ -64,7 +64,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     // Fetch the premium product from App Store
     func fetchPremiumProduct() {
         if SKPaymentQueue.canMakePayments() {
-            let productRequest = SKProductsRequest(productIdentifiers: ["abkeypro.bobskteo.com.premium"])  // Replace with your product ID
+            let productRequest = SKProductsRequest(productIdentifiers: [Constants.PremiumProductIdentifier])
             productRequest.delegate = self
             productRequest.start()
         } else {
@@ -115,8 +115,8 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     func completePurchase() {
         // Update user default to reflect premium status
         premium = 1
-        let sharedDefaults = UserDefaults(suiteName: "group.abkeypro")
-        sharedDefaults?.set(premium, forKey: "premiumKey")
+        let sharedDefaults = UserDefaults(suiteName: Constants.AppGroupSuiteName)
+        sharedDefaults?.set(premium, forKey: Constants.PremiumUserKey)
         print("Premium purchase completed and saved!")
     }
     
@@ -149,7 +149,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     
     func promptToChangeKeyboard() {
         let alertController = UIAlertController(title: "Change Keyboard",
-                                                message: "Would you like to change your keyboard to a specific one?",
+                                                message: Constants.ChangeKeyboardPromptMsg,
                                                 preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
@@ -164,7 +164,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     }
     
     func presentActivityController() {
-        let textToShare = "abKey Typing Test" // Replace this with your actual text
+        let textToShare = Constants.AbKeyTypingTestMsg // Replace this with your actual text
         
         let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
         activityViewController.excludedActivityTypes = [] // You can exclude specific activities if needed
@@ -188,8 +188,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     }
     
     @IBAction func btnAbkeySettings(_ sender: Any) {
-        print("abkey buttom clicked")
-        if let vc = storyboard!.instantiateViewController(withIdentifier: "AbKeySettingVC") as? AbKeySettingVC {
+        if let vc = storyboard!.instantiateViewController(withIdentifier: Constants.AbKeySettingVCIdentifier) as? AbKeySettingVC {
                 vc.premiumValueFromHomePageVC = premium // Pass the premium value here
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -199,7 +198,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
         if premium == 1 {
             // Show an alert informing the user that they already have premium
             let alert = UIAlertController(title: "Already Premium",
-                                          message: "You are already a premium user. Enjoy your features!",
+                                          message: Constants.AlreadyPurchasedPremiumMsg,
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -261,8 +260,8 @@ extension HomePageVC {
     }
     
     func attributedTextWithIcons() -> NSAttributedString {
-        let keyboardIconImage = UIImage(named: "Keyboard")
-        let textWithKeyboardIcon = "To open abKey Pro Settings from abKey Pro input method, Press & Hold keyboard icon "
+        let keyboardIconImage = UIImage(named: Constants.KeyboardImg)
+        let textWithKeyboardIcon = Constants.AttributedTextWithKeyboardIcon
         
         let keyboardAttachment = NSTextAttachment()
         keyboardAttachment.image = keyboardIconImage
@@ -273,8 +272,8 @@ extension HomePageVC {
         keyboardAttributedText.append(keyboardAttachmentString)
         
         // Combine text with setting icon
-        let settingIconImage = UIImage(named: "numeric_settings")
-        let textWithSettingIcon = "OR press setting icon "
+        let settingIconImage = UIImage(named: Constants.NumericSettingsImg)
+        let textWithSettingIcon = Constants.AttributedTextWithSettingIcon
         
         let settingAttachment = NSTextAttachment()
         settingAttachment.image = settingIconImage

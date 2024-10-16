@@ -33,8 +33,8 @@ class AbKeySettingVC: UIViewController {
     
     var premiumValueFromHomePageVC: Int = 0
 
-    let sharedDefaults = UserDefaults(suiteName: "group.abkeypro")
-    var enableAutoCapitalization = UserDefaults(suiteName: "group.abkeypro")?.bool(forKey: "isAutoCapEnabled") ?? false
+    let sharedDefaults = UserDefaults(suiteName: Constants.AppGroupSuiteName)
+    var enableAutoCapitalization = UserDefaults(suiteName: Constants.AppGroupSuiteName)?.bool(forKey: Constants.AutoCapitalizationKey) ?? false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,65 +42,65 @@ class AbKeySettingVC: UIViewController {
         viewCorrectsCommonly.isHidden = true
         
         if premiumValueFromHomePageVC >= 1{
-            lblHeadingTitle.text = "abKey Pro(Premium)"
-            lblAbkeyTitle.text = "abKey Pro(Premium)"
+            lblHeadingTitle.text = Constants.PremiumUserHeading
+            lblAbkeyTitle.text = Constants.PremiumUserHeading
         }else{
-            lblHeadingTitle.text = "abKey Pro(Lite)"
-            lblAbkeyTitle.text = "abKey Pro(Lite)"
+            lblHeadingTitle.text = Constants.LiteUserHeading
+            lblAbkeyTitle.text = Constants.LiteUserHeading
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let isTrEnabled = sharedDefaults?.bool(forKey: "isTrEnabled") ?? false
+        let isTrEnabled = sharedDefaults?.bool(forKey: Constants.TrEnabledKey) ?? false
         updateTrFunctionalityUI(isTrEnabled: isTrEnabled)
         
-        let isTPlusEnabled = sharedDefaults?.bool(forKey: "isTPlusEnabled") ?? false
+        let isTPlusEnabled = sharedDefaults?.bool(forKey: Constants.TPlusEnabledKey) ?? false
         updateTPlusFunctionalityUI(isTPlusEnabled: isTPlusEnabled)
         
-        let isRTPlusManager = sharedDefaults?.bool(forKey: "isRTPlusManager") ?? false
+        let isRTPlusManager = sharedDefaults?.bool(forKey: Constants.RTPlusEnabledKey) ?? false
         updateRTPlusManagerUI(isRTPlusManager: isRTPlusManager)
         
-        let isAutoCapEnabled = sharedDefaults?.bool(forKey: "isAutoCapEnabled") ?? false
+        let isAutoCapEnabled = sharedDefaults?.bool(forKey: Constants.AutoCapitalizationKey) ?? false
         updateAutoCapFunctionalityUI(isAutoCapEnabled: isAutoCapEnabled)
     }
 
     func updateTrFunctionalityUI(isTrEnabled: Bool) {
         if isTrEnabled {
-            imgViewCheck.image = UIImage(named: "check_square")
-            lblTr.text = "Uncheck to disable Tr function"
+            imgViewCheck.image = UIImage(named: Constants.CheckSquareImg)
+            lblTr.text = Constants.DisableTrFunctionMsg
         } else {
-            imgViewCheck.image = UIImage(systemName: "square")
-            lblTr.text = "Check to enable Tr function"
+            imgViewCheck.image = UIImage(systemName: Constants.SquareImg)
+            lblTr.text = Constants.EnableTrFunctionMsg
         }
     }
     
     func updateTPlusFunctionalityUI(isTPlusEnabled: Bool) {
         if isTPlusEnabled {
-            imgViewTplus.image = UIImage(named: "check_square")
-            lblTPlus.text = "Uncheck to disable T+ function"
+            imgViewTplus.image = UIImage(named: Constants.CheckSquareImg)
+            lblTPlus.text = Constants.DisableTPlusFunctionMsg
         } else {
-            imgViewTplus.image = UIImage(systemName: "square")
-            lblTPlus.text = "Check to enable T+ function"
+            imgViewTplus.image = UIImage(systemName: Constants.SquareImg)
+            lblTPlus.text = Constants.EnableTPlusFunctionMsg
         }
     }
     
     func  updateRTPlusManagerUI(isRTPlusManager: Bool) {
         if isRTPlusManager {
-            imgViewRTPlusManager.image = UIImage(named: "check_square")
-            lblRTPlusManager.text = "Uncheck to disable rT+ Manager from keyboard"
+            imgViewRTPlusManager.image = UIImage(named: Constants.CheckSquareImg)
+            lblRTPlusManager.text = Constants.DisableRTPlusManagerMsg
         } else {
-            imgViewRTPlusManager.image = UIImage(systemName: "square")
-            lblRTPlusManager.text = "Check to enable rT+ Manager from keyboard"
+            imgViewRTPlusManager.image = UIImage(systemName: Constants.SquareImg)
+            lblRTPlusManager.text = Constants.EnableRTPlusManagerMsg
         }
     }
     
     func updateAutoCapFunctionalityUI(isAutoCapEnabled: Bool) {
         if(isAutoCapEnabled){
-            imgViewAutoCapitalizationManager.image = UIImage(named: "check_square")
+            imgViewAutoCapitalizationManager.image = UIImage(named: Constants.CheckSquareImg)
         }
         else{
-            imgViewAutoCapitalizationManager.image = UIImage(systemName: "square")
+            imgViewAutoCapitalizationManager.image = UIImage(systemName: Constants.SquareImg)
         }
     }
     
@@ -109,7 +109,6 @@ class AbKeySettingVC: UIViewController {
     }
     
     @IBAction func btnAutoSelect(_ sender: Any) {
-        print("btton clicked")
         viewSpace = 1
         
         if(viewSpace == 1){
@@ -131,32 +130,32 @@ class AbKeySettingVC: UIViewController {
     }
     
     @IBAction func btnTrEnable(_ sender: Any) {
-        let isTrEnabled = !(sharedDefaults?.bool(forKey: "isTrEnabled") ?? false)
-        sharedDefaults?.set(isTrEnabled, forKey: "isTrEnabled")
+        let isTrEnabled = !(sharedDefaults?.bool(forKey: Constants.TrEnabledKey) ?? false)
+        sharedDefaults?.set(isTrEnabled, forKey: Constants.TrEnabledKey)
         updateTrFunctionalityUI(isTrEnabled: isTrEnabled)
     }
     
     @IBAction func btnTPlusEnable(_ sender: Any){
-        let isTPlusEnabled = !(sharedDefaults?.bool(forKey: "isTPlusEnabled") ?? false)
-        sharedDefaults?.set(isTPlusEnabled, forKey: "isTPlusEnabled")
+        let isTPlusEnabled = !(sharedDefaults?.bool(forKey: Constants.TPlusEnabledKey) ?? false)
+        sharedDefaults?.set(isTPlusEnabled, forKey: Constants.TPlusEnabledKey)
         updateTPlusFunctionalityUI(isTPlusEnabled: isTPlusEnabled)
     }
     
     @IBAction func btnRTPlusManager(_ sender: Any){
-        let isRTPlusManager = !(sharedDefaults?.bool(forKey: "isRTPlusManager") ?? false)
-        sharedDefaults?.set(isRTPlusManager, forKey: "isRTPlusManager")
+        let isRTPlusManager = !(sharedDefaults?.bool(forKey: Constants.RTPlusEnabledKey) ?? false)
+        sharedDefaults?.set(isRTPlusManager, forKey: Constants.RTPlusEnabledKey)
         updateRTPlusManagerUI(isRTPlusManager: isRTPlusManager)
     }
     
     
     @IBAction func btnAutoCapitalizationManager(_ sender: Any) {
-        let isAutoCapitalizationEnabled = !(sharedDefaults?.bool(forKey: "isAutoCapEnabled") ?? false)
-        sharedDefaults?.setValue(isAutoCapitalizationEnabled, forKey: "isAutoCapEnabled")
+        let isAutoCapitalizationEnabled = !(sharedDefaults?.bool(forKey: Constants.AutoCapitalizationKey) ?? false)
+        sharedDefaults?.setValue(isAutoCapitalizationEnabled, forKey: Constants.AutoCapitalizationKey)
         updateAutoCapFunctionalityUI(isAutoCapEnabled: isAutoCapitalizationEnabled)
     }
     
     @IBAction func btnRTShowReplaceDelete(_ sender: Any){
-        if let vc = storyboard!.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
+        if let vc = storyboard!.instantiateViewController(withIdentifier: Constants.SettingVCIdentifier) as? SettingViewController {
                 vc.premiumValueFromRTPlusManager = premiumValueFromHomePageVC // Pass the premium value here
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -165,12 +164,12 @@ class AbKeySettingVC: UIViewController {
     @IBAction func btnBackupAction(_ sender: Any) {
         // Ensure this runs on the main thread
             DispatchQueue.main.async {
-                guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abkeypro") else {
+                guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.AppGroupSuiteName) else {
                     print("App Group container is not available.")
                     return
                 }
                 
-                let fileURL = containerURL.appendingPathComponent("CustomKeyboard.sqlite")
+                let fileURL = containerURL.appendingPathComponent(Constants.DBFileName)
 
                 // Check if file exists to avoid sharing nonexistent file
                 guard FileManager.default.fileExists(atPath: fileURL.path) else {
@@ -200,7 +199,7 @@ class AbKeySettingVC: UIViewController {
     }
     
     @IBAction func aboutABKeyAction(_ sender: Any) {
-        if let vc = storyboard!.instantiateViewController(withIdentifier: "AboutAbkeyVC") as? AboutAbkeyVC {
+        if let vc = storyboard!.instantiateViewController(withIdentifier: Constants.AboutAbKeyVCIdentifier) as? AboutAbkeyVC {
                 vc.premiumValueFromAboutAbkeyVC = premiumValueFromHomePageVC // Pass the premium value here
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -215,12 +214,12 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
             return
         }
         
-        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abkeypro") else {
+        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.AppGroupSuiteName) else {
             print("App Group container is not available.")
             return
         }
         
-        let destinationURL = containerURL.appendingPathComponent("CustomKeyboard.sqlite")
+        let destinationURL = containerURL.appendingPathComponent(Constants.DBFileName)
         
         // Replace the existing database with the selected one
         do {
@@ -238,7 +237,7 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
     }
 
     func showRestartAlert() {
-        let alert = UIAlertController(title: "Restart Required", message: "To apply the restored changes, please close the app and reopen it.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Restart Required", message: Constants.RestartApplicationMsg, preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "OK", style: .default)
         
@@ -257,7 +256,7 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
     func showInstructionsForRestart() {
         let alert = UIAlertController(
             title: "How to Restart",
-            message: "To restart the app, swipe up from the bottom of your screen (or double-click the home button on older devices), then swipe the app away to close it. Reopen it from the home screen.",
+            message: Constants.RestartApplicationProcessMsg,
             preferredStyle: .alert
         )
         

@@ -41,7 +41,7 @@ class AccentsViewController: UIViewController {
     
     func fetchDataAndReloadTable() {
         // Fetch the data from the database with keyboardType "alphabetic"
-        customKeys = SQLiteDBHelper.shared.read(forKeyboardType: "accent")
+        customKeys = SQLiteDBHelper.shared.read(forKeyboardType: Constants.AccentKeyboardTypeIdentifier)
         accentTableView.reloadData()
     }
     
@@ -75,7 +75,7 @@ extension AccentsViewController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "accentsCell", for: indexPath) as? AccentsVCCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.AccentsCellIdentifier, for: indexPath) as? AccentsVCCell else {
             return UITableViewCell()
         }
         

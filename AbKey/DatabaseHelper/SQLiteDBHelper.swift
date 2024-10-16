@@ -24,11 +24,11 @@ class SQLiteDBHelper {
         }
     
     private func openDatabase() {
-        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.abkeypro") else {
+        guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.AppGroupSuiteName) else {
             print("App Group container is not available.")
             return
         }
-        let fileURL = containerURL.appendingPathComponent("CustomKeyboard.sqlite")
+        let fileURL = containerURL.appendingPathComponent(Constants.DBFileName)
 
         if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
             print("Error opening database")

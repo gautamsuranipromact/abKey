@@ -45,6 +45,8 @@
 		46E52A3B2BA4255800240FF7 /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E52A3A2BA4255800240FF7 /* HomePageVC.swift */; };
 		6564FEC9A2D52428B1B13FD3 /* Pods_AbKeyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64635E8BB481433BDCD92079 /* Pods_AbKeyTests.framework */; };
 		BB4016410C052C31EF64FC2F /* Pods_CustomKeyboardView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A6D4CCBA0B0C2F2401278F /* Pods_CustomKeyboardView.framework */; };
+		D368AA212CBE920E006CFE85 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368AA202CBE920E006CFE85 /* Constants.swift */; };
+		D368AA222CBE920E006CFE85 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D368AA202CBE920E006CFE85 /* Constants.swift */; };
 		D3ACD1242C86CECB00664362 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACD1232C86CECB00664362 /* CustomButton.swift */; };
 		D3ACD1252C86CECB00664362 /* CustomKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACD1212C86CECB00664362 /* CustomKeyboardView.swift */; };
 		D3ACD1262C86CEDB00664362 /* CustomKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3ACD1222C86CECB00664362 /* CustomKeyboardView.xib */; };
@@ -146,6 +148,7 @@
 		725E10ABE1A01B956847539C /* Pods-AbKey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AbKey.debug.xcconfig"; path = "Target Support Files/Pods-AbKey/Pods-AbKey.debug.xcconfig"; sourceTree = "<group>"; };
 		75FC946F77B45EC8265EB6FD /* Pods_AbKey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AbKey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A6D4CCBA0B0C2F2401278F /* Pods_CustomKeyboardView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomKeyboardView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D368AA202CBE920E006CFE85 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3ACD1212C86CECB00664362 /* CustomKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardView.swift; sourceTree = "<group>"; };
 		D3ACD1222C86CECB00664362 /* CustomKeyboardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomKeyboardView.xib; sourceTree = "<group>"; };
 		D3ACD1232C86CECB00664362 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -255,6 +258,7 @@
 		46DA79472B4E94B500A9C180 = {
 			isa = PBXGroup;
 			children = (
+				D3EAEC2F2CBF8A9B00772F05 /* Config */,
 				46DA79522B4E94B500A9C180 /* AbKey */,
 				46DA79692B4E94B600A9C180 /* AbKeyTests */,
 				46DA79732B4E94B600A9C180 /* AbKeyUITests */,
@@ -342,6 +346,14 @@
 				D3ACD1222C86CECB00664362 /* CustomKeyboardView.xib */,
 			);
 			path = CustomKeyboardView;
+			sourceTree = "<group>";
+		};
+		D3EAEC2F2CBF8A9B00772F05 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				D368AA202CBE920E006CFE85 /* Constants.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,6 +660,7 @@
 				46DA79562B4E94B500A9C180 /* SceneDelegate.swift in Sources */,
 				D3ACD1282C86D14500664362 /* CustomKeyboardView.swift in Sources */,
 				468070C12B9EC88A003E2804 /* SettingViewController.swift in Sources */,
+				D368AA212CBE920E006CFE85 /* Constants.swift in Sources */,
 				46894B4D2BB2900500FF01BD /* WelcomeVC.swift in Sources */,
 				4649A7292B9EED13009423CC /* AlphabetViewController.swift in Sources */,
 				46433FDE2B9F0E150012941E /* NumberVCCell.swift in Sources */,
@@ -687,6 +700,7 @@
 				462DD3E82BA17480008A83ED /* SQLiteDBHelper.swift in Sources */,
 				46433FE22B9F13850012941E /* AccentsVCCell.swift in Sources */,
 				46433FDF2B9F0E190012941E /* NumberVCCell.swift in Sources */,
+				D368AA222CBE920E006CFE85 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

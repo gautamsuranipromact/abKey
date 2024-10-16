@@ -43,7 +43,7 @@ class AlphabetViewController: UIViewController {
 
     func fetchDataAndReloadTable() {
         // Fetch the data from the database with keyboardType "alphabetic"
-        customKeys = SQLiteDBHelper.shared.read(forKeyboardType: "alphabetic")
+        customKeys = SQLiteDBHelper.shared.read(forKeyboardType: Constants.AlphabetKeyboardTypeIdentifier)
         alphabetTableView.reloadData()
     }
     
@@ -79,7 +79,7 @@ extension AlphabetViewController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "alphabetCell", for: indexPath) as? AlphabetVCCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.AlphabetsCellIdentifier, for: indexPath) as? AlphabetVCCell else {
             return UITableViewCell()
         }
         
