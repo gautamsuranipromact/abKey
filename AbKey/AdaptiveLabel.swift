@@ -21,7 +21,7 @@ class AdaptiveLabel: UILabel {
     }
 
     private func adjustFontForDevice() {
-        if UIDevice.current.userInterfaceIdiom == .pad {
+        if Constants.IpadScreen {
             // Increase the font size for iPad
             self.font = self.font.withSize(self.font.pointSize * 1.5)
         }

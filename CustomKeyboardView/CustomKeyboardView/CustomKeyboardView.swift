@@ -155,7 +155,6 @@ class CustomKeyboardView: UIView {
     var backspaceRepeatTimer: Timer?
     var moveCursorLeftRepeatTimer: Timer?
     var moveCursorRightRepeatTimer: Timer?
-    let isIpad = UIDevice.current.userInterfaceIdiom == .pad
     
     var isFirstCapsUppercase: Bool = false
     var isFirstCapsLocked: Bool = false
@@ -170,34 +169,11 @@ class CustomKeyboardView: UIView {
         super.awakeFromNib()
         
         // Making changes for iPad Screens.
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            // First Keyboard Layout - Set minimum height constraint
-            if let existingHeightConstraint = FirstKeyboardLayout.constraints.first(where: { $0.firstAttribute == .height }) {
-                FirstKeyboardLayout.removeConstraint(existingHeightConstraint)
-            }
-            let firstKeyboardMinHeightConstraint = FirstKeyboardLayout.heightAnchor.constraint(equalToConstant: 300)
-            firstKeyboardMinHeightConstraint.isActive = true
-            
-            // Second Keyboard Layout - Set minimum height constraint
-            if let existingHeightConstraint = SecondKeyboardLayout.constraints.first(where: { $0.firstAttribute == .height }) {
-                SecondKeyboardLayout.removeConstraint(existingHeightConstraint)
-            }
-            let secondKeyboardMinHeightConstraint = SecondKeyboardLayout.heightAnchor.constraint(equalToConstant: 300)
-            secondKeyboardMinHeightConstraint.isActive = true
-            
-            // Third Keyboard Layout - Set minimum height constraint
-            if let existingHeightConstraint = ThirdKeyboardLayout.constraints.first(where: { $0.firstAttribute == .height }) {
-                ThirdKeyboardLayout.removeConstraint(existingHeightConstraint)
-            }
-            let thirdKeyboardMinHeightConstraint = ThirdKeyboardLayout.heightAnchor.constraint(equalToConstant: 300)
-            thirdKeyboardMinHeightConstraint.isActive = true
-            
-            if let existingHeightConstraint = TPlusViewButtonsContainer.constraints.first(where: { $0.firstAttribute == .height }) {
-                TPlusViewButtonsContainer.removeConstraint(existingHeightConstraint)
-            }
-            
-            let newHeightConstraint = TPlusViewButtonsContainer.heightAnchor.constraint(equalToConstant: 50)
-            newHeightConstraint.isActive = true
+        if Constants.IpadScreen {
+            setMinimumHeightConstraint(for: FirstKeyboardLayout, height: 300)
+            setMinimumHeightConstraint(for: SecondKeyboardLayout, height: 300)
+            setMinimumHeightConstraint(for: ThirdKeyboardLayout, height: 300)
+            setMinimumHeightConstraint(for: TPlusViewButtonsContainer, height: 50)
             
             PurchasePremiumNotifierHeading.font = UIFont.boldSystemFont(ofSize: 22)
             for label in PurchasePremiumNotifierLabels {
@@ -357,7 +333,7 @@ extension CustomKeyboardView {
             changeKeysCaseThirdKeyboard()
         }
             
-        if UIDevice.current.userInterfaceIdiom == .pad {
+        if Constants.IpadScreen {
             // Disable autoresizing mask translation
             AtTheRatePopupView.translatesAutoresizingMaskIntoConstraints = false
             
@@ -978,87 +954,95 @@ extension CustomKeyboardView {
         }
     }
     
+    func setMinimumHeightConstraint(for view: UIView, height: CGFloat) {
+        if let existingHeightConstraint = view.constraints.first(where: { $0.firstAttribute == .height }) {
+            view.removeConstraint(existingHeightConstraint)
+        }
+        let newHeightConstraint = view.heightAnchor.constraint(equalToConstant: height)
+        newHeightConstraint.isActive = true
+    }
+    
     // Setting up the Premium Purchase View before displaying
     func configurePremiumPurchaseView() {
         PurchasePremiumNotifierPopup.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-        PurchasePremiumNotifierPopup.layer.cornerRadius = isIpad ? 16 : 12
-        PurchasePremiumNotifierPopup.layoutMargins = isIpad ? UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20) : UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        PurchasePremiumNotifierPopup.layer.cornerRadius = Constants.IpadScreen ? 16 : 12
+        PurchasePremiumNotifierPopup.layoutMargins = Constants.IpadScreen ? UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20) : UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         PurchasePremiumNotifierPopup.isLayoutMarginsRelativeArrangement = true
         
         UpgradeToPremium.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1.0)
         UpgradeToPremium.setTitleColor(.white, for: .normal)
-        UpgradeToPremium.layer.cornerRadius = isIpad ? 12 : 10
-        UpgradeToPremium.titleLabel?.font = UIFont.boldSystemFont(ofSize: isIpad ? 24 : 18)
+        UpgradeToPremium.layer.cornerRadius = Constants.IpadScreen ? 12 : 10
+        UpgradeToPremium.titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 24 : 18)
         UpgradeToPremium.layer.shadowColor = UIColor.black.cgColor
         UpgradeToPremium.layer.shadowOpacity = 0.2
         UpgradeToPremium.layer.shadowOffset = CGSize(width: 0, height: 3)
-        UpgradeToPremium.layer.shadowRadius = isIpad ? 5 : 4
+        UpgradeToPremium.layer.shadowRadius = Constants.IpadScreen ? 5 : 4
         
         ClosePremiumPurchasePopup.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1.0)
         ClosePremiumPurchasePopup.setTitleColor(UIColor(red: 55/255, green: 71/255, blue: 79/255, alpha: 1.0), for: .normal)
-        ClosePremiumPurchasePopup.layer.cornerRadius = isIpad ? 12 : 10
-        ClosePremiumPurchasePopup.titleLabel?.font = UIFont.boldSystemFont(ofSize: isIpad ? 24 : 18)
+        ClosePremiumPurchasePopup.layer.cornerRadius = Constants.IpadScreen ? 12 : 10
+        ClosePremiumPurchasePopup.titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 24 : 18)
         ClosePremiumPurchasePopup.layer.shadowColor = UIColor.black.cgColor
         ClosePremiumPurchasePopup.layer.shadowOpacity = 0.2
         ClosePremiumPurchasePopup.layer.shadowOffset = CGSize(width: 0, height: 3)
-        ClosePremiumPurchasePopup.layer.shadowRadius = isIpad ? 5 : 4
+        ClosePremiumPurchasePopup.layer.shadowRadius = Constants.IpadScreen ? 5 : 4
     }
     
     // Setting up the TPlus Popup View before displaying
     func styleTPlusPopupView() {
         TPlusPopupView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-        TPlusPopupView.layer.cornerRadius = isIpad ? 25 : 12  // Larger corner radius for iPad
+        TPlusPopupView.layer.cornerRadius = Constants.IpadScreen ? 25 : 12  // Larger corner radius for iPad
         TPlusPopupView.layer.shadowColor = UIColor.black.cgColor
-        TPlusPopupView.layer.shadowOpacity = isIpad ? 0.3 : 0.2
-        TPlusPopupView.layer.shadowOffset = CGSize(width: 0, height: isIpad ? 8 : 2)
-        TPlusPopupView.layer.shadowRadius = isIpad ? 10 : 4
+        TPlusPopupView.layer.shadowOpacity = Constants.IpadScreen ? 0.3 : 0.2
+        TPlusPopupView.layer.shadowOffset = CGSize(width: 0, height: Constants.IpadScreen ? 8 : 2)
+        TPlusPopupView.layer.shadowRadius = Constants.IpadScreen ? 10 : 4
         TPlusPopupView.layer.masksToBounds = false
         TPlusPopupView.isLayoutMarginsRelativeArrangement = true
-        TPlusPopupView.layoutMargins = isIpad ? UIEdgeInsets(top: 40, left: 50, bottom: 50, right: 30) : UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
+        TPlusPopupView.layoutMargins = Constants.IpadScreen ? UIEdgeInsets(top: 40, left: 50, bottom: 50, right: 30) : UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20)
         
         // Title styling
         TPlusPopupViewTitle.text = "TPlus Input Key : \(storeBtnTap)"
-        TPlusPopupViewTitle.font = UIFont.boldSystemFont(ofSize: isIpad ? 30 : 20)  // Larger font for iPad
+        TPlusPopupViewTitle.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 30 : 20)  // Larger font for iPad
         
         // Text field styling
         TPlusViewTextField.backgroundColor = UIColor.white
         TPlusViewTextField.textColor = UIColor.black
         TPlusViewTextField.layer.borderColor = UIColor.lightGray.cgColor
-        TPlusViewTextField.layer.borderWidth = isIpad ? 2.0 : 1.0  // Thicker border on iPad
-        TPlusViewTextField.layer.cornerRadius = isIpad ? 12 : 8
+        TPlusViewTextField.layer.borderWidth = Constants.IpadScreen ? 2.0 : 1.0  // Thicker border on iPad
+        TPlusViewTextField.layer.cornerRadius = Constants.IpadScreen ? 12 : 8
         TPlusViewTextField.layer.masksToBounds = true
-        TPlusViewTextField.font = UIFont.systemFont(ofSize: isIpad ? 24 : 16)  // Larger font for iPad
-        TPlusViewTextField.setPadding(isIpad ? 30 : 15)  // More padding on iPad
+        TPlusViewTextField.font = UIFont.systemFont(ofSize: Constants.IpadScreen ? 24 : 16)  // Larger font for iPad
+        TPlusViewTextField.setPadding(Constants.IpadScreen ? 30 : 15)  // More padding on iPad
         
         // Warning label styling
         TPlusViewWarningLabel.textColor = UIColor(red: 0.1, green: 0.4, blue: 0.8, alpha: 1.0)
-        TPlusViewWarningLabel.font = UIFont.boldSystemFont(ofSize: isIpad ? 22 : 16)  // Larger font for iPad
+        TPlusViewWarningLabel.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 22 : 16)  // Larger font for iPad
         
-        if(isIpad && TPlusViewWarningLabel.isHidden) {
+        if(Constants.IpadScreen && TPlusViewWarningLabel.isHidden) {
             TPlusPopupView.spacing = 16
         }
         
         // Save button styling
         TPlusViewSaveBtn.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
         TPlusViewSaveBtn.setTitleColor(.white, for: .normal)
-        TPlusViewSaveBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: isIpad ? 24 : 18)  // Larger button font for iPad
-        TPlusViewSaveBtn.layer.cornerRadius = isIpad ? 12 : 8
+        TPlusViewSaveBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 24 : 18)  // Larger button font for iPad
+        TPlusViewSaveBtn.layer.cornerRadius = Constants.IpadScreen ? 12 : 8
         TPlusViewSaveBtn.layer.masksToBounds = true
         TPlusViewSaveBtn.layer.shadowColor = UIColor.black.cgColor
         TPlusViewSaveBtn.layer.shadowOpacity = 0.3
-        TPlusViewSaveBtn.layer.shadowOffset = CGSize(width: 0, height: isIpad ? 5 : 3)
-        TPlusViewSaveBtn.layer.shadowRadius = isIpad ? 8 : 3
+        TPlusViewSaveBtn.layer.shadowOffset = CGSize(width: 0, height: Constants.IpadScreen ? 5 : 3)
+        TPlusViewSaveBtn.layer.shadowRadius = Constants.IpadScreen ? 8 : 3
         
         // Close button styling
         TPlusViewCloseBtn.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1)
         TPlusViewCloseBtn.setTitleColor(.black, for: .normal)
-        TPlusViewCloseBtn.titleLabel?.font = UIFont.systemFont(ofSize: isIpad ? 24 : 18)  // Larger button font for iPad
-        TPlusViewCloseBtn.layer.cornerRadius = isIpad ? 12 : 8
+        TPlusViewCloseBtn.titleLabel?.font = UIFont.systemFont(ofSize: Constants.IpadScreen ? 24 : 18)  // Larger button font for iPad
+        TPlusViewCloseBtn.layer.cornerRadius = Constants.IpadScreen ? 12 : 8
         TPlusViewCloseBtn.layer.masksToBounds = true
         TPlusViewCloseBtn.layer.shadowColor = UIColor.black.cgColor
         TPlusViewCloseBtn.layer.shadowOpacity = 0.3
-        TPlusViewCloseBtn.layer.shadowOffset = CGSize(width: 0, height: isIpad ? 5 : 3)
-        TPlusViewCloseBtn.layer.shadowRadius = isIpad ? 8 : 3
+        TPlusViewCloseBtn.layer.shadowOffset = CGSize(width: 0, height: Constants.IpadScreen ? 5 : 3)
+        TPlusViewCloseBtn.layer.shadowRadius = Constants.IpadScreen ? 8 : 3
     }
     
     // Retrieving the stored data for an entry and presenting it as a popup view
@@ -1090,13 +1074,13 @@ extension CustomKeyboardView {
             
             let titleLabel = UILabel()
             titleLabel.text = "Select any one"
-            titleLabel.font = UIFont.boldSystemFont(ofSize: isIpad ? 30 : 22) // Increased font size for iPad
+            titleLabel.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 30 : 22) // Increased font size for iPad
             titleLabel.textColor = UIColor.darkGray
             
             let crossButton = UIButton(type: .system)
             crossButton.setTitle("✖️", for: .normal)
             crossButton.setTitleColor(.darkGray, for: .normal)
-            crossButton.titleLabel?.font = UIFont.systemFont(ofSize: isIpad ? 30 : 22) // Increased font size for iPad
+            crossButton.titleLabel?.font = UIFont.systemFont(ofSize: Constants.IpadScreen ? 30 : 22) // Increased font size for iPad
             crossButton.addTarget(self, action: #selector(crossButtonTapped), for: .touchUpInside)
             
             titleContainer.addArrangedSubview(titleLabel)
@@ -1122,15 +1106,15 @@ extension CustomKeyboardView {
             ])
             
             let buttonWidth: CGFloat = PremiumEntriesPopupView.frame.width - 20
-            let buttonHeight: CGFloat = isIpad ? 50 : 40
-            let buttonSpacing: CGFloat = isIpad ? 12 : 8
+            let buttonHeight: CGFloat = Constants.IpadScreen ? 50 : 40
+            let buttonSpacing: CGFloat = Constants.IpadScreen ? 12 : 8
             var yPosition: CGFloat = 0
             
             for (index, value) in storedValues.enumerated() {
                 let button = UIButton(type: .system)
                 button.setTitle(value, for: .normal)
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.titleLabel?.font = UIFont.systemFont(ofSize: isIpad ? 25 : 16) // Increased font size for iPad
+                button.titleLabel?.font = UIFont.systemFont(ofSize: Constants.IpadScreen ? 25 : 16) // Increased font size for iPad
                 button.backgroundColor = UIColor(red: 85/255, green: 143/255, blue: 185/255, alpha: 1.0)
                 button.layer.cornerRadius = 10
                 button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)

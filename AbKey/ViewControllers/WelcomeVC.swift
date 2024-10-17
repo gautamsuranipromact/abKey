@@ -34,26 +34,9 @@ class WelcomeVC: UIViewController {
             webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-
-//    func loadLocalHTMLFile() {
-//        if(UIDevice.current.userInterfaceIdiom == .pad) {
-//            if let htmlPath = Bundle.main.path(forResource: "WelcomeIpad", ofType: "html"),
-//               let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
-//                let modifiedHtmlContent = htmlContent.replacingOccurrences(of: "<head>", with: Constants.HtmlMetaData)
-//                webView.loadHTMLString(modifiedHtmlContent, baseURL: Bundle.main.bundleURL)
-//            }
-//        }
-//        else{
-//            if let htmlPath = Bundle.main.path(forResource: "Welcome", ofType: "html"),
-//               let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
-//                let modifiedHtmlContent = htmlContent.replacingOccurrences(of: "<head>", with: Constants.HtmlMetaData)
-//                webView.loadHTMLString(modifiedHtmlContent, baseURL: Bundle.main.bundleURL)
-//            }
-//        }
-//    }
     
     func loadLocalHTMLFile() {
-        let fileName = UIDevice.current.userInterfaceIdiom == .pad ? "WelcomeIpad" : "Welcome"
+        let fileName = Constants.IpadScreen ? "WelcomeIpad" : "Welcome"
         
         if let htmlPath = Bundle.main.path(forResource: fileName, ofType: "html"),
            let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {

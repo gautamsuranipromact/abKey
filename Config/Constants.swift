@@ -52,8 +52,8 @@ struct Constants {
     static let RestartApplicationMsg = "To apply the restored changes, please close the app and reopen it."
     static let RestartApplicationProcessMsg = "To restart the app, swipe up from the bottom of your screen (or double-click the home button on older devices), then swipe the app away to close it. Reopen it from the home screen."
     
-    static let AttributedTextWithKeyboardIcon = "To open abKey Pro Settings from abKey Pro input method, Press & Hold keyboard icon "
-    static let AttributedTextWithSettingIcon = "OR press setting icon "
+    static let AttributedTextWithKeyboardIcon = "To open abKey Pro Settings from abKey Pro input method, Press & Hold keyboard icon   "
+    static let AttributedTextWithSettingIcon = "   OR press setting icon  "
     
     static let PremiumProductIdentifier = "abkeypro.bobskteo.com.premium"
     static let AppUrlSchemeIdentifier = "abkeyapp://"

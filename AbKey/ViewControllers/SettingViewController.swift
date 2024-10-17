@@ -106,37 +106,88 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     
     @IBAction func btnEditAction(_ sender: Any) {
         if let alphabetVC = subControllers.first(where: { $0 is AlphabetViewController }) as? AlphabetViewController,
-               let alphabetTableView = alphabetVC.alphabetTableView,
-               let selectedIndexPaths = alphabetTableView.indexPathsForSelectedRows,
-               selectedIndexPaths.count == 1 {
-                
-                // Get the selected key and value for AlphabetViewController
-                editSelectedCell(alphabetVC: alphabetVC, selectedIndexPaths: selectedIndexPaths)
-                
-            } else if let numbersVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController,
-                      let numberTableView = numbersVC.numberTableView,
-                      let selectedIndexPaths = numberTableView.indexPathsForSelectedRows,
-                      selectedIndexPaths.count == 1 {
-                
-                // Get the selected key and value for NumbersViewController
-                editSelectedCell(numbersVC: numbersVC, selectedIndexPaths: selectedIndexPaths)
-                
-            } else if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController,
-                      let accentTableView = accentVC.accentTableView,
-                      let selectedIndexPaths = accentTableView.indexPathsForSelectedRows,
-                      selectedIndexPaths.count == 1 {
-                
-                // Get the selected key and value for AccentViewController
-                editSelectedCell(accentVC: accentVC, selectedIndexPaths: selectedIndexPaths)
-                
-            } else {
-                // Show an alert if no cell is selected or multiple cells are selected in Alphabet, Number, and Accent view controllers
-                let alert = UIAlertController(title: "Error", message: Constants.MultipleRowEditErrorMsg, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
+           let alphabetTableView = alphabetVC.alphabetTableView,
+           let selectedIndexPaths = alphabetTableView.indexPathsForSelectedRows,
+           selectedIndexPaths.count == 1 {
+            
+            // Get the selected key and value for AlphabetViewController
+            editSelectedCell(alphabetVC: alphabetVC, selectedIndexPaths: selectedIndexPaths)
+            
+        } else if let numbersVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController,
+                  let numberTableView = numbersVC.numberTableView,
+                  let selectedIndexPaths = numberTableView.indexPathsForSelectedRows,
+                  selectedIndexPaths.count == 1 {
+            
+            // Get the selected key and value for NumbersViewController
+            editSelectedCell(numbersVC: numbersVC, selectedIndexPaths: selectedIndexPaths)
+            
+        } else if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController,
+                  let accentTableView = accentVC.accentTableView,
+                  let selectedIndexPaths = accentTableView.indexPathsForSelectedRows,
+                  selectedIndexPaths.count == 1 {
+            
+            // Get the selected key and value for AccentViewController
+            editSelectedCell(accentVC: accentVC, selectedIndexPaths: selectedIndexPaths)
+            
+        } else {
+            // Show an alert if no cell is selected or multiple cells are selected in Alphabet, Number, and Accent view controllers
+            let alert = UIAlertController(title: "Error", message: Constants.MultipleRowEditErrorMsg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
+    @IBAction func btnDeleteAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Confirm Delete", message: Constants.ConfirmDeleteMsg, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Add a "Delete" action to perform the deletion
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] action in
+            // Deselect rows in all controllers before deletion
+            if let alphabetVC = subControllers.first(where: { $0 is AlphabetViewController }) as? AlphabetViewController {
+                alphabetVC.alphabetTableView?.indexPathsForSelectedRows?.forEach { indexPath in
+                    alphabetVC.alphabetTableView?.deselectRow(at: indexPath, animated: false)
+                }
             }
+            
+            if let numberVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController {
+                numberVC.numberTableView?.indexPathsForSelectedRows?.forEach { indexPath in
+                    numberVC.numberTableView?.deselectRow(at: indexPath, animated: false)
+                }
+            }
+            
+            if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController {
+                accentVC.accentTableView?.indexPathsForSelectedRows?.forEach { indexPath in
+                    accentVC.accentTableView?.deselectRow(at: indexPath, animated: false)
+                }
+            }
+            
+            // Now delete selected items from the current visible tab
+            if let currentVC = subControllers[viewPager.currentIndex!] as? AlphabetViewController {
+                currentVC.deleteSelectedCells()
+            } else if let currentVC = subControllers[viewPager.currentIndex!] as? NumbersViewController {
+                currentVC.deleteSelectedCells()
+            } else if let currentVC = subControllers[viewPager.currentIndex!] as? AccentsViewController {
+                currentVC.deleteSelectedCells()
+            }
+        }))
+        
+        // Present the alert to the user
+        if let presenter = sender as? UIViewController {
+            presenter.present(alert, animated: true)
+        } else if let button = sender as? UIView, let viewController = button.closestViewController() {
+            viewController.present(alert, animated: true)
+        }
     }
     
+    @IBAction func btnBackAction(_ sender: Any){
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+// Utility Functions
+extension SettingViewController {
     func editSelectedCell(alphabetVC: AlphabetViewController? = nil, numbersVC: NumbersViewController? = nil, accentVC: AccentsViewController? = nil, selectedIndexPaths: [IndexPath]) {
         let selectedIndexPath = selectedIndexPaths[selectedIndexPaths.count - 1]
         var selectedKey: String
@@ -155,52 +206,59 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
             return
         }
         
-        let popupView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 200))
+        // Scale UI based on iPad screens
+        let scaleFactor: CGFloat = Constants.IpadScreen ? 1.5 : 1.0  // Scale everything up by 1.5x on iPad, leave as 1.0 on iPhone
+        
+        // Create the popup view (no design changes, just scaling)
+        let popupView = UIView(frame: CGRect(x: 0, y: 0, width: 300 * scaleFactor, height: 200 * scaleFactor))
         popupView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-        popupView.layer.cornerRadius = 15
+        popupView.layer.cornerRadius = 15 * scaleFactor
         popupView.layer.shadowColor = UIColor.black.cgColor
         popupView.layer.shadowOpacity = 0.3
-        popupView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        popupView.layer.shadowRadius = 10
-
-        let titleLabel = UILabel(frame: CGRect(x: 20, y: 10, width: 260, height: 40))
+        popupView.layer.shadowOffset = CGSize(width: 0, height: 5 * scaleFactor)
+        popupView.layer.shadowRadius = 10 * scaleFactor
+        
+        // Title label (scaling size and position)
+        let titleLabel = UILabel(frame: CGRect(x: 20 * scaleFactor, y: 10 * scaleFactor, width: 260 * scaleFactor, height: 40 * scaleFactor))
         titleLabel.textAlignment = .center
         titleLabel.text = "TPlus Input Key: \(selectedKey)"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 18 * scaleFactor)
         titleLabel.textColor = UIColor.darkGray
         popupView.addSubview(titleLabel)
-
-        let textViewFrame = CGRect(x: 20, y: 70, width: 260, height: 50)
-        let popupTextView = UITextView(frame: textViewFrame)
-        popupTextView.layer.borderWidth = 1
+        
+        // Text view (scaling size and position)
+        let popupTextView = UITextView(frame: CGRect(x: 20 * scaleFactor, y: 70 * scaleFactor, width: 260 * scaleFactor, height: 50 * scaleFactor))
+        popupTextView.layer.borderWidth = 1 * scaleFactor
         popupTextView.layer.borderColor = UIColor.lightGray.cgColor
-        popupTextView.layer.cornerRadius = 8
+        popupTextView.layer.cornerRadius = 8 * scaleFactor
         popupTextView.backgroundColor = UIColor(white: 1, alpha: 1)
-        popupTextView.font = UIFont.systemFont(ofSize: 15)
+        popupTextView.font = UIFont.systemFont(ofSize: 15 * scaleFactor)
         popupTextView.text = selectedValue
         popupView.addSubview(popupTextView)
-
-        // Cancel button (now on the left)
+        
+        // Cancel button (scaling size and position, and font size)
         let cancelButton = UIButton(type: .system)
-        cancelButton.frame = CGRect(x: 20, y: 130, width: 120, height: 40)  // Position on the left
+        cancelButton.frame = CGRect(x: 20 * scaleFactor, y: 130 * scaleFactor, width: 120 * scaleFactor, height: 40 * scaleFactor)
         cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 17 * scaleFactor)  // Scaled font size
         cancelButton.setTitleColor(.white, for: .normal)
         cancelButton.backgroundColor = UIColor(red: 220/255, green: 100/255, blue: 100/255, alpha: 1.0)
-        cancelButton.layer.cornerRadius = 10
+        cancelButton.layer.cornerRadius = 10 * scaleFactor
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         popupView.addSubview(cancelButton)
-
-        // Save button (now on the right)
+        
+        // Save button (scaling size and position, and font size)
         let saveButton = UIButton(type: .system)
-        saveButton.frame = CGRect(x: 160, y: 130, width: 120, height: 40)  // Position on the right
+        saveButton.frame = CGRect(x: 160 * scaleFactor, y: 130 * scaleFactor, width: 120 * scaleFactor, height: 40 * scaleFactor)
         saveButton.setTitle("Save", for: .normal)
+        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 17 * scaleFactor)  // Scaled font size
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = UIColor(red: 85/255, green: 143/255, blue: 185/255, alpha: 1.0)
-        saveButton.layer.cornerRadius = 10
+        saveButton.layer.cornerRadius = 10 * scaleFactor
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         popupView.addSubview(saveButton)
-
-        // Add popup view to the center of the screen
+        
+        // Add the popup view to the center of the screen
         popupView.center = view.center
         view.addSubview(popupView)
     }
@@ -224,7 +282,9 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
                 editDeleteStackView.isHidden = true
                 abKeyStackView.isHidden = false
                 sender.superview?.removeFromSuperview()
-                return
+                
+                self.viewDidLoad()
+                self.viewWillAppear(true)
             }
         }
         
@@ -242,7 +302,9 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
                 editDeleteStackView.isHidden = true
                 abKeyStackView.isHidden = false
                 sender.superview?.removeFromSuperview()
-                return
+                
+                self.viewDidLoad()
+                self.viewWillAppear(true)
             }
         }
         
@@ -261,61 +323,14 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
                 abKeyStackView.isHidden = false
                 sender.superview?.removeFromSuperview()
                 
-                return
+                self.viewDidLoad()
+                self.viewWillAppear(true)
             }
         }
     }
     
     @objc func cancelButtonTapped(_ sender: UIButton) {
         sender.superview?.removeFromSuperview()
-    }
-    
-    @IBAction func btnDeleteAction(_ sender: Any) {
-        let alert = UIAlertController(title: "Confirm Delete", message: Constants.ConfirmDeleteMsg, preferredStyle: .alert)
-
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-            // Add a "Delete" action to perform the deletion
-            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] action in
-                // Deselect rows in all controllers before deletion
-                if let alphabetVC = subControllers.first(where: { $0 is AlphabetViewController }) as? AlphabetViewController {
-                    alphabetVC.alphabetTableView?.indexPathsForSelectedRows?.forEach { indexPath in
-                        alphabetVC.alphabetTableView?.deselectRow(at: indexPath, animated: false)
-                    }
-                }
-
-                if let numberVC = subControllers.first(where: { $0 is NumbersViewController }) as? NumbersViewController {
-                    numberVC.numberTableView?.indexPathsForSelectedRows?.forEach { indexPath in
-                        numberVC.numberTableView?.deselectRow(at: indexPath, animated: false)
-                    }
-                }
-
-                if let accentVC = subControllers.first(where: { $0 is AccentsViewController }) as? AccentsViewController {
-                    accentVC.accentTableView?.indexPathsForSelectedRows?.forEach { indexPath in
-                        accentVC.accentTableView?.deselectRow(at: indexPath, animated: false)
-                    }
-                }
-
-                // Now delete selected items from the current visible tab
-                if let currentVC = subControllers[viewPager.currentIndex!] as? AlphabetViewController {
-                    currentVC.deleteSelectedCells()
-                } else if let currentVC = subControllers[viewPager.currentIndex!] as? NumbersViewController {
-                    currentVC.deleteSelectedCells()
-                } else if let currentVC = subControllers[viewPager.currentIndex!] as? AccentsViewController {
-                    currentVC.deleteSelectedCells()
-                }
-            }))
-
-            // Present the alert to the user
-            if let presenter = sender as? UIViewController {
-                presenter.present(alert, animated: true)
-            } else if let button = sender as? UIView, let viewController = button.closestViewController() {
-                viewController.present(alert, animated: true)
-            }
-    }
-    
-    @IBAction func btnBackAction(_ sender: Any){
-        navigationController?.popViewController(animated: true)
     }
     
     func didSelectCell(selectedCount: Int) {

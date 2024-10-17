@@ -82,7 +82,7 @@ class CustomButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
+        if Constants.IpadScreen {
             self.titleLabel?.font = self.titleLabel?.font.withSize(28)
             self.layer.borderWidth = 2
         }

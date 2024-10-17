@@ -35,17 +35,9 @@ class HowToVC: UIViewController {
             webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-
-//    func loadLocalHTMLFile() {
-//        if let htmlPath = Bundle.main.path(forResource: "Howto", ofType: "html"),
-//           let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
-//            let modifiedHtmlContent = htmlContent.replacingOccurrences(of: "<head>", with: Constants.HtmlMetaData)
-//            webView.loadHTMLString(modifiedHtmlContent, baseURL: Bundle.main.bundleURL)
-//        }
-//    }
     
     func loadLocalHTMLFile() {
-        let fileName = UIDevice.current.userInterfaceIdiom == .pad ? "HowtoIpad" : "Howto"
+        let fileName = Constants.IpadScreen ? "HowtoIpad" : "Howto"
         
         if let htmlPath = Bundle.main.path(forResource: fileName, ofType: "html"),
            let htmlContent = try? String(contentsOfFile: htmlPath, encoding: .utf8) {
