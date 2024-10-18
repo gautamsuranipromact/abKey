@@ -86,6 +86,7 @@ extension CustomKeyboardVC {
         textField.text! += "\n"
     }
     
+    // Move cursor to the left
     func moveArrowLeftButton(){
         if let textField = textField {
                 if let selectedRange = textField.selectedTextRange {
@@ -98,6 +99,7 @@ extension CustomKeyboardVC {
             }
     }
     
+    // Move cursor to the right
     func moveArrowRightButton() {
         if let textField = textField {
             if let selectedRange = textField.selectedTextRange {
@@ -110,7 +112,6 @@ extension CustomKeyboardVC {
             }
         }
     }
-
     
     func specialFbutton() {
         textField.text! += "%"
@@ -144,6 +145,7 @@ extension CustomKeyboardVC {
         
     }
     
+    // Configure different popups
     func configurePopupView(_ popupView: UIStackView) {
         popupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         popupView.isLayoutMarginsRelativeArrangement = true
@@ -154,6 +156,7 @@ extension CustomKeyboardVC {
         customKeyboardView.OverlayView.isHidden = false
     }
     
+    // Open main application from the extension using its url scheme
     func openMainApp(_ hostValue: String) {
         guard let url = URL(string: "\(Constants.AppUrlSchemeIdentifier)\(hostValue)") else { return }
         extensionContext?.open(url, completionHandler: { success in
@@ -172,6 +175,7 @@ extension CustomKeyboardVC {
         })
     }
     
+    // Check whether next character should be capitalized
     func shouldCapitalizeNextCharacter() -> Bool {
         guard let contextBeforeInput = self.inputViewController?.textDocumentProxy.documentContextBeforeInput else {
                 return true // Capitalize at the start of the document

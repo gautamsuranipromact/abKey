@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AdaptiveLabel: UILabel {
+class AdaptiveLabel: UILabel { // Responsive labels for different screens
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -124,6 +124,7 @@ class SQLiteDBHelper {
         }
     }
     
+    // Get single value of a key
     func value(forKey key: String) -> String? {
         let queryStatementString = "SELECT Value FROM CustomKeys WHERE Key = ?;"
         var queryStatement: OpaquePointer?
@@ -145,6 +146,7 @@ class SQLiteDBHelper {
         return nil
     }
     
+    // Get an array of values for a particular key
     func values(forKey key: String) -> [String] {
         let queryStatementString = "SELECT Value FROM CustomKeys WHERE Key = ?;"
         var queryStatement: OpaquePointer?
@@ -171,6 +173,7 @@ class SQLiteDBHelper {
         return values
     }
 
+    // Get an array of entries for a specific keyboard type
     func read(forKeyboardType keyboardType: String? = nil) -> [(id: Int, key: String, value: String, keyboardType: String)] {
         var queryStatementString = "SELECT * FROM CustomKeys"
         if let keyboardType = keyboardType {
@@ -194,6 +197,7 @@ class SQLiteDBHelper {
         return result
     }
     
+    // Get all the entries stored in the database
     func readAllValues() -> [(id: Int, key: String, value: String, keyboardType: String)] {
         let queryStatementString = "SELECT * FROM CustomKeys"
         var queryStatement: OpaquePointer?
@@ -218,26 +222,8 @@ class SQLiteDBHelper {
         
         return result
     }
-
-    func updateValue(forKey key: String, newValue: String) {
-        let updateStatementString = "UPDATE CustomKeys SET Value = ? WHERE Key = ?;"
-        var updateStatement: OpaquePointer?
-        
-        if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
-            sqlite3_bind_text(updateStatement, 1, (newValue as NSString).utf8String, -1, nil)
-            sqlite3_bind_text(updateStatement, 2, (key as NSString).utf8String, -1, nil)
-            
-            if sqlite3_step(updateStatement) == SQLITE_DONE {
-                print("Successfully updated value.")
-            } else {
-                print("Could not update value.")
-            }
-        } else {
-            print("UPDATE statement could not be prepared.")
-        }
-        sqlite3_finalize(updateStatement)
-    }
     
+    // Update value for a particular key using its id
     func updateValueUsingID(forID id: Int, newValue: String) {
         let updateStatementString = "UPDATE CustomKeys SET Value = ? WHERE ID = ?;"
         var updateStatement: OpaquePointer?
@@ -260,6 +246,7 @@ class SQLiteDBHelper {
         sqlite3_finalize(updateStatement)
     }
 
+    // Delete a particular key using its id
     func delete(id: Int) {
         let deleteStatementString = "DELETE FROM CustomKeys WHERE Id = ?;"
         var deleteStatement: OpaquePointer?

@@ -161,6 +161,7 @@ class AbKeySettingVC: UIViewController {
             }
     }
     
+    // Backup database file on the device
     @IBAction func btnBackupAction(_ sender: Any) {
         // Ensure this runs on the main thread
             DispatchQueue.main.async {
@@ -191,6 +192,7 @@ class AbKeySettingVC: UIViewController {
             }
     }
     
+    // Restore database file from the device
     @IBAction func btnRestoreAction(_ sender: Any) {
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.data])
         documentPicker.delegate = self
@@ -236,6 +238,7 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
         }
     }
 
+    // Show user alert to restart the application
     func showRestartAlert() {
         let alert = UIAlertController(title: "Restart Required", message: Constants.RestartApplicationMsg, preferredStyle: .alert)
         

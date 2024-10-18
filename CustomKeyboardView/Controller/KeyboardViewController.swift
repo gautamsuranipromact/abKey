@@ -293,12 +293,14 @@ extension KeyboardViewController{
         customKeyboardView.OverlayView.isHidden = false
     }
     
+    // Open main application from its url scheme
     func openMainApp(_ hostValue: String) {
         guard let url = URL(string: "\(Constants.AppUrlSchemeIdentifier)\(hostValue)") else { return }
         
         openURL(url)
     }
     
+    // Navigate to the main app using its url scheme
     @discardableResult
     @objc func openURL(_ url: URL) -> Bool {
         var responder: UIResponder? = self
@@ -318,6 +320,7 @@ extension KeyboardViewController{
         return false
     }
     
+    // Check whether the next character should be capitalized or not
     func shouldCapitalizeNextCharacter() -> Bool {
         guard let contextBeforeInput = textDocumentProxy.documentContextBeforeInput else {
             return true

@@ -61,64 +61,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
         lblAbKeySetting.attributedText = attributedString
     }
     
-    // Fetch the premium product from App Store
-    func fetchPremiumProduct() {
-        if SKPaymentQueue.canMakePayments() {
-            let productRequest = SKProductsRequest(productIdentifiers: [Constants.PremiumProductIdentifier])
-            productRequest.delegate = self
-            productRequest.start()
-        } else {
-            print("In-app purchases are disabled on this device.")
-        }
-    }
     
-    // SKProductsRequestDelegate - Receive the available products
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        if let product = response.products.first {
-            premiumProduct = product
-            print("Premium product available: \(product.localizedTitle) - \(product.price)")
-        }
-    }
-    
-    // Check whether user has already purchased premium
-    func checkAndRestorePurchases() {
-        if premium == 1 {
-            // If the user already has premium saved in UserDefaults, no need to restore
-            print("Premium already purchased, no need to restore.")
-        } else {
-            // If premium isn't saved, attempt to restore purchases
-            SKPaymentQueue.default().restoreCompletedTransactions()
-        }
-    }
-    
-    // SKPaymentTransactionObserver - Handle completed transactions
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions {
-            switch transaction.transactionState {
-            case .purchased:
-                completePurchase()
-                SKPaymentQueue.default().finishTransaction(transaction)
-            case .restored:
-                completePurchase()
-                SKPaymentQueue.default().finishTransaction(transaction)
-            case .failed:
-                if let error = transaction.error {
-                    print("Transaction failed: \(error.localizedDescription)")
-                }
-                SKPaymentQueue.default().finishTransaction(transaction)
-            default:
-                break
-            }
-        }
-    }
-    
-    func completePurchase() {
-        // Update user default to reflect premium status
-        premium = 1
-        let sharedDefaults = UserDefaults(suiteName: Constants.AppGroupSuiteName)
-        sharedDefaults?.set(premium, forKey: Constants.PremiumUserKey)
-        print("Premium purchase completed and saved!")
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -187,6 +130,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
         presentActivityController()
     }
     
+    // Ab Key setting button action
     @IBAction func btnAbkeySettings(_ sender: Any) {
         if let vc = storyboard!.instantiateViewController(withIdentifier: Constants.AbKeySettingVCIdentifier) as? AbKeySettingVC {
                 vc.premiumValueFromHomePageVC = premium // Pass the premium value here
@@ -194,6 +138,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
             }
     }
     
+    // Upgrade to premium action
     @IBAction func btnPremiumAction(_ sender: Any) {
         if premium == 1 {
             // Show an alert informing the user that they already have premium
@@ -217,6 +162,68 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     
     @IBAction func btnCloseAction(_ sender: Any) {
         UIControl().sendAction(#selector(NSXPCConnection.suspend), to: UIApplication.shared, for: nil)
+    }
+}
+
+// In App Purchase Implementation
+extension HomePageVC {
+    // Fetch the premium product from App Store
+    func fetchPremiumProduct() {
+        if SKPaymentQueue.canMakePayments() {
+            let productRequest = SKProductsRequest(productIdentifiers: [Constants.PremiumProductIdentifier])
+            productRequest.delegate = self
+            productRequest.start()
+        } else {
+            print("In-app purchases are disabled on this device.")
+        }
+    }
+    
+    // SKProductsRequestDelegate - Receive the available products
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        if let product = response.products.first {
+            premiumProduct = product
+            print("Premium product available: \(product.localizedTitle) - \(product.price)")
+        }
+    }
+    
+    // Check whether user has already purchased premium
+    func checkAndRestorePurchases() {
+        if premium == 1 {
+            // If the user already has premium saved in UserDefaults, no need to restore
+            print("Premium already purchased, no need to restore.")
+        } else {
+            // If premium isn't saved, attempt to restore purchases
+            SKPaymentQueue.default().restoreCompletedTransactions()
+        }
+    }
+    
+    // SKPaymentTransactionObserver - Handle completed transactions
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchased:
+                completePurchase()
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .restored:
+                completePurchase()
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .failed:
+                if let error = transaction.error {
+                    print("Transaction failed: \(error.localizedDescription)")
+                }
+                SKPaymentQueue.default().finishTransaction(transaction)
+            default:
+                break
+            }
+        }
+    }
+    
+    func completePurchase() {
+        // Update user default to reflect premium status
+        premium = 1
+        let sharedDefaults = UserDefaults(suiteName: Constants.AppGroupSuiteName)
+        sharedDefaults?.set(premium, forKey: Constants.PremiumUserKey)
+        print("Premium purchase completed and saved!")
     }
 }
 
@@ -259,6 +266,7 @@ extension HomePageVC {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
     
+    // Creating attributed text with icons
     func attributedTextWithIcons() -> NSAttributedString {
         let keyboardIconImage = UIImage(named: Constants.KeyboardImg)
         let textWithKeyboardIcon = Constants.AttributedTextWithKeyboardIcon
@@ -288,6 +296,7 @@ extension HomePageVC {
         return keyboardAttributedText
     }
     
+    // Creating desired backgroup with gradients
     func applyGradientBackground(colors: [CGColor]) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors

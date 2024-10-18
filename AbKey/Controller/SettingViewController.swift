@@ -87,6 +87,7 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         return subControllers[index]
     }
 
+    // Design for pager button tabs
     func button(at index: Int) -> UIButton {
         let button = UIButton()
         button.setTitleColor(UIColor.white, for: .normal)
@@ -96,14 +97,17 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         return button
     }
     
+    // Current tab indicator
     func colorForIndicator(at index: Int) -> UIColor {
         return .tintColor
     }
     
+    // Height of current tab indicator
     func heightForIndicator() -> CGFloat {
         return Constants.IpadScreen ? 4.0 : 2.0
     }
     
+    // Edit a particular entry
     @IBAction func btnEditAction(_ sender: Any) {
         if let alphabetVC = subControllers.first(where: { $0 is AlphabetViewController }) as? AlphabetViewController,
            let alphabetTableView = alphabetVC.alphabetTableView,
@@ -137,6 +141,7 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         }
     }
 
+    // Delete a particular entry
     @IBAction func btnDeleteAction(_ sender: Any) {
         let alert = UIAlertController(title: "Confirm Delete", message: Constants.ConfirmDeleteMsg, preferredStyle: .alert)
         
@@ -263,6 +268,7 @@ extension SettingViewController {
         view.addSubview(popupView)
     }
     
+    // Save the edited row to the database
     @objc func saveButtonTapped(_ sender: UIButton){
         guard let popupTextView = sender.superview?.subviews.first(where: { $0 is UITextView }) as? UITextView else {
             return
@@ -277,14 +283,10 @@ extension SettingViewController {
                 
                 SQLiteDBHelper.shared.updateValueUsingID(forID: selectedID, newValue: newValue!)
                 
-                // Reload data to reflect the changes instantly
-                alphabetVC.fetchDataAndReloadTable()
                 editDeleteStackView.isHidden = true
                 abKeyStackView.isHidden = false
                 sender.superview?.removeFromSuperview()
-                
                 self.viewDidLoad()
-                self.viewWillAppear(true)
             }
         }
         
@@ -296,15 +298,10 @@ extension SettingViewController {
                 // Update the value in the database
                 SQLiteDBHelper.shared.updateValueUsingID(forID: selectedID, newValue: newValue!)
                 
-                // Reload data to reflect the changes instantly
-                numberVC.fetchDataAndReloadTable()
-                
                 editDeleteStackView.isHidden = true
                 abKeyStackView.isHidden = false
                 sender.superview?.removeFromSuperview()
-                
                 self.viewDidLoad()
-                self.viewWillAppear(true)
             }
         }
         
@@ -316,19 +313,15 @@ extension SettingViewController {
                 // Update the value in the database
                 SQLiteDBHelper.shared.updateValueUsingID(forID: selectedID, newValue: newValue!)
                 
-                // Reload data to reflect the changes instantly
-                accentVC.fetchDataAndReloadTable()
-                
                 editDeleteStackView.isHidden = true
                 abKeyStackView.isHidden = false
                 sender.superview?.removeFromSuperview()
-                
                 self.viewDidLoad()
-                self.viewWillAppear(true)
             }
         }
     }
     
+    // Cancel Editing
     @objc func cancelButtonTapped(_ sender: UIButton) {
         sender.superview?.removeFromSuperview()
     }

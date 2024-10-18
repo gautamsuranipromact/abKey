@@ -330,6 +330,7 @@ extension CustomKeyboardView {
             changeKeysCaseThirdKeyboard()
         }
             
+        // Make changes for iPad screen
         if Constants.IpadScreen {
             // Disable autoresizing mask translation
             AtTheRatePopupView.translatesAutoresizingMaskIntoConstraints = false
@@ -381,6 +382,7 @@ extension CustomKeyboardView {
         tPlusTapped = false
     }
     
+    // Insert characters to the textview
     @IBAction func btnLetterTap(_ sender: UIButton) {
         if(tPlusTapped) {
             tPlusTapped = false
@@ -412,6 +414,7 @@ extension CustomKeyboardView {
         }
     }
     
+    // Insert character to the text view and nullify RTPlus
     @IBAction func btnLetterTapAndNullifyRTPlus(_ sender: UIButton) {
         tRTapped = false
         tPlusTapped = false
@@ -455,6 +458,7 @@ extension CustomKeyboardView {
         }
     }
     
+    // Handle buttons with symbols or images
     @IBAction func symbolBtnTap(_ sender: UIButton) {
         let identifier = sender.accessibilityIdentifier!
         
@@ -490,6 +494,7 @@ extension CustomKeyboardView {
         }
     }
     
+    // Handle special buttons of latin keyboard
     @IBAction func specialBtnTap(_ sender: UIButton){
         let identifier = sender.accessibilityIdentifier!
         if(tPlusTapped) {
@@ -601,7 +606,6 @@ extension CustomKeyboardView {
     @IBAction func tPlusViewSaveBtn() {
         if let value = TPlusViewTextField.text {
             if let isPremiumCustomer = sharedDefaults?.integer(forKey: Constants.PremiumUserKey), (isPremiumCustomer != 0) {
-                print(isPremiumCustomer)
                 if let char = storeBtnTap.first {
                     if char.isLetter && (storeBtnTap.count == 1) && ((char >= "a" && char <= "z") || (char >= "A" && char <= "Z")){
                         databaseHelper.insert(key: storeBtnTap, value: value, keyboardType: Constants.AlphabetKeyboardTypeIdentifier)
@@ -651,6 +655,7 @@ extension CustomKeyboardView {
         delegate?.openMainApp("")
     }
     
+    // Handle setting button for all the different keyboards
     @IBAction func btnSettingsTap() {
         if(!FirstKeyboardLayout.isHidden) {
             delegate?.openMainApp(Constants.FirstKeyboardHost)
@@ -866,6 +871,7 @@ extension CustomKeyboardView {
         }
     }
     
+    // Check whether the user is a premium user or lite one
     func checkPremiumUser() {
         if let premium = sharedDefaults?.integer(forKey: Constants.PremiumUserKey), (premium == 0) {
             let values = databaseHelper.values(forKey: storeBtnTap)
@@ -884,6 +890,7 @@ extension CustomKeyboardView {
         }
     }
     
+    // Insert characters to the textfield
     func characterInsertion(_ sender: UIButton) {
         if let txt = sender.titleLabel?.text {
             delegate?.insertCharacter(txt)
@@ -920,6 +927,7 @@ extension CustomKeyboardView {
         }
     }
     
+    // Set minium height constraint for the given UIView
     func setMinimumHeightConstraint(for view: UIView, height: CGFloat) {
         if let existingHeightConstraint = view.constraints.first(where: { $0.firstAttribute == .height }) {
             view.removeConstraint(existingHeightConstraint)
@@ -928,6 +936,7 @@ extension CustomKeyboardView {
         newHeightConstraint.isActive = true
     }
     
+    // Configure different buttons of popup views
     func configurePopupViewButtons(_ sender: UIButton) {
         sender.layer.cornerRadius = Constants.IpadScreen ? 12 : 10
         sender.titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 24 : 18)
