@@ -123,7 +123,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here and save in the selected key." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3Qq-cx-yXq" userLabel="TPlusViewTextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here and save in the selected key." textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="18" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3Qq-cx-yXq" userLabel="TPlusViewTextField">
                                             <rect key="frame" x="0.0" y="8" width="492" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="oKD-Dt-U0e"/>
@@ -298,6 +298,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKo-VN-PNQ" userLabel="smiley" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="180" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="smiley"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="3" maxX="5" maxY="3"/>
                                                     <state key="normal" image="smiley" backgroundImage="key_background_2">
@@ -315,7 +316,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnSmileyTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="gnv-1r-e6s"/>
+                                                        <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Imm-Ut-mVN"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksC-mS-F1u" userLabel="tr_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -816,6 +817,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exB-zV-fYo" userLabel="move_cursor_left" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="225" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="moveCursorLeft"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                     <state key="normal" image="left_cursor_arrow" backgroundImage="key_background_2">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -832,7 +834,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnMoveCursorLeft:" destination="iN0-l3-epB" eventType="touchUpInside" id="adu-Ce-BML"/>
+                                                        <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="r9P-ef-DL1"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJy-Yc-aO5" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -955,6 +957,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLH-ef-Skh" userLabel="dismiss_keyboard_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="40" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="closeKeyboard"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="Keyboard" backgroundImage="key_background_1">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -971,7 +974,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnCloseKeyboard:" destination="iN0-l3-epB" eventType="touchUpInside" id="LjR-Fl-iAj"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="evz-Qa-eqF"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNg-5b-ksH" userLabel="second_keyboard" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1120,6 +1123,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEe-kf-ADN" userLabel="enter_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="84" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="enter"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="Enter" backgroundImage="key_background_4">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1136,7 +1140,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnEnterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="PGV-FA-zFx"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="yL7-oU-TBO"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -1763,6 +1767,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZq-j8-lb8" userLabel="move_cursor_left" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="225" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="moveCursorLeft"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                     <state key="normal" image="left_cursor_arrow" backgroundImage="key_background_2">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1779,11 +1784,12 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnMoveCursorLeft:" destination="iN0-l3-epB" eventType="touchUpInside" id="1EA-af-tCV"/>
+                                                        <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Tql-kr-CxP"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mA-tT-sBy" userLabel="move_cursor_right" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="270" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="moveCursorRight"/>
                                                     <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                     <state key="normal" image="right_cursor_arrow" backgroundImage="key_background_2">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1800,7 +1806,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnMoveCursorRight:" destination="iN0-l3-epB" eventType="touchUpInside" id="HEy-nz-Ag2"/>
+                                                        <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="9gU-dz-ATF"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOK-fx-2QC" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -1901,6 +1907,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYv-bb-2Av" userLabel="dismiss_keyboard_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="closeKeyboard"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="Keyboard" backgroundImage="key_background_1">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1917,7 +1924,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnCloseKeyboard:" destination="iN0-l3-epB" eventType="touchUpInside" id="NlZ-pd-YbF"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="bkv-tT-SX7"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apx-fQ-cd8" userLabel="latin_keyboard" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -2063,6 +2070,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AcN-1b-9f1" userLabel="enter_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="84" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="enter"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="Enter" backgroundImage="key_background_4"/>
                                                             <userDefinedRuntimeAttributes>
@@ -2077,7 +2085,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnEnterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="u9g-HZ-QhC"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="3wY-9D-xAZ"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -2564,6 +2572,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNf-Kb-YxT" userLabel="colon" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                     <rect key="frame" x="450" y="0.0" width="42" height="48"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="colon"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="Colon" backgroundImage="key_background_1">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2580,7 +2589,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="btnColonTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="QTk-cx-lzI"/>
+                                                        <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Yfg-0t-Qc3"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -2840,6 +2849,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lya-yx-v2C" userLabel="dismiss_keyboard" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="42" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="closeKeyboard"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="Keyboard" backgroundImage="key_background_1">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2856,7 +2866,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnCloseKeyboard:" destination="iN0-l3-epB" eventType="touchUpInside" id="Onm-dO-hVQ"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="NGW-WA-X8d"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSY-Em-QqL" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -2883,6 +2893,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBe-Se-Q4g" userLabel="hyphen" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="89.666666666666671" y="0.0" width="42.000000000000014" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="hyphen"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="Hyphen" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2899,7 +2910,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnHyphenTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Xrh-rm-HVH"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="aFC-du-gR6"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nz3-Yg-k7I" userLabel="settings" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
@@ -2956,6 +2967,7 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G68-U0-57S" userLabel="left_arrow" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="43.666666666666664" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="leftArrow"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="LeftArrow" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2972,11 +2984,12 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnLeftArrowTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="pcI-US-h0W"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="rkv-8D-mVv"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fko-f8-PLd" userLabel="right_arrow" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="45.666666666666686" y="0.0" width="43.666666666666657" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="rightArrow"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="RightArrow" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2993,11 +3006,12 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnRightArrowTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="zXM-DN-Oxr"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jti-9Y-oCU"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hX-ZX-wn4" userLabel="question_mark" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="91.333333333333371" y="0.0" width="43.666666666666657" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="questionMark"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="QuestionMark" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3014,11 +3028,12 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnQuestionMarkTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="jlc-RY-mHh"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="lVY-2d-ENr"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4d-jV-fBH" userLabel="enter" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="137" y="0.0" width="43.666666666666657" height="48"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="enter"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="Enter" backgroundImage="key_background_3">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3035,7 +3050,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="btnEnterTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="ceo-cJ-ghY"/>
+                                                                <action selector="symbolBtnTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="65D-C4-FpA"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>

@@ -37,9 +37,6 @@ class CustomKeyboardView: UIView {
     let databaseHelper = SQLiteDBHelper.shared // Database singleton instance shared
     let sharedDefaults = UserDefaults(suiteName: Constants.AppGroupSuiteName) // App group suitename
     
-    ///Outlets
-    @IBOutlet weak var btnKeyboardSwitch: UIButton!
-    
     // keyboard layout views
     @IBOutlet weak var FirstKeyboardLayout: UIStackView!
     @IBOutlet weak var SecondKeyboardLayout: UIStackView!
@@ -458,63 +455,39 @@ extension CustomKeyboardView {
         }
     }
     
-    @IBAction func btnCloseKeyboard(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.closeKeyboard()
-    }
-    
-    @IBAction func btnMoveCursorLeft(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.moveArrowLeftButton()
-    }
-    
-    @IBAction func btnMoveCursorRight(_ sender: UIButton){
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.moveArrowRightButton()
-    }
-    
-    @IBAction func btnEnterTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.enterButtonClicked()
-    }
-    
-    @IBAction func btnColonTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.colonButtonTapped()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnHyphenTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.hyphenButtonTapped()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnLeftArrowTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.leftArrowButtonClicked()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnRightArrowTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.rightArrowButtonClicked()
-        changeKeysCase()
-    }
-    
-    @IBAction func btnQuestionMarkTap(_ sender: UIButton){
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.questionButtonClicked()
-        changeKeysCase()
+    @IBAction func symbolBtnTap(_ sender: UIButton) {
+        let identifier = sender.accessibilityIdentifier!
+        
+        switch identifier {
+        case "colon":
+            delegate?.colonButtonTapped()
+            changeKeysCase()
+        case "hyphen":
+            delegate?.hyphenButtonTapped()
+            changeKeysCase()
+        case "leftArrow":
+            delegate?.leftArrowButtonClicked()
+            changeKeysCase()
+        case "rightArrow":
+            delegate?.rightArrowButtonClicked()
+            changeKeysCase()
+        case "questionMark":
+            delegate?.questionButtonClicked()
+            changeKeysCase()
+        case "enter":
+            delegate?.enterButtonClicked()
+        case "moveCursorLeft":
+            delegate?.moveArrowLeftButton()
+        case "moveCursorRight":
+            delegate?.moveArrowRightButton()
+        case "smiley":
+            delegate?.smileyButton()
+            changeKeysCase()
+        case "closeKeyboard":
+            delegate?.closeKeyboard()
+        default:
+            print(identifier)
+        }
     }
     
     @IBAction func specialBtnTap(_ sender: UIButton){
@@ -552,13 +525,6 @@ extension CustomKeyboardView {
             
             changeKeysCase()
         }
-    }
-    
-    @IBAction func btnSmileyTap(_ sender: UIButton) {
-        tRTapped = false
-        tPlusTapped = false
-        self.delegate?.smileyButton()
-        changeKeysCase()
     }
     
     // Closing the long press popups based on the specific buttons tag value
@@ -962,6 +928,15 @@ extension CustomKeyboardView {
         newHeightConstraint.isActive = true
     }
     
+    func configurePopupViewButtons(_ sender: UIButton) {
+        sender.layer.cornerRadius = Constants.IpadScreen ? 12 : 10
+        sender.titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 24 : 18)
+        sender.layer.shadowColor = UIColor.black.cgColor
+        sender.layer.shadowOpacity = 0.2
+        sender.layer.shadowOffset = CGSize(width: 0, height: 3)
+        sender.layer.shadowRadius = Constants.IpadScreen ? 5 : 4
+    }
+    
     // Setting up the Premium Purchase View before displaying
     func configurePremiumPurchaseView() {
         PurchasePremiumNotifierPopup.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
@@ -971,21 +946,11 @@ extension CustomKeyboardView {
         
         UpgradeToPremium.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1.0)
         UpgradeToPremium.setTitleColor(.white, for: .normal)
-        UpgradeToPremium.layer.cornerRadius = Constants.IpadScreen ? 12 : 10
-        UpgradeToPremium.titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 24 : 18)
-        UpgradeToPremium.layer.shadowColor = UIColor.black.cgColor
-        UpgradeToPremium.layer.shadowOpacity = 0.2
-        UpgradeToPremium.layer.shadowOffset = CGSize(width: 0, height: 3)
-        UpgradeToPremium.layer.shadowRadius = Constants.IpadScreen ? 5 : 4
+        configurePopupViewButtons(UpgradeToPremium)
         
         ClosePremiumPurchasePopup.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1.0)
         ClosePremiumPurchasePopup.setTitleColor(UIColor(red: 55/255, green: 71/255, blue: 79/255, alpha: 1.0), for: .normal)
-        ClosePremiumPurchasePopup.layer.cornerRadius = Constants.IpadScreen ? 12 : 10
-        ClosePremiumPurchasePopup.titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 24 : 18)
-        ClosePremiumPurchasePopup.layer.shadowColor = UIColor.black.cgColor
-        ClosePremiumPurchasePopup.layer.shadowOpacity = 0.2
-        ClosePremiumPurchasePopup.layer.shadowOffset = CGSize(width: 0, height: 3)
-        ClosePremiumPurchasePopup.layer.shadowRadius = Constants.IpadScreen ? 5 : 4
+        configurePopupViewButtons(ClosePremiumPurchasePopup)
     }
     
     // Setting up the TPlus Popup View before displaying
@@ -1025,24 +990,14 @@ extension CustomKeyboardView {
         // Save button styling
         TPlusViewSaveBtn.backgroundColor = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
         TPlusViewSaveBtn.setTitleColor(.white, for: .normal)
-        TPlusViewSaveBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: Constants.IpadScreen ? 24 : 18)  // Larger button font for iPad
-        TPlusViewSaveBtn.layer.cornerRadius = Constants.IpadScreen ? 12 : 8
         TPlusViewSaveBtn.layer.masksToBounds = true
-        TPlusViewSaveBtn.layer.shadowColor = UIColor.black.cgColor
-        TPlusViewSaveBtn.layer.shadowOpacity = 0.3
-        TPlusViewSaveBtn.layer.shadowOffset = CGSize(width: 0, height: Constants.IpadScreen ? 5 : 3)
-        TPlusViewSaveBtn.layer.shadowRadius = Constants.IpadScreen ? 8 : 3
+        configurePopupViewButtons(TPlusViewSaveBtn)
         
         // Close button styling
         TPlusViewCloseBtn.backgroundColor = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1)
         TPlusViewCloseBtn.setTitleColor(.black, for: .normal)
-        TPlusViewCloseBtn.titleLabel?.font = UIFont.systemFont(ofSize: Constants.IpadScreen ? 24 : 18)  // Larger button font for iPad
-        TPlusViewCloseBtn.layer.cornerRadius = Constants.IpadScreen ? 12 : 8
         TPlusViewCloseBtn.layer.masksToBounds = true
-        TPlusViewCloseBtn.layer.shadowColor = UIColor.black.cgColor
-        TPlusViewCloseBtn.layer.shadowOpacity = 0.3
-        TPlusViewCloseBtn.layer.shadowOffset = CGSize(width: 0, height: Constants.IpadScreen ? 5 : 3)
-        TPlusViewCloseBtn.layer.shadowRadius = Constants.IpadScreen ? 8 : 3
+        configurePopupViewButtons(TPlusViewCloseBtn)
     }
     
     // Retrieving the stored data for an entry and presenting it as a popup view

@@ -227,7 +227,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		462530302BA1BDB70084A09B /* ViewControllers */ = {
+		462530302BA1BDB70084A09B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				46433FD32B9EF90F0012941E /* AccentsViewController.swift */,
@@ -240,8 +240,9 @@
 				46894B4C2BB2900500FF01BD /* WelcomeVC.swift */,
 				46894B4E2BB2901F00FF01BD /* HowToVC.swift */,
 				46894B502BB2903200FF01BD /* AggrementVC.swift */,
+				46DA798A2B4E954A00A9C180 /* CustomKeyboardVC.swift */,
 			);
-			path = ViewControllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		462530312BA1BDEF0084A09B /* Cell */ = {
@@ -306,15 +307,12 @@
 				467FEBB62BB57DAB00C42519 /* HTML File */,
 				4625302F2BA1BBED0084A09B /* AbKey.entitlements */,
 				462DD3E52BA17444008A83ED /* DatabaseHelper */,
-				462530302BA1BDB70084A09B /* ViewControllers */,
+				D392A46D2CC27D6F00DBA9A2 /* View */,
+				462530302BA1BDB70084A09B /* Controller */,
 				462530312BA1BDEF0084A09B /* Cell */,
 				46DA79532B4E94B500A9C180 /* AppDelegate.swift */,
 				46DA79552B4E94B500A9C180 /* SceneDelegate.swift */,
-				46DA798A2B4E954A00A9C180 /* CustomKeyboardVC.swift */,
-				D3EAEC522CBFC1A400772F05 /* AdaptiveLabel.swift */,
-				46DA79592B4E94B500A9C180 /* Main.storyboard */,
 				46DA795C2B4E94B600A9C180 /* Assets.xcassets */,
-				46DA795E2B4E94B600A9C180 /* LaunchScreen.storyboard */,
 				46DA79612B4E94B600A9C180 /* Info.plist */,
 			);
 			path = AbKey;
@@ -340,9 +338,9 @@
 		46DA79912B4E959500A9C180 /* CustomKeyboardView */ = {
 			isa = PBXGroup;
 			children = (
+				D392A46B2CC27CF300DBA9A2 /* View */,
+				D392A46C2CC27D0000DBA9A2 /* Controller */,
 				462DD3E92BA1B24E008A83ED /* CustomKeyboardView.entitlements */,
-				46DA79922B4E959500A9C180 /* KeyboardViewController.swift */,
-				D3ACD1202C86CECB00664362 /* CustomKeyboardView */,
 				46DA79942B4E959500A9C180 /* Info.plist */,
 			);
 			path = CustomKeyboardView;
@@ -359,14 +357,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D3ACD1202C86CECB00664362 /* CustomKeyboardView */ = {
+		D392A46B2CC27CF300DBA9A2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D3ACD1232C86CECB00664362 /* CustomButton.swift */,
-				D3ACD1212C86CECB00664362 /* CustomKeyboardView.swift */,
 				D3ACD1222C86CECB00664362 /* CustomKeyboardView.xib */,
+				D3ACD1232C86CECB00664362 /* CustomButton.swift */,
 			);
-			path = CustomKeyboardView;
+			path = View;
+			sourceTree = "<group>";
+		};
+		D392A46C2CC27D0000DBA9A2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				46DA79922B4E959500A9C180 /* KeyboardViewController.swift */,
+				D3ACD1212C86CECB00664362 /* CustomKeyboardView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D392A46D2CC27D6F00DBA9A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				46DA795E2B4E94B600A9C180 /* LaunchScreen.storyboard */,
+				46DA79592B4E94B500A9C180 /* Main.storyboard */,
+				D3EAEC522CBFC1A400772F05 /* AdaptiveLabel.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D3EAEC2F2CBF8A9B00772F05 /* Config */ = {
