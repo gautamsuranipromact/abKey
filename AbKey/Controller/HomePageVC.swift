@@ -61,8 +61,6 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
         lblAbKeySetting.attributedText = attributedString
     }
     
-    
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SKPaymentQueue.default().remove(self)
@@ -70,12 +68,14 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
 
     private var boundsObservation: NSKeyValueObservation?
 
+    // Observes changes to the bounds property of the viewBackground.
     private func observeBoundsChanges() {
         boundsObservation = viewBackground.observe(\.bounds, options: [.new]) { [weak self] _, _ in
             self?.updateGradientLayerFrame()
         }
     }
 
+    // Updates the frame of the gradient layer to match the current bounds of the viewBackground.
     private func updateGradientLayerFrame() {
         if let gradientLayer = viewBackground.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = viewBackground.bounds
@@ -90,6 +90,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
         }
     }
     
+    // Preset a prompt to change the default keyboard
     func promptToChangeKeyboard() {
         let alertController = UIAlertController(title: "Change Keyboard",
                                                 message: Constants.ChangeKeyboardPromptMsg,
@@ -160,12 +161,13 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
         SKPaymentQueue.default().add(payment)
     }
     
+    // Send the app to background
     @IBAction func btnCloseAction(_ sender: Any) {
         UIControl().sendAction(#selector(NSXPCConnection.suspend), to: UIApplication.shared, for: nil)
     }
 }
 
-// In App Purchase Implementation
+//MARK: In App Purchase Implementation
 extension HomePageVC {
     // Fetch the premium product from App Store
     func fetchPremiumProduct() {
@@ -218,8 +220,8 @@ extension HomePageVC {
         }
     }
     
+    // Update user default to reflect premium status
     func completePurchase() {
-        // Update user default to reflect premium status
         premium = 1
         let sharedDefaults = UserDefaults(suiteName: Constants.AppGroupSuiteName)
         sharedDefaults?.set(premium, forKey: Constants.PremiumUserKey)
@@ -227,13 +229,16 @@ extension HomePageVC {
     }
 }
 
+//MARK: Utility functionas
 extension HomePageVC {
+    // Applies rounded corners to a given view
     func applyRoundedCorners(to view: UIView) {
         view.layer.cornerRadius = 15
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         view.layer.masksToBounds = true
     }
     
+    // Sets a gradient background for an array of buttons.
     func setGradientBackground(for buttons: [UIButton], colors: [UIColor]) {
         for button in buttons {
             // Ensure the button's size is valid
@@ -312,6 +317,7 @@ extension HomePageVC {
     }
 }
 
+//MARK: UIColor extension that initializes a color from a hex string.
 extension UIColor {
     convenience init(hex: String) {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -330,6 +336,7 @@ extension UIColor {
     }
 }
 
+//MARK: Apply gradient background to buttons
 extension UIButton {
     func applyGradientToButton(colors: [CGColor]) {
         let gradientLayer = CAGradientLayer()

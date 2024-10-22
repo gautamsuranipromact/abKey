@@ -54,17 +54,15 @@ class KeyboardViewController: UIInputViewController,CustomKeyboardViewDelegate{
     }
 }
 
+//MARK: Insert or remove a character
 extension KeyboardViewController {
     func insertCharacter(_ newCharacter: String) {
-        if newCharacter == " " {
-            replaceWord()
-        }
-        else if customKeyboardView.TPlusPopupView.isHidden == false {
+        if customKeyboardView.TPlusPopupView.isHidden == false {
             customKeyboardView.TPlusViewTextField.insertText(newCharacter)
             return
         }
         textDocumentProxy.insertText(newCharacter)
-   }
+    }
     
     func removeCharacter() {
         if(customKeyboardView.TPlusPopupView.isHidden == false) {
@@ -94,6 +92,7 @@ extension KeyboardViewController {
     }
 }
 
+// MARK: Utility functions
 extension KeyboardViewController{
     func colonButtonTapped() {
         if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
@@ -188,13 +187,39 @@ extension KeyboardViewController{
             textDocumentProxy.insertText("\n")
         }
     }
-    
+        
     func moveArrowLeftButton() {
-        textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+        if customKeyboardView.TPlusViewTextField.isFirstResponder {
+            // Move the cursor left in the UITextField
+            guard let textField = customKeyboardView.TPlusViewTextField else { return }
+            
+            if let selectedTextRange = textField.selectedTextRange {
+                // Calculate the new position
+                if let start = textField.position(from: selectedTextRange.start, offset: -1) {
+                    textField.selectedTextRange = textField.textRange(from: start, to: start)
+                }
+            }
+        } else {
+            // Move the cursor left in the textDocumentProxy
+            textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+        }
     }
-    
+        
     func moveArrowRightButton() {
-        textDocumentProxy.adjustTextPosition(byCharacterOffset: +1)
+        if customKeyboardView.TPlusViewTextField.isFirstResponder {
+            // Move the cursor right in the UITextField
+            guard let textField = customKeyboardView.TPlusViewTextField else { return }
+
+            if let selectedTextRange = textField.selectedTextRange {
+                // Calculate the new position
+                if let end = textField.position(from: selectedTextRange.end, offset: 1) {
+                    textField.selectedTextRange = textField.textRange(from: end, to: end)
+                }
+            }
+        } else {
+            // Move the cursor right in the textDocumentProxy
+            textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
+        }
     }
     
     func specialFbutton() {
@@ -283,7 +308,7 @@ extension KeyboardViewController{
         self.dismissKeyboard()
     }
     
-    func configurePopupView(_ popupView: UIStackView) {
+    func configureLongPressPopupView(_ popupView: UIStackView) {
         popupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         popupView.isLayoutMarginsRelativeArrangement = true
         popupView.layer.borderColor = UIColor.lightGray.cgColor

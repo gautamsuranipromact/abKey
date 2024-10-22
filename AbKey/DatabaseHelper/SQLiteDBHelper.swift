@@ -19,9 +19,9 @@ class SQLiteDBHelper {
     weak var delegate: SQLiteDBHelperDelegate?
     
     private init() {
-            openDatabase()
-            createTable()
-        }
+        openDatabase()
+        createTable()
+    }
     
     private func openDatabase() {
         guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.AppGroupSuiteName) else {
@@ -52,6 +52,7 @@ class SQLiteDBHelper {
         sqlite3_finalize(createTableStatement)
     }
     
+    // Insert an entry in the DB
     func insert(key: String, value: String, keyboardType: String) {
         let insertStatementString = "INSERT INTO CustomKeys (Key, Value, KeyboardType) VALUES (?, ?, ?);"
         var insertStatement: OpaquePointer?
@@ -72,6 +73,7 @@ class SQLiteDBHelper {
         }
     }
     
+    // Insert or update an entry in the DB
     func insertOrUpdate(key: String, value: String, keyboardType: String) {
         // First, check if the key exists
         let queryStatementString = "SELECT * FROM CustomKeys WHERE Key = ?;"
@@ -241,7 +243,6 @@ class SQLiteDBHelper {
             }
         } else {
             print("UPDATE statement could not be prepared.")
-            // Handle error condition
         }
         sqlite3_finalize(updateStatement)
     }

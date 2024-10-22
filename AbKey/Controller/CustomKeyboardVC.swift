@@ -9,9 +9,9 @@ import UIKit
 
 class CustomKeyboardVC: UIViewController, CustomKeyboardViewDelegate {
     
-    ///Outlets
+    // Outlets
     @IBOutlet weak var textField: UITextField!
-    ///Variables
+    // Variables
     var customKeyboardView: CustomKeyboardView!
     
     override func viewDidLoad() {
@@ -146,7 +146,7 @@ extension CustomKeyboardVC {
     }
     
     // Configure different popups
-    func configurePopupView(_ popupView: UIStackView) {
+    func configureLongPressPopupView(_ popupView: UIStackView) {
         popupView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         popupView.isLayoutMarginsRelativeArrangement = true
         popupView.layer.borderColor = UIColor.lightGray.cgColor

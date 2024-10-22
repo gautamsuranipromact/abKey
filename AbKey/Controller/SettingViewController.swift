@@ -191,8 +191,9 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     }
 }
 
-// Utility Functions
+//MARK: Utility Functions
 extension SettingViewController {
+    // Edit a particular entry
     func editSelectedCell(alphabetVC: AlphabetViewController? = nil, numbersVC: NumbersViewController? = nil, accentVC: AccentsViewController? = nil, selectedIndexPaths: [IndexPath]) {
         let selectedIndexPath = selectedIndexPaths[selectedIndexPaths.count - 1]
         var selectedKey: String
@@ -336,6 +337,7 @@ extension SettingViewController {
     }
 }
 
+//MARK: Finds and returns the closest parent view controller of the view, if any
 extension UIView {
     func closestViewController() -> UIViewController? {
         var responder: UIResponder? = self

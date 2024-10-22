@@ -9,6 +9,7 @@ import UIKit
 
 struct Constants {
     static let IpadScreen = UIDevice.current.userInterfaceIdiom == .pad // Check whether the device is Ipad
+    static let permissibleEntriesForLiteUsers = 6 // Number of entries permissible for lite users
     
     static let AccentKeyboardTypeIdentifier = "accent"
     static let AlphabetKeyboardTypeIdentifier = "alphabetic"

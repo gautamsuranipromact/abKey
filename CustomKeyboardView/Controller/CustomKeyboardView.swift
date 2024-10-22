@@ -8,28 +8,28 @@
 import UIKit
 
 protocol CustomKeyboardViewDelegate: AnyObject {
-  func insertCharacter(_ newCharacter: String)
-  func removeCharacter()
-  func closeKeyboard()
-  func moveArrowLeftButton()
-  func moveArrowRightButton()
-  func enterButtonClicked()
-  func colonButtonTapped()
-  func hyphenButtonTapped()
-  func leftArrowButtonClicked()
-  func rightArrowButtonClicked()
-  func questionButtonClicked()
-  func specialFbutton()
-  func specialGbutton()
-  func specialKbutton()
-  func specialMbutton()
-  func specialPbutton()
-  func specialQbutton()
-  func specialBbutton()
-  func smileyButton()
-  func configurePopupView(_ popupView: UIStackView)
-  func openMainApp(_ hostValue: String)
-  func shouldCapitalizeNextCharacter() -> Bool
+    func insertCharacter(_ newCharacter: String)
+    func removeCharacter()
+    func closeKeyboard()
+    func moveArrowLeftButton()
+    func moveArrowRightButton()
+    func enterButtonClicked()
+    func colonButtonTapped()
+    func hyphenButtonTapped()
+    func leftArrowButtonClicked()
+    func rightArrowButtonClicked()
+    func questionButtonClicked()
+    func specialFbutton()
+    func specialGbutton()
+    func specialKbutton()
+    func specialMbutton()
+    func specialPbutton()
+    func specialQbutton()
+    func specialBbutton()
+    func smileyButton()
+    func configureLongPressPopupView(_ popupView: UIStackView)
+    func openMainApp(_ hostValue: String)
+    func shouldCapitalizeNextCharacter() -> Bool
 }
 
 class CustomKeyboardView: UIView {
@@ -145,7 +145,6 @@ class CustomKeyboardView: UIView {
     
     
     // variables
-    var permissibleEntriesForLiteUsers = 6 // These number of entries will be free to store.
     var tRTapped: Bool = false
     var tPlusTapped: Bool = false
     var storeBtnTap: String = ""
@@ -180,20 +179,10 @@ class CustomKeyboardView: UIView {
         
         isAutoCapEnabled = sharedDefaults?.bool(forKey: Constants.AutoCapitalizationKey) ?? false
         
-        for button in TrBtnCollection {
-            let isTrEnabled = sharedDefaults?.bool(forKey: Constants.TrEnabledKey)
-            button.isEnabled = isTrEnabled!
-        }
-        
-        for button in TPlusBtnCollection {
-            let isTPlusEnabled = sharedDefaults?.bool(forKey: Constants.TPlusEnabledKey)
-            button.isEnabled = isTPlusEnabled!
-        }
-        
-        for button in SettingsBtnCollection {
-            let isRTPlusManager = sharedDefaults?.bool(forKey: Constants.RTPlusEnabledKey)
-            button.isEnabled = isRTPlusManager!
-        }
+        // Enable buttons based on settings
+        configureButtonStates(for: TrBtnCollection, key: Constants.TrEnabledKey)
+        configureButtonStates(for: TPlusBtnCollection, key: Constants.TPlusEnabledKey)
+        configureButtonStates(for: SettingsBtnCollection, key: Constants.RTPlusEnabledKey)
         
         for button in BackspaceBtnCollection {
             button.addTarget(self, action: #selector(backspaceBtnTapped), for: .touchDown)
@@ -232,94 +221,12 @@ class CustomKeyboardView: UIView {
         MoveCursorRightBtn.addTarget(self, action: #selector(moveCursorRightBtnReleased), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         
         // Attaching Long press keys gesture to the buttons.
-        let atTheRateLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleAtTheRateLongPress))
-        AtTheRateBtn.addGestureRecognizer(atTheRateLongPressGesture)
-        
-        let colonLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleColonLongPress))
-        ColonBtn.addGestureRecognizer(colonLongPressGesture)
-        
-        let underscoreLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleUnderscoreLongPress))
-        UnderscoreBtn.addGestureRecognizer(underscoreLongPressGesture)
-        
-        let leftArrowLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLeftArrowLongPress))
-        LeftArrowBtn.addGestureRecognizer(leftArrowLongPressGesture)
-        
-        let rightArrowLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleRightArrowLongPress))
-        RightArrowBtn.addGestureRecognizer(rightArrowLongPressGesture)
-        
-        let questionMarkLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleQuestionMarkLongPress))
-        QuestionMarkBtn.addGestureRecognizer(questionMarkLongPressGesture)
-        
-        let specialFLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSpecialFLongPress))
-        SpecialFBtn.addGestureRecognizer(specialFLongPressGesture)
-        
-        let specialGLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSpecialGLongPress))
-        SpecialGBtn.addGestureRecognizer(specialGLongPressGesture)
-        
-        let smileyLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSmileyLongPress))
-        SmileyBtn.addGestureRecognizer(smileyLongPressGesture)
-        
-        let latin_L_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_L_LongPress))
-        Latin_L_Btn.addGestureRecognizer(latin_L_LongPressGesture)
-        
-        let specialMLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleSpecialMLongPress))
-        SpecialMBtn.addGestureRecognizer(specialMLongPressGesture)
-        
-        let latin_N_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_N_LongPress))
-        Latin_N_Btn.addGestureRecognizer(latin_N_LongPressGesture)
-        
-        let latin_E_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_E_LongPress))
-        Latin_E_Btn.addGestureRecognizer(latin_E_LongPressGesture)
-        
-        let latin_I_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_I_LongPress))
-        Latin_I_Btn.addGestureRecognizer(latin_I_LongPressGesture)
-        
-        let latin_O_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_O_LongPress))
-        Latin_O_Btn.addGestureRecognizer(latin_O_LongPressGesture)
-        
-        let latinCentLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleCentLongPress))
-        LatinCentBtn.addGestureRecognizer(latinCentLongPressGesture)
-        
-        let latin_R_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_R_LongPress))
-        Latin_R_Btn.addGestureRecognizer(latin_R_LongPressGesture)
-        
-        let latin_S_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_S_LongPress))
-        Latin_S_Btn.addGestureRecognizer(latin_S_LongPressGesture)
-        
-        let latin_T_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_T_LongPress))
-        Latin_T_Btn.addGestureRecognizer(latin_T_LongPressGesture)
-        
-        let latin_A_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_A_LongPress))
-        Latin_A_Btn.addGestureRecognizer(latin_A_LongPressGesture)
-        
-        let latin_C_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_C_LongPress))
-        Latin_C_Btn.addGestureRecognizer(latin_C_LongPressGesture)
-        
-        let latin_U_LongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatin_U_LongPress))
-        Latin_U_Btn.addGestureRecognizer(latin_U_LongPressGesture)
-        
-        let latinPipeLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinPipeLongPress))
-        LatinPipeBtn.addGestureRecognizer(latinPipeLongPressGesture)
-        
-        let latinBackslashLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinBackslashLongPress))
-        LatinBackslashBtn.addGestureRecognizer(latinBackslashLongPressGesture)
-        
-        let latinOpeningCurlyBracketLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinOpeningCurlyBracketLongPress))
-        LatinOpeningCurlyBracketBtn.addGestureRecognizer(latinOpeningCurlyBracketLongPressGesture)
-        
-        let latinClosingCurlyBracketLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinClosingCurlyBracketLongPress))
-        LatinClosingCurlyBracketBtn.addGestureRecognizer(latinClosingCurlyBracketLongPressGesture)
-        
-        let latinDotLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinDotLongPress))
-        LatinDotBtn.addGestureRecognizer(latinDotLongPressGesture)
-        
-        let latinOpeningSquareBracketLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLatinOpeningSquareBracketLongPress))
-        LatinOpeningSquareBracketBtn.addGestureRecognizer(latinOpeningSquareBracketLongPressGesture)
+        attachLongPressGestures()
     }
 }
 
+//MARK: Ensuring all views have been laid out and then applying AutoCapitalization on the keyboard
 extension CustomKeyboardView {
-    // Ensuring all views have been laid out and then applying AutoCapitalization on the keyboard
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -329,7 +236,7 @@ extension CustomKeyboardView {
             changeKeysCaseFirstKeyboard()
             changeKeysCaseThirdKeyboard()
         }
-            
+        
         // Make changes for iPad screen
         if Constants.IpadScreen {
             // Disable autoresizing mask translation
@@ -394,7 +301,7 @@ extension CustomKeyboardView {
                 }
                 else {
                     let allStoredValues = databaseHelper.readAllValues()
-                    if(allStoredValues.count >= permissibleEntriesForLiteUsers) {
+                    if(allStoredValues.count >= Constants.permissibleEntriesForLiteUsers) {
                         TPlusPopupView.isHidden = true
                         configurePremiumPurchaseView()
                         PurchasePremiumNotifierPopup.isHidden = false
@@ -426,6 +333,10 @@ extension CustomKeyboardView {
         tRTapped = false
         tPlusTapped = false
         delegate?.removeCharacter()
+        
+        if(!TPlusPopupView.isHidden) {
+            return
+        }
             
         // Determine capitalization state based on the delegate
         if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true && isAutoCapEnabled {
@@ -452,6 +363,10 @@ extension CustomKeyboardView {
         if let shouldCapitalize = delegate?.shouldCapitalizeNextCharacter(), shouldCapitalize == true && isAutoCapEnabled {
             isFirstCapsUppercase = true
             isThirdCapsUppercase = true
+            
+            if(!TPlusPopupView.isHidden) {
+                return
+            }
             
             changeKeysCaseFirstKeyboard()
             changeKeysCaseThirdKeyboard()
@@ -603,6 +518,7 @@ extension CustomKeyboardView {
         tRTapped = false
     }
     
+    // Add or update an entry
     @IBAction func tPlusViewSaveBtn() {
         if let value = TPlusViewTextField.text {
             if let isPremiumCustomer = sharedDefaults?.integer(forKey: Constants.PremiumUserKey), (isPremiumCustomer != 0) {
@@ -649,8 +565,11 @@ extension CustomKeyboardView {
     
     @IBAction func closePurchasePremiumNotifier() {
         PurchasePremiumNotifierPopup.isHidden = true
+        TPlusViewTextField.text = ""
+        TPlusPopupView.isHidden = true
     }
     
+    // Navigate to the main application's home page
     @IBAction func upgradeToPremium() {
         delegate?.openMainApp("")
     }
@@ -669,7 +588,7 @@ extension CustomKeyboardView {
     }
 }
 
-// utility functions
+//MARK: utility functions
 extension CustomKeyboardView {
     @objc func backspaceBtnTapped(_ sender: UIButton) {
         backspaceRepeatTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(repeatedBackspaceAction), userInfo: nil, repeats: true)
@@ -745,115 +664,115 @@ extension CustomKeyboardView {
     }
     
     @objc func handleAtTheRateLongPress() {
-        delegate?.configurePopupView(AtTheRatePopupView)
+        delegate?.configureLongPressPopupView(AtTheRatePopupView)
     }
     
     @objc func handleColonLongPress() {
-        delegate?.configurePopupView(ColonPopupView)
+        delegate?.configureLongPressPopupView(ColonPopupView)
     }
     
     @objc func handleUnderscoreLongPress() {
-        delegate?.configurePopupView(UnderscorePopupView)
+        delegate?.configureLongPressPopupView(UnderscorePopupView)
     }
     
     @objc func handleLeftArrowLongPress() {
-        delegate?.configurePopupView(LeftArrowPopupView)
+        delegate?.configureLongPressPopupView(LeftArrowPopupView)
     }
     
     @objc func handleRightArrowLongPress() {
-        delegate?.configurePopupView(RightArrowPopupView)
+        delegate?.configureLongPressPopupView(RightArrowPopupView)
     }
     
     @objc func handleQuestionMarkLongPress() {
-        delegate?.configurePopupView(QuestionMarkPopupView)
+        delegate?.configureLongPressPopupView(QuestionMarkPopupView)
     }
     
     @objc func handleSpecialFLongPress() {
-        delegate?.configurePopupView(SpecialFPopupView)
+        delegate?.configureLongPressPopupView(SpecialFPopupView)
     }
     
     @objc func handleSpecialGLongPress() {
-        delegate?.configurePopupView(SpecialGPopupView)
+        delegate?.configureLongPressPopupView(SpecialGPopupView)
     }
     
     @objc func handleSmileyLongPress() {
-        delegate?.configurePopupView(SmileyButtonPopupView)
+        delegate?.configureLongPressPopupView(SmileyButtonPopupView)
     }
     
     @objc func handleLatin_L_LongPress() {
-        delegate?.configurePopupView(Latin_L_PopupView)
+        delegate?.configureLongPressPopupView(Latin_L_PopupView)
     }
     
     @objc func handleSpecialMLongPress() {
-        delegate?.configurePopupView(SpecialMPopupView)
+        delegate?.configureLongPressPopupView(SpecialMPopupView)
     }
     
     @objc func handleLatin_N_LongPress() {
-        delegate?.configurePopupView(Latin_N_PopupView)
+        delegate?.configureLongPressPopupView(Latin_N_PopupView)
     }
     
     @objc func handleLatin_E_LongPress() {
-        delegate?.configurePopupView(Latin_E_PopupView)
+        delegate?.configureLongPressPopupView(Latin_E_PopupView)
     }
     
     @objc func handleLatin_I_LongPress() {
-        delegate?.configurePopupView(Latin_I_PopupView)
+        delegate?.configureLongPressPopupView(Latin_I_PopupView)
     }
     
     @objc func handleLatin_O_LongPress() {
-        delegate?.configurePopupView(Latin_O_PopupView)
+        delegate?.configureLongPressPopupView(Latin_O_PopupView)
     }
     
     @objc func handleCentLongPress() {
-        delegate?.configurePopupView(LatinCentPopupView)
+        delegate?.configureLongPressPopupView(LatinCentPopupView)
     }
     
     @objc func handleLatin_R_LongPress() {
-        delegate?.configurePopupView(Latin_R_PopupView)
+        delegate?.configureLongPressPopupView(Latin_R_PopupView)
     }
     
     @objc func handleLatin_S_LongPress() {
-        delegate?.configurePopupView(Latin_S_PopupView)
+        delegate?.configureLongPressPopupView(Latin_S_PopupView)
     }
     
     @objc func handleLatin_T_LongPress() {
-        delegate?.configurePopupView(Latin_T_PopupView)
+        delegate?.configureLongPressPopupView(Latin_T_PopupView)
     }
     
     @objc func handleLatin_A_LongPress() {
-        delegate?.configurePopupView(Latin_A_PopupView)
+        delegate?.configureLongPressPopupView(Latin_A_PopupView)
     }
     
     @objc func handleLatin_C_LongPress() {
-        delegate?.configurePopupView(Latin_C_PopupView)
+        delegate?.configureLongPressPopupView(Latin_C_PopupView)
     }
     
     @objc func handleLatin_U_LongPress() {
-        delegate?.configurePopupView(Latin_U_PopupView)
+        delegate?.configureLongPressPopupView(Latin_U_PopupView)
     }
     
     @objc func handleLatinPipeLongPress() {
-        delegate?.configurePopupView(LatinPipePopupView)
+        delegate?.configureLongPressPopupView(LatinPipePopupView)
     }
     
     @objc func handleLatinBackslashLongPress() {
-        delegate?.configurePopupView(LatinBackslashPopupView)
+        delegate?.configureLongPressPopupView(LatinBackslashPopupView)
     }
     
     @objc func handleLatinOpeningCurlyBracketLongPress() {
-        delegate?.configurePopupView(LatinOpeningCurlyBracketsPopupView)
+        delegate?.configureLongPressPopupView(LatinOpeningCurlyBracketsPopupView)
     }
     
     @objc func handleLatinClosingCurlyBracketLongPress() {
-        delegate?.configurePopupView(LatinClosingCurlyBracketsPopupView)
+        delegate?.configureLongPressPopupView(LatinClosingCurlyBracketsPopupView)
     }
     
     @objc func handleLatinDotLongPress() {
-        delegate?.configurePopupView(LatinDotPopupView)
+        delegate?.configureLongPressPopupView(LatinDotPopupView)
     }
     
     @objc func handleLatinOpeningSquareBracketLongPress() {
-        delegate?.configurePopupView(LatinOpeningSquareBracketPopupView)
+        delegate?.configureLongPressPopupView(LatinOpeningSquareBracketPopupView)
     }
     
     @objc func crossButtonTapped() {
@@ -880,11 +799,10 @@ extension CustomKeyboardView {
             }
             else {
                 let allStoredValues = databaseHelper.readAllValues()
-                if(allStoredValues.count >= permissibleEntriesForLiteUsers) {
+                if(allStoredValues.count >= Constants.permissibleEntriesForLiteUsers) {
                     TPlusPopupView.isHidden = true
                     configurePremiumPurchaseView()
                     PurchasePremiumNotifierPopup.isHidden = false
-                    return
                 }
             }
         }
@@ -927,6 +845,12 @@ extension CustomKeyboardView {
         }
     }
     
+    // Enable or disable buttons state based on user preference
+    func configureButtonStates(for buttons: [UIButton], key: String) {
+        guard let isEnabled = sharedDefaults?.bool(forKey: key) else { return }
+        buttons.forEach { $0.isEnabled = isEnabled }
+    }
+    
     // Set minium height constraint for the given UIView
     func setMinimumHeightConstraint(for view: UIView, height: CGFloat) {
         if let existingHeightConstraint = view.constraints.first(where: { $0.firstAttribute == .height }) {
@@ -934,6 +858,45 @@ extension CustomKeyboardView {
         }
         let newHeightConstraint = view.heightAnchor.constraint(equalToConstant: height)
         newHeightConstraint.isActive = true
+    }
+    
+    func attachLongPressGestures() {
+        // List of tuples containing buttons and their specific handler
+        let longPressActions: [(UIButton, Selector)] = [
+            (AtTheRateBtn, #selector(handleAtTheRateLongPress)),
+            (ColonBtn, #selector(handleColonLongPress)),
+            (UnderscoreBtn, #selector(handleUnderscoreLongPress)),
+            (LeftArrowBtn, #selector(handleLeftArrowLongPress)),
+            (RightArrowBtn, #selector(handleRightArrowLongPress)),
+            (QuestionMarkBtn, #selector(handleQuestionMarkLongPress)),
+            (SpecialFBtn, #selector(handleSpecialFLongPress)),
+            (SpecialGBtn, #selector(handleSpecialGLongPress)),
+            (SmileyBtn, #selector(handleSmileyLongPress)),
+            (Latin_L_Btn, #selector(handleLatin_L_LongPress)),
+            (SpecialMBtn, #selector(handleSpecialMLongPress)),
+            (Latin_N_Btn, #selector(handleLatin_N_LongPress)),
+            (Latin_E_Btn, #selector(handleLatin_E_LongPress)),
+            (Latin_I_Btn, #selector(handleLatin_I_LongPress)),
+            (Latin_O_Btn, #selector(handleLatin_O_LongPress)),
+            (LatinCentBtn, #selector(handleCentLongPress)),
+            (Latin_R_Btn, #selector(handleLatin_R_LongPress)),
+            (Latin_S_Btn, #selector(handleLatin_S_LongPress)),
+            (Latin_T_Btn, #selector(handleLatin_T_LongPress)),
+            (Latin_A_Btn, #selector(handleLatin_A_LongPress)),
+            (Latin_C_Btn, #selector(handleLatin_C_LongPress)),
+            (Latin_U_Btn, #selector(handleLatin_U_LongPress)),
+            (LatinPipeBtn, #selector(handleLatinPipeLongPress)),
+            (LatinBackslashBtn, #selector(handleLatinBackslashLongPress)),
+            (LatinOpeningCurlyBracketBtn, #selector(handleLatinOpeningCurlyBracketLongPress)),
+            (LatinClosingCurlyBracketBtn, #selector(handleLatinClosingCurlyBracketLongPress)),
+            (LatinDotBtn, #selector(handleLatinDotLongPress)),
+            (LatinOpeningSquareBracketBtn, #selector(handleLatinOpeningSquareBracketLongPress))
+        ]
+
+        for (button, action) in longPressActions {
+            let longPressGesture = UILongPressGestureRecognizer(target: self, action: action)
+            button.addGestureRecognizer(longPressGesture)
+        }
     }
     
     // Configure different buttons of popup views
@@ -987,6 +950,7 @@ extension CustomKeyboardView {
         TPlusViewTextField.layer.masksToBounds = true
         TPlusViewTextField.font = UIFont.systemFont(ofSize: Constants.IpadScreen ? 24 : 16)  // Larger font for iPad
         TPlusViewTextField.setPadding(Constants.IpadScreen ? 30 : 15)  // More padding on iPad
+        TPlusViewTextField.text = ""
         
         // Warning label styling
         TPlusViewWarningLabel.textColor = UIColor(red: 0.1, green: 0.4, blue: 0.8, alpha: 1.0)
@@ -1022,7 +986,7 @@ extension CustomKeyboardView {
             }
             
             PremiumEntriesPopupView.subviews.forEach { $0.removeFromSuperview() }
-            PremiumEntriesPopupView.backgroundColor = UIColor(white: 0.98, alpha: 1.0)
+            PremiumEntriesPopupView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
             PremiumEntriesPopupView.layer.cornerRadius = 20
             PremiumEntriesPopupView.layer.shadowColor = UIColor.black.cgColor
             PremiumEntriesPopupView.layer.shadowOpacity = 0.2
@@ -1110,6 +1074,7 @@ extension CustomKeyboardView {
     }
 }
 
+// MARK: Conform to UITextField
 extension UITextField {
     func setPadding(_ amount: CGFloat) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.height))

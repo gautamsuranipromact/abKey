@@ -35,6 +35,12 @@ class AccentsViewController: UIViewController {
                 accentTableView.deselectRow(at: indexPath, animated: false)
             }
         }
+        // Clear the selectedCellIds when the view appears
+        selectedCellIds.removeAll()
+        
+        // Notify the delegate to update selection count and hide edit/delete stack
+        delegate?.didSelectCell(selectedCount: 0)
+        
         // Notify the parent view controller to hide the stack view
         delegate?.hideEditDeleteStackView()
     }

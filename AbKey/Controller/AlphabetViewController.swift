@@ -22,24 +22,30 @@ class AlphabetViewController: UIViewController {
     var customKeys: [(id: Int, key: String, value: String, keyboardType: String)] = []
     var selectedCellIds: Set<Int> = []
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            // Fetch and reload data
-            fetchDataAndReloadTable()
-            alphabetTableView.allowsMultipleSelection = true
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Fetch and reload data
+        fetchDataAndReloadTable()
+        alphabetTableView.allowsMultipleSelection = true
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            // Deselect all selected cells
-            if let selectedIndexPaths = alphabetTableView.indexPathsForSelectedRows {
-                for indexPath in selectedIndexPaths {
-                    alphabetTableView.deselectRow(at: indexPath, animated: false)
-                }
+        super.viewWillAppear(animated)
+        // Deselect all selected cells
+        if let selectedIndexPaths = alphabetTableView.indexPathsForSelectedRows {
+            for indexPath in selectedIndexPaths {
+                alphabetTableView.deselectRow(at: indexPath, animated: false)
             }
-            // Notify the parent view controller to hide the stack view
-            delegate?.hideEditDeleteStackView()
         }
+        
+        // Clear the selectedCellIds when the view appears
+        selectedCellIds.removeAll()
+        
+        // Notify the delegate to update selection count and hide edit/delete stack
+        delegate?.didSelectCell(selectedCount: 0)
+        // Notify the parent view controller to hide the stack view
+        delegate?.hideEditDeleteStackView()
+    }
 
     func fetchDataAndReloadTable() {
         // Fetch the data from the database with keyboardType "alphabetic"

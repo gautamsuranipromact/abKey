@@ -65,6 +65,7 @@ class AbKeySettingVC: UIViewController {
         updateAutoCapFunctionalityUI(isAutoCapEnabled: isAutoCapEnabled)
     }
 
+    // Update UI of Tr Manager according to the state of Tr button
     func updateTrFunctionalityUI(isTrEnabled: Bool) {
         if isTrEnabled {
             imgViewCheck.image = UIImage(named: Constants.CheckSquareImg)
@@ -75,6 +76,7 @@ class AbKeySettingVC: UIViewController {
         }
     }
     
+    // Update UI of T+ Manager according to the state of T+ button
     func updateTPlusFunctionalityUI(isTPlusEnabled: Bool) {
         if isTPlusEnabled {
             imgViewTplus.image = UIImage(named: Constants.CheckSquareImg)
@@ -85,6 +87,7 @@ class AbKeySettingVC: UIViewController {
         }
     }
     
+    // Update UI of rT+ Manager according to the state of rT+ button
     func  updateRTPlusManagerUI(isRTPlusManager: Bool) {
         if isRTPlusManager {
             imgViewRTPlusManager.image = UIImage(named: Constants.CheckSquareImg)
@@ -95,6 +98,7 @@ class AbKeySettingVC: UIViewController {
         }
     }
     
+    // Update UI of Auto-Capitalization manager according to the state
     func updateAutoCapFunctionalityUI(isAutoCapEnabled: Bool) {
         if(isAutoCapEnabled){
             imgViewAutoCapitalizationManager.image = UIImage(named: Constants.CheckSquareImg)
@@ -208,7 +212,7 @@ class AbKeySettingVC: UIViewController {
     }
 }
 
-// Conform to UIDocumentPickerDelegate
+//MARK: Conform to UIDocumentPickerDelegate
 extension AbKeySettingVC: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let selectedFileURL = urls.first else {
