@@ -586,6 +586,10 @@ extension CustomKeyboardView {
             delegate?.openMainApp(Constants.ThirdKeyboardHost)
         }
     }
+    
+    @IBAction func openAbKeySettings() {
+        delegate?.openMainApp(Constants.SecondKeyboardHost)
+    }
 }
 
 //MARK: utility functions
@@ -847,8 +851,13 @@ extension CustomKeyboardView {
     
     // Enable or disable buttons state based on user preference
     func configureButtonStates(for buttons: [UIButton], key: String) {
-        guard let isEnabled = sharedDefaults?.bool(forKey: key) else { return }
-        buttons.forEach { $0.isEnabled = isEnabled }
+        if sharedDefaults?.object(forKey: key) == nil {
+            buttons.forEach { $0.isEnabled = true }
+            sharedDefaults?.set(true, forKey: key)
+        } else {
+            let isEnabled = sharedDefaults?.bool(forKey: key) ?? false
+            buttons.forEach { $0.isEnabled = isEnabled }
+        }
     }
     
     // Set minium height constraint for the given UIView

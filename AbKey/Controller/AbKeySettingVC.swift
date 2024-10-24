@@ -9,10 +9,6 @@ import UIKit
 import UniformTypeIdentifiers
 
 class AbKeySettingVC: UIViewController {
-
-    @IBOutlet weak var viewAutoSelect: UIView!
-    @IBOutlet weak var viewSpaceWillSelect: UIView!
-    @IBOutlet weak var viewCorrectsCommonly: UIView!
     
     @IBOutlet weak var lblTr: UILabel!
     @IBOutlet weak var imgViewCheck: UIImageView!
@@ -28,9 +24,6 @@ class AbKeySettingVC: UIViewController {
     
     @IBOutlet weak var imgViewAutoCapitalizationManager: UIImageView!
     
-    var viewSpace = 0
-    var quickFixes = 0
-    
     var premiumValueFromHomePageVC: Int = 0
 
     let sharedDefaults = UserDefaults(suiteName: Constants.AppGroupSuiteName)
@@ -38,8 +31,6 @@ class AbKeySettingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewSpaceWillSelect.isHidden = true
-        viewCorrectsCommonly.isHidden = true
         
         if premiumValueFromHomePageVC >= 1{
             lblHeadingTitle.text = Constants.PremiumUserHeading
@@ -52,14 +43,32 @@ class AbKeySettingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let isTrEnabled = sharedDefaults?.bool(forKey: Constants.TrEnabledKey) ?? false
-        updateTrFunctionalityUI(isTrEnabled: isTrEnabled)
-        
-        let isTPlusEnabled = sharedDefaults?.bool(forKey: Constants.TPlusEnabledKey) ?? false
-        updateTPlusFunctionalityUI(isTPlusEnabled: isTPlusEnabled)
-        
-        let isRTPlusManager = sharedDefaults?.bool(forKey: Constants.RTPlusEnabledKey) ?? false
-        updateRTPlusManagerUI(isRTPlusManager: isRTPlusManager)
+        // Check and configure Tr functionality
+        if sharedDefaults?.object(forKey: Constants.TrEnabledKey) == nil {
+            updateTrFunctionalityUI(isTrEnabled: true)
+            sharedDefaults?.set(true, forKey: Constants.TrEnabledKey)
+        } else {
+            let isTrEnabled = sharedDefaults?.bool(forKey: Constants.TrEnabledKey) ?? false
+            updateTrFunctionalityUI(isTrEnabled: isTrEnabled)
+        }
+
+        // Check and configure T+ functionality
+        if sharedDefaults?.object(forKey: Constants.TPlusEnabledKey) == nil {
+            updateTPlusFunctionalityUI(isTPlusEnabled: true)
+            sharedDefaults?.set(true, forKey: Constants.TPlusEnabledKey)
+        } else {
+            let isTPlusEnabled = sharedDefaults?.bool(forKey: Constants.TPlusEnabledKey) ?? false
+            updateTPlusFunctionalityUI(isTPlusEnabled: isTPlusEnabled)
+        }
+
+        // Check and configure RT+ Manager functionality
+        if sharedDefaults?.object(forKey: Constants.RTPlusEnabledKey) == nil {
+            updateRTPlusManagerUI(isRTPlusManager: true)
+            sharedDefaults?.set(true, forKey: Constants.RTPlusEnabledKey)
+        } else {
+            let isRTPlusManager = sharedDefaults?.bool(forKey: Constants.RTPlusEnabledKey) ?? false
+            updateRTPlusManagerUI(isRTPlusManager: isRTPlusManager)
+        }
         
         let isAutoCapEnabled = sharedDefaults?.bool(forKey: Constants.AutoCapitalizationKey) ?? false
         updateAutoCapFunctionalityUI(isAutoCapEnabled: isAutoCapEnabled)
@@ -110,27 +119,6 @@ class AbKeySettingVC: UIViewController {
     
     @IBAction func btnBackAction(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func btnAutoSelect(_ sender: Any) {
-        viewSpace = 1
-        
-        if(viewSpace == 1){
-            viewSpaceWillSelect.isHidden = false
-        }else{
-            viewSpaceWillSelect.isHidden = false
-        }
-        viewSpace = 0
-    }
-    
-    @IBAction func btnQuickFixes(_ sender: Any){
-        quickFixes = 1
-        if(quickFixes == 1){
-            viewCorrectsCommonly.isHidden = false
-        }else{
-            viewCorrectsCommonly.isHidden = false
-        }
-        quickFixes = 0
     }
     
     @IBAction func btnTrEnable(_ sender: Any) {
