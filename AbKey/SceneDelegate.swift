@@ -10,7 +10,38 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            let host = url.host ?? ""
+            
+            // Pop to root view controller if necessary
+            if let navigationController = window?.rootViewController as? UINavigationController {
+                navigationController.popToRootViewController(animated: false)
+            }
+            
+            let premium = UserDefaults(suiteName: Constants.AppGroupSuiteName)?.integer(forKey: Constants.PremiumUserKey) ?? 0
+            let storyboard = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle: nil)
+            
+            if host == Constants.FirstKeyboardHost || host == Constants.ThirdKeyboardHost {
+                if let vc = storyboard.instantiateViewController(withIdentifier: Constants.SettingVCIdentifier) as? SettingViewController {
+                    vc.premiumValueFromRTPlusManager = premium
+                    
+                    if let navigationController = window?.rootViewController as? UINavigationController {
+                        navigationController.pushViewController(vc, animated: true)
+                    }
+                }
+            } else if (host == Constants.SecondKeyboardHost) {
+                if let vc = storyboard.instantiateViewController(withIdentifier: Constants.AbKeySettingVCIdentifier) as? AbKeySettingVC {
+                    vc.premiumValueFromHomePageVC = premium
+                    
+                    if let navigationController = window?.rootViewController as? UINavigationController {
+                        navigationController.pushViewController(vc, animated: true)
+                    }
+                }
+            }
+        }
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.

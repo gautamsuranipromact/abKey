@@ -1,5 +1,5 @@
 PODS:
-  - LZViewPager (1.2.9):
+  - LZViewPager (1.3.2):
     - SnapKit (~> 5.6.0)
   - SnapKit (5.6.0)
 
@@ -12,9 +12,9 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
-  LZViewPager: d564dc3bb0558bd5f489c8fbe22a257823a890f0
+  LZViewPager: b1e7dd82ed0e041f0f553982a6e2ff02e8307f34
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
 PODFILE CHECKSUM: 3b7bda270ecaadcd3585d34b850cac1a031802e3
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.15.2
