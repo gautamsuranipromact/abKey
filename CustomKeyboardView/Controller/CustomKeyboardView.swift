@@ -310,7 +310,6 @@ extension CustomKeyboardView {
                 }
             }
             styleTPlusPopupView()
-            TPlusViewTextField.becomeFirstResponder()
             TPlusPopupView.isHidden = false
         }
         else if(tRTapped) {
