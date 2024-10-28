@@ -164,6 +164,12 @@ class CustomKeyboardView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        if let dbRestored = sharedDefaults?.bool(forKey: Constants.RestoreDBFlag), dbRestored {
+            print("Database is restored, opening new connection...")
+            databaseHelper.openDatabase()
+            sharedDefaults?.set(false, forKey: Constants.RestoreDBFlag)
+        }
+        
         // Making changes for iPad Screens.
         if Constants.IpadScreen {
             setMinimumHeightConstraint(for: FirstKeyboardLayout, height: 300)

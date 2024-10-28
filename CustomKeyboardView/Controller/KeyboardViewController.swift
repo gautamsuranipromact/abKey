@@ -59,9 +59,10 @@ extension KeyboardViewController {
     func insertCharacter(_ newCharacter: String) {
         if customKeyboardView.TPlusPopupView.isHidden == false {
             customKeyboardView.TPlusViewTextField.insertText(newCharacter)
-            return
         }
-        textDocumentProxy.insertText(newCharacter)
+        else{
+            textDocumentProxy.insertText(newCharacter)
+        }
     }
     
     func removeCharacter() {
@@ -95,7 +96,7 @@ extension KeyboardViewController {
 // MARK: Utility functions
 extension KeyboardViewController{
     func colonButtonTapped() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+        if(!customKeyboardView.TPlusPopupView.isHidden) {
             if customKeyboardView.isFirstCapsUppercase == true{
                 customKeyboardView.TPlusViewTextField.insertText(":")
             }else{
@@ -112,7 +113,7 @@ extension KeyboardViewController{
     }
     
     func hyphenButtonTapped() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+        if(!customKeyboardView.TPlusPopupView.isHidden) {
             if customKeyboardView.isFirstCapsUppercase == true{
                 customKeyboardView.TPlusViewTextField.insertText("_")
             }else{
@@ -129,7 +130,7 @@ extension KeyboardViewController{
     }
     
     func leftArrowButtonClicked() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+        if(!customKeyboardView.TPlusPopupView.isHidden) {
             if customKeyboardView.isFirstCapsUppercase == true{
                 customKeyboardView.TPlusViewTextField.insertText("<")
             }else{
@@ -146,7 +147,7 @@ extension KeyboardViewController{
     }
     
     func rightArrowButtonClicked() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+        if(!customKeyboardView.TPlusPopupView.isHidden) {
             if customKeyboardView.isFirstCapsUppercase == true{
                 customKeyboardView.TPlusViewTextField.insertText(">")
             }else{
@@ -163,7 +164,7 @@ extension KeyboardViewController{
     }
     
     func questionButtonClicked() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+        if(!customKeyboardView.TPlusPopupView.isHidden) {
             if customKeyboardView.isFirstCapsUppercase == true{
                 customKeyboardView.TPlusViewTextField.insertText("?")
             }else{
@@ -180,7 +181,7 @@ extension KeyboardViewController{
     }
     
     func enterButtonClicked() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+        if(!customKeyboardView.TPlusPopupView.isHidden){
             customKeyboardView.TPlusViewTextField.insertText("\n")
         }
         else{
@@ -189,41 +190,15 @@ extension KeyboardViewController{
     }
         
     func moveArrowLeftButton() {
-        if customKeyboardView.TPlusViewTextField.isFirstResponder {
-            // Move the cursor left in the UITextField
-            guard let textField = customKeyboardView.TPlusViewTextField else { return }
-            
-            if let selectedTextRange = textField.selectedTextRange {
-                // Calculate the new position
-                if let start = textField.position(from: selectedTextRange.start, offset: -1) {
-                    textField.selectedTextRange = textField.textRange(from: start, to: start)
-                }
-            }
-        } else {
-            // Move the cursor left in the textDocumentProxy
-            textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
-        }
+        textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
     }
         
     func moveArrowRightButton() {
-        if customKeyboardView.TPlusViewTextField.isFirstResponder {
-            // Move the cursor right in the UITextField
-            guard let textField = customKeyboardView.TPlusViewTextField else { return }
-
-            if let selectedTextRange = textField.selectedTextRange {
-                // Calculate the new position
-                if let end = textField.position(from: selectedTextRange.end, offset: 1) {
-                    textField.selectedTextRange = textField.textRange(from: end, to: end)
-                }
-            }
-        } else {
-            // Move the cursor right in the textDocumentProxy
-            textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
-        }
+        textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
     }
     
     func specialFbutton() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+        if(!customKeyboardView.TPlusPopupView.isHidden){
             customKeyboardView.TPlusViewTextField.insertText("%")
         }
         else{
@@ -232,7 +207,7 @@ extension KeyboardViewController{
     }
     
     func specialGbutton() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder) {
+        if(!customKeyboardView.TPlusPopupView.isHidden) {
             if(customKeyboardView.isThirdCapsUppercase){
                 customKeyboardView.TPlusViewTextField.insertText("A")
             }
@@ -251,7 +226,7 @@ extension KeyboardViewController{
     }
     
     func specialKbutton() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+        if(!customKeyboardView.TPlusPopupView.isHidden){
             customKeyboardView.TPlusViewTextField.insertText("|")
         }
         else{
@@ -260,7 +235,7 @@ extension KeyboardViewController{
     }
     
     func specialMbutton() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+        if(!customKeyboardView.TPlusPopupView.isHidden){
             customKeyboardView.TPlusViewTextField.insertText("☎️")
         }
         else{
@@ -269,7 +244,7 @@ extension KeyboardViewController{
     }
     
     func specialPbutton() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+        if(!customKeyboardView.TPlusPopupView.isHidden){
             customKeyboardView.TPlusViewTextField.insertText("★")
         }
         else{
@@ -278,7 +253,7 @@ extension KeyboardViewController{
     }
     
     func specialQbutton() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+        if(!customKeyboardView.TPlusPopupView.isHidden){
             customKeyboardView.TPlusViewTextField.insertText("☆")
         }
         else{
@@ -287,7 +262,7 @@ extension KeyboardViewController{
     }
     
     func specialBbutton() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+        if(!customKeyboardView.TPlusPopupView.isHidden){
             customKeyboardView.TPlusViewTextField.insertText("ß")
         }
         else{
@@ -296,7 +271,7 @@ extension KeyboardViewController{
     }
     
     func smileyButton() {
-        if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+        if(!customKeyboardView.TPlusPopupView.isHidden){
             customKeyboardView.TPlusViewTextField.insertText("🙂")
         }
         else{

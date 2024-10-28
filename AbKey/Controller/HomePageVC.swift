@@ -33,6 +33,11 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleAbkeySettingViewTap))
+        
+        // Add the gesture recognizer to the view
+        viewAbKeySetting.addGestureRecognizer(tapGesture)
+        
         premium = UserDefaults(suiteName: Constants.AppGroupSuiteName)?.integer(forKey: Constants.PremiumUserKey) ?? 0
         
         self.applyRoundedCorners(to: lblAppTitle)
@@ -105,6 +110,13 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func handleAbkeySettingViewTap() {
+        if let vc = storyboard!.instantiateViewController(withIdentifier: Constants.AbKeySettingVCIdentifier) as? AbKeySettingVC {
+                vc.premiumValueFromHomePageVC = premium // Pass the premium value here
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
     }
     
     func presentActivityController() {

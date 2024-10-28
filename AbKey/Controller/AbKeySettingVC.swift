@@ -212,23 +212,37 @@ extension AbKeySettingVC: UIDocumentPickerDelegate {
             print("App Group container is not available.")
             return
         }
-        
+
         let destinationURL = containerURL.appendingPathComponent(Constants.DBFileName)
         
-        // Replace the existing database with the selected one
         do {
-            if FileManager.default.fileExists(atPath: destinationURL.path) {
-                try FileManager.default.removeItem(at: destinationURL)
+            // Access the file securely
+            if selectedFileURL.startAccessingSecurityScopedResource() {
+                defer { selectedFileURL.stopAccessingSecurityScopedResource() }
+                
+                SQLiteDBHelper.shared.closeDatabase()
+                
+                // Remove existing file if it exists
+                if FileManager.default.fileExists(atPath: destinationURL.path) {
+                    try FileManager.default.removeItem(at: destinationURL)
+                }
+
+                // Copy selected file to app group container
+                try FileManager.default.copyItem(at: selectedFileURL, to: destinationURL)
+                
+                // Reopen the database connection with the new file
+                SQLiteDBHelper.shared.openDatabase()
+                
+                UserDefaults(suiteName: Constants.AppGroupSuiteName)?.set(true, forKey: Constants.RestoreDBFlag)
+
+                // Notify user of success
+                showRestartAlert()
             }
-            try FileManager.default.copyItem(at: selectedFileURL, to: destinationURL)
-            
-            // Show alert to notify the user to close and reopen the app
-            showRestartAlert()
-            
-        } catch {
-            print("Error restoring database: \(error.localizedDescription)")
+        } catch let error as NSError {
+            print("Error: \(error.localizedDescription), Code: \(error.code), UserInfo: \(error.userInfo)")
         }
     }
+
 
     // Show user alert to restart the application
     func showRestartAlert() {

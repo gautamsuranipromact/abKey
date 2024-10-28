@@ -494,7 +494,7 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHf-Q5-u5d" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                 <rect key="frame" x="5" y="0.0" width="343" height="70"/>
-                                                <string key="text">2. Choose abKey Pro as default input method. Go to settings/general/keyboard/keyboards//add new keyboard/abKey/allow full access.</string>
+                                                <string key="text">2. Choose abKey Pro as default input method. Go to settings/general/keyboard/keyboards/add new keyboard/abKey/allow full access.</string>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
