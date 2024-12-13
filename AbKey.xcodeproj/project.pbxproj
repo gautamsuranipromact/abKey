@@ -1060,7 +1060,7 @@
 				DEVELOPMENT_TEAM = L5GGKS46GD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CustomKeyboardView/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CustomKeyboardView;
+				INFOPLIST_KEY_CFBundleDisplayName = AbKeyPro;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1088,7 +1088,7 @@
 				DEVELOPMENT_TEAM = L5GGKS46GD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CustomKeyboardView/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CustomKeyboardView;
+				INFOPLIST_KEY_CFBundleDisplayName = AbKeyPro;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

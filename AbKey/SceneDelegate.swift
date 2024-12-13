@@ -10,74 +10,70 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
+
+    // This method is called when the app is launched
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        // Check if the app was launched via a URL scheme
+        if let urlContext = connectionOptions.urlContexts.first {
+            handleIncomingURL(urlContext.url)
+        }
+
+        // Ensure the window is properly set up
+        guard let _ = (scene as? UIWindowScene) else { return }
+    }
+
+    // This method is called when the app is already running in the background and opened via a URL scheme
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
-            let host = url.host ?? ""
+            handleIncomingURL(url)
+        }
+    }
+
+    // Helper method to handle the URL and open the appropriate view controller
+    private func handleIncomingURL(_ url: URL) {
+        let host = url.host ?? ""
+        
+        // Pop to root view controller if necessary
+        if let navigationController = window?.rootViewController as? UINavigationController {
+            navigationController.popToRootViewController(animated: false)
             
-            // Pop to root view controller if necessary
-            if let navigationController = window?.rootViewController as? UINavigationController {
-                navigationController.popToRootViewController(animated: false)
-            }
-            
+            // Get the premium value from UserDefaults
             let premium = UserDefaults(suiteName: Constants.AppGroupSuiteName)?.integer(forKey: Constants.PremiumUserKey) ?? 0
             let storyboard = UIStoryboard(name: Constants.MainAppStoryboardIdentifier, bundle: nil)
             
+            // Handle the URL and navigate to the appropriate view controller
             if host == Constants.FirstKeyboardHost || host == Constants.ThirdKeyboardHost {
                 if let vc = storyboard.instantiateViewController(withIdentifier: Constants.SettingVCIdentifier) as? SettingViewController {
                     vc.premiumValueFromRTPlusManager = premium
-                    
-                    if let navigationController = window?.rootViewController as? UINavigationController {
-                        navigationController.pushViewController(vc, animated: true)
-                    }
+                    navigationController.pushViewController(vc, animated: true)
                 }
-            } else if (host == Constants.SecondKeyboardHost) {
+            } else if host == Constants.SecondKeyboardHost {
                 if let vc = storyboard.instantiateViewController(withIdentifier: Constants.AbKeySettingVCIdentifier) as? AbKeySettingVC {
                     vc.premiumValueFromHomePageVC = premium
-                    
-                    if let navigationController = window?.rootViewController as? UINavigationController {
-                        navigationController.pushViewController(vc, animated: true)
-                    }
+                    navigationController.pushViewController(vc, animated: true)
                 }
             }
         }
     }
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
-    }
-
+    // Other scene life cycle methods
     func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        // Called when the scene is being released by the system.
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        // Called when the scene moves from an inactive state to an active state.
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
     }
-
-
 }
-

@@ -13,7 +13,7 @@
 			<key>PrimaryLanguage</key>
 			<string>en-US</string>
 			<key>RequestsOpenAccess</key>
-			<false/>
+			<true/>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.keyboard-service</string>
@@ -22,5 +22,7 @@
 	</dict>
 	<key>RequestsOpenAccess</key>
 	<true/>
+	<key>NSAppGroupContainerIdentifier</key>
+	<string>group.your.app.group</string> <!-- Replace with your actual App Group identifier -->
 </dict>
 </plist>
