@@ -34,5 +34,12 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSAppGroupContainerIdentifier</key>
+	<string>group.abkeypro</string> <!-- Replace with your actual App Group identifier -->
 </dict>
 </plist>

@@ -23,7 +23,7 @@ class SQLiteDBHelper {
         createTable()
     }
     
-    private func openDatabase() {
+    func openDatabase() {
         guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.AppGroupSuiteName) else {
             print("App Group container is not available.")
             return
@@ -32,6 +32,18 @@ class SQLiteDBHelper {
 
         if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
             print("Error opening database")
+        }
+    }
+    
+    func closeDatabase() {
+        // Check if the database is open
+        if db != nil {
+            // Close the database connection
+            sqlite3_close(db)
+            db = nil // Set db to nil to indicate that it's closed
+            print("Database closed successfully.")
+        } else {
+            print("Database is already closed.")
         }
     }
     
