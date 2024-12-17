@@ -19,8 +19,11 @@ struct Constants {
     static let AlphabetsCellIdentifier = "alphabetCell"
     static let NumbersCellIdentifier = "numberCell"
     
+    static let AbKeySettingsHeading = "Settings"
     static let PremiumUserHeading = "abKey Pro(Premium)"
     static let LiteUserHeading = "abKey Pro(Lite)"
+    static let LiteUserBinsScreenHeading = "Bins for abKey Pro"
+    static let PremiumUserBinsScreenHeading = "Bins for abKey Pro (Premium)"
     
     static let MainAppStoryboardIdentifier = "Main"
     static let AlphabetVCIdentifier = "AlphabetViewController"

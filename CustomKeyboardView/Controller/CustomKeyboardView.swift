@@ -298,6 +298,9 @@ extension CustomKeyboardView {
     // Insert characters to the textview
     @IBAction func btnLetterTap(_ sender: UIButton) {
         if(tPlusTapped) {
+            if let TPlusViewTextField {
+                TPlusViewTextField.becomeFirstResponder()
+            }
             tPlusTapped = false
             storeBtnTap = (sender.titleLabel?.text ?? " ").lowercased()
             if let premium = sharedDefaults?.integer(forKey: Constants.PremiumUserKey), (premium == 0) {
