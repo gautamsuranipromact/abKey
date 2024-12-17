@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1034,8 +1034,8 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jo2-UC-TU6" userLabel="setting_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="90" y="0.0" width="40.333333333333343" height="48"/>
-                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                            <state key="normal" image="Settings" backgroundImage="key_background_2">
+                                                            <inset key="imageEdgeInsets" minX="3" minY="6" maxX="3" maxY="6"/>
+                                                            <state key="normal" image="rtplus_setting_icon" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -1984,8 +1984,8 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtA-TI-cie" userLabel="setting_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="88.666666666666671" y="0.0" width="41.666666666666671" height="48"/>
-                                                            <inset key="imageEdgeInsets" minX="5" minY="10" maxX="5" maxY="10"/>
-                                                            <state key="normal" image="numeric_settings" backgroundImage="key_background_2">
+                                                            <inset key="imageEdgeInsets" minX="3" minY="6" maxX="3" maxY="6"/>
+                                                            <state key="normal" image="rtplus_setting_icon" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -2949,8 +2949,8 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nz3-Yg-k7I" userLabel="settings" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="134.66666666666666" y="0.0" width="41.666666666666657" height="48"/>
-                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                            <state key="normal" image="Settings" backgroundImage="key_background_2">
+                                                            <inset key="imageEdgeInsets" minX="3" minY="6" maxX="3" maxY="6"/>
+                                                            <state key="normal" image="rtplus_setting_icon" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -7834,7 +7834,6 @@
         <image name="LeftArrow" width="11" height="30"/>
         <image name="QuestionMark" width="11" height="35"/>
         <image name="RightArrow" width="11" height="32"/>
-        <image name="Settings" width="19.604999542236328" height="19.899999618530273"/>
         <image name="Space" width="48" height="5.6666665077209473"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="key_background_1" width="83" height="97"/>
@@ -7843,8 +7842,8 @@
         <image name="key_background_4" width="194" height="97"/>
         <image name="latin_keyboard_sym" width="42" height="29"/>
         <image name="left_cursor_arrow" width="23" height="25"/>
-        <image name="numeric_settings" width="34" height="34"/>
         <image name="right_cursor_arrow" width="23" height="25"/>
+        <image name="rtplus_setting_icon" width="254" height="271"/>
         <image name="smiley" width="26" height="26"/>
         <image name="special_b" width="14" height="23"/>
         <image name="special_f" width="17" height="32"/>

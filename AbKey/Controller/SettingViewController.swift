@@ -28,9 +28,9 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
         viewPagerProperties()
         
         if premiumValueFromRTPlusManager >= 1{
-            lblAbKey.text = Constants.PremiumUserHeading
+            lblAbKey.text = Constants.PremiumUserBinsScreenHeading
         }else{
-            lblAbKey.text = Constants.LiteUserHeading
+            lblAbKey.text = Constants.LiteUserBinsScreenHeading
         }
     }
     
@@ -104,7 +104,7 @@ class SettingViewController: UIViewController,LZViewPagerDelegate,LZViewPagerDat
     
     // Height of current tab indicator
     func heightForIndicator() -> CGFloat {
-        return Constants.IpadScreen ? 4.0 : 2.0
+        return 5.0
     }
     
     // Edit a particular entry
