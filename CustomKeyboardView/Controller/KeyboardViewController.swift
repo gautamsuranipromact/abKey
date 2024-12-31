@@ -190,12 +190,33 @@ extension KeyboardViewController{
     }
         
     func moveArrowLeftButton() {
-        textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+        if customKeyboardView.TPlusViewTextField.isFirstResponder {
+            // Move cursor left within TPlusTextField
+            if let selectedRange = customKeyboardView.TPlusViewTextField.selectedTextRange {
+                if let newPosition = customKeyboardView.TPlusViewTextField.position(from: selectedRange.start, offset: -1) {
+                    customKeyboardView.TPlusViewTextField.selectedTextRange = customKeyboardView.TPlusViewTextField.textRange(from: newPosition, to: newPosition)
+                }
+            }
+        } else {
+            // Move cursor left in the textDocumentProxy
+            textDocumentProxy.adjustTextPosition(byCharacterOffset: -1)
+        }
     }
-        
+
     func moveArrowRightButton() {
-        textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
+        if customKeyboardView.TPlusViewTextField.isFirstResponder {
+            // Move cursor right within TPlusTextField
+            if let selectedRange = customKeyboardView.TPlusViewTextField.selectedTextRange {
+                if let newPosition = customKeyboardView.TPlusViewTextField.position(from: selectedRange.start, offset: 1) {
+                    customKeyboardView.TPlusViewTextField.selectedTextRange = customKeyboardView.TPlusViewTextField.textRange(from: newPosition, to: newPosition)
+                }
+            }
+        } else {
+            // Move cursor right in the textDocumentProxy
+            textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)
+        }
     }
+
     
     func specialFbutton() {
         if(customKeyboardView.isThirdCapsUppercase){
