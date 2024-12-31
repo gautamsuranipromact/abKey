@@ -43,13 +43,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // Handle the URL and navigate to the appropriate view controller
             if host == Constants.FirstKeyboardHost || host == Constants.ThirdKeyboardHost {
-                if let vc = storyboard.instantiateViewController(withIdentifier: Constants.SettingVCIdentifier) as? SettingViewController {
-                    vc.premiumValueFromRTPlusManager = premium
+                if let vc = storyboard.instantiateViewController(withIdentifier: Constants.AbKeySettingVCIdentifier) as? AbKeySettingVC {
+                    vc.premiumValueFromHomePageVC = premium
                     navigationController.pushViewController(vc, animated: true)
                 }
             } else if host == Constants.SecondKeyboardHost {
-                if let vc = storyboard.instantiateViewController(withIdentifier: Constants.AbKeySettingVCIdentifier) as? AbKeySettingVC {
-                    vc.premiumValueFromHomePageVC = premium
+                if let vc = storyboard.instantiateViewController(withIdentifier: Constants.SettingVCIdentifier) as? SettingViewController {
+                    vc.premiumValueFromRTPlusManager = premium
                     navigationController.pushViewController(vc, animated: true)
                 }
             }

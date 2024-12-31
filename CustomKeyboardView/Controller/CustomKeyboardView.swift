@@ -408,8 +408,7 @@ extension CustomKeyboardView {
         case "moveCursorRight":
             delegate?.moveArrowRightButton()
         case "smiley":
-            delegate?.smileyButton()
-            changeKeysCase()
+            SmileyButtonPopupView.isHidden = false
         case "closeKeyboard":
             delegate?.closeKeyboard()
         default:
@@ -707,9 +706,9 @@ extension CustomKeyboardView {
         delegate?.configureLongPressPopupView(SpecialGPopupView)
     }
     
-    @objc func handleSmileyLongPress() {
-        delegate?.configureLongPressPopupView(SmileyButtonPopupView)
-    }
+//    @objc func handleSmileyLongPress() {
+//        delegate?.configureLongPressPopupView(SmileyButtonPopupView)
+//    }
     
     @objc func handleLatin_L_LongPress() {
         delegate?.configureLongPressPopupView(Latin_L_PopupView)
@@ -888,7 +887,7 @@ extension CustomKeyboardView {
             (QuestionMarkBtn, #selector(handleQuestionMarkLongPress)),
             (SpecialFBtn, #selector(handleSpecialFLongPress)),
             (SpecialGBtn, #selector(handleSpecialGLongPress)),
-            (SmileyBtn, #selector(handleSmileyLongPress)),
+//            (SmileyBtn, #selector(handleSmileyLongPress)),
             (Latin_L_Btn, #selector(handleLatin_L_LongPress)),
             (SpecialMBtn, #selector(handleSpecialMLongPress)),
             (Latin_N_Btn, #selector(handleLatin_N_LongPress)),

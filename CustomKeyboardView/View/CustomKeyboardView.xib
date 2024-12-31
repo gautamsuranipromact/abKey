@@ -1034,8 +1034,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jo2-UC-TU6" userLabel="setting_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="90" y="0.0" width="40.333333333333343" height="48"/>
-                                                            <inset key="imageEdgeInsets" minX="3" minY="6" maxX="3" maxY="6"/>
-                                                            <state key="normal" image="rtplus_setting_icon" backgroundImage="key_background_2">
+                                                            <state key="normal" image="Settings" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -1984,7 +1983,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtA-TI-cie" userLabel="setting_btn" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="88.666666666666671" y="0.0" width="41.666666666666671" height="48"/>
-                                                            <inset key="imageEdgeInsets" minX="3" minY="6" maxX="3" maxY="6"/>
+                                                            <inset key="imageEdgeInsets" minX="6" minY="9" maxX="6" maxY="9"/>
                                                             <state key="normal" image="rtplus_setting_icon" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
@@ -2950,7 +2949,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nz3-Yg-k7I" userLabel="settings" customClass="CustomButton" customModule="AbKey" customModuleProvider="target">
                                                             <rect key="frame" x="134.66666666666666" y="0.0" width="41.666666666666657" height="48"/>
                                                             <inset key="imageEdgeInsets" minX="3" minY="6" maxX="3" maxY="6"/>
-                                                            <state key="normal" image="rtplus_setting_icon" backgroundImage="key_background_2">
+                                                            <state key="normal" image="Settings" backgroundImage="key_background_2">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -7834,6 +7833,7 @@
         <image name="LeftArrow" width="11" height="30"/>
         <image name="QuestionMark" width="11" height="35"/>
         <image name="RightArrow" width="11" height="32"/>
+        <image name="Settings" width="19.604999542236328" height="19.899999618530273"/>
         <image name="Space" width="48" height="5.6666665077209473"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="key_background_1" width="83" height="97"/>
