@@ -33,10 +33,8 @@ class AbKeySettingVC: UIViewController {
         super.viewDidLoad()
         
         if premiumValueFromHomePageVC >= 1{
-            lblHeadingTitle.text = Constants.PremiumUserHeading
             lblAbkeyTitle.text = Constants.PremiumUserHeading
         }else{
-            lblHeadingTitle.text = Constants.LiteUserHeading
             lblAbkeyTitle.text = Constants.LiteUserHeading
         }
     }

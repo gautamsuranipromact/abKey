@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lJJ-sr-Xii">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lJJ-sr-Xii">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -778,8 +778,8 @@
                                             <constraint firstAttribute="width" constant="30" id="YVE-mo-Yka"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abKey Pro(Lite)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMc-pe-nAe">
-                                        <rect key="frame" x="50" y="18" width="134.66666666666666" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMc-pe-nAe">
+                                        <rect key="frame" x="49.999999999999993" y="18" width="72.333333333333314" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1054,10 +1054,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQ7-ku-Dxt">
-                                                <rect key="frame" x="0.0" y="353" width="393" height="60"/>
+                                                <rect key="frame" x="0.0" y="353" width="393" height="61"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL0-Oi-BPX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="61"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain"/>
                                                         <connections>
@@ -1065,13 +1065,19 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rT+ Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ub9-Vo-Zur" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="7.9999999999999982" width="91.333333333333329" height="19.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <rect key="frame" x="10" y="7.9999999999999982" width="98" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show, Replace, Delete records." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="am5-54-EQW" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="29.333333333333318" width="188" height="15.666666666666668"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click here to ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUq-uR-rdv">
+                                                        <rect key="frame" x="123" y="8" width="102.66666666666669" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="... Show, Replace, Delete records." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="am5-54-EQW" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="30.333333333333318" width="203" height="15.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="0.031372549020000001" green="0.035294117649999998" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1083,15 +1089,17 @@
                                                     <constraint firstItem="am5-54-EQW" firstAttribute="top" secondItem="ub9-Vo-Zur" secondAttribute="bottom" constant="2" id="AfM-La-FS4"/>
                                                     <constraint firstAttribute="bottom" secondItem="mL0-Oi-BPX" secondAttribute="bottom" id="Azi-ey-VdS"/>
                                                     <constraint firstAttribute="trailing" secondItem="mL0-Oi-BPX" secondAttribute="trailing" id="BLM-kT-67O"/>
+                                                    <constraint firstItem="BUq-uR-rdv" firstAttribute="top" secondItem="NQ7-ku-Dxt" secondAttribute="top" constant="8" id="BTx-f9-njh"/>
                                                     <constraint firstItem="mL0-Oi-BPX" firstAttribute="leading" secondItem="NQ7-ku-Dxt" secondAttribute="leading" id="HH3-l8-UzR"/>
                                                     <constraint firstItem="ub9-Vo-Zur" firstAttribute="top" secondItem="NQ7-ku-Dxt" secondAttribute="top" constant="8" id="N1F-0D-xUy"/>
                                                     <constraint firstItem="ub9-Vo-Zur" firstAttribute="leading" secondItem="NQ7-ku-Dxt" secondAttribute="leading" constant="10" id="R6D-sz-EHU"/>
                                                     <constraint firstItem="mL0-Oi-BPX" firstAttribute="top" secondItem="NQ7-ku-Dxt" secondAttribute="top" id="jkl-zK-vfH"/>
                                                     <constraint firstAttribute="bottom" secondItem="am5-54-EQW" secondAttribute="bottom" constant="15.000000000000014" id="vu3-9f-cM4"/>
+                                                    <constraint firstItem="BUq-uR-rdv" firstAttribute="leading" secondItem="ub9-Vo-Zur" secondAttribute="trailing" constant="15" id="xMg-iB-br4"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTj-D4-Kf5">
-                                                <rect key="frame" x="0.0" y="416" width="393" height="30"/>
+                                                <rect key="frame" x="0.0" y="417" width="393" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAPITAL &amp; SPELLING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sm0-Ne-HeF" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="6.6666666666666288" width="139" height="17"/>
@@ -1108,7 +1116,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWx-OD-6XH">
-                                                <rect key="frame" x="0.0" y="446" width="393" height="60"/>
+                                                <rect key="frame" x="0.0" y="447" width="393" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dQ-Pr-5TY">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
@@ -1146,7 +1154,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAE-do-uaC">
-                                                <rect key="frame" x="0.0" y="506" width="393" height="30"/>
+                                                <rect key="frame" x="0.0" y="507" width="393" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup &amp; Restore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpm-4U-9TJ" customClass="AdaptiveLabel" customModule="AbKey" customModuleProvider="target">
                                                         <rect key="frame" x="9.9999999999999929" y="6.6666666666666288" width="115.33333333333331" height="17"/>
@@ -1163,7 +1171,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DG-Ga-nlY">
-                                                <rect key="frame" x="0.0" y="536" width="393" height="60"/>
+                                                <rect key="frame" x="0.0" y="537" width="393" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0F7-oo-VUN">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
@@ -1200,14 +1208,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W8a-c9-wrw">
-                                                <rect key="frame" x="0.0" y="596" width="393" height="1"/>
+                                                <rect key="frame" x="0.0" y="597" width="393" height="1"/>
                                                 <color key="backgroundColor" red="0.81568627450980391" green="0.82745098039215681" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="YNX-Ve-4GM"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iME-dr-cTJ">
-                                                <rect key="frame" x="0.0" y="597" width="393" height="61.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="598" width="393" height="61.333333333333371"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVw-Pz-MNm">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="61.333333333333336"/>

@@ -198,66 +198,116 @@ extension KeyboardViewController{
     }
     
     func specialFbutton() {
-        if(!customKeyboardView.TPlusPopupView.isHidden){
-            customKeyboardView.TPlusViewTextField.insertText("%")
+        if(customKeyboardView.isThirdCapsUppercase){
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("♀")
+            }
+            else{
+                textDocumentProxy.insertText("♀")
+            }
         }
         else{
-            textDocumentProxy.insertText("%")
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("ϝ")
+            }
+            else{
+                textDocumentProxy.insertText("ϝ")
+            }
         }
     }
     
     func specialGbutton() {
-        if(!customKeyboardView.TPlusPopupView.isHidden) {
-            if(customKeyboardView.isThirdCapsUppercase){
-                customKeyboardView.TPlusViewTextField.insertText("A")
+        if(customKeyboardView.isThirdCapsUppercase){
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("Γ")
             }
             else{
-                customKeyboardView.TPlusViewTextField.insertText("a")
+                textDocumentProxy.insertText("Γ")
             }
         }
         else{
-            if(customKeyboardView.isThirdCapsUppercase) {
-                textDocumentProxy.insertText("A")
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("γ")
             }
             else{
-                textDocumentProxy.insertText("a")
+                textDocumentProxy.insertText("γ")
             }
         }
     }
     
     func specialKbutton() {
-        if(!customKeyboardView.TPlusPopupView.isHidden){
-            customKeyboardView.TPlusViewTextField.insertText("|")
+        if(customKeyboardView.isThirdCapsUppercase){
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("Ϗ")
+            }
+            else{
+                textDocumentProxy.insertText("Ϗ")
+            }
         }
         else{
-            textDocumentProxy.insertText("|")
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("ϰ")
+            }
+            else{
+                textDocumentProxy.insertText("ϰ")
+            }
         }
     }
     
     func specialMbutton() {
-        if(!customKeyboardView.TPlusPopupView.isHidden){
-            customKeyboardView.TPlusViewTextField.insertText("☎️")
+        if(customKeyboardView.isThirdCapsUppercase){
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("♂")
+            }
+            else{
+                textDocumentProxy.insertText("♂")
+            }
         }
         else{
-            textDocumentProxy.insertText("☎️")
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("μ")
+            }
+            else{
+                textDocumentProxy.insertText("μ")
+            }
         }
     }
     
     func specialPbutton() {
-        if(!customKeyboardView.TPlusPopupView.isHidden){
-            customKeyboardView.TPlusViewTextField.insertText("★")
+        if(customKeyboardView.isThirdCapsUppercase){
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("Þ")
+            }
+            else{
+                textDocumentProxy.insertText("Þ")
+            }
         }
         else{
-            textDocumentProxy.insertText("★")
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("π")
+            }
+            else{
+                textDocumentProxy.insertText("π")
+            }
         }
     }
     
     func specialQbutton() {
-        if(!customKeyboardView.TPlusPopupView.isHidden){
-            customKeyboardView.TPlusViewTextField.insertText("☆")
+        if(customKeyboardView.isThirdCapsUppercase){
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("Q=mcΔT")
+            }
+            else{
+                textDocumentProxy.insertText("Q=mcΔT")
+            }
         }
         else{
-            textDocumentProxy.insertText("☆")
+            if(customKeyboardView.TPlusViewTextField.isFirstResponder){
+                customKeyboardView.TPlusViewTextField.insertText("q=n⋅e")
+            }
+            else{
+                textDocumentProxy.insertText("q=n⋅e")
+            }
         }
     }
     
