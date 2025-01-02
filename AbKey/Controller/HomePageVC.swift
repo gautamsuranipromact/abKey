@@ -26,6 +26,7 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
     @IBOutlet weak var btnAbKeySetting: UIButton!
     @IBOutlet weak var btnPremium: UIButton!
     @IBOutlet weak var btnClose: UIButton!
+    @IBOutlet weak var btnPremiumLbl: AdaptiveLabel!
     
     var premium = 0
     var premiumProduct: SKProduct?
@@ -39,6 +40,17 @@ class HomePageVC: UIViewController, SKProductsRequestDelegate, SKPaymentTransact
         viewAbKeySetting.addGestureRecognizer(tapGesture)
         
         premium = UserDefaults(suiteName: Constants.AppGroupSuiteName)?.integer(forKey: Constants.PremiumUserKey) ?? 0
+        
+        if(premium == 1){
+            if let currentText = btnPremiumLbl.text {
+                let attributes: [NSAttributedString.Key: Any] = [
+                    .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                    .strikethroughColor: UIColor.white
+                ]
+                let attributedString = NSAttributedString(string: currentText, attributes: attributes)
+                btnPremiumLbl.attributedText = attributedString
+            }
+        }
         
         self.applyRoundedCorners(to: lblAppTitle)
         self.applyRoundedCorners(to: viewAbKeySetting)
